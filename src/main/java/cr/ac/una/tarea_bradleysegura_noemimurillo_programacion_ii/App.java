@@ -20,7 +20,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FlowController.getInstance().InitializeFlow(stage, null);
         stage.setTitle("SISTEMA DE COOPERATIVA FINANCIERA");
-        FlowController.getInstance().goViewInWindow("Test");
+        FlowController.getInstance().goViewInWindow("AccountTypeManagementView");
     }
 
     public static void main(String[] args) {
