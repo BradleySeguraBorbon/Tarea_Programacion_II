@@ -94,7 +94,7 @@
                   </VBox>
                   <MFXScrollPane prefHeight="500.0" prefWidth="484.0">
                      <content>
-                        <MFXListView prefHeight="600.0" prefWidth="462.0" />
+                        <MFXListView prefHeight="627.0" prefWidth="462.0" />
                      </content>
                   </MFXScrollPane>
                </children>
