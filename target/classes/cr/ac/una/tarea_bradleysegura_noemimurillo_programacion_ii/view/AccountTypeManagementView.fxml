@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AccountTypeManagementController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AccountTypeManagementController">
    <children>
       <BorderPane layoutX="408.0" layoutY="210.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -57,7 +56,17 @@
                   <Insets left="20.0" />
                </padding>
                <children>
-                  <MFXButton fx:id="exitButton" prefHeight="86.0" prefWidth="182.0" text="SALIR" />
+                  <MFXButton fx:id="exitButton" alignment="CENTER" prefHeight="107.0" prefWidth="214.0" text="REGRESAR" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="94.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/return.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MFXButton>
                </children>
             </HBox>
          </bottom>
@@ -71,7 +80,11 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <MFXTextField prefHeight="83.0" prefWidth="358.0" />
+                        <MFXTextField alignment="CENTER" prefHeight="83.0" prefWidth="358.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </MFXTextField>
                         <MFXButton prefHeight="94.0" prefWidth="250.0" text="AGREGAR ">
                            <font>
                               <Font size="24.0" />
