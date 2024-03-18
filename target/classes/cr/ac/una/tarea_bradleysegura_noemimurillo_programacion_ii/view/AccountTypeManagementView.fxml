@@ -23,7 +23,7 @@
          <right>
             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="140.0" BorderPane.alignment="CENTER">
                <children>
-                  <MFXButton prefHeight="70.0" prefWidth="111.0" text="ELIMINAR">
+                  <MFXButton fx:id="deleteAccountTypeButton" prefHeight="70.0" prefWidth="111.0" text="ELIMINAR">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -56,7 +56,7 @@
                   <Insets left="20.0" />
                </padding>
                <children>
-                  <MFXButton fx:id="exitButton" alignment="CENTER" prefHeight="107.0" prefWidth="214.0" text="REGRESAR" textAlignment="CENTER">
+                  <MFXButton fx:id="exitButton" alignment="CENTER" onAction="#exit" prefHeight="107.0" prefWidth="214.0" text="REGRESAR" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -80,12 +80,12 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <MFXTextField alignment="CENTER" prefHeight="83.0" prefWidth="358.0">
+                        <MFXTextField fx:id="addAccountTypeTextField" alignment="CENTER" prefHeight="83.0" prefWidth="358.0">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </MFXTextField>
-                        <MFXButton prefHeight="94.0" prefWidth="250.0" text="AGREGAR ">
+                        <MFXButton fx:id="addAccountTypeButton" onAction="#addAccount" prefHeight="94.0" prefWidth="250.0" text="AGREGAR ">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -94,7 +94,7 @@
                   </VBox>
                   <MFXScrollPane prefHeight="500.0" prefWidth="484.0">
                      <content>
-                        <MFXListView prefHeight="600.0" prefWidth="462.0" />
+                        <MFXListView fx:id="accountTypesListView" prefHeight="627.0" prefWidth="462.0" />
                      </content>
                   </MFXScrollPane>
                </children>

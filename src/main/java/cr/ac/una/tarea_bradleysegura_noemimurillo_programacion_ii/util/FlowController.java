@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -138,7 +139,7 @@ public class FlowController {
         controller.initialize();
         Stage stage = new Stage();
 //        stage.getIcons().add(new Image("/cr/ac/una/tutoria2ejemplo/resources/icons/userIcon.png"));
-        stage.setTitle("Tutoria 2");
+        stage.setTitle("SISTEMA COOPERATIVA FINANCIERA");
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);
@@ -157,7 +158,7 @@ public class FlowController {
         controller.initialize();
         Stage stage = new Stage();
         stage.getIcons().add(new Image("/cr/ac/una/tutoria2ejemplo/resources/icons/userIcon.png"));
-        stage.setTitle("Tutoria 2");
+        stage.setTitle("SISTEMA COOPERATIVA FINANCIERA");
         stage.setResizable(resizable);
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());

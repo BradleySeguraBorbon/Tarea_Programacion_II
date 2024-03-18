@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.CooperativeManagementController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.CooperativeManagementController">
    <children>
       <BorderPane layoutX="418.0" layoutY="220.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -75,7 +74,7 @@
                               <Image url="@../resources/companyDefaultLogo.png" />
                            </image>
                         </ImageView>
-                        <MFXTextField alignment="CENTER" floatMode="ABOVE" floatingText="Nombre de Cooperativa" prefHeight="73.0" prefWidth="435.0" text="CoopeInternacional">
+                        <MFXTextField alignment="CENTER" floatMode="BORDER" floatingText="Nombre de Cooperativa" prefHeight="73.0" prefWidth="435.0">
                            <font>
                               <Font size="14.0" />
                            </font>
