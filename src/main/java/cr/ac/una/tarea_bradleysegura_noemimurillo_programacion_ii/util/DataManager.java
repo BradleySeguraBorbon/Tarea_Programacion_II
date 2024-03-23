@@ -18,12 +18,12 @@ import javafx.scene.image.Image;
  *
  * @author Bradley
  */
-public class DataManager {
+public class DataManager implements Serializable {
 
     private ArrayList<String> availableAccounts;
     private ArrayList<Afiliated> afiliated;
     private String cooperativeName;
-    private Image cooperativeIcon;
+    private String cooperativeIcon;
 
     public DataManager() {
         availableAccounts = new ArrayList();
@@ -42,7 +42,7 @@ public class DataManager {
         this.cooperativeName = cooperativeName;
     }
 
-    public void setCooperativeIcon(Image cooperativeIcon) {
+    public void setCooperativeIcon(String cooperativeIcon) {
         this.cooperativeIcon = cooperativeIcon;
     }
     
@@ -58,7 +58,7 @@ public class DataManager {
         return cooperativeName;
     }
 
-    public Image getCooperativeIcon() {
+    public String getCooperativeIcon() {
         return cooperativeIcon;
     }
 

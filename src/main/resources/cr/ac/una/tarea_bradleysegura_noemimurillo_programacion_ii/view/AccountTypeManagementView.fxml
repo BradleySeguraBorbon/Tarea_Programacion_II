@@ -4,102 +4,41 @@
 <?import io.github.palexdev.materialfx.controls.MFXListView?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AccountTypeManagementController">
    <children>
-      <BorderPane layoutX="408.0" layoutY="210.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="521.0" spacing="40.0">
                <children>
-                  <MFXButton fx:id="deleteAccountTypeButton" prefHeight="70.0" prefWidth="111.0" text="ELIMINAR">
+                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="359.0" text="DIGITA UN NUEVO TIPO DE CUENTA" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <MFXTextField fx:id="addAccountTypeTextField" alignment="CENTER" prefHeight="83.0" prefWidth="358.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </MFXTextField>
+                  <MFXButton fx:id="addAccountTypeButton" onAction="#addAccount" prefHeight="94.0" prefWidth="250.0" text="AGREGAR ">
+                     <font>
+                        <Font size="24.0" />
                      </font>
                   </MFXButton>
                </children>
             </VBox>
-         </right>
-         <top>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="1280.0" spacing="10.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="cooperativeNameLabel" text="Nombre de Cooperativa">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="cooperativeLogoImageView" fitHeight="104.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/companyDefaultLogo.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
-            </HBox>
-         </top>
-         <bottom>
-            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-               <children>
-                  <MFXButton fx:id="exitButton" alignment="CENTER" onAction="#exit" prefHeight="107.0" prefWidth="214.0" text="REGRESAR" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="94.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/return.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></MFXButton>
-               </children>
-            </HBox>
-         </bottom>
-         <center>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="500.0" prefWidth="521.0" spacing="40.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="359.0" text="DIGITA UN NUEVO TIPO DE CUENTA" textAlignment="CENTER">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <MFXTextField fx:id="addAccountTypeTextField" alignment="CENTER" prefHeight="83.0" prefWidth="358.0">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </MFXTextField>
-                        <MFXButton fx:id="addAccountTypeButton" onAction="#addAccount" prefHeight="94.0" prefWidth="250.0" text="AGREGAR ">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </MFXButton>
-                     </children>
-                  </VBox>
-                  <MFXScrollPane prefHeight="500.0" prefWidth="484.0">
-                     <content>
-                        <MFXListView fx:id="accountTypesListView" prefHeight="627.0" prefWidth="462.0" />
-                     </content>
-                  </MFXScrollPane>
-               </children>
-            </HBox>
-         </center>
-      </BorderPane>
+            <MFXScrollPane prefHeight="500.0" prefWidth="484.0">
+               <content>
+                  <MFXListView fx:id="accountTypesListView" prefHeight="627.0" prefWidth="462.0" />
+               </content>
+            </MFXScrollPane>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

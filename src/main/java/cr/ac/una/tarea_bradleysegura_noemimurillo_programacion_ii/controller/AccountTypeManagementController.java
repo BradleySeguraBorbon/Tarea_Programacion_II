@@ -4,6 +4,7 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.App;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -11,13 +12,18 @@ import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import java.io.*;
+import java.nio.file.Paths;
+import javafx.scene.image.Image;
 
 /**
  * FXML Controller class
@@ -27,6 +33,7 @@ import javafx.scene.image.ImageView;
 public class AccountTypeManagementController extends Controller implements Initializable {
 
     private DataManager dataBank;
+    private ArrayList<String> availableAccounts;
 
     @FXML
     private MFXTextField addAccountTypeTextField;
@@ -34,12 +41,6 @@ public class AccountTypeManagementController extends Controller implements Initi
     private MFXButton addAccountTypeButton;
     @FXML
     private MFXListView<String> accountTypesListView;
-    @FXML
-    private MFXButton exitButton;
-    @FXML
-    private Label cooperativeNameLabel;
-    @FXML
-    private ImageView cooperativeLogoImageView;
     @FXML
     private MFXButton deleteAccountTypeButton;
 
@@ -49,6 +50,7 @@ public class AccountTypeManagementController extends Controller implements Initi
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }
 
     @Override
@@ -62,29 +64,23 @@ public class AccountTypeManagementController extends Controller implements Initi
     }
     
     private void setupListView() {
-        cooperativeNameLabel.setText(dataBank.getCooperativeName());
-        cooperativeLogoImageView.setImage(dataBank.getCooperativeIcon());
-        accountTypesListView.setItems(FXCollections.observableArrayList(dataBank.getAvailableAccounts())); 
+        accountTypesListView.setItems(FXCollections.observableArrayList(dataBank.getAvailableAccounts()));
+        System.out.println(dataBank.getAvailableAccounts());
     }
     
     public void addAccount() {
         try {
             String newAccountType = addAccountTypeTextField.getText();
             if(!newAccountType.isEmpty()) {
-                accountTypesListView.getItems().add(newAccountType);
+                ObservableList<String> modifiedList = accountTypesListView.getItems();
+                modifiedList.add(newAccountType);
+                accountTypesListView.setItems(modifiedList);
                 addAccountTypeTextField.setText("");
+                dataBank.addAvailableAccount(newAccountType);
             }
         }
         catch(Exception e) {
             e.printStackTrace();
         }
-    }
-    
-    public void exit() throws IOException {
-        dataBank.save("src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/services/DataManager.json");
-        FlowController.getInstance().goViewInWindow("TeachersMainView");
-        System.out.println("COMMAND EXECUTED");
-        
-    }
-   
+    }  
 }
