@@ -25,20 +25,20 @@ public class DraggableMaker {
              if(internalContainerA.getChildren().contains(draggableNode)) {
                 internalContainerA.getChildren().remove(draggableNode);
                 externalContainer.getChildren().add(draggableNode);
-                draggableNode.setLayoutX(mouseEvent.getSceneX() - insideMouseX);
-                draggableNode.setLayoutY(mouseEvent.getSceneY() - insideMouseY);
+                draggableNode.setLayoutX((mouseEvent.getSceneX() - 140) - insideMouseX);
+                draggableNode.setLayoutY((mouseEvent.getSceneY() - 110) - insideMouseY);
             }
             else if(internalContainerB.getChildren().contains(draggableNode)) {
                 internalContainerB.getChildren().remove(draggableNode);
                 externalContainer.getChildren().add(draggableNode);
-                draggableNode.setLayoutX(mouseEvent.getSceneX() - insideMouseX);
-                draggableNode.setLayoutY(mouseEvent.getSceneY() - insideMouseY);
+                draggableNode.setLayoutX((mouseEvent.getSceneX() - 140) - insideMouseX);
+                draggableNode.setLayoutY((mouseEvent.getSceneY() - 110) - insideMouseY);
             }
         });
     
         draggableNode.setOnMouseDragged(mouseEvent -> {
-            draggableNode.setLayoutX(mouseEvent.getSceneX() - insideMouseX);
-            draggableNode.setLayoutY(mouseEvent.getSceneY() - insideMouseY);
+            draggableNode.setLayoutX((mouseEvent.getSceneX() - 140) - insideMouseX);
+            draggableNode.setLayoutY((mouseEvent.getSceneY() - 110) - insideMouseY);
         });
 
         draggableNode.setOnMouseReleased(mouseEvent -> {

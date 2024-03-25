@@ -5,6 +5,7 @@
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.App;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -32,7 +33,6 @@ import javafx.scene.image.Image;
  */
 public class AccountTypeManagementController extends Controller implements Initializable {
 
-    private DataManager dataBank;
     private ArrayList<String> availableAccounts;
 
     @FXML
@@ -49,38 +49,42 @@ public class AccountTypeManagementController extends Controller implements Initi
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.availableAccounts = new ArrayList<String>();
         // TODO
         
     }
 
     @Override
     public void initialize() {
-  
-    }
-
-    public void setDataManager(DataManager dataBank) {
-        this.dataBank = dataBank;
-        setupListView();
+        if(AppContext.getInstance().get("availableAccounts") != null) {
+            this.availableAccounts = (ArrayList<String>)AppContext.getInstance().get("availableAccounts");
+            accountTypesListView.setItems(FXCollections.observableArrayList(this.availableAccounts));
+        }
     }
     
-    private void setupListView() {
-        accountTypesListView.setItems(FXCollections.observableArrayList(dataBank.getAvailableAccounts()));
-        System.out.println(dataBank.getAvailableAccounts());
-    }
+    /*private void setupListView() {
+        accountTypesListView.setItems(FXCollections.observableArrayList((ArrayList<String>)AppContext.getInstance().get("availableAccounts")));
+        System.out.println(AppContext.getInstance().get("availableAccounts"));
+    }*/
     
     public void addAccount() {
         try {
             String newAccountType = addAccountTypeTextField.getText();
-            if(!newAccountType.isEmpty()) {
+            if(!newAccountType.isBlank()) {
                 ObservableList<String> modifiedList = accountTypesListView.getItems();
                 modifiedList.add(newAccountType);
                 accountTypesListView.setItems(modifiedList);
                 addAccountTypeTextField.setText("");
-                dataBank.addAvailableAccount(newAccountType);
+                this.availableAccounts.add(newAccountType);
+                AppContext.getInstance().set("availableAccounts", this.availableAccounts);
             }
         }
         catch(Exception e) {
             e.printStackTrace();
         }
     }  
+    
+    public void deleteSelectedAccountType() {
+        
+    }
 }

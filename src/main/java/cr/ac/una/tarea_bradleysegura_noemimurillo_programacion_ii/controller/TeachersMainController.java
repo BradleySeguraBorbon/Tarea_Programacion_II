@@ -4,10 +4,13 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.App;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -46,7 +49,6 @@ public class TeachersMainController extends Controller implements Initializable 
     private HBox mainHBox;
     @FXML
     private VBox teachersMainMenuVBox;
-    
 
     DataManager dataBank;
 
@@ -63,16 +65,13 @@ public class TeachersMainController extends Controller implements Initializable 
         try {
             if (new File(absolutePath).isFile()) {
                 dataBank = DataManager.load(absolutePath);
+                dataBank.unpackData();
                 System.out.println(dataBank.getAvailableAccounts());
-                cooperativeNameLabel.setText(dataBank.getCooperativeName());
-                cooperativeLogoImageView.setImage(new Image("file:src/main/resources/cr/ac/una/cooperativeNameLabel/resources/" + dataBank.getCooperativeIcon()));
+                //cooperativeNameLabel.setText((String) AppContext.getInstance().get("cooperativeName"));
+                //cooperativeLogoImageView.setImage(new Image(App.class.getResource("resources/" + AppContext.getInstance().get("cooperativeIcon")).toString()));
                 System.out.println("SAVED DATAMANAGER WAS LOADED");
             } else {
                 dataBank = new DataManager();
-                if(cooperativeLogoImageView.getImage() != null) {
-                    dataBank.setCooperativeIcon(cooperativeLogoImageView.getImage().toString());
-                    dataBank.setCooperativeName(cooperativeNameLabel.getText());
-                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,19 +85,20 @@ public class TeachersMainController extends Controller implements Initializable 
 
     public void openAccountTypeManagementView() {
         FlowController.getInstance().goView("AccountTypeManagementView");
-        AccountTypeManagementController accountTypeManagementController = (AccountTypeManagementController) FlowController.getInstance().getController("AccountTypeManagementView");
-        accountTypeManagementController.setDataManager(this.dataBank);
     }
 
     public void openCooperativeManagementView() {
         FlowController.getInstance().goView("CooperativeManagementView");
     }
 
-    public void exit() {
-        if(mainHBox.getChildren().contains(this.teachersMainMenuVBox)) {
-            ((Stage)(this.exitButton.getScene().getWindow())).close();
-        }
-        else {
+    public void exit() throws IOException {
+        String currentDirectory = System.getProperty("user.dir");
+        String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.ser";
+        String absolutePath = Paths.get(currentDirectory, relativePath).toString();
+        dataBank.save(absolutePath);
+        if (mainHBox.getChildren().contains(this.teachersMainMenuVBox)) {
+            ((Stage) (this.exitButton.getScene().getWindow())).close();
+        } else {
             FlowController.getInstance().goMain();
         }
     }

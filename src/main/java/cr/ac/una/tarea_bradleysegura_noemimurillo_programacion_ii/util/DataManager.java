@@ -86,8 +86,23 @@ public class DataManager implements Serializable {
             }
         }
     }
-
+    
+    public void packData() {
+        this.availableAccounts = (ArrayList<String>) AppContext.getInstance().get("availableAccounts");
+        this.afiliated = (ArrayList<Afiliated>) AppContext.getInstance().get("afiliated");
+        this.cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
+        this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeIcon");
+    }
+    
+    public void unpackData() {
+        AppContext.getInstance().set("availableAccounts", this.availableAccounts);
+        AppContext.getInstance().set("afiliated", this.afiliated);
+        AppContext.getInstance().set("cooperativeName",  this.cooperativeName);
+        AppContext.getInstance().set("cooperativeIcon",  this.cooperativeIcon);
+    }
+    
     public void save(String path) throws IOException {
+        packData();
         FileOutputStream fileOutput = new FileOutputStream(path);
         ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
         objectOutput.writeObject(this);

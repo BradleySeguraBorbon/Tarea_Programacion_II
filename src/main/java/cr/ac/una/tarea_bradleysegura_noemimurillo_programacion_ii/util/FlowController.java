@@ -8,6 +8,8 @@ package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.App;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.Controller;
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -84,7 +86,8 @@ public class FlowController {
 
     public void goMain() {
         try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/TeachersMainView.fxml"), this.idioma)));
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/OfficersMainView.fxml"), this.idioma)));
+            MFXThemeManager.addOn(getInstance().getMainScene(), Themes.DEFAULT, Themes.LEGACY);
             this.mainStage.show();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
@@ -108,7 +111,7 @@ public class FlowController {
         if (stage == null) {
             stage = this.mainStage;
             controller.setStage(stage); 
-        } 
+        }
         switch (location) {
             case "Center":
                 ((HBox) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().clear();

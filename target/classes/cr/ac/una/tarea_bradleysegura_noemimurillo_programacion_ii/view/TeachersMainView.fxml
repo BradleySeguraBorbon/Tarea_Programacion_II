@@ -49,7 +49,7 @@
    <center>
       <HBox fx:id="mainHBox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="teachersMainMenuVBox" alignment="CENTER" prefHeight="500.0" prefWidth="1014.0" spacing="40.0">
+            <VBox fx:id="teachersMainMenuVBox" alignment="CENTER" prefHeight="500.0" prefWidth="1000.0" spacing="40.0">
                <children>
                   <Label fx:id="teachersWelcomeLabel" text="Bienvenidos Profesores">
                      <font>

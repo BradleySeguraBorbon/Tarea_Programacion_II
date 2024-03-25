@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MoneyManagementController">
+    <stylesheets>
+        <URL value="@SystemStyleSheet.css" />
+    </stylesheets>
+   <children>
+      <TabPane layoutX="201.0" layoutY="124.0" prefHeight="280.0" prefWidth="518.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="DEPOSITAR DINERO">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="1000.0">
+                     <children>
+                        <MFXTableView layoutX="434.0" layoutY="-3.0" prefHeight="403.0" prefWidth="564.0" />
+                        <MFXButton layoutX="648.0" layoutY="408.0" prefHeight="43.0" prefWidth="151.0" text="VALIDAR" />
+                        <MFXFilterComboBox floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" layoutX="85.0" layoutY="73.0" prefHeight="59.0" prefWidth="274.0" />
+                        <MFXTextField floatMode="BORDER" floatingText="MONTO A DEPOSITAR" layoutX="106.0" layoutY="182.0" prefHeight="61.0" prefWidth="236.0" />
+                        <MFXButton layoutX="132.0" layoutY="286.0" prefHeight="65.0" prefWidth="183.0" text="DEPOSITAR" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="RETIRAR DINERO">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <MFXFilterComboBox floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" layoutX="312.0" layoutY="70.0" prefHeight="79.0" prefWidth="375.0" />
+                        <MFXTextField floatMode="BORDER" floatingText="MONTO A RETIRAR" layoutX="332.0" layoutY="213.0" prefHeight="71.0" prefWidth="343.0" />
+                        <MFXButton layoutX="380.0" layoutY="335.0" prefHeight="92.0" prefWidth="265.0" text="RETIRAR">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
