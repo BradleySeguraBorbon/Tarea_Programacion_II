@@ -8,6 +8,7 @@ cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\DataManager.clas
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\model\Afiliated.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\AppContext.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\Respuesta.class
+cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\AfiliatedSelectionViewController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\Formato.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\DraggableMaker.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\Controller.class

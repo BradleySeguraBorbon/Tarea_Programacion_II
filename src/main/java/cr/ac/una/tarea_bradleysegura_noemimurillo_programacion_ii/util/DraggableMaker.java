@@ -4,7 +4,10 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AccountOpeningController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -44,14 +47,17 @@ public class DraggableMaker {
         draggableNode.setOnMouseReleased(mouseEvent -> {
             if (externalContainer.getChildren().contains(draggableNode)) {
                 System.out.println("AnchorPane contains Draggable Node");
-                if (draggableNode.getLayoutX() <= externalContainer.getWidth() / 2) {
+                if (draggableNode.getLayoutX() <= externalContainer.getWidth() / 2 &&
+                        ((Afiliated)AppContext.getInstance().get("selectedAfiliated")).isAccountRemovable(((Label)draggableNode).getText())) {
                     externalContainer.getChildren().remove(draggableNode);
                     internalContainerA.getChildren().add(draggableNode);
+                    ((AccountOpeningController)FlowController.getInstance().getController("AccountOpeningView")).removeAccount(draggableNode);
                     System.out.println("Draggable Node intersects first half");
                 }
                 else if(draggableNode.getLayoutX() >=  externalContainer.getWidth() / 2) {
                     externalContainer.getChildren().remove(draggableNode);
                     internalContainerB.getChildren().add(draggableNode);
+                     ((AccountOpeningController)FlowController.getInstance().getController("AccountOpeningView")).createAccount(draggableNode);
                     System.out.println("Draggable Node intersects second half");
                 }
             }

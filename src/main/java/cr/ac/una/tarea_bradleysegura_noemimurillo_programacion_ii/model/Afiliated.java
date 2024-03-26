@@ -14,7 +14,8 @@ import javafx.scene.image.Image;
  */
 public class Afiliated {
      String name;
-     String surname;
+     String firstLastName;
+     String secondLastName;
      String folio;
      Date birthDate;
      ArrayList<Account> accounts;
@@ -25,9 +26,10 @@ public class Afiliated {
          accounts = new ArrayList();
      }
 
-    public Afiliated(String name, String surname, Date birthDate, String cooperative) {
+    public Afiliated(String name, String firstLastName, String secondLastName, Date birthDate, String cooperative) {
         this.name = name;
-        this.surname = surname;
+        this.firstLastName = firstLastName;
+        this.secondLastName = secondLastName;
         this.birthDate = birthDate;
         this.cooperative = cooperative;
         accounts = new ArrayList();
@@ -37,8 +39,12 @@ public class Afiliated {
         this.name = name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFirstLastName(String firstLastName) {
+        this.firstLastName = firstLastName;
+    }
+    
+    public void setSecondLastName(String secondLastName) {
+        this.secondLastName = secondLastName;
     }
 
     public void setBirthDate(Date birthDate) {
@@ -65,8 +71,16 @@ public class Afiliated {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFirstLastName() {
+        return this.firstLastName;
+    }
+    
+    public String getSecondLastName() {
+        return secondLastName;
+    }
+    
+    public String getFullName() {
+        return this.name + " " + this.firstLastName + " " + this.secondLastName + " ";
     }
 
     public Date getBirthDate() {
@@ -75,6 +89,14 @@ public class Afiliated {
 
     public ArrayList<Account> getAccounts() {
         return accounts;
+    }
+    
+    public ArrayList<String> getAccountTypes() {
+        ArrayList<String> accountTypes = new ArrayList();
+        for(Account account : this.accounts) {
+            accountTypes.add(account.getType());
+        }
+        return accountTypes;
     }
 
     public String getProfileImage() {
@@ -97,5 +119,14 @@ public class Afiliated {
         for(Account userAccount : accounts)
             if(userAccount.getAccountNumber().equals(accountNumber))
                 accounts.remove(userAccount);
+    }
+    
+    public boolean isAccountRemovable(String accountType) {
+        for(Account userAccount : accounts) {
+            if(userAccount.getType().equals(accountType)) {
+                return userAccount.getBalance() == 0;
+            }
+        }
+        return false;
     }
 }

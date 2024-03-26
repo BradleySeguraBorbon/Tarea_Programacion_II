@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model;
+import java.util.Random;
 
 /**
  *
@@ -13,8 +14,19 @@ public class Account {
     String accountNumber;
     Double balance;
 
+    public Account() {
+        
+    }
+    
     public Account(String type) {
+        Random randomFactory = new Random();
+        
         this.type = type;
+        int sectionA = randomFactory.nextInt(100, 999);      
+        int sectionB = randomFactory.nextInt(10, 99);
+        int sectionC = randomFactory.nextInt(1000, 9999);
+        
+        this.accountNumber = Integer.toString(sectionA) + "-" + Integer.toString(sectionB) + "-" + Integer.toString(sectionC);
     }
 
     public void setType(String type) {
