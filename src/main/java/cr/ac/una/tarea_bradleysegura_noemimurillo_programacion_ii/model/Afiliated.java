@@ -18,7 +18,7 @@ public class Afiliated {
      String folio;
      Date birthDate;
      ArrayList<Account> accounts;
-     Image profileImage;
+     String profileImage;
      String cooperative;
      
      public Afiliated() {
@@ -49,7 +49,7 @@ public class Afiliated {
         this.accounts = accounts;
     }
 
-    public void setProfileImage(Image profileImage) {
+    public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
 
@@ -77,7 +77,7 @@ public class Afiliated {
         return accounts;
     }
 
-    public Image getProfileImage() {
+    public String getProfileImage() {
         return profileImage;
     }
 

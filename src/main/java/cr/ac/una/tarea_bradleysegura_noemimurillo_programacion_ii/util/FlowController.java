@@ -8,6 +8,8 @@ package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.App;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.Controller;
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -22,6 +24,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class FlowController {
@@ -83,7 +86,8 @@ public class FlowController {
 
     public void goMain() {
         try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/principalView.fxml"), this.idioma)));
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/OfficersMainView.fxml"), this.idioma)));
+            MFXThemeManager.addOn(getInstance().getMainScene(), Themes.DEFAULT, Themes.LEGACY);
             this.mainStage.show();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
@@ -106,12 +110,12 @@ public class FlowController {
         Stage stage = controller.getStage();
         if (stage == null) {
             stage = this.mainStage;
-            controller.setStage(stage);
+            controller.setStage(stage); 
         }
         switch (location) {
             case "Center":
-                ((VBox) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().clear();
-                ((VBox) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().add(loader.getRoot());
+                ((HBox) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().clear();
+                ((HBox) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().add(loader.getRoot());
                 break;
             case "Top":
                 break;

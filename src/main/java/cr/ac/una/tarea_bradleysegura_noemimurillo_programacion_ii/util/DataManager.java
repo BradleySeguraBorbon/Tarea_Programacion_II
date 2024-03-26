@@ -4,6 +4,7 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util;
 
+import com.google.gson.Gson;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,6 +12,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 
@@ -18,12 +22,12 @@ import javafx.scene.image.Image;
  *
  * @author Bradley
  */
-public class DataManager {
+public class DataManager implements Serializable {
 
     private ArrayList<String> availableAccounts;
     private ArrayList<Afiliated> afiliated;
     private String cooperativeName;
-    private Image cooperativeIcon;
+    private String cooperativeIcon;
 
     public DataManager() {
         availableAccounts = new ArrayList();
@@ -42,7 +46,7 @@ public class DataManager {
         this.cooperativeName = cooperativeName;
     }
 
-    public void setCooperativeIcon(Image cooperativeIcon) {
+    public void setCooperativeIcon(String cooperativeIcon) {
         this.cooperativeIcon = cooperativeIcon;
     }
     
@@ -58,7 +62,7 @@ public class DataManager {
         return cooperativeName;
     }
 
-    public Image getCooperativeIcon() {
+    public String getCooperativeIcon() {
         return cooperativeIcon;
     }
 
@@ -86,21 +90,44 @@ public class DataManager {
             }
         }
     }
-
+    
+    public void packData() {
+        this.availableAccounts = (ArrayList<String>) AppContext.getInstance().get("availableAccounts");
+        this.afiliated = (ArrayList<Afiliated>) AppContext.getInstance().get("afiliated");
+        this.cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
+        this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeIcon");
+    }
+    
+    public void unpackData() {
+        AppContext.getInstance().set("availableAccounts", this.availableAccounts);
+        AppContext.getInstance().set("afiliated", this.afiliated);
+        AppContext.getInstance().set("cooperativeName",  this.cooperativeName);
+        AppContext.getInstance().set("cooperativeIcon",  this.cooperativeIcon);
+    }
+    
     public void save(String path) throws IOException {
-        FileOutputStream fileOutput = new FileOutputStream(path);
+        packData();
+        /*FileOutputStream fileOutput = new FileOutputStream(path);
         ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
         objectOutput.writeObject(this);
         objectOutput.close();
-        fileOutput.close();
+        fileOutput.close();*/
+        
+        Gson jsonTransformer = new Gson();
+        String dataManagerJSON = jsonTransformer.toJson(this);
+        Files.writeString(Paths.get(path), dataManagerJSON, StandardCharsets.UTF_8);
     }
 
     public static DataManager load(String path) throws IOException, ClassNotFoundException {
-        FileInputStream fileInput = new FileInputStream(path);
+        /*FileInputStream fileInput = new FileInputStream(path);
         ObjectInputStream objectInput = new ObjectInputStream(fileInput);
         DataManager loadedDataManager = (DataManager) objectInput.readObject();
         objectInput.close();
-        fileInput.close();
+        fileInput.close();*/
+        
+        Gson jsonTransformer = new Gson();
+        String dataManagerJSON = Files.readString(Paths.get(path));
+        DataManager loadedDataManager = jsonTransformer.fromJson(dataManagerJSON, DataManager.class);
         return loadedDataManager;
     }
 }

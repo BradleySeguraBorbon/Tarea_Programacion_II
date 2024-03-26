@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.OfficersMainController">
+   <left>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="1280.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+         <children>
+            <Label fx:id="cooperativeNameLabel" text="Nombre de Cooperativa">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="cooperativeLogoImageView" fitHeight="104.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/companyDefaultLogo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <children>
+            <MFXButton fx:id="exitButton" alignment="CENTER" onAction="#exit" prefHeight="107.0" prefWidth="214.0" text="SALIR" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="94.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/return.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MFXButton>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <HBox fx:id="mainHBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="332.0" spacing="150.0">
+               <children>
+                  <MFXButton fx:id="openAfiliatedRegisterButton" onAction="#openAfiliatedRegister" prefHeight="150.0" prefWidth="300.0" text="MANTENIMIENTO DE REGISTRO DE ASOCIADOS" />
+                  <MFXButton fx:id="openCardPrintButton" onAction="#openCardPrint" prefHeight="150.0" prefWidth="300.0" text="IMPRESIÓN DE CARNET" />
+               </children>
+            </VBox>
+            <VBox fx:id="officersMainVBox" alignment="CENTER" prefHeight="500.0" prefWidth="335.0" spacing="10.0">
+               <children>
+                  <Label fx:id="officersWelcomeLabel" text="Bienvenid@ Funcionari@">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text="Seleccione una acción">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="mainIconImageView" fitHeight="181.0" fitWidth="242.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/companyDefaultLogo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="332.0" spacing="150.0">
+               <children>
+                  <MFXButton fx:id="openAccountOpeningButton" onAction="#openAccountOpening" prefHeight="150.0" prefWidth="300.0" text="APERTURA DE CUENTAS" />
+                  <MFXButton fx:id="openMoneyManagementButton" onAction="#openMoneyManagement" prefHeight="150.0" prefWidth="300.0" text="RETIRO Y DEPÓSITO DE DINERO" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

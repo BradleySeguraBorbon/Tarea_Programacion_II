@@ -4,11 +4,8 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.App;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,28 +25,33 @@ import javafx.stage.Stage;
  *
  * @author Bradley
  */
-public class TeachersMainController extends Controller implements Initializable {
-
+public class OfficersMainController extends Controller implements Initializable {
+    
     @FXML
-    private Label teachersWelcomeLabel;
+    private HBox mainHBox;
     @FXML
-    private ImageView teachersWelcomeImageView;
-    @FXML
-    private MFXButton accountTypeManagementButton;
-    @FXML
-    private MFXButton cooperativeManagementButton;
-    @FXML
-    private MFXButton exitButton;
+    private VBox officersMainVBox;
     @FXML
     private Label cooperativeNameLabel;
     @FXML
     private ImageView cooperativeLogoImageView;
     @FXML
-    private HBox mainHBox;
+    private Button openAfiliatedRegisterButton;
     @FXML
-    private VBox teachersMainMenuVBox;
-
-    DataManager dataBank;
+    private Button openCardPrintButton;
+    @FXML
+    private Button openAccountOpeningButton;
+    @FXML
+    private Button openMoneyManagementButton;
+    @FXML
+    private Button exitButton;
+    @FXML
+    private ImageView mainIconImageView;
+    @FXML
+    private Label officersWelcomeLabel;
+    
+    private DataManager dataBank;
+    
 
     /**
      * Initializes the controller class.
@@ -76,31 +77,38 @@ public class TeachersMainController extends Controller implements Initializable 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
+    } 
+    
     @Override
     public void initialize() {
-
+        
     }
-
-    public void openAccountTypeManagementView() {
-        FlowController.getInstance().goView("AccountTypeManagementView");
+    
+    public void openAfiliatedRegister() {
+         FlowController.getInstance().goView("AfiliatedRegisterView");
     }
-
-    public void openCooperativeManagementView() {
-        FlowController.getInstance().goView("CooperativeManagementView");
+    
+    public void openCardPrint() {
+         FlowController.getInstance().goView("CardPrintView");
     }
-
+    
+    public void openAccountOpening() {
+        FlowController.getInstance().goView("AccountOpeningView");
+    }
+    
+    public void openMoneyManagement() {
+        FlowController.getInstance().goView("MoneyManagementView");
+    }
+    
     public void exit() throws IOException {
         String currentDirectory = System.getProperty("user.dir");
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
         dataBank.save(absolutePath);
-        if (mainHBox.getChildren().contains(this.teachersMainMenuVBox)) {
+        if (mainHBox.getChildren().contains(this.officersMainVBox)) {
             ((Stage) (this.exitButton.getScene().getWindow())).close();
         } else {
             FlowController.getInstance().goMain();
         }
     }
-
 }
