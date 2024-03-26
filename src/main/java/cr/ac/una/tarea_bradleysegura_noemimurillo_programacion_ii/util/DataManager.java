@@ -28,10 +28,12 @@ public class DataManager implements Serializable {
     private ArrayList<Afiliated> afiliated;
     private String cooperativeName;
     private String cooperativeIcon;
+    private ArrayList<BoxDeposit> boxDeposits;
 
     public DataManager() {
         availableAccounts = new ArrayList();
         afiliated = new ArrayList();
+        boxDeposits = new ArrayList();
     }
 
     public void setAvailableAccounts(ArrayList<String> availableAccounts) {
@@ -91,11 +93,13 @@ public class DataManager implements Serializable {
         }
     }
     
+    //IMPORTANTE
     public void packData() {
         this.availableAccounts = (ArrayList<String>) AppContext.getInstance().get("availableAccounts");
         this.afiliated = (ArrayList<Afiliated>) AppContext.getInstance().get("afiliated");
         this.cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
         this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeIcon");
+        this.boxDeposits = (ArrayList<BoxDeposit>) AppContext.getInstance().get("boxDeposits");
     }
     
     public void unpackData() {
@@ -103,6 +107,7 @@ public class DataManager implements Serializable {
         AppContext.getInstance().set("afiliated", this.afiliated);
         AppContext.getInstance().set("cooperativeName",  this.cooperativeName);
         AppContext.getInstance().set("cooperativeIcon",  this.cooperativeIcon);
+        AppContext.getInstance().set("boxDeposits", this.boxDeposits);
     }
     
     public void save(String path) throws IOException {

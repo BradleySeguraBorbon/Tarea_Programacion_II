@@ -17,8 +17,7 @@ public class Transaction {
     private LocalDateTime transactionTime;
     private Double amount;
     private Afiliated afiliated;
-    private Action action;
-            
+    private Action action;         
             
     public static enum Action { RETIRO, DEPOSITO }
     

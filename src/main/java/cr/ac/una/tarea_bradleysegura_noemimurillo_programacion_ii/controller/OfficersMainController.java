@@ -93,6 +93,7 @@ public class OfficersMainController extends Controller implements Initializable 
     }
     
     public void openAccountOpening() {
+        FlowController.getInstance().goViewInWindowModal("AfiliatedSelectionView", null, false);
         FlowController.getInstance().goView("AccountOpeningView");
     }
     
