@@ -17,7 +17,7 @@ public class Afiliated {
      String firstLastName;
      String secondLastName;
      String folio;
-     Date birthDate;
+     int age;
      ArrayList<Account> accounts;
      String profileImage;
      String cooperative;
@@ -26,11 +26,11 @@ public class Afiliated {
          accounts = new ArrayList();
      }
 
-    public Afiliated(String name, String firstLastName, String secondLastName, Date birthDate, String cooperative) {
+    public Afiliated(String name, String firstLastName, String secondLastName, int age, String cooperative) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
-        this.birthDate = birthDate;
+        this.age = age;
         this.cooperative = cooperative;
         accounts = new ArrayList();
     }
@@ -47,8 +47,8 @@ public class Afiliated {
         this.secondLastName = secondLastName;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(int age) {
+        this.age = age;
     }
 
     public void setAccounts(ArrayList<Account> accounts) {
@@ -83,8 +83,8 @@ public class Afiliated {
         return this.name + " " + this.firstLastName + " " + this.secondLastName + " ";
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public int getBirthDate() {
+        return age;
     }
 
     public ArrayList<Account> getAccounts() {

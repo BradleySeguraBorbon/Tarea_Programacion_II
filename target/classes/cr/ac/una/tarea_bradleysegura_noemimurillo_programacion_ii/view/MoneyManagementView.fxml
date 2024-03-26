@@ -35,10 +35,10 @@
                                        </font>
                                     </Label>
                                     <Pane prefHeight="4.0" prefWidth="422.0" />
-                                    <MFXFilterComboBox floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" prefHeight="60.0" prefWidth="300.0" />
-                                    <MFXFilterComboBox floatMode="BORDER" floatingText="SELECCIONAR CUENTA" prefHeight="60.0" prefWidth="300.0" />
-                                    <MFXTextField floatMode="BORDER" floatingText="MONTO A DEPOSITAR" prefHeight="60.0" prefWidth="300.0" />
-                                    <MFXButton prefHeight="65.0" prefWidth="183.0" text="DEPOSITAR" />
+                                    <MFXFilterComboBox fx:id="selectAfiliatedDepositBox" floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" prefHeight="60.0" prefWidth="300.0" />
+                                    <MFXFilterComboBox fx:id="selectAccountDepositBox" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" prefHeight="60.0" prefWidth="300.0" />
+                                    <MFXTextField fx:id="depositAmountTextField" floatMode="BORDER" floatingText="MONTO A DEPOSITAR" prefHeight="60.0" prefWidth="300.0" />
+                                    <MFXButton fx:id="depositButton" prefHeight="65.0" prefWidth="183.0" text="DEPOSITAR" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" spacing="10.0">
@@ -48,8 +48,8 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <MFXTableView prefHeight="364.0" prefWidth="564.0" />
-                                    <MFXButton prefHeight="43.0" prefWidth="151.0" text="VALIDAR" />
+                                    <MFXTableView fx:id="depositBoxTableView" prefHeight="364.0" prefWidth="564.0" />
+                                    <MFXButton fx:id="depositValidationButton" prefHeight="43.0" prefWidth="151.0" text="VALIDAR" />
                                  </children>
                               </VBox>
                            </children>
@@ -64,10 +64,10 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="159.0" prefWidth="116.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <MFXFilterComboBox fx:id="selectAfiliatedWithdrawalBox" floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" onAction="#selectElement" prefHeight="70.0" prefWidth="400.0" />
-                              <MFXFilterComboBox fx:id="selectAccountComboBox" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" onAction="#selectElement" prefHeight="70.0" prefWidth="400.0" />
-                              <MFXTextField floatMode="BORDER" floatingText="MONTO A RETIRAR" prefHeight="70.0" prefWidth="400.0" />
-                              <MFXButton prefHeight="92.0" prefWidth="265.0" text="RETIRAR">
+                              <MFXFilterComboBox fx:id="selectAfiliatedWithdrawalBox" floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" prefHeight="70.0" prefWidth="400.0" />
+                              <MFXFilterComboBox fx:id="selectAccountWithdrawalBox" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" prefHeight="70.0" prefWidth="400.0" />
+                              <MFXTextField fx:id="withdrawalAmountTextField" floatMode="BORDER" floatingText="MONTO A RETIRAR" prefHeight="70.0" prefWidth="400.0" />
+                              <MFXButton fx:id="withdrawalButton" prefHeight="92.0" prefWidth="265.0" text="RETIRAR">
                                  <font>
                                     <Font size="24.0" />
                                  </font>

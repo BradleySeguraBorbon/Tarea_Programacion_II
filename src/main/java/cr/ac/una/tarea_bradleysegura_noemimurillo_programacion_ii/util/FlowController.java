@@ -161,7 +161,7 @@ public class FlowController {
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
-        stage.getIcons().add(new Image("/cr/ac/una/tutoria2ejemplo/resources/icons/userIcon.png"));
+        //stage.getIcons().add(new Image("/cr/ac/una/tutoria2ejemplo/resources/icons/userIcon.png"));
         stage.setTitle("SISTEMA COOPERATIVA FINANCIERA");
         stage.setResizable(resizable);
         stage.setOnHidden((WindowEvent event) -> {
