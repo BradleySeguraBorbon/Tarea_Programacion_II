@@ -5,12 +5,16 @@
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MoneyManagementController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MoneyManagementController">
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
@@ -21,11 +25,35 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="1000.0">
                      <children>
-                        <MFXTableView layoutX="434.0" layoutY="-3.0" prefHeight="403.0" prefWidth="564.0" />
-                        <MFXButton layoutX="648.0" layoutY="408.0" prefHeight="43.0" prefWidth="151.0" text="VALIDAR" />
-                        <MFXFilterComboBox floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" layoutX="85.0" layoutY="73.0" prefHeight="59.0" prefWidth="274.0" />
-                        <MFXTextField floatMode="BORDER" floatingText="MONTO A DEPOSITAR" layoutX="106.0" layoutY="182.0" prefHeight="61.0" prefWidth="236.0" />
-                        <MFXButton layoutX="132.0" layoutY="286.0" prefHeight="65.0" prefWidth="183.0" text="DEPOSITAR" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="471.0" prefWidth="422.0" spacing="20.0">
+                                 <children>
+                                    <Label text="DEPÓSITO A AFILIADOS">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="4.0" prefWidth="422.0" />
+                                    <MFXFilterComboBox floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" prefHeight="60.0" prefWidth="300.0" />
+                                    <MFXFilterComboBox floatMode="BORDER" floatingText="SELECCIONAR CUENTA" prefHeight="60.0" prefWidth="300.0" />
+                                    <MFXTextField floatMode="BORDER" floatingText="MONTO A DEPOSITAR" prefHeight="60.0" prefWidth="300.0" />
+                                    <MFXButton prefHeight="65.0" prefWidth="183.0" text="DEPOSITAR" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Label text="VALIDACIÓN DE BUZÓN DE DEPÓSITOS">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <MFXTableView prefHeight="364.0" prefWidth="564.0" />
+                                    <MFXButton prefHeight="43.0" prefWidth="151.0" text="VALIDAR" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                      </children>
                   </AnchorPane>
             </content>
@@ -34,13 +62,18 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <MFXFilterComboBox floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" layoutX="312.0" layoutY="70.0" prefHeight="79.0" prefWidth="375.0" />
-                        <MFXTextField floatMode="BORDER" floatingText="MONTO A RETIRAR" layoutX="332.0" layoutY="213.0" prefHeight="71.0" prefWidth="343.0" />
-                        <MFXButton layoutX="380.0" layoutY="335.0" prefHeight="92.0" prefWidth="265.0" text="RETIRAR">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </MFXButton>
+                        <VBox alignment="CENTER" prefHeight="159.0" prefWidth="116.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <MFXFilterComboBox fx:id="selectAfiliatedWithdrawalBox" floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" onAction="#selectElement" prefHeight="70.0" prefWidth="400.0" />
+                              <MFXFilterComboBox fx:id="selectAccountComboBox" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" onAction="#selectElement" prefHeight="70.0" prefWidth="400.0" />
+                              <MFXTextField floatMode="BORDER" floatingText="MONTO A RETIRAR" prefHeight="70.0" prefWidth="400.0" />
+                              <MFXButton prefHeight="92.0" prefWidth="265.0" text="RETIRAR">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
             </content>

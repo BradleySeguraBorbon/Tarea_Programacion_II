@@ -59,7 +59,7 @@ public class TeachersMainController extends Controller implements Initializable 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         String currentDirectory = System.getProperty("user.dir");
-        String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.ser";
+        String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
 
         try {
@@ -93,7 +93,7 @@ public class TeachersMainController extends Controller implements Initializable 
 
     public void exit() throws IOException {
         String currentDirectory = System.getProperty("user.dir");
-        String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.ser";
+        String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
         dataBank.save(absolutePath);
         if (mainHBox.getChildren().contains(this.teachersMainMenuVBox)) {

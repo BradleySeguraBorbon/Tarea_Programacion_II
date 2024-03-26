@@ -59,4 +59,8 @@ public class AccountOpeningController extends Controller implements Initializabl
     public void initialize() {
     }
     
+    public void createAccount() {
+        
+    }
+    
 }

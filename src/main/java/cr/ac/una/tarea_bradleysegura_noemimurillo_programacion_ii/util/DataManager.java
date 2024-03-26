@@ -4,6 +4,7 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util;
 
+import com.google.gson.Gson;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,6 +12,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 
@@ -103,19 +107,27 @@ public class DataManager implements Serializable {
     
     public void save(String path) throws IOException {
         packData();
-        FileOutputStream fileOutput = new FileOutputStream(path);
+        /*FileOutputStream fileOutput = new FileOutputStream(path);
         ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
         objectOutput.writeObject(this);
         objectOutput.close();
-        fileOutput.close();
+        fileOutput.close();*/
+        
+        Gson jsonTransformer = new Gson();
+        String dataManagerJSON = jsonTransformer.toJson(this);
+        Files.writeString(Paths.get(path), dataManagerJSON, StandardCharsets.UTF_8);
     }
 
     public static DataManager load(String path) throws IOException, ClassNotFoundException {
-        FileInputStream fileInput = new FileInputStream(path);
+        /*FileInputStream fileInput = new FileInputStream(path);
         ObjectInputStream objectInput = new ObjectInputStream(fileInput);
         DataManager loadedDataManager = (DataManager) objectInput.readObject();
         objectInput.close();
-        fileInput.close();
+        fileInput.close();*/
+        
+        Gson jsonTransformer = new Gson();
+        String dataManagerJSON = Files.readString(Paths.get(path));
+        DataManager loadedDataManager = jsonTransformer.fromJson(dataManagerJSON, DataManager.class);
         return loadedDataManager;
     }
 }
