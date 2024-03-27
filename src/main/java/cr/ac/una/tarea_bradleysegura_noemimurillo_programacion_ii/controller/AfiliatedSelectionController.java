@@ -45,8 +45,10 @@ public class AfiliatedSelectionController implements Initializable {
     }    
     
     public void setSelectedAfiliated() {
+        String selectedAfiliatedName = afiliatedSelectionComboBox.getSelectedText();
+        
         for(Afiliated afiliated : (ArrayList<Afiliated>)AppContext.getInstance().get("afilated")) {
-            if(afiliated.getName().equals(selectedAfiliated)) {
+            if(afiliated.getName().equals(selectedAfiliatedName)) {
                 this.selectedAfiliated = afiliated;
                 break;
             }
