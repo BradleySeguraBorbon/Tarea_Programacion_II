@@ -5,6 +5,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -35,7 +37,17 @@
             <MFXTextField fx:id="txtSurname" floatingText="Primer apellido" maxWidth="-Infinity" prefHeight="49.0" prefWidth="155.0" />
             <MFXTextField fx:id="txtSecondSurname" floatingText="Segundo apellido" prefHeight="49.0" prefWidth="155.0" />
             <MFXTextField fx:id="txtAge" floatingText="Edad" prefHeight="49.0" prefWidth="155.0" />
-            <MFXTextField fx:id="txtSex" floatingText="Sexo" prefHeight="49.0" prefWidth="155.0" />
+            <Label text="Sexo" />
+            <HBox alignment="CENTER" prefHeight="21.0" prefWidth="681.0" spacing="20.0">
+               <children>
+                  <RadioButton fx:id="btnFem" mnemonicParsing="false" onAction="#sexFem" text="Femenino">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="SexGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="btnMas" mnemonicParsing="false" onAction="#sexMas" text="Masculino" toggleGroup="$SexGroup" />
+               </children>
+            </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="681.0" spacing="100.0">
                <children>
                   <MFXButton text="Eliminar usuario" />

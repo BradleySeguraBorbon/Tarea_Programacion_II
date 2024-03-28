@@ -5,8 +5,8 @@
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import javafx.scene.image.Image;
+
 
 /**
  *
@@ -17,20 +17,27 @@ public class Afiliated {
      String firstLastName;
      String secondLastName;
      String folio;
-     Date birthDate;
+     int Age;
      ArrayList<Account> accounts;
      String profileImage;
      String cooperative;
+     Sexo sex;
+     public enum Sexo{
+         FEMENINO,
+         MASCULINO,
+     }
+
      
      public Afiliated() {
          accounts = new ArrayList();
      }
 
-    public Afiliated(String name, String firstLastName, String secondLastName, Date birthDate, String cooperative) {
+    public Afiliated(String name, String firstLastName, String secondLastName, int age, Sexo sex, String cooperative) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
-        this.birthDate = birthDate;
+        this.Age = age;
+        this.sex = sex;
         this.cooperative = cooperative;
         accounts = new ArrayList();
     }
@@ -47,8 +54,12 @@ public class Afiliated {
         this.secondLastName = secondLastName;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setAge(int age) {
+        this.Age = age;
+    }
+    
+    public void setSexo(Sexo sex){
+        this.sex = sex;
     }
 
     public void setAccounts(ArrayList<Account> accounts) {
@@ -83,8 +94,12 @@ public class Afiliated {
         return this.name + " " + this.firstLastName + " " + this.secondLastName + " ";
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public int getAge() {
+        return Age;
+    }
+    
+    public Sexo getSex(){
+        return sex;
     }
 
     public ArrayList<Account> getAccounts() {
