@@ -37,7 +37,7 @@ public class Affiliated {
          age = -1;
      }
 
-    public Affiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexp, String cooperative) {
+    public Affiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexo, String cooperative) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
