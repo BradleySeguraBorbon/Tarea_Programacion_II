@@ -16,7 +16,7 @@ public class Transaction {
     protected String transactionID;
     protected String transactionTime;
     protected Double amount;
-    protected Afiliated afiliated;
+    protected Affiliated afiliated;
     protected Action action;        
             
     public static enum Action { RETIRO, DEPOSITO }
@@ -29,7 +29,7 @@ public class Transaction {
         this.action = null;
     }
     
-    public Transaction(Double amount, Afiliated afiliated, Action action) {
+    public Transaction(Double amount, Affiliated afiliated, Action action) {
         Random randomGenerator = new Random();
         this.transactionID = Integer.toString((randomGenerator.nextInt(100000000)));
         this.transactionTime = LocalDateTime.now().toString();
@@ -50,7 +50,7 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public void setAfiliated(Afiliated afiliated) {
+    public void setAffiliated(Affiliated afiliated) {
         this.afiliated = afiliated;
     }
 
@@ -70,15 +70,15 @@ public class Transaction {
         return amount;
     }
 
-    public Afiliated getAfiliated() {
+    public Affiliated getAffiliated() {
         return afiliated;
     }
     
-    public String getAfiliatedName() {
+    public String getAffiliatedName() {
         return afiliated.getFullName();
     }
     
-    public String getAfiliatedFolio() {
+    public String getAffiliatedFolio() {
         return afiliated.getFolio();
     }
 

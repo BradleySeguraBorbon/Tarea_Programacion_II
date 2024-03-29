@@ -5,7 +5,7 @@
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AccountOpeningController;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -48,7 +48,7 @@ public class DraggableMaker {
             if (externalContainer.getChildren().contains(draggableNode)) {
                 System.out.println("AnchorPane contains Draggable Node");
                 if (draggableNode.getLayoutX() <= externalContainer.getWidth() / 2 /*&&
-                        ((Afiliated)AppContext.getInstance().get("selectedAfiliated")).isAccountRemovable(((Label)draggableNode).getText())*/) {
+                        ((Affiliated)AppContext.getInstance().get("selectedAffiliated")).isAccountRemovable(((Label)draggableNode).getText())*/) {
                     externalContainer.getChildren().remove(draggableNode);
                     internalContainerA.getChildren().add(draggableNode);
                    //((AccountOpeningController)FlowController.getInstance().getController("AccountOpeningView")).removeAccount(draggableNode);

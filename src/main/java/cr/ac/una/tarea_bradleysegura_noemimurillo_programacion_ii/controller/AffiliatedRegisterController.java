@@ -4,8 +4,10 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated.Sexo;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated.Sexo;
+import static cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated.Sexo.FEMENINO;
+import static cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated.Sexo.MASCULINO;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -27,7 +29,7 @@ import javafx.scene.control.ToggleGroup;
  *
  * @author Fiorella
  */
-public class AfiliatedRegisterController extends Controller implements Initializable {
+public class AffiliatedRegisterController extends Controller implements Initializable {
 
     @FXML
     private MFXButton btnAddUser;
@@ -84,17 +86,10 @@ public class AfiliatedRegisterController extends Controller implements Initializ
             msj.show(ERROR, "Segundo apellido vacío", "La casilla del segundo apellido del nuevo usuario está vacía");
             return;
         }
-        if (getNewSex() == null) {
-            msj.show(ERROR, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
-            return;
-        } 
-        if(txtAge.getText().equals("")){
-            msj.show(ERROR, "Edad vacía", "La casilla de edad del nuevo usuario está vacía");
-            return;
-        /*}else {
-            String num = txtAge.getText();
-            Integer edad = Integer.parseInt(num);
-        }*/
+        if (getNewSex() == null){
+            msj.show(ERROR, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía"); 
+        }else{
+            Affiliated NewUser = new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), Integer.valueOf(txtAge.getText()), getNewSex(), (String)AppContext.getInstance().get("cooperativeName"));
         }
         
         newAffiliates.add(new Afiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), Integer.parseInt(txtAge.getText()), getNewSex(), "PRUEBA"));

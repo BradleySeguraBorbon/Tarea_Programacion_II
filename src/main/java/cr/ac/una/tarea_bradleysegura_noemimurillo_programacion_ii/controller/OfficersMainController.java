@@ -36,7 +36,7 @@ public class OfficersMainController extends Controller implements Initializable 
     @FXML
     private ImageView cooperativeLogoImageView;
     @FXML
-    private Button openAfiliatedRegisterButton;
+    private Button openAffiliatedRegisterButton;
     @FXML
     private Button openCardPrintButton;
     @FXML
@@ -85,8 +85,8 @@ public class OfficersMainController extends Controller implements Initializable 
         
     }
     
-    public void openAfiliatedRegister() {
-         FlowController.getInstance().goView("AfiliatedRegisterView");
+    public void openAffiliatedRegister() {
+         FlowController.getInstance().goView("AffiliatedRegisterView");
     }
     
     public void openCardPrint() {
@@ -94,7 +94,7 @@ public class OfficersMainController extends Controller implements Initializable 
     }
     
     public void openAccountOpening() {
-        FlowController.getInstance().goViewInWindowModal("AfiliatedSelectionView", null, false);
+        FlowController.getInstance().goViewInWindowModal("AffiliatedSelectionView", null, false);
         FlowController.getInstance().goView("AccountOpeningView");
     }
     

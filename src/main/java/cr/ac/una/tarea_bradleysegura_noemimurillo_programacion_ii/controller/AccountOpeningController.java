@@ -5,7 +5,7 @@
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Account;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DraggableMaker;
 import java.awt.Color;
@@ -48,7 +48,7 @@ public class AccountOpeningController extends Controller implements Initializabl
     @FXML
     private Button exitButton;
 
-    private Afiliated selectedAfiliated;
+    private Affiliated selectedAffiliated;
     private DraggableMaker dragFactory;
 
     /**
@@ -59,22 +59,22 @@ public class AccountOpeningController extends Controller implements Initializabl
         dragFactory = new DraggableMaker();
         dragFactory.makeDraggable(accountLabel1, rootAnchorPane, openingAccountsFlowPane, openedAccountsFlowPane);
 
-        this.selectedAfiliated = (Afiliated) AppContext.getInstance().get("selectedAfiliated");
+        this.selectedAffiliated = (Affiliated) AppContext.getInstance().get("selectedAffiliated");
 
     }
 
     public void setAccountLabels() {
-        if (this.selectedAfiliated == null) {
+        if (this.selectedAffiliated == null) {
             //TODO
             return;
         }
-        for (String accountType : this.selectedAfiliated.getAccountTypes()) {
+        for (String accountType : this.selectedAffiliated.getAccountTypes()) {
             Label accountLabel = new Label(accountType);
             accountLabel.setPrefSize(140, 60);
             openedAccountsFlowPane.getChildren().add(accountLabel);
         }
         for (String account : (ArrayList<String>) AppContext.getInstance().get("availableAccounts")) {
-            if (!this.selectedAfiliated.getAccountTypes().contains(account)) {
+            if (!this.selectedAffiliated.getAccountTypes().contains(account)) {
                 Label accountLabel = new Label(account);
                 accountLabel.setPrefSize(140, 60);
                 openingAccountsFlowPane.getChildren().add(accountLabel);
@@ -88,14 +88,14 @@ public class AccountOpeningController extends Controller implements Initializabl
 
     public void createAccount(Node labelNode) {
         String accountType = ((Label)labelNode).getText();
-        if(!selectedAfiliated.getAccountTypes().contains(accountType)) {
-            this.selectedAfiliated.addAccount(new Account(accountType));
+        if(!selectedAffiliated.getAccountTypes().contains(accountType)) {
+            this.selectedAffiliated.addAccount(new Account(accountType));
         }
     }
     
     public void removeAccount(Node labelNode) {
          String accountType = ((Label)labelNode).getText();
-         selectedAfiliated.removeAccount(accountType);
+         selectedAffiliated.removeAccount(accountType);
     }
     
 

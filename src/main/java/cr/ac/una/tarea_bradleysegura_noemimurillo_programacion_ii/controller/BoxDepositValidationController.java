@@ -4,7 +4,7 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.BoxDeposit;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Transaction;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
@@ -57,8 +57,8 @@ public class BoxDepositValidationController extends Controller implements Initia
         MFXTableColumn<BoxDeposit> boxDepositIDColumn = new MFXTableColumn<>("ID", true, Comparator.comparing(BoxDeposit::getTransactionID));
         MFXTableColumn<BoxDeposit> transactionTimeColumn = new MFXTableColumn<>("Fecha", true, Comparator.comparing(BoxDeposit::getTransactionTime));
         MFXTableColumn<BoxDeposit> transactionAmountColumn = new MFXTableColumn<>("Monto", true, Comparator.comparing(BoxDeposit::getAmount));
-        MFXTableColumn<BoxDeposit> transactionAfiliatedColumn = new MFXTableColumn<>("Afiliated", true, Comparator.comparing(BoxDeposit::getAfiliatedName));
-        MFXTableColumn<BoxDeposit> transactionFolioColumn = new MFXTableColumn<>("Folio", true, Comparator.comparing(BoxDeposit::getAfiliatedFolio));
+        MFXTableColumn<BoxDeposit> transactionAffiliatedColumn = new MFXTableColumn<>("Affiliated", true, Comparator.comparing(BoxDeposit::getAffiliatedName));
+        MFXTableColumn<BoxDeposit> transactionFolioColumn = new MFXTableColumn<>("Folio", true, Comparator.comparing(BoxDeposit::getAffiliatedFolio));
 
         
         //Columnas de Denominaciones
@@ -77,8 +77,8 @@ public class BoxDepositValidationController extends Controller implements Initia
         boxDepositIDColumn.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getTransactionID));
         transactionTimeColumn.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getTransactionTime));
         transactionAmountColumn.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAmount));
-        transactionAfiliatedColumn.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAfiliatedName));
-        transactionFolioColumn.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAfiliatedFolio));
+        transactionAffiliatedColumn.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAffiliatedName));
+        transactionFolioColumn.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAffiliatedFolio));
         
         cincoColonesColumn.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getCincoColonesDenomination));
         diezColonesColumn.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getDiezColonesDenomination));
@@ -92,17 +92,17 @@ public class BoxDepositValidationController extends Controller implements Initia
         diezMilColonesLabel.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getDiezMilColonesDenomination));
         ventieMilColonesLabel.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getVeinteMilColonesDenomination));
 
-        this.depositBoxTableView.getTableColumns().addAll(boxDepositIDColumn, transactionTimeColumn, transactionAfiliatedColumn, transactionFolioColumn,
+        this.depositBoxTableView.getTableColumns().addAll(boxDepositIDColumn, transactionTimeColumn, transactionAffiliatedColumn, transactionFolioColumn,
                 cincoColonesColumn, diezColonesColumn, veinticincoColonesColumn, cincuentaColonesColumn, cienColonesColumn, quinientosColonesColumn, milColonesColumn,
                 dosMilColonesLabel, cincoMilColonesLabel, diezMilColonesLabel, ventieMilColonesLabel, transactionAmountColumn);
 
-        BoxDeposit depositA = new BoxDeposit(0.d, new Afiliated("Noemi", "Murillo", "Godinez", 22, "Coope"), Transaction.Action.DEPOSITO);
+        BoxDeposit depositA = new BoxDeposit(0.d, new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope"), Transaction.Action.DEPOSITO);
         depositA.addDenomination(BoxDeposit.Denomination.CINCO, 50);
         depositA.addDenomination(BoxDeposit.Denomination.DIEZ, 100);
         depositA.addDenomination(BoxDeposit.Denomination.CINCUENTA, 20);
         depositA.calculateTotal();
 
-        BoxDeposit depositB = new BoxDeposit(0.d, new Afiliated("Bradley", "Segura", "Borbon", 18, "Coope"), Transaction.Action.DEPOSITO);
+        BoxDeposit depositB = new BoxDeposit(0.d, new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope"),Transaction.Action.DEPOSITO);
         depositB.addDenomination(BoxDeposit.Denomination.CINCO, 10);
         depositB.addDenomination(BoxDeposit.Denomination.DIEZ, 20);
         depositB.addDenomination(BoxDeposit.Denomination.CINCUENTA, 100);

@@ -25,7 +25,7 @@ import javafx.scene.image.Image;
 public class DataManager implements Serializable {
 
     private ArrayList<String> availableAccounts;
-    private ArrayList<Afiliated> afiliated;
+    private ArrayList<Affiliated> afiliated;
     private String cooperativeName;
     private String cooperativeIcon;
     private ArrayList<BoxDeposit> boxDeposits;
@@ -40,7 +40,7 @@ public class DataManager implements Serializable {
         this.availableAccounts = availableAccounts;
     }
 
-    public void setAfiliated(ArrayList<Afiliated> afiliated) {
+    public void setAffiliated(ArrayList<Affiliated> afiliated) {
         this.afiliated = afiliated;
     }
 
@@ -56,7 +56,7 @@ public class DataManager implements Serializable {
         return availableAccounts;
     }
 
-    public ArrayList<Afiliated> getAfiliated() {
+    public ArrayList<Affiliated> getAffiliated() {
         return afiliated;
     }
 
@@ -76,8 +76,8 @@ public class DataManager implements Serializable {
         availableAccounts.remove(accountType);
     }
 
-    public ArrayList<Account> getAfiliatedAccounts(String folio) {
-        for (Afiliated afiliated : afiliated) {
+    public ArrayList<Account> getAffiliatedAccounts(String folio) {
+        for (Affiliated afiliated : afiliated) {
             if (afiliated.getFolio().equals(folio)) {
                 return afiliated.getAccounts();
             }
@@ -85,8 +85,8 @@ public class DataManager implements Serializable {
         return null;
     }
 
-    public void addAccountToAfiliated(Account newAccount, String folio) {
-        for (Afiliated afiliated : afiliated) {
+    public void addAccountToAffiliated(Account newAccount, String folio) {
+        for (Affiliated afiliated : afiliated) {
             if (afiliated.getFolio().equals(folio)) {
                 afiliated.addAccount(newAccount);
             }
@@ -96,7 +96,7 @@ public class DataManager implements Serializable {
     //IMPORTANTE
     public void packData() {
         this.availableAccounts = (ArrayList<String>) AppContext.getInstance().get("availableAccounts");
-        this.afiliated = (ArrayList<Afiliated>) AppContext.getInstance().get("afiliated");
+        this.afiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
         this.cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
         this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeIcon");
         this.boxDeposits = (ArrayList<BoxDeposit>) AppContext.getInstance().get("boxDeposits");

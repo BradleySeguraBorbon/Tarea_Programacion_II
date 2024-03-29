@@ -4,7 +4,7 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -21,7 +21,7 @@ import javafx.scene.control.Label;
  *
  * @author Bradley
  */
-public class AfiliatedSelectionController extends Controller implements Initializable {
+public class AffiliatedSelectionController extends Controller implements Initializable {
 
     @FXML
     private MFXFilterComboBox afiliatedSelectionComboBox;
@@ -33,47 +33,61 @@ public class AfiliatedSelectionController extends Controller implements Initiali
     private MFXButton continueButton;
     
     private ArrayList<String> afiliatedNames;
-    private Afiliated selectedAfiliated;
+    private Affiliated selectedAffiliated;
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         afiliatedNames = new ArrayList();
-        for(Afiliated afiliated : (ArrayList<Afiliated>)AppContext.getInstance().get("afiliated")) {
+        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afiliated")) {
             afiliatedNames.add(afiliated.getFullName());
         }
         afiliatedSelectionComboBox.setItems(FXCollections.observableArrayList(afiliatedNames));      
     }    
     
+    /**
+     *
+     */
     @Override
     public void initialize() {
         
     }
     
-    public void setSelectedAfiliated() {
-        String selectedAfiliatedName = afiliatedSelectionComboBox.getSelectedText();
+    /**
+     *
+     */
+    public void setSelectedAffiliated() {
+        String selectedAffiliatedName = afiliatedSelectionComboBox.getSelectedText();
         
-        for(Afiliated afiliated : (ArrayList<Afiliated>)AppContext.getInstance().get("afilated")) {
-            if(afiliated.getName().equals(selectedAfiliatedName)) {
-                this.selectedAfiliated = afiliated;
+        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afilated")) {
+            if(afiliated.getName().equals(selectedAffiliatedName)) {
+                this.selectedAffiliated = afiliated;
                 break;
             }
         }
-        if(selectedAfiliated != null) {
-            displayAfiliatedInfo();
+        if(selectedAffiliated != null) {
+            displayAffiliatedInfo();
         }
     }
     
-    public void displayAfiliatedInfo() {
-        this.afiliatedNameLabel.setText(this.selectedAfiliated.getFullName());
-        this.afiliatedFolioLabel.setText(this.selectedAfiliated.getFolio());  
+    /**
+     *
+     */
+    public void displayAffiliatedInfo() {
+        this.afiliatedNameLabel.setText(this.selectedAffiliated.getFullName());
+        this.afiliatedFolioLabel.setText(this.selectedAffiliated.getFolio());  
     }
     
+    /**
+     *
+     */
     public void close() {
-        /*if(selectedAfiliated != null) {
-            AppContext.getInstance().set("selectedAfiliated", selectedAfiliated);
+        /*if(selectedAffiliated != null) {
+            AppContext.getInstance().set("selectedAffiliated", selectedAffiliated);
         }*/
     }
 
