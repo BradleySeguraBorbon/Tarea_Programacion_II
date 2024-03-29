@@ -151,6 +151,7 @@ public class FlowController {
         controller.setStage(stage);
         Parent root = loader.getRoot();
         Scene scene = new Scene(root);
+        MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY); //agregado por Bradley
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
@@ -161,7 +162,7 @@ public class FlowController {
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
-        stage.getIcons().add(new Image("/cr/ac/una/tutoria2ejemplo/resources/icons/userIcon.png"));
+        //stage.getIcons().add(new Image("/cr/ac/una/tutoria2ejemplo/resources/icons/userIcon.png"));
         stage.setTitle("SISTEMA COOPERATIVA FINANCIERA");
         stage.setResizable(resizable);
         stage.setOnHidden((WindowEvent event) -> {
@@ -171,6 +172,7 @@ public class FlowController {
         controller.setStage(stage);
         Parent root = loader.getRoot();
         Scene scene = new Scene(root);
+        MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
         stage.setScene(scene);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(parentStage);

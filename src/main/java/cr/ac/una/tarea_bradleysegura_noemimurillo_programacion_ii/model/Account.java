@@ -53,11 +53,11 @@ public class Account {
         return balance;
     }
     
-    public void addBalance(Double amount) {
+    public void deposit(Double amount) {
         balance += amount;
     }
     
-    public Double substractBalance(Double amount) {
+    public Double withdraw(Double amount) {
         balance -= amount;
         return amount;
     }

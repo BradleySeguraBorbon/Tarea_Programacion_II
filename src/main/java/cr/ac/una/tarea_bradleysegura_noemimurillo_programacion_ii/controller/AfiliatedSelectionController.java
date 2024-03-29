@@ -6,6 +6,7 @@ package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import javafx.scene.control.Label;
  *
  * @author Bradley
  */
-public class AfiliatedSelectionController implements Initializable {
+public class AfiliatedSelectionController extends Controller implements Initializable {
 
     @FXML
     private MFXFilterComboBox afiliatedSelectionComboBox;
@@ -28,6 +29,8 @@ public class AfiliatedSelectionController implements Initializable {
     private Label afiliatedNameLabel;
     @FXML
     private Label afiliatedFolioLabel;
+    @FXML
+    private MFXButton continueButton;
     
     private ArrayList<String> afiliatedNames;
     private Afiliated selectedAfiliated;
@@ -43,6 +46,11 @@ public class AfiliatedSelectionController implements Initializable {
         }
         afiliatedSelectionComboBox.setItems(FXCollections.observableArrayList(afiliatedNames));      
     }    
+    
+    @Override
+    public void initialize() {
+        
+    }
     
     public void setSelectedAfiliated() {
         String selectedAfiliatedName = afiliatedSelectionComboBox.getSelectedText();
@@ -64,9 +72,11 @@ public class AfiliatedSelectionController implements Initializable {
     }
     
     public void close() {
-        if(selectedAfiliated != null) {
+        /*if(selectedAfiliated != null) {
             AppContext.getInstance().set("selectedAfiliated", selectedAfiliated);
-        }
+        }*/
     }
+
+    
     
 }

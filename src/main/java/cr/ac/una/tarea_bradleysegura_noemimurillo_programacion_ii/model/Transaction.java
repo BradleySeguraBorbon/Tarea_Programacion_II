@@ -17,7 +17,7 @@ public class Transaction {
     protected String transactionTime;
     protected Double amount;
     protected Afiliated afiliated;
-    protected Action action;         
+    protected Action action;        
             
     public static enum Action { RETIRO, DEPOSITO }
     
@@ -72,6 +72,14 @@ public class Transaction {
 
     public Afiliated getAfiliated() {
         return afiliated;
+    }
+    
+    public String getAfiliatedName() {
+        return afiliated.getFullName();
+    }
+    
+    public String getAfiliatedFolio() {
+        return afiliated.getFolio();
     }
 
     public Action getAction() {

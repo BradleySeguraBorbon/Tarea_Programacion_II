@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AfiliatedSelectionViewController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AfiliatedSelectionController">
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
@@ -24,14 +24,14 @@
                </font>
             </Label>
             <ImageView fitHeight="87.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" />
-            <MFXFilterComboBox prefWidth="250.0" />
+            <MFXFilterComboBox fx:id="afiliatedSelectionComboBox" onAction="#setSelectedAfiliated" prefWidth="250.0" />
             <Pane prefHeight="26.0" prefWidth="400.0" />
             <Label text="AFILIADO SELECCIONADO" />
-            <Label text="-------------" />
+            <Label fx:id="afiliatedNameLabel" text="-------------" />
             <Label text="NÚMERO DE FOLIO" />
-            <Label text="-------------" />
+            <Label fx:id="afiliatedFolioLabel" text="-------------" />
             <Pane prefHeight="22.0" prefWidth="400.0" />
-            <MFXButton prefHeight="47.0" prefWidth="155.0" text="CONTINUAR" />
+            <MFXButton fx:id="continueButton" onAction="#close" prefHeight="47.0" prefWidth="155.0" text="CONTINUAR" />
          </children>
          <padding>
             <Insets top="30.0" />
