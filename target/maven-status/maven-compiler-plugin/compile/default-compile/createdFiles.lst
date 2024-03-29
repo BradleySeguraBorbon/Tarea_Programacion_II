@@ -1,4 +1,5 @@
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\model\Transaction$Action.class
+cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\model\Afiliated$Sexo.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\AccountOpeningController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\AfiliatedSelectionController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\CooperativeManagementController.class
@@ -12,6 +13,7 @@ cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\BoxDeposit
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\Respuesta.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\Formato.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\DraggableMaker.class
+cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\CardPrintController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\Controller.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\model\Transaction.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\Mensaje.class

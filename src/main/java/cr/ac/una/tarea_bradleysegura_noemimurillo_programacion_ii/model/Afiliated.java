@@ -6,9 +6,9 @@ package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import java.util.ArrayList;
-import java.util.Date;
 import javafx.scene.image.Image;
 import java.util.Random;
+
 
 /**
  *
@@ -23,6 +23,13 @@ public class Afiliated {
      ArrayList<Account> accounts;
      String profileImage;
      String cooperative;
+     Sexo sexo;
+     
+     public enum Sexo{
+         FEMENINO,
+         MASCULINO,
+     }
+
      
      public Afiliated() {
          accounts = new ArrayList();
@@ -30,11 +37,12 @@ public class Afiliated {
          age = -1;
      }
 
-    public Afiliated(String name, String firstLastName, String secondLastName, int age, String cooperative) {
+    public Afiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexp, String cooperative) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
         this.age = age;
+        this.sexo = sexo;
         this.cooperative = cooperative;
         accounts = new ArrayList();
         
@@ -67,8 +75,12 @@ public class Afiliated {
         this.secondLastName = secondLastName;
     }
 
-    public void setBirthDate(int age) {
+    public void setAge(int age) {
         this.age = age;
+    }
+
+    public void setSexo(Sexo sex) {
+        this.sexo = sex;
     }
 
     public void setAccounts(ArrayList<Account> accounts) {
@@ -88,7 +100,7 @@ public class Afiliated {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getFirstLastName() {
@@ -96,7 +108,7 @@ public class Afiliated {
     }
     
     public String getSecondLastName() {
-        return secondLastName;
+        return this.secondLastName;
     }
     
     public String getFullName() {
@@ -104,7 +116,11 @@ public class Afiliated {
     }
 
     public int getAge() {
-        return age;
+        return this.age;
+    }
+    
+    public Sexo getSexo() {
+        return this.sexo;
     }
 
     public ArrayList<Account> getAccounts() {
