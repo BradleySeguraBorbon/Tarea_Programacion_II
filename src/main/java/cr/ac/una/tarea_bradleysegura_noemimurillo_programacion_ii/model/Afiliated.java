@@ -4,9 +4,11 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.scene.image.Image;
+import java.util.Random;
 
 /**
  *
@@ -24,6 +26,8 @@ public class Afiliated {
      
      public Afiliated() {
          accounts = new ArrayList();
+         name = firstLastName = secondLastName = folio = profileImage = cooperative =  null;
+         age = -1;
      }
 
     public Afiliated(String name, String firstLastName, String secondLastName, int age, String cooperative) {
@@ -33,7 +37,23 @@ public class Afiliated {
         this.age = age;
         this.cooperative = cooperative;
         accounts = new ArrayList();
-    }
+        
+        //Creación de FOLIO ÚNICO
+        Random random = new Random(); 
+        StringBuilder folioBuilder = new StringBuilder();
+        folioBuilder.append(this.name.charAt(0)).append(this.firstLastName.charAt(0)).append(Integer.toString(this.age));
+        
+        String randomNum = Integer.toString(random.nextInt(99));
+        String auxFolio = folioBuilder.toString() + randomNum;     
+        for(Afiliated afiliated : (ArrayList<Afiliated>)AppContext.getInstance().get("afiliated")) {
+            while(afiliated.getFolio().equals(auxFolio)) {
+                String newRandomNum = Integer.toString(random.nextInt(99));
+                auxFolio.replace(randomNum, newRandomNum);
+                randomNum = newRandomNum;
+            }
+        }
+        this.folio = auxFolio;  
+    } 
 
     public void setName(String name) {
         this.name = name;
@@ -83,7 +103,7 @@ public class Afiliated {
         return this.name + " " + this.firstLastName + " " + this.secondLastName + " ";
     }
 
-    public int getBirthDate() {
+    public int getAge() {
         return age;
     }
 
@@ -128,5 +148,14 @@ public class Afiliated {
             }
         }
         return false;
+    }
+    
+    public String toString() {
+        return "Name: " + name + 
+                "\nPrimer Apellido:  " +  firstLastName + 
+                "\nSegundo Apellido:  " + secondLastName + 
+                "\nEdad: " + Integer.toString(age) + 
+                " \nFolio: " + folio + 
+                "\nCooperativa: " + this.cooperative;
     }
 }

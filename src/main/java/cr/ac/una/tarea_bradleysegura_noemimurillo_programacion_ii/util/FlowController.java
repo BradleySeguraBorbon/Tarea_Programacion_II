@@ -151,6 +151,7 @@ public class FlowController {
         controller.setStage(stage);
         Parent root = loader.getRoot();
         Scene scene = new Scene(root);
+        MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY); //agregado por Bradley
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
@@ -171,6 +172,7 @@ public class FlowController {
         controller.setStage(stage);
         Parent root = loader.getRoot();
         Scene scene = new Scene(root);
+        MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
         stage.setScene(scene);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(parentStage);

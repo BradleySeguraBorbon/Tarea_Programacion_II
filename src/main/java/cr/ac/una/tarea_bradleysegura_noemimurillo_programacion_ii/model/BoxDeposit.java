@@ -20,11 +20,34 @@ public class BoxDeposit extends Transaction {
 
     public BoxDeposit() {
         depositDenomination = new HashMap<>();
+        depositDenomination.put(Denomination.CINCO, 0);
+        depositDenomination.put(Denomination.DIEZ, 0);
+        depositDenomination.put(Denomination.VEINTICINCO, 0);
+        depositDenomination.put(Denomination.CINCUENTA, 0);
+        depositDenomination.put(Denomination.CIEN, 0);
+        depositDenomination.put(Denomination.QUINIENTOS, 0);
+        depositDenomination.put(Denomination.MIL, 0);
+        depositDenomination.put(Denomination.DOSMIL, 0);
+        depositDenomination.put(Denomination.CINCOMIL, 0);
+        depositDenomination.put(Denomination.DIEZMIL, 0);
+        depositDenomination.put(Denomination.VEINTEMIL, 0);
     }
 
     public BoxDeposit(Double amount, Afiliated afiliated, Action action) {
         super(amount, afiliated, action);
         depositDenomination = new HashMap<>();
+        
+        depositDenomination.put(Denomination.CINCO, 0);
+        depositDenomination.put(Denomination.DIEZ, 0);
+        depositDenomination.put(Denomination.VEINTICINCO, 0);
+        depositDenomination.put(Denomination.CINCUENTA, 0);
+        depositDenomination.put(Denomination.CIEN, 0);
+        depositDenomination.put(Denomination.QUINIENTOS, 0);
+        depositDenomination.put(Denomination.MIL, 0);
+        depositDenomination.put(Denomination.DOSMIL, 0);
+        depositDenomination.put(Denomination.CINCOMIL, 0);
+        depositDenomination.put(Denomination.DIEZMIL, 0);
+        depositDenomination.put(Denomination.VEINTEMIL, 0);
     }
 
     public void setDepositDenominacion(HashMap<Denomination, Integer> newDenomination) {
@@ -89,46 +112,46 @@ public class BoxDeposit extends Transaction {
     }
 
     public int getCincoColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.CINCO);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.CINCO);
     }
 
     public int getDiezColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.DIEZ);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.DIEZ);
     }
 
     public int getVeinticincoColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.VEINTICINCO);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.VEINTICINCO);
     }
 
     public int getCincuentaColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.CINCUENTA);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.CINCUENTA);
     }
 
     public int getCienColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.CIEN);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.CIEN);
     }
 
     public int getQuinientosColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.QUINIENTOS);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.QUINIENTOS);
     }
 
     public int getMilColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.MIL);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.MIL);
     }
 
     public int getDosMilColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.DOSMIL);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.DOSMIL);
     }
 
     public int getCincoMilColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.CINCOMIL);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.CINCOMIL);
     }
 
     public int getDiezMilColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.DIEZMIL);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.DIEZMIL);
     }
 
     public int getVeinteMilColonesDenomination() {
-        return depositDenomination.get(BoxDeposit.Denomination.VEINTEMIL);
+        return (int)depositDenomination.get(BoxDeposit.Denomination.VEINTEMIL);
     }
 }

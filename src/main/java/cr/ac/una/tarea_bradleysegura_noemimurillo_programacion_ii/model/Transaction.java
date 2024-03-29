@@ -77,6 +77,10 @@ public class Transaction {
     public String getAfiliatedName() {
         return afiliated.getFullName();
     }
+    
+    public String getAfiliatedFolio() {
+        return afiliated.getFolio();
+    }
 
     public Action getAction() {
         return action;
