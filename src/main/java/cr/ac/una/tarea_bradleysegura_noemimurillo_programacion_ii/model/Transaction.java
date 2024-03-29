@@ -13,11 +13,11 @@ import java.text.SimpleDateFormat;
  * @author Bradley
  */
 public class Transaction {
-    private String transactionID;
-    private LocalDateTime transactionTime;
-    private Double amount;
-    private Afiliated afiliated;
-    private Action action;         
+    protected String transactionID;
+    protected String transactionTime;
+    protected Double amount;
+    protected Afiliated afiliated;
+    protected Action action;         
             
     public static enum Action { RETIRO, DEPOSITO }
     
@@ -32,7 +32,7 @@ public class Transaction {
     public Transaction(Double amount, Afiliated afiliated, Action action) {
         Random randomGenerator = new Random();
         this.transactionID = Integer.toString((randomGenerator.nextInt(100000000)));
-        this.transactionTime = LocalDateTime.now();
+        this.transactionTime = LocalDateTime.now().toString();
         this.amount = amount;
         this.afiliated = afiliated;
         this.action = action;
@@ -43,7 +43,7 @@ public class Transaction {
     }
 
     public void setTransactionTime(LocalDateTime transactionTime) {
-        this.transactionTime = transactionTime;
+        this.transactionTime = transactionTime.toString();
     }
 
     public void setAmount(Double amount) {
@@ -62,7 +62,7 @@ public class Transaction {
         return transactionID;
     }
 
-    public LocalDateTime getTransactionTime() {
+    public String getTransactionTime() {
         return transactionTime;
     }
 

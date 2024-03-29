@@ -21,18 +21,15 @@ public class Afiliated {
      ArrayList<Account> accounts;
      String profileImage;
      String cooperative;
-     Sexo sex;
-     public enum Sexo{
-         FEMENINO,
-         MASCULINO,
-     }
+     String sex;
+
 
      
      public Afiliated() {
          accounts = new ArrayList();
      }
 
-    public Afiliated(String name, String firstLastName, String secondLastName, int age, Sexo sex, String cooperative) {
+    public Afiliated(String name, String firstLastName, String secondLastName, int age, String sex, String cooperative) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
@@ -58,7 +55,7 @@ public class Afiliated {
         this.Age = age;
     }
     
-    public void setSexo(Sexo sex){
+    public void setSexo(String sex){
         this.sex = sex;
     }
 
@@ -98,7 +95,7 @@ public class Afiliated {
         return Age;
     }
     
-    public Sexo getSex(){
+    public String getSex(){
         return sex;
     }
 
