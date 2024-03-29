@@ -5,6 +5,7 @@
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.App;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
@@ -77,6 +78,9 @@ public class AccountTypeManagementController extends Controller implements Initi
                 addAccountTypeTextField.setText("");
                 this.availableAccounts.add(newAccountType);
                 AppContext.getInstance().set("availableAccounts", this.availableAccounts);
+                
+                ArrayList<Affiliated> newAffiliated = new ArrayList();
+                AppContext.getInstance().set("afiliated", newAffiliated);
             }
         }
         catch(Exception e) {

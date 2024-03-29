@@ -5,7 +5,7 @@
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Account;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.BoxDeposit;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Transaction;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
@@ -40,7 +40,7 @@ import javafx.scene.image.ImageView;
 public class MoneyManagementController extends Controller implements Initializable {
 
     @FXML
-    private MFXFilterComboBox<Afiliated> selectAfiliatedDepositBox;
+    private MFXFilterComboBox<Affiliated> selectAffiliatedDepositBox;
     @FXML
     private MFXFilterComboBox selectAccountDepositBox;
     @FXML
@@ -52,7 +52,7 @@ public class MoneyManagementController extends Controller implements Initializab
     @FXML
     private MFXTextField afiliatedFolioTextField;
     @FXML
-    private MFXButton browseAfiliatedButton;
+    private MFXButton browseAffiliatedButton;
     @FXML
     private MFXFilterComboBox selectAccountWithdrawalBox;
     @FXML
@@ -60,13 +60,13 @@ public class MoneyManagementController extends Controller implements Initializab
     @FXML
     private MFXButton withdrawalButton;
     @FXML
-    private Label validateAfiliatedLabel;
+    private Label validateAffiliatedLabel;
     @FXML
     private ImageView afiliatedImageView;
     @FXML
     private Label afiliatedNameLabel;
     @FXML
-    private MFXButton validateAfiliatedButton;
+    private MFXButton validateAffiliatedButton;
     @FXML
     private MFXTableView depositBoxTableView;
     @FXML
@@ -77,8 +77,8 @@ public class MoneyManagementController extends Controller implements Initializab
     @FXML
     private MFXFilterComboBox selectAccountComboBox;
 
-    private ArrayList<Afiliated> afiliatedList;
-    private Afiliated selectedAfiliated;
+    private ArrayList<Affiliated> afiliatedList;
+    private Affiliated selectedAffiliated;
     private Account selectedAccount;
 
     /**
@@ -87,9 +87,9 @@ public class MoneyManagementController extends Controller implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.afiliatedList = new ArrayList();
-        StringConverter<Afiliated> converter = FunctionalStringConverter.to(afiliated -> (afiliated == null) ? "" : afiliated.getFullName());
-        this.selectAfiliatedDepositBox.setItems(FXCollections.observableArrayList(afiliatedList));
-        this.selectAfiliatedDepositBox.setConverter(converter);
+        StringConverter<Affiliated> converter = FunctionalStringConverter.to(afiliated -> (afiliated == null) ? "" : afiliated.getFullName());
+        this.selectAffiliatedDepositBox.setItems(FXCollections.observableArrayList(afiliatedList));
+        this.selectAffiliatedDepositBox.setConverter(converter);
     }
 
     @Override
@@ -97,11 +97,11 @@ public class MoneyManagementController extends Controller implements Initializab
             
     }
     
-    public void selectAfiliated() {
-        selectedAfiliated = this.selectAfiliatedDepositBox.getSelectedItem();      
+    public void selectAffiliated() {
+        selectedAffiliated = this.selectAffiliatedDepositBox.getSelectedItem();      
         
         StringConverter<Account> converter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
-        ArrayList<Account> userAccounts = selectedAfiliated.getAccounts();
+        ArrayList<Account> userAccounts = selectedAffiliated.getAccounts();
         selectAccountDepositBox.setItems(FXCollections.observableArrayList(userAccounts));
         selectAccountDepositBox.setConverter(converter);
         selectAccountDepositBox.setDisable(false);
@@ -124,36 +124,36 @@ public class MoneyManagementController extends Controller implements Initializab
         }
     }
     
-    public void browseAfiliated() {
+    public void browseAffiliated() {
         clearWithdrawalPane();
         String typedFolio = afiliatedFolioTextField.getText();
         if(!typedFolio.isBlank()) {
-            for(Afiliated afiliated : afiliatedList) {
+            for(Affiliated afiliated : afiliatedList) {
                 if(afiliated.getFolio().equals(typedFolio)) {
-                    selectedAfiliated = afiliated;
+                    selectedAffiliated = afiliated;
                     break;
                 }
             }
-            if(selectedAfiliated != null) {
-                afiliatedImageView.setImage(new Image(selectedAfiliated.getProfileImage()));
-                afiliatedNameLabel.setText(selectedAfiliated.getFullName());
-                validateAfiliatedLabel.setOpacity(1);
-                validateAfiliatedButton.setDisable(false);
+            if(selectedAffiliated != null) {
+                afiliatedImageView.setImage(new Image(selectedAffiliated.getProfileImage()));
+                afiliatedNameLabel.setText(selectedAffiliated.getFullName());
+                validateAffiliatedLabel.setOpacity(1);
+                validateAffiliatedButton.setDisable(false);
             }
             else {
                 new Mensaje().show(Alert.AlertType.WARNING, "AFILIADO NO ENCONTRADO", "No se ha encontrado el afiliado con el folio digitado");
-                validateAfiliatedLabel.setOpacity(0);
-                validateAfiliatedButton.setDisable(true);
+                validateAffiliatedLabel.setOpacity(0);
+                validateAffiliatedButton.setDisable(true);
             }
         }
     }
     
-    public void validateAfiliated() {
-         validateAfiliatedLabel.setOpacity(0);
-         validateAfiliatedButton.setDisable(true);
+    public void validateAffiliated() {
+         validateAffiliatedLabel.setOpacity(0);
+         validateAffiliatedButton.setDisable(true);
         
         StringConverter<Account> converter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
-        selectAccountWithdrawalBox.setItems(FXCollections.observableArrayList(selectedAfiliated.getAccounts()));
+        selectAccountWithdrawalBox.setItems(FXCollections.observableArrayList(selectedAffiliated.getAccounts()));
         selectAccountWithdrawalBox.setConverter(converter);
         selectAccountWithdrawalBox.setDisable(false);
     }
@@ -180,10 +180,10 @@ public class MoneyManagementController extends Controller implements Initializab
         this.withdrawalAmountTextField.clear();
         this.withdrawalAmountTextField.setDisable(true);
         withdrawalButton.setDisable(true);
-        this.validateAfiliatedButton.setOpacity(0);
+        this.validateAffiliatedButton.setOpacity(0);
         this.afiliatedImageView.setImage(null);
         this.afiliatedNameLabel.setText("usuario");
-        this.validateAfiliatedButton.setDisable(true);
+        this.validateAffiliatedButton.setDisable(true);
         
     }
 

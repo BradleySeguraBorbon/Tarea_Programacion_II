@@ -33,7 +33,7 @@ public class BoxDeposit extends Transaction {
         depositDenomination.put(Denomination.VEINTEMIL, 0);
     }
 
-    public BoxDeposit(Double amount, Afiliated afiliated, Action action) {
+    public BoxDeposit(Double amount, Affiliated afiliated, Action action) {
         super(amount, afiliated, action);
         depositDenomination = new HashMap<>();
         

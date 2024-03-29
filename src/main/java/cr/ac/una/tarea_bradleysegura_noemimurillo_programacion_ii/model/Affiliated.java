@@ -14,7 +14,7 @@ import java.util.Random;
  *
  * @author Bradley
  */
-public class Afiliated {
+public class Affiliated {
      String name;
      String firstLastName;
      String secondLastName;
@@ -31,13 +31,13 @@ public class Afiliated {
      }
 
      
-     public Afiliated() {
+     public Affiliated() {
          accounts = new ArrayList();
          name = firstLastName = secondLastName = folio = profileImage = cooperative =  null;
          age = -1;
      }
 
-    public Afiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexp, String cooperative) {
+    public Affiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexp, String cooperative) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
@@ -53,7 +53,7 @@ public class Afiliated {
         
         String randomNum = Integer.toString(random.nextInt(99));
         String auxFolio = folioBuilder.toString() + randomNum;     
-        for(Afiliated afiliated : (ArrayList<Afiliated>)AppContext.getInstance().get("afiliated")) {
+        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afiliated")) {
             while(afiliated.getFolio().equals(auxFolio)) {
                 String newRandomNum = Integer.toString(random.nextInt(99));
                 auxFolio.replace(randomNum, newRandomNum);

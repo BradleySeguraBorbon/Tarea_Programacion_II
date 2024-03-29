@@ -4,7 +4,7 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -34,7 +34,7 @@ public class CardPrintController extends Controller implements Initializable {
     @FXML
     private MFXTextField txtNameUser;
     
-    private Afiliated selectedAfiliated;
+    private Affiliated selectedAffiliated;
     /**
      * Initializes the controller class.
      */
@@ -51,24 +51,24 @@ public class CardPrintController extends Controller implements Initializable {
     public void browseUser(){
         Mensaje msj = new Mensaje();
         txtNameUser.clear();
-        String selectedAfiliatedFolio = txtInFolio.getText();
+        String selectedAffiliatedFolio = txtInFolio.getText();
         
-        for(Afiliated afiliated : (ArrayList<Afiliated>)AppContext.getInstance().get("afilated")) {
-            if(afiliated.getFolio().equals(selectedAfiliatedFolio)) {
-                this.selectedAfiliated = afiliated;
+        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afilated")) {
+            if(afiliated.getFolio().equals(selectedAffiliatedFolio)) {
+                this.selectedAffiliated = afiliated;
                 break;
             }
         }
-        if(selectedAfiliated != null) {
-            displayAfiliatedInfo();
+        if(selectedAffiliated != null) {
+            displayAffiliatedInfo();
         }else{
              msj.show(ERROR, "Error folio", "No se ha encontrado ningún usuario relacionado con este folio." );
         }
     }
     
     @FXML
-    public void displayAfiliatedInfo() {
-        this.txtNameUser.setText(this.selectedAfiliated.getFullName());
+    public void displayAffiliatedInfo() {
+        this.txtNameUser.setText(this.selectedAffiliated.getFullName());
     }
     
     @FXML

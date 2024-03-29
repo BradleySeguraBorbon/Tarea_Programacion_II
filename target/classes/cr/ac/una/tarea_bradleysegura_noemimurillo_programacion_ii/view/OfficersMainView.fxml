@@ -62,7 +62,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="332.0" spacing="150.0">
                <children>
-                  <MFXButton fx:id="openAfiliatedRegisterButton" onAction="#openAfiliatedRegister" prefHeight="150.0" prefWidth="300.0" text="MANTENIMIENTO DE REGISTRO DE ASOCIADOS" />
+                  <MFXButton fx:id="openAffiliatedRegisterButton" onAction="#openAffiliatedRegister" prefHeight="150.0" prefWidth="300.0" text="MANTENIMIENTO DE REGISTRO DE ASOCIADOS" />
                   <MFXButton fx:id="openCardPrintButton" onAction="#openCardPrint" prefHeight="150.0" prefWidth="300.0" text="IMPRESIÓN DE CARNET" />
                </children>
             </VBox>
