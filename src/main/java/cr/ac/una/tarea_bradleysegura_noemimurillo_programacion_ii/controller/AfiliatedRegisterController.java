@@ -5,6 +5,7 @@
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Afiliated.Sexo;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -101,14 +102,14 @@ public class AfiliatedRegisterController extends Controller implements Initializ
         System.out.println(newAffiliates.toString());
     }
 
-    public String getNewSex(){
+    public Sexo getNewSex(){
     Toggle seleccionado = SexGroup.getSelectedToggle();
     if (seleccionado != null) {
         String valor = ((RadioButton) seleccionado).getText();
         if (valor.equals("Masculino")) {
-            return "MASCULINO";
+            return Sexo.MASCULINO;
         } else if (valor.equals("Femenino")) {
-            return "FEMENINO";
+            return Sexo.FEMENINO;
         }
     }
     return null;
