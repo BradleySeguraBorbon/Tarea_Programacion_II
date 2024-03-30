@@ -56,6 +56,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     private ToggleGroup SexSelection;
 
     private ArrayList<Affiliated> affiliated;
+    private String affiliatedImageDir;
 
     /**
      * Initializes the controller class.
@@ -104,9 +105,10 @@ public class AffiliatedRegisterController extends Controller implements Initiali
             alerta.show(Alert.AlertType.WARNING, "SEXO NO INDICADO", "Debes indicar tu sexo para continuar");
             System.out.println("ERROR");
         } else {
-            Affiliated.Sexo sexo = (!rBtnMasculino.isSelected()) ? Affiliated.Sexo.MASCULINO : Affiliated.Sexo.FEMENINO;
-            this.affiliated.add(new Affiliated(name, firstLastName, secondLastName, age, sexo, cooperativeName));
+            Affiliated.Sexo sexo = (rBtnMasculino.isSelected()) ? Affiliated.Sexo.MASCULINO : Affiliated.Sexo.FEMENINO;
+            this.affiliated.add(new Affiliated(name, firstLastName, secondLastName, age, sexo, affiliatedImageDir, cooperativeName));
             alerta.show(Alert.AlertType.INFORMATION, "REGISTRO EXITOSO", "'¡Bienvenido a " + cooperativeName + ", " + name + "!");
+            AppContext.getInstance().set("afiliated", this.affiliated);
         }
     }
     
@@ -117,7 +119,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
             Webcam webcam = Webcam.getDefault();
             webcam.setViewSize(WebcamResolution.VGA.getSize());
             
-            String affiliatedImageDir = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/" + Integer.toString(randomGenerator.nextInt(9999)) + ".jpg";        
+            affiliatedImageDir = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/" + Integer.toString(randomGenerator.nextInt(9999)) + ".jpg";        
             webcam.open();
             ImageIO.write(webcam.getImage(), "JPG", new File(affiliatedImageDir));
             webcam.close();

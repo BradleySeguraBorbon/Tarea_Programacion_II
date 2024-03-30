@@ -15,15 +15,15 @@ import java.util.Random;
  * @author Bradley
  */
 public class Affiliated {
-     String name;
-     String firstLastName;
-     String secondLastName;
-     String folio;
-     int age;
-     ArrayList<Account> accounts;
-     String profileImage;
-     String cooperative;
-     Sexo sexo;
+     private String name;
+     private String firstLastName;
+     private String secondLastName;
+     private String folio;
+     private int age;
+     private ArrayList<Account> accounts;
+     private String profileImage;
+     private String cooperative;
+     private Sexo sexo;
      
      public enum Sexo{
          FEMENINO,
@@ -36,13 +36,18 @@ public class Affiliated {
          name = firstLastName = secondLastName = folio = profileImage = cooperative =  null;
          age = -1;
      }
+     
+     public Affiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexo, String cooperative) {
+         this(name, firstLastName, secondLastName, age, sexo, null, cooperative);
+     }
 
-    public Affiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexo, String cooperative) {
+    public Affiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexo, String profileImage, String cooperative) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
         this.age = age;
         this.sexo = sexo;
+        this.profileImage = profileImage;
         this.cooperative = cooperative;
         accounts = new ArrayList();
         
