@@ -1,6 +1,7 @@
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\App.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\model\Account.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\DataManager.java
+C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\RegistryManagerController.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\TestController.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\AppContext.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\BindingUtils.java
@@ -8,6 +9,7 @@ C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegu
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\Mensaje.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\AccountOpeningController.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\TeachersMainController.java
+C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\AffiliatedMainController.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\MoneyManagementController.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\CooperativeManagementController.java
 C:\Users\Bradley\Documents\Programacion\Programación II\Tarea\Tarea_BradleySegura_NoemiMurillo_Programacion_II\src\main\java\cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\AccountTypeManagementController.java

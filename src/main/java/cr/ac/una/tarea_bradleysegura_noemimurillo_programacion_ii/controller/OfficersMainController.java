@@ -84,8 +84,8 @@ public class OfficersMainController extends Controller implements Initializable 
         
     }
     
-    public void openAffiliatedRegister() {
-         FlowController.getInstance().goView("AffiliatedRegisterView");
+    public void openRegistryManager() {
+         FlowController.getInstance().goView("RegistryManagerView");
     }
     
     public void openCardPrint() {

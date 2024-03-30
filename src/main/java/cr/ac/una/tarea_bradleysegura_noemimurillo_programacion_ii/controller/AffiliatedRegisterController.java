@@ -4,90 +4,129 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamResolution;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated.Sexo;
-import static cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated.Sexo.FEMENINO;
-import static cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated.Sexo.MASCULINO;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXRadioButton;
+import io.github.palexdev.materialfx.controls.MFXSpinner;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.models.spinner.IntegerSpinnerModel;
+import io.github.palexdev.materialfx.controls.models.spinner.SpinnerModel;
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import static javafx.scene.control.Alert.AlertType.ERROR;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
+import javafx.scene.control.Alert;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
  *
- * @author Fiorella
+ * @author Bradley
  */
 public class AffiliatedRegisterController extends Controller implements Initializable {
 
-    @FXML 
-    private Button btnAddUser;
     @FXML
-    private MFXTextField txtName;
+    private ImageView imvAffiliatedImage;
     @FXML
-    private MFXTextField txtSurname;
-    @FXML      
-    private MFXTextField txtSecondSurname;
+    private MFXTextField txtAffiliatedName;
     @FXML
-    private MFXTextField txtAge;
-    @FXML        
-    private RadioButton btnFem;
+    private MFXTextField txtAffiliatedFirstLastName;
     @FXML
-    private RadioButton bntMas;
+    private MFXTextField txtAffiliatedSecondLastName;
     @FXML
-    private ToggleGroup SexGroup;
-    
-    
+    private MFXSpinner<Integer> spnrAffiliatedAge;
+    @FXML
+    private MFXRadioButton rBtnMasculino;
+    @FXML
+    private MFXRadioButton rBtnFemenino;
+    @FXML
+    private MFXButton btnRegister;
+    @FXML
+    private ToggleGroup SexSelection;
+
+    private ArrayList<Affiliated> affiliated;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        // TODO
-    }    
+        ArrayList<Affiliated> affiliated = new ArrayList();
+        AppContext.getInstance().set("affiliated", affiliated);
+        if (AppContext.getInstance().get("affiliated") != null) {
+            this.affiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
+            spnrAffiliatedAge.setSpinnerModel(new IntegerSpinnerModel(0));
+            System.out.println("Affiliated Inicializado");
+        }
+    }
 
     @Override
     public void initialize() {
-    
+
+    }
+
+    public void register() {
+        Mensaje alerta = new Mensaje();
+        String name = txtAffiliatedName.getText(),
+                firstLastName = txtAffiliatedFirstLastName.getText(),
+                secondLastName = txtAffiliatedSecondLastName.getText(),
+                cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
+        Integer age = (int) spnrAffiliatedAge.getSpinnerModel().getValue();
+
+        if (name.isBlank()) {
+            alerta.show(Alert.AlertType.WARNING, "NOMBRE INCOMPLETO", "Debes ingresar tu nombre para continuar");
+            System.out.println("ERROR");
+            txtAffiliatedName.requestFocus();
+        } else if (firstLastName.isBlank()) {
+            alerta.show(Alert.AlertType.WARNING, "PRIMER APELLIDO INCOMPLETO", "Debes ingresar tu primer apellido para continuar");
+            System.out.println("ERROR");
+            txtAffiliatedFirstLastName.requestFocus();
+        } else if (secondLastName.isBlank()) {
+            alerta.show(Alert.AlertType.WARNING, "SEGUNDO APELLIDO INCOMPLETO", "Debes ingresar tu segundo apellido para continuar");
+            System.out.println("ERROR");
+            txtAffiliatedSecondLastName.requestFocus();
+        } else if (spnrAffiliatedAge.getSpinnerModel().getValue() == null) {
+            alerta.show(Alert.AlertType.WARNING, "EDAD NO INDICADA", "Debes indicar tu edad para continuar");
+            System.out.println("ERROR");
+            spnrAffiliatedAge.requestFocus();
+        } else if (!rBtnMasculino.isSelected() && !rBtnFemenino.isSelected()) {
+            alerta.show(Alert.AlertType.WARNING, "SEXO NO INDICADO", "Debes indicar tu sexo para continuar");
+            System.out.println("ERROR");
+        } else {
+            Affiliated.Sexo sexo = (!rBtnMasculino.isSelected()) ? Affiliated.Sexo.MASCULINO : Affiliated.Sexo.FEMENINO;
+            this.affiliated.add(new Affiliated(name, firstLastName, secondLastName, age, sexo, cooperativeName));
+            alerta.show(Alert.AlertType.INFORMATION, "REGISTRO EXITOSO", "'¡Bienvenido a " + cooperativeName + ", " + name + "!");
+        }
     }
     
-    public void addNewUser(){
-        Mensaje msj = new Mensaje();
-        if (txtName == null){
-            msj.show(ERROR, "Nombre vacío", "La casilla de nombre del nuevo usuario está vacía");
-        }
-        if(txtSurname == null){
-            msj.show(ERROR, "Primer apellido vacío", "La casilla del primer apellido del nuevo usuario está vacía");
-        }
-        if(txtSecondSurname == null){
-            msj.show(ERROR, "Segundo apellido vacío", "La casilla del segundo apellido del nuevo usuario está vacía");
-        }
-        if (getNewSex() == null){
-            msj.show(ERROR, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía"); 
-        }else{
-            Affiliated NewUser = new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), Integer.valueOf(txtAge.getText()), getNewSex(), (String)AppContext.getInstance().get("cooperativeName"));
-        }
-    }
-    
-    public Sexo getNewSex(){
-    Toggle seleccionado = SexGroup.getSelectedToggle();
-    if(seleccionado != null){
-        if(seleccionado.getUserData().equals("Femenino")){
-            return FEMENINO;
-        } else{
-            return MASCULINO;
-        }
-    }else
-        return null;
-    }
-    
+      public void takePicture() {
+          Random randomGenerator = new Random();
+          
+          try {
+            Webcam webcam = Webcam.getDefault();
+            webcam.setViewSize(WebcamResolution.VGA.getSize());
+            
+            String affiliatedImageDir = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/" + Integer.toString(randomGenerator.nextInt(9999)) + ".jpg";        
+            webcam.open();
+            ImageIO.write(webcam.getImage(), "JPG", new File(affiliatedImageDir));
+            webcam.close();
+            
+            imvAffiliatedImage.setImage(new Image("file:" + affiliatedImageDir));
+          }
+          catch(Exception e) {
+              e.printStackTrace();
+          }
+      }
+
 }
