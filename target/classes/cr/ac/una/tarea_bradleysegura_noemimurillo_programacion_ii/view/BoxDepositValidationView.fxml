@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.net.URL?>
@@ -19,60 +20,79 @@
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
-   <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="929.0" spacing="5.0">
-               <children>
-                  <MFXScrollPane prefHeight="458.0" prefWidth="850.0">
-                     <content>
-                        <AnchorPane prefHeight="436.0" prefWidth="1002.0">
-                           <children>
-                              <MFXTableView fx:id="depositBoxTableView" layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="384.0" prefWidth="1002.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0" />
-                              <HBox alignment="TOP_RIGHT" prefHeight="58.0" prefWidth="826.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../resources/1000colones.jpg" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                              <Label layoutX="10.0" layoutY="10.0" text="VALIDACIÓN DE BUZÓN DE DEPÓSITOS">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </MFXScrollPane>
-                  <MFXButton fx:id="amountCorrectionButton" onAction="#setCorrectionElement" prefHeight="50.0" prefWidth="150.0" text="CORREGIR" />
-               </children>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="589.0" prefWidth="254.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="415.0" prefWidth="150.0" spacing="20.0">
-                     <children>
-                        <Pane prefHeight="53.0" prefWidth="150.0" />
-                        <MFXTextField fx:id="amountCorrectionTextField" floatingText="Digita el Monto Correcto" prefHeight="50.0" prefWidth="80.0" />
-                        <MFXButton fx:id="applyCorrectionButton" prefHeight="50.0" prefWidth="150.0" text="APLICAR" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="BOTTOM_CENTER" prefHeight="210.0" prefWidth="254.0">
-                     <children>
-                        <MFXButton fx:id="depositValidationButton" prefHeight="60.0" prefWidth="150.0" text="VALIDAR" />
-                     </children>
-                     <padding>
-                        <Insets bottom="20.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </children>
+    <children>
+        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="500.0" prefWidth="929.0" spacing="5.0">
+                    <children>
+                        <MFXScrollPane prefHeight="458.0" prefWidth="850.0">
+                            <content>
+                                <AnchorPane prefHeight="436.0" prefWidth="1002.0">
+                                    <children>
+                                        <MFXTableView fx:id="depositBoxTableView" layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="384.0" prefWidth="1002.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                                            <tableColumns>
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbcDepositId" text="ID" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbcDate" text="Fecha" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbcAffiliated" text="Affiliated" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbcFolio" text="Folio" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc5Colones" text="5 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc10Colones" text="10 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc25Colones" text="25 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc50Colones" text="50 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc100Colones" text="100 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc500Colones" text="500 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc1000Colones" text="1000 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc2000Colones" text="2000 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc5000Colones" text="5000 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc10000Colones" text="10 000 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbc20000Colones" text="20 000 COLONES" />
+                                                <io.github.palexdev.materialfx.controls.MFXTableColumn fx:id="tbcAmount" text="Monto" />
+                                            </tableColumns>
+                                        </MFXTableView>
+                                        <HBox alignment="TOP_RIGHT" prefHeight="58.0" prefWidth="826.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../resources/1000colones.jpg" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </HBox>
+                                        <Label layoutX="10.0" layoutY="10.0" text="VALIDACIÓN DE BUZÓN DE DEPÓSITOS">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </MFXScrollPane>
+                        <MFXButton fx:id="amountCorrectionButton" onAction="#setCorrectionElement" prefHeight="50.0" prefWidth="150.0" text="CORREGIR" />
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" />
+                    </padding>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="589.0" prefWidth="254.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="415.0" prefWidth="150.0" spacing="20.0">
+                            <children>
+                                <Pane prefHeight="53.0" prefWidth="150.0" />
+                                <MFXTextField fx:id="amountCorrectionTextField" floatingText="Digita el Monto Correcto" prefHeight="50.0" prefWidth="80.0" />
+                                <MFXButton fx:id="applyCorrectionButton" prefHeight="50.0" prefWidth="150.0" text="APLICAR" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="210.0" prefWidth="254.0">
+                            <children>
+                                <MFXButton fx:id="depositValidationButton" prefHeight="60.0" prefWidth="150.0" text="VALIDAR" />
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>

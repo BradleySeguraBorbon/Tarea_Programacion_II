@@ -96,12 +96,12 @@ public class AffiliatedMainController extends Controller implements Initializabl
         String currentDirectory = System.getProperty("user.dir");
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
-        dataBank.save(absolutePath);
+        this.dataBank.save(absolutePath);
         if (this.mainHBox.getChildren().contains(this.mainVBox)) {
             ((Stage) (this.exitButton.getScene().getWindow())).close();
         } else {
             FlowController.getInstance().goMain();
         }
     }
-
 }
+    

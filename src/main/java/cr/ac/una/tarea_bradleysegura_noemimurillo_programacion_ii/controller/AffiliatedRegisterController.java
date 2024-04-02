@@ -8,6 +8,7 @@ import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamResolution;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
@@ -113,6 +114,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     }
     
       public void takePicture() {
+          /*
           Random randomGenerator = new Random();
           
           try {
@@ -128,7 +130,8 @@ public class AffiliatedRegisterController extends Controller implements Initiali
           }
           catch(Exception e) {
               e.printStackTrace();
-          }
+          } */
+          FlowController.getInstance().goViewInWindowModal("imageTakerView", null, false);
       }
 
 }
