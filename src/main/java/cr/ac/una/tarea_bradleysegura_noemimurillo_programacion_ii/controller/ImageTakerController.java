@@ -7,6 +7,7 @@ package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamResolution;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import java.awt.image.BufferedImage;
@@ -33,6 +34,8 @@ public class ImageTakerController extends Controller implements Initializable {
     private MFXButton btnExit;
     @FXML
     private MFXButton btnRetryCapture;
+    @FXML
+    private MFXButton btnSave;
 
     private Webcam webcam;
     private VideoTaker videoTaker;
@@ -61,24 +64,35 @@ public class ImageTakerController extends Controller implements Initializable {
         this.videoTaker.isThreadSuspended = true;
         this.imvAffiliatedImage.setImage(capturedImage);
         this.btnCaptureImage.setDisable(true);
-        //this.btnCaptureImage.setOpacity(0);
         this.btnRetryCapture.setDisable(false);
-        //this.btnRetryCapture.setOpacity(1);
+        this.btnSave.setDisable(false);
+        this.btnRetryCapture.toFront();
     }
 
     public synchronized void retryCapture() {
         this.videoTaker.isThreadSuspended = false;
-        notify();
+        synchronized (this.videoTaker) {
+            this.videoTaker.notify();
+        }
         this.btnCaptureImage.setDisable(false);
-        //this.btnCaptureImage.setOpacity(1);
         this.btnRetryCapture.setDisable(true);
-        //this.btnRetryCapture.setOpacity(0);
+        this.btnSave.setDisable(true);
+        this.btnCaptureImage.toFront();
+    }
+
+    public void goBack() {
+        ((AffiliatedRegisterController) FlowController.getInstance().getController("AffiliatedRegisterView")).recoverFocus(null);
+        close();
+    }
+    
+    public void save() {
+        ((AffiliatedRegisterController) FlowController.getInstance().getController("AffiliatedRegisterView")).recoverFocus(capturedImage);
+        close();
     }
 
     public void close() {
         this.webcam.close();
         this.videoTaker.isThreadSuspended = true;
-        AppContext.getInstance().set("takenImage", capturedImage);
         ((Stage) this.btnExit.getScene().getWindow()).close();
     }
 
@@ -90,7 +104,7 @@ public class ImageTakerController extends Controller implements Initializable {
         public void run() {
             while (true) {
                 try {
-                    Thread.sleep(80);
+                    Thread.sleep(10);
                     if (isThreadSuspended) {
                         synchronized (this) {
                             while (isThreadSuspended) {

@@ -116,8 +116,7 @@ public class DataManager implements Serializable {
         ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
         objectOutput.writeObject(this);
         objectOutput.close();
-        fileOutput.close();*/
-        
+        fileOutput.close();*/     
         Gson jsonTransformer = new Gson();
         String dataManagerJSON = jsonTransformer.toJson(this);
         Files.writeString(Paths.get(path), dataManagerJSON, StandardCharsets.UTF_8);

@@ -87,9 +87,9 @@ public class MoneyManagementController extends Controller implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.afiliatedList = new ArrayList();
-        StringConverter<Affiliated> converter = FunctionalStringConverter.to(afiliated -> (afiliated == null) ? "" : afiliated.getFullName());
-        this.selectAffiliatedDepositBox.setItems(FXCollections.observableArrayList(afiliatedList));
+        StringConverter<Affiliated> converter = FunctionalStringConverter.to(afiliated -> (afiliated == null) ? "" : afiliated.getFullName()); 
         this.selectAffiliatedDepositBox.setConverter(converter);
+        this.selectAffiliatedDepositBox.setItems(FXCollections.observableArrayList(afiliatedList));
     }
 
     @Override

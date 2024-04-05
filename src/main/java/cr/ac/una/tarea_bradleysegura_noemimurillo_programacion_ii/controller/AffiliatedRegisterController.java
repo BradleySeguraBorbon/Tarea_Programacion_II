@@ -114,24 +114,14 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     }
     
       public void takePicture() {
-          /*
-          Random randomGenerator = new Random();
-          
-          try {
-            Webcam webcam = Webcam.getDefault();
-            webcam.setViewSize(WebcamResolution.VGA.getSize());
-            
-            affiliatedImageDir = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/" + Integer.toString(randomGenerator.nextInt(9999)) + ".jpg";        
-            webcam.open();
-            ImageIO.write(webcam.getImage(), "JPG", new File(affiliatedImageDir));
-            webcam.close();
-            
-            imvAffiliatedImage.setImage(new Image("file:" + affiliatedImageDir));
+          FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), false);
+      }
+      
+      public void recoverFocus(Image takenImage) {
+          if(takenImage != null) {
+              this.imvAffiliatedImage.setImage(takenImage);
           }
-          catch(Exception e) {
-              e.printStackTrace();
-          } */
-          FlowController.getInstance().goViewInWindowModal("imageTakerView", null, false);
+          FlowController.getInstance().limpiarLoader("ImageTakerView");
       }
 
 }

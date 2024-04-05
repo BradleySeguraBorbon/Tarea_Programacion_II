@@ -8,19 +8,24 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Bradley
  */
 public class Transaction {
+
     protected String transactionID;
     protected String transactionTime;
     protected Double amount;
     protected Affiliated afiliated;
-    protected Action action;        
-            
-    public static enum Action { RETIRO, DEPOSITO }
-    
+    protected Account account;
+    protected Action action;
+
+    public static enum Action {
+        RETIRO, DEPOSITO
+    }
+
     public Transaction() {
         this.transactionID = null;
         this.transactionTime = null;
@@ -28,13 +33,14 @@ public class Transaction {
         this.afiliated = null;
         this.action = null;
     }
-    
-    public Transaction(Double amount, Affiliated afiliated, Action action) {
+
+    public Transaction(Double amount, Affiliated afiliated, Account account, Action action) {
         Random randomGenerator = new Random();
         this.transactionID = Integer.toString((randomGenerator.nextInt(100000000)));
         this.transactionTime = LocalDateTime.now().toString();
         this.amount = amount;
         this.afiliated = afiliated;
+        this.account = account;
         this.action = action;
     }
 
@@ -53,6 +59,10 @@ public class Transaction {
     public void setAffiliated(Affiliated afiliated) {
         this.afiliated = afiliated;
     }
+    
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
     public void setAction(Action action) {
         this.action = action;
@@ -70,14 +80,18 @@ public class Transaction {
         return amount;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
     public Affiliated getAffiliated() {
         return afiliated;
     }
-    
+
     public String getAffiliatedName() {
         return afiliated.getFullName();
     }
-    
+
     public String getAffiliatedFolio() {
         return afiliated.getFolio();
     }
@@ -85,6 +99,5 @@ public class Transaction {
     public Action getAction() {
         return action;
     }
-    
-    
+
 }
