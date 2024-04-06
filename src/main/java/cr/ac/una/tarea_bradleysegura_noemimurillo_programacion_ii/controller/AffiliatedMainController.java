@@ -89,7 +89,7 @@ public class AffiliatedMainController extends Controller implements Initializabl
     }
 
     public void openDepositBox() {
-
+        FlowController.getInstance().goViewInWindowModal("BoxDepositView", getStage(), true);
     }
 
     public void exit() throws IOException {

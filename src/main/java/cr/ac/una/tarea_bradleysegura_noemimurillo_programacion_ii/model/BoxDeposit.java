@@ -50,7 +50,7 @@ public class BoxDeposit extends Transaction {
         depositDenomination.put(Denomination.VEINTEMIL, 0);
     }
 
-    public void setDepositDenominacion(HashMap<Denomination, Integer> newDenomination) {
+    public void setDepositDenomination(HashMap<Denomination, Integer> newDenomination) {
         this.depositDenomination = newDenomination;
     }
 

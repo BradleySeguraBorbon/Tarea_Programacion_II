@@ -31,19 +31,19 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="75.0" prefWidth="268.0" spacing="10.0">
                      <children>
-                        <MFXTextField floatingText="Ingresa tu Número de Folio" prefHeight="60.0" prefWidth="250.0" />
-                        <MFXButton prefHeight="42.0" prefWidth="120.0" text="BUSCAR" />
+                        <MFXTextField fx:id="txtFolio" floatingText="Ingresa tu Número de Folio" prefHeight="60.0" prefWidth="250.0" />
+                        <MFXButton fx:id="btnSearchAffiliated" onAction="#searchAffiliated" prefHeight="42.0" prefWidth="120.0" text="BUSCAR" />
                      </children>
                   </VBox>
-                  <MFXFilterComboBox floatingText="Selecciona la Cuenta" prefHeight="60.0" prefWidth="250.0" />
+                  <MFXFilterComboBox fx:id="fcbSelectAccount" disable="true" floatingText="Selecciona la Cuenta" onAction="#selectAccount" prefHeight="60.0" prefWidth="250.0" />
                </children>
             </HBox>
-            <Pane prefHeight="34.0" prefWidth="1180.0" />
+            <Pane prefHeight="27.0" prefWidth="1180.0" />
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="1000.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="5 COLONES" textAlignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvCincoColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/5colones.jpg" />
                            </image>
@@ -52,7 +52,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="10 COLONES">
                      <graphic>
-                        <ImageView fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvDiezColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/10Colones.jpg" />
                            </image>
@@ -61,7 +61,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="25 COLONES">
                      <graphic>
-                        <ImageView fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvVeinticincoColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/25Colones.png" />
                            </image>
@@ -70,7 +70,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="50 COLONES">
                      <graphic>
-                        <ImageView fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvCincuentaColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/50Colones.jpeg" />
                            </image>
@@ -79,7 +79,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="100 COLONES">
                      <graphic>
-                        <ImageView fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvCienColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/100Colones.jpeg" />
                            </image>
@@ -88,7 +88,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="500 COLONES">
                      <graphic>
-                        <ImageView fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvQuinientosColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/500Colones.jpeg" />
                            </image>
@@ -98,12 +98,12 @@
                </children></HBox>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1180.0" spacing="10.0">
                <children>
-                  <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
+                  <MFXSpinner fx:id="spnrCincoColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
+                  <MFXSpinner fx:id="spnrDiezColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
+                  <MFXSpinner fx:id="spnrVeinticincoColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
+                  <MFXSpinner fx:id="spnrCincuentaColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
+                  <MFXSpinner fx:id="spnrCienColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
+                  <MFXSpinner fx:id="spnrQuinientosColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
                </children>
             </HBox>
             <Pane prefHeight="38.0" prefWidth="1180.0" />
@@ -111,7 +111,7 @@
                <children>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="80.0" prefWidth="182.0" text="1000 COLONES">
                      <graphic>
-                        <ImageView fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/1000colones.jpg" />
                            </image>
@@ -120,7 +120,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="2000 COLONES">
                      <graphic>
-                        <ImageView fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvDosMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/1000colones.jpg" />
                            </image>
@@ -129,7 +129,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="5000 COLONES">
                      <graphic>
-                        <ImageView fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvCincoMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/1000colones.jpg" />
                            </image>
@@ -138,7 +138,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="10 000 COLONES">
                      <graphic>
-                        <ImageView fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvDiezMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/1000colones.jpg" />
                            </image>
@@ -147,7 +147,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="20 000 COLONES">
                      <graphic>
-                        <ImageView fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvVeinteMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/1000colones.jpg" />
                            </image>
@@ -157,16 +157,28 @@
                </children></HBox>
             <HBox alignment="CENTER" prefHeight="53.0" prefWidth="1180.0" spacing="10.0">
                <children>
-                  <MFXSpinner prefHeight="43.0" prefWidth="149.0" />
-                  <MFXSpinner prefHeight="43.0" prefWidth="149.0" />
-                  <MFXSpinner />
-                  <MFXSpinner />
-                  <MFXSpinner />
+                  <MFXSpinner fx:id="spnrMilColones" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="149.0" />
+                  <MFXSpinner fx:id="spnrDosMilColones" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="149.0" />
+                  <MFXSpinner fx:id="spnrCincoMilColones" onMouseClicked="#refreshTotal" />
+                  <MFXSpinner fx:id="spnrDiezMilColones" onMouseClicked="#refreshTotal" />
+                  <MFXSpinner fx:id="spnrVeinteMilColones" onMouseClicked="#refreshTotal" />
                </children>
             </HBox>
-            <Pane prefHeight="25.0" prefWidth="1180.0" />
-            <Pane prefHeight="25.0" prefWidth="1180.0" />
-            <MFXButton prefHeight="63.0" prefWidth="250.0" text="FINALIZAR">
+            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1180.0" spacing="15.0">
+               <children>
+                  <Label text="TOTAL: ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTotalAmount" text="0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <MFXButton fx:id="btnDone" onAction="#save" prefHeight="63.0" prefWidth="250.0" text="FINALIZAR">
                <font>
                   <Font size="18.0" />
                </font>

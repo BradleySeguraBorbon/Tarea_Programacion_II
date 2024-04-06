@@ -65,7 +65,6 @@ public class AccountOpeningController extends Controller implements Initializabl
 
     public void setAccountLabels() {
         if (this.selectedAffiliated == null) {
-            //TODO
             return;
         }
         for (String accountType : this.selectedAffiliated.getAccountTypes()) {
