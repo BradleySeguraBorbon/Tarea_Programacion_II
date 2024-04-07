@@ -4,6 +4,8 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -11,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -68,7 +71,8 @@ public class AffiliatedMainController extends Controller implements Initializabl
                 //cooperativeLogoImageView.setImage(new Image(App.class.getResource("resources/" + AppContext.getInstance().get("cooperativeIcon")).toString()));
                 System.out.println("SAVED DATAMANAGER WAS LOADED");
             } else {
-                dataBank = new DataManager();
+                dataBank = new DataManager();              
+                AppContext.getInstance().set("affiliated", new ArrayList<Affiliated>());
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -134,8 +134,8 @@ public class BoxDepositValidationController extends Controller implements Initia
         this.tbcDepositId.setCellValueFactory(new PropertyValueFactory<BoxDeposit, String>("transactionID"));
         this.tbcDate.setCellValueFactory(new PropertyValueFactory<BoxDeposit, String>("transactionTime"));
         this.tbcAmount.setCellValueFactory(new PropertyValueFactory<BoxDeposit, String>("amount"));
-        this.tbcAffiliated.setCellValueFactory(boxDeposit -> new SimpleStringProperty(boxDeposit.getValue().getAffiliated().getFullName()));
-        this.tbcFolio.setCellValueFactory(boxDeposit -> new SimpleStringProperty(boxDeposit.getValue().getAffiliated().getFolio()));
+        this.tbcAffiliated.setCellValueFactory(boxDeposit -> new SimpleStringProperty(boxDeposit.getValue().getAffiliatedName()));
+        this.tbcFolio.setCellValueFactory(boxDeposit -> new SimpleStringProperty(boxDeposit.getValue().getAffiliatedFolio()));
 
         this.tbc5Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.CINCO));
         this.tbc10Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.DIEZ));
@@ -150,13 +150,17 @@ public class BoxDepositValidationController extends Controller implements Initia
         this.tbc20000Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.VEINTEMIL));
 
         //EJEMPLO
-        BoxDeposit depositA = new BoxDeposit(0.d, new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope"), new Account("Prueba"), Transaction.Action.DEPOSITO);
+        Affiliated affiliated1 = new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope");
+        affiliated1.addAccount(new Account("Prueba"));
+        BoxDeposit depositA = new BoxDeposit(0.d, affiliated1.getFolio(), "Prueba", Transaction.Action.DEPOSITO);
         depositA.setDenomination(BoxDeposit.Denomination.CINCO, 50);
         depositA.setDenomination(BoxDeposit.Denomination.DIEZ, 100);
         depositA.setDenomination(BoxDeposit.Denomination.CINCUENTA, 20);
         depositA.calculateTotal();
 
-        BoxDeposit depositB = new BoxDeposit(0.d, new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope"), new Account("Prueba"), Transaction.Action.DEPOSITO);
+        Affiliated affiliated2 = new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope");
+        affiliated2.addAccount(new Account("Prueba"));
+        BoxDeposit depositB = new BoxDeposit(0.d, affiliated2.getFolio(), "Prueba", Transaction.Action.DEPOSITO);
         depositB.setDenomination(BoxDeposit.Denomination.CINCO, 10);
         depositB.setDenomination(BoxDeposit.Denomination.DIEZ, 20);
         depositB.setDenomination(BoxDeposit.Denomination.CINCUENTA, 100);

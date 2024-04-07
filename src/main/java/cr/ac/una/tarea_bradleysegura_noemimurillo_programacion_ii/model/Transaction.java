@@ -4,10 +4,12 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,8 +20,8 @@ public class Transaction {
     protected String transactionID;
     protected String transactionTime;
     protected Double amount;
-    protected Affiliated afiliated;
-    protected Account account;
+    protected String affiliatedFolio;
+    protected String accountType;
     protected Action action;
 
     public static enum Action {
@@ -30,17 +32,17 @@ public class Transaction {
         this.transactionID = null;
         this.transactionTime = null;
         this.amount = 0.0d;
-        this.afiliated = null;
+        this.affiliatedFolio = null;
         this.action = null;
     }
 
-    public Transaction(Double amount, Affiliated afiliated, Account account, Action action) {
+    public Transaction(Double amount, String affiliatedFolio, String accountType, Action action) {
         Random randomGenerator = new Random();
         this.transactionID = Integer.toString((randomGenerator.nextInt(100000000)));
         this.transactionTime = LocalDateTime.now().toString();
         this.amount = amount;
-        this.afiliated = afiliated;
-        this.account = account;
+        this.affiliatedFolio = affiliatedFolio;
+        this.accountType = accountType;
         this.action = action;
     }
 
@@ -56,12 +58,12 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public void setAffiliated(Affiliated afiliated) {
-        this.afiliated = afiliated;
+    public void setAffiliated(String affiliatedFolio) {
+        this.affiliatedFolio = affiliatedFolio;
     }
     
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccount(String accountType) {
+        this.accountType = accountType;
     }
 
     public void setAction(Action action) {
@@ -80,20 +82,22 @@ public class Transaction {
         return amount;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public Affiliated getAffiliated() {
-        return afiliated;
-    }
-
-    public String getAffiliatedName() {
-        return afiliated.getFullName();
+    public String getAccountType() {
+        return accountType;
     }
 
     public String getAffiliatedFolio() {
-        return afiliated.getFolio();
+        return affiliatedFolio;
+    }
+
+    public String getAffiliatedName() {
+        String affiliatedFullName;
+        for(Affiliated affiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afiliated")) {
+            if(affiliated.getFolio().equals(this.affiliatedFolio)) {
+                return affiliated.getFullName();
+            }
+        }
+        return null;
     }
 
     public Action getAction() {

@@ -33,8 +33,8 @@ public class BoxDeposit extends Transaction {
         depositDenomination.put(Denomination.VEINTEMIL, 0);
     }
 
-    public BoxDeposit(Double amount, Affiliated afiliated, Account account, Action action) {
-        super(amount, afiliated, account, action);
+    public BoxDeposit(Double amount, String affiliatedFolio, String accountType, Action action) {
+        super(amount, affiliatedFolio, accountType, action);
         depositDenomination = new HashMap<>();
 
         depositDenomination.put(Denomination.CINCO, 0);
@@ -161,8 +161,8 @@ public class BoxDeposit extends Transaction {
         objectString = "transactionID: " + this.transactionID + 
                 "\ntransactionTime: " + this.transactionTime +
                 "\namount: " + this.amount + 
-                "\nafiliated: " + this.afiliated.getFullName() + 
-                "\naccount: " + this.account +
+                "\nafiliated: " + getAffiliatedName() + 
+                "\naccount: " + this.accountType +
                 "\naction: " + this.action.toString() +
                 "\nDenominations: ";
         for(Denomination coin : this.depositDenomination.keySet()) {

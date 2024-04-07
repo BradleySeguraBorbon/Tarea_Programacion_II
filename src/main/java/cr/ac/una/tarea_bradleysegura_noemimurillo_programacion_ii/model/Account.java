@@ -24,10 +24,11 @@ public class Account {
         Random randomFactory = new Random();
         
         this.type = type;
+        this.balance = 0.d;
+        this.history = new ArrayList();
         int sectionA = randomFactory.nextInt(100, 999);      
         int sectionB = randomFactory.nextInt(10, 99);
-        int sectionC = randomFactory.nextInt(1000, 9999);
-        
+        int sectionC = randomFactory.nextInt(1000, 9999);       
         this.accountNumber = Integer.toString(sectionA) + "-" + Integer.toString(sectionB) + "-" + Integer.toString(sectionC);
     }
 

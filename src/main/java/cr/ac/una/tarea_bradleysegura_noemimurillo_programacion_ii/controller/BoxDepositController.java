@@ -203,7 +203,7 @@ public class BoxDepositController extends Controller implements Initializable {
             boxDepositDenomination.put(BoxDeposit.Denomination.DIEZMIL, spnrCincoColones.getValue());
             boxDepositDenomination.put(BoxDeposit.Denomination.VEINTEMIL, spnrCincoColones.getValue());
 
-            BoxDeposit newBoxDeposit = new BoxDeposit(Double.valueOf(this.lblTotalAmount.getText()), this.selectedAffiliated, this.selectedAccount, BoxDeposit.Action.DEPOSITO);
+            BoxDeposit newBoxDeposit = new BoxDeposit(Double.valueOf(this.lblTotalAmount.getText()), this.selectedAffiliated.getFolio(), this.selectedAccount.getType(), BoxDeposit.Action.DEPOSITO);
             newBoxDeposit.setDepositDenomination(boxDepositDenomination);
             this.boxDeposits.add(newBoxDeposit);
             AppContext.getInstance().set("boxDeposits", this.boxDeposits);

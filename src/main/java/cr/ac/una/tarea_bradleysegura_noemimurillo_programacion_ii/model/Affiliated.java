@@ -156,10 +156,12 @@ public class Affiliated {
         accounts.add(newAccount);
     }
     
-    public void removeAccount(String accountNumber) {
+    public void removeAccount(String accountType) {
         for(Account userAccount : accounts)
-            if(userAccount.getAccountNumber().equals(accountNumber))
+            if(userAccount.getType().equals(accountType)) {
                 accounts.remove(userAccount);
+                return;
+            }
     }
     
     public boolean isAccountRemovable(String accountType) {
@@ -168,7 +170,7 @@ public class Affiliated {
                 return userAccount.getBalance() == 0;
             }
         }
-        return false;
+        return true;
     }
     
     public String toString() {

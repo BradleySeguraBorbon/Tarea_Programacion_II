@@ -11,6 +11,7 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowContr
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -40,6 +42,7 @@ public class ImageTakerController extends Controller implements Initializable {
     private Webcam webcam;
     private VideoTaker videoTaker;
     private Image capturedImage;
+    private BufferedImage capturedFrame;
 
     /**
      * Initializes the controller class.
@@ -60,7 +63,8 @@ public class ImageTakerController extends Controller implements Initializable {
     }
 
     public void capture() {
-        capturedImage = SwingFXUtils.toFXImage(this.webcam.getImage(), null);
+        this.capturedFrame = this.webcam.getImage();
+        this.capturedImage = SwingFXUtils.toFXImage(capturedFrame, null);     
         this.videoTaker.isThreadSuspended = true;
         this.imvAffiliatedImage.setImage(capturedImage);
         this.btnCaptureImage.setDisable(true);
@@ -84,10 +88,14 @@ public class ImageTakerController extends Controller implements Initializable {
         ((AffiliatedRegisterController) FlowController.getInstance().getController("AffiliatedRegisterView")).recoverFocus(null);
         close();
     }
-    
+
     public void save() {
-        ((AffiliatedRegisterController) FlowController.getInstance().getController("AffiliatedRegisterView")).recoverFocus(capturedImage);
-        close();
+        try {
+            ((AffiliatedRegisterController) FlowController.getInstance().getController("AffiliatedRegisterView")).recoverFocus(capturedImage);
+            close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void close() {
@@ -112,8 +120,8 @@ public class ImageTakerController extends Controller implements Initializable {
                             }
                         }
                     }
-                    BufferedImage frame = webcam.getImage();
-                    imvAffiliatedImage.setImage(SwingFXUtils.toFXImage(frame, null));
+                    BufferedImage currentFrame = webcam.getImage();
+                    imvAffiliatedImage.setImage(SwingFXUtils.toFXImage(currentFrame, null));
                 } catch (InterruptedException exception) {
                     exception.printStackTrace();
                 }

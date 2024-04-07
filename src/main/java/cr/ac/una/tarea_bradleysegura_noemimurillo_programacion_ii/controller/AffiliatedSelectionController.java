@@ -43,17 +43,16 @@ public class AffiliatedSelectionController extends Controller implements Initial
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //PRUEBA
+        /*//PRUEBA
         ArrayList<Affiliated> affiliated = new ArrayList<>();
         Affiliated affiliated1 = new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope");
         affiliated1.addAccount(new Account("Ahorro Navideño"));
         affiliated.add(affiliated1);
         System.out.println("FOLIO DE BRADLEY: " + affiliated1.getFolio());
         AppContext.getInstance().set("afiliated", affiliated);
-        //FIN PRUEBA
-        
+        //FIN PRUEBA    */
         afiliatedNames = new ArrayList();
-        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afiliated")) {
+        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("affiliated")) {
             afiliatedNames.add(afiliated.getFullName());
         }
         afiliatedSelectionComboBox.setItems(FXCollections.observableArrayList(afiliatedNames));      
@@ -65,9 +64,8 @@ public class AffiliatedSelectionController extends Controller implements Initial
     }
  
     public void setSelectedAffiliated() {
-        System.out.println("SetSelectedAffiliated() was executed");
         String selectedAffiliatedName = (String)afiliatedSelectionComboBox.getSelectionModel().getSelectedItem();   
-        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afiliated")) {
+        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("affiliated")) {
             if(afiliated.getFullName().equals(selectedAffiliatedName)) {
                 this.selectedAffiliated = afiliated;
                 break;

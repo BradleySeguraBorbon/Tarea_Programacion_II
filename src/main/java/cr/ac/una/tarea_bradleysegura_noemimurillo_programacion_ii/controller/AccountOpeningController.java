@@ -82,10 +82,20 @@ public class AccountOpeningController extends Controller implements Initializabl
         if (!selectedAffiliated.getAccountTypes().contains(accountType)) {
             this.selectedAffiliated.addAccount(new Account(accountType));
         }
+        printAvailableAccounts();
     }
 
     public void removeAccount(Node labelNode) {
         String accountType = ((Label) labelNode).getText();
         selectedAffiliated.removeAccount(accountType);
+        printAvailableAccounts();
+    }
+    
+    //aux method
+    public void printAvailableAccounts() {
+        System.out.print("CUENTAS ABIERTAS: ");
+        for(Account account : this.selectedAffiliated.getAccounts()) {
+            System.out.println(account.getType() + " | ");
+        }
     }
 }

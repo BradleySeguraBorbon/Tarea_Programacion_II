@@ -16,6 +16,7 @@ import io.github.palexdev.materialfx.controls.MFXSpinner;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.models.spinner.IntegerSpinnerModel;
 import io.github.palexdev.materialfx.controls.models.spinner.SpinnerModel;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -64,18 +65,15 @@ public class AffiliatedRegisterController extends Controller implements Initiali
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList<Affiliated> affiliated = new ArrayList();
-        AppContext.getInstance().set("affiliated", affiliated);
-        if (AppContext.getInstance().get("affiliated") != null) {
-            this.affiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
-            spnrAffiliatedAge.setSpinnerModel(new IntegerSpinnerModel(0));
-            System.out.println("Affiliated Inicializado");
-        }
+        initialize();
     }
 
     @Override
     public void initialize() {
-
+        if (AppContext.getInstance().get("affiliated") != null) {
+            this.affiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
+            spnrAffiliatedAge.setSpinnerModel(new IntegerSpinnerModel(0));
+        }
     }
 
     public void register() {
@@ -108,20 +106,26 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         } else {
             Affiliated.Sexo sexo = (rBtnMasculino.isSelected()) ? Affiliated.Sexo.MASCULINO : Affiliated.Sexo.FEMENINO;
             this.affiliated.add(new Affiliated(name, firstLastName, secondLastName, age, sexo, affiliatedImageDir, cooperativeName));
-            alerta.show(Alert.AlertType.INFORMATION, "REGISTRO EXITOSO", "'¡Bienvenido a " + cooperativeName + ", " + name + "!");
-            AppContext.getInstance().set("afiliated", this.affiliated);
+            alerta.show(Alert.AlertType.INFORMATION, "REGISTRO EXITOSO", "'¡Bienvenid@ a " + cooperativeName + ", " + name + "!");
+            AppContext.getInstance().set("affiliated", this.affiliated);
         }
     }
-    
-      public void takePicture() {
-          FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), false);
-      }
-      
-      public void recoverFocus(Image takenImage) {
-          if(takenImage != null) {
-              this.imvAffiliatedImage.setImage(takenImage);
-          }
-          FlowController.getInstance().limpiarLoader("ImageTakerView");
-      }
+
+    public void takePicture() {
+        FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), false);
+    }
+
+    public void recoverFocus(Image takenImage) {
+        try {
+            if (takenImage != null) {
+                this.affiliatedImageDir = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/" + (new Random()).nextInt(100000) + ".jpg";
+                ImageIO.write(SwingFXUtils.fromFXImage(takenImage, null), "JPG", new File(this.affiliatedImageDir));
+                this.imvAffiliatedImage.setImage(takenImage);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        FlowController.getInstance().limpiarLoader("ImageTakerView");
+    }
 
 }

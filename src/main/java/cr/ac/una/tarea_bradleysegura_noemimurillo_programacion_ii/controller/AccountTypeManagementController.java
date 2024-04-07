@@ -73,9 +73,6 @@ public class AccountTypeManagementController extends Controller implements Initi
                 txtAddAccountType.setText("");
                 this.availableAccounts.add(newAccountType);
                 AppContext.getInstance().set("availableAccounts", this.availableAccounts);
-                
-                ArrayList<Affiliated> newAffiliated = new ArrayList();
-                AppContext.getInstance().set("afiliated", newAffiliated);
             }
         }
         catch(Exception e) {
