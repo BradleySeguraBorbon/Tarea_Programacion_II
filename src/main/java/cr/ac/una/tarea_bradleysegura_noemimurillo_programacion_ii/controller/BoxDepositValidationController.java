@@ -9,6 +9,7 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliat
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.BoxDeposit;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Transaction;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
@@ -24,6 +25,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
@@ -118,11 +120,16 @@ public class BoxDepositValidationController extends Controller implements Initia
     @FXML
     private TableColumn<BoxDeposit, String> tbc20000Colones;
 
+    private ArrayList<Affiliated> affiliatedList;
+
     /**
      * Initializes the controller class.
      */
     public void initialize(URL url, ResourceBundle rb) {
         setupTbvBoxDeposits();
+        if (AppContext.getInstance().get("affiliated") != null) {
+            this.affiliatedList = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
+        }
     }
 
     @Override
@@ -149,7 +156,7 @@ public class BoxDepositValidationController extends Controller implements Initia
         this.tbc10000Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.DIEZMIL));
         this.tbc20000Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.VEINTEMIL));
 
-        //EJEMPLO
+        /*//EJEMPLO
         Affiliated affiliated1 = new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope");
         affiliated1.addAccount(new Account("Prueba"));
         BoxDeposit depositA = new BoxDeposit(0.d, affiliated1.getFolio(), "Prueba", Transaction.Action.DEPOSITO);
@@ -169,9 +176,10 @@ public class BoxDepositValidationController extends Controller implements Initia
         ArrayList<BoxDeposit> boxDepositsArray = new ArrayList();
         boxDepositsArray.add(depositA);
         boxDepositsArray.add(depositB);
-
-        //FIN EJEMPLO
-        this.tbvBoxDeposits.setItems(FXCollections.observableArrayList(boxDepositsArray));
+        //FIN EJEMPLO */
+        if (AppContext.getInstance().get("boxDeposits") != null) {
+            this.tbvBoxDeposits.setItems(FXCollections.observableArrayList((ArrayList<BoxDeposit>) AppContext.getInstance().get("boxDeposits")));
+        }
         this.tbvBoxDeposits.setEditable(true);
         this.tbc5Colones.setCellFactory(TextFieldTableCell.forTableColumn());
         this.tbc10Colones.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -210,24 +218,64 @@ public class BoxDepositValidationController extends Controller implements Initia
         BoxDeposit.Denomination selectedDenomination = null;
 
         switch (edittedCell.getTableColumn().getId()) {
-            case "tbc5Colones" -> selectedDenomination = BoxDeposit.Denomination.CINCO;
-            case "tbc10Colones" -> selectedDenomination = BoxDeposit.Denomination.DIEZ;
-            case "tbc25Colones" -> selectedDenomination = BoxDeposit.Denomination.VEINTICINCO;
-            case "tbc50Colones" -> selectedDenomination = BoxDeposit.Denomination.CINCUENTA;
-            case "tbc100Colones" -> selectedDenomination = BoxDeposit.Denomination.CIEN;
-            case "tbc500Colones" -> selectedDenomination = BoxDeposit.Denomination.QUINIENTOS;
-            case "tbc1000Colones" -> selectedDenomination = BoxDeposit.Denomination.MIL;
-            case "tbc2000Colones" -> selectedDenomination = BoxDeposit.Denomination.DOSMIL;
-            case "tbc5000Colones" -> selectedDenomination = BoxDeposit.Denomination.CINCOMIL;
-            case "tbc10000Colones" -> selectedDenomination = BoxDeposit.Denomination.DIEZMIL;
-            case "tbc20000Colones" -> selectedDenomination = BoxDeposit.Denomination.VEINTEMIL;
+            case "tbc5Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.CINCO;
+            case "tbc10Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.DIEZ;
+            case "tbc25Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.VEINTICINCO;
+            case "tbc50Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.CINCUENTA;
+            case "tbc100Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.CIEN;
+            case "tbc500Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.QUINIENTOS;
+            case "tbc1000Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.MIL;
+            case "tbc2000Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.DOSMIL;
+            case "tbc5000Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.CINCOMIL;
+            case "tbc10000Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.DIEZMIL;
+            case "tbc20000Colones" ->
+                selectedDenomination = BoxDeposit.Denomination.VEINTEMIL;
         }
         selectedDeposit.setDenomination(selectedDenomination, Integer.valueOf(edittedCell.getNewValue().toString()));
-        selectedDeposit.calculateTotal();     
+        selectedDeposit.calculateTotal();
         this.tbvBoxDeposits.refresh();
         System.out.println(selectedDeposit.toString());
     }
-    
+
+    public void validateDeposit() {
+        BoxDeposit selectedDeposit = tbvBoxDeposits.getSelectionModel().getSelectedItem();
+        if(selectedDeposit == null) {
+            new Mensaje().show(Alert.AlertType.ERROR, "NO HAY UN DEPÓSITO SELECCIONADO", "Selecciona un depósito de buzón para continuar");
+            return;
+        }        
+        Affiliated depositAffiliated = null;
+        for (Affiliated affiliated : this.affiliatedList) {
+            if(affiliated.getFolio().equals(selectedDeposit.getAffiliatedFolio())) {
+                depositAffiliated = affiliated;
+                break;
+            }
+        }
+        if(depositAffiliated == null) {
+            new Mensaje().show(Alert.AlertType.ERROR, "PERSONA AFILIADA NO ENCONTRADA", "La persona afiliada que recibe el depósito no se encuentra registrada en el sistema");
+            return;
+        }
+        for(Account account : depositAffiliated.getAccounts()) {
+            if(account.getType().equals(selectedDeposit.getAccountType())) {
+                account.makeTransaction(selectedDeposit);
+                this.tbvBoxDeposits.getItems().remove(selectedDeposit);
+                this.tbvBoxDeposits.refresh();
+                new Mensaje().show(Alert.AlertType.INFORMATION, "DEPÓSITO DE BUZÓN REALIZADO EXITOSAMENTE", "El depósito de buzón fue exitosamente completado");
+                return;
+            }
+        }
+        new Mensaje().show(Alert.AlertType.ERROR, "LA CUENTA INDICADA NO EXISTE", "La persona afiliada no posee una cuenta del tipo indicado");
+    }
+
     public void close() {
         getStage().close();
     }

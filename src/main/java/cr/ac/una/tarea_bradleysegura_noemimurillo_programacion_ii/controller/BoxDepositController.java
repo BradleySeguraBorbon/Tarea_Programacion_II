@@ -98,14 +98,14 @@ public class BoxDepositController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //PRUEBA
+        /*PRUEBA
         ArrayList<Affiliated> affiliated = new ArrayList<>();
         Affiliated affiliated1 = new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope");
         affiliated1.addAccount(new Account("Ahorro Navideño"));
         affiliated.add(affiliated1);
         System.out.println("FOLIO DE BRADLEY: " + affiliated1.getFolio());
         AppContext.getInstance().set("affiliated", affiliated);
-        //FIN PRUEBA
+        //FIN PRUEBA */
 
         this.spnrCincoColones.setSpinnerModel(new IntegerSpinnerModel(0));
         this.spnrDiezColones.setSpinnerModel(new IntegerSpinnerModel(0));
@@ -191,19 +191,19 @@ public class BoxDepositController extends Controller implements Initializable {
         } else {
             HashMap<BoxDeposit.Denomination, Integer> boxDepositDenomination = new HashMap<>();
 
-            boxDepositDenomination.put(BoxDeposit.Denomination.CINCO, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.DIEZ, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.VEINTICINCO, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.CINCUENTA, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.CIEN, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.QUINIENTOS, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.MIL, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.DOSMIL, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.CINCOMIL, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.DIEZMIL, spnrCincoColones.getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.VEINTEMIL, spnrCincoColones.getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.CINCO, spnrCincoColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.DIEZ, spnrDiezColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.VEINTICINCO, spnrVeinticincoColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.CINCUENTA, spnrCincuentaColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.CIEN, spnrCienColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.QUINIENTOS, spnrQuinientosColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.MIL, spnrMilColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.DOSMIL, spnrDosMilColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.CINCOMIL, spnrCincoMilColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.DIEZMIL, spnrDiezMilColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.VEINTEMIL, spnrVeinteMilColones.getSpinnerModel().getValue());
 
-            BoxDeposit newBoxDeposit = new BoxDeposit(Double.valueOf(this.lblTotalAmount.getText()), this.selectedAffiliated.getFolio(), this.selectedAccount.getType(), BoxDeposit.Action.DEPOSITO);
+            BoxDeposit newBoxDeposit = new BoxDeposit(Double.valueOf(this.lblTotalAmount.getText()), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), BoxDeposit.Action.DEPOSITO);
             newBoxDeposit.setDepositDenomination(boxDepositDenomination);
             this.boxDeposits.add(newBoxDeposit);
             AppContext.getInstance().set("boxDeposits", this.boxDeposits);

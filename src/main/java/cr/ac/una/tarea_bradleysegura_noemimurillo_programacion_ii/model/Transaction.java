@@ -21,6 +21,7 @@ public class Transaction {
     protected String transactionTime;
     protected Double amount;
     protected String affiliatedFolio;
+    protected String affiliatedFullName;
     protected String accountType;
     protected Action action;
 
@@ -36,12 +37,13 @@ public class Transaction {
         this.action = null;
     }
 
-    public Transaction(Double amount, String affiliatedFolio, String accountType, Action action) {
+    public Transaction(Double amount, String affiliatedFolio, String affiliatedFullName, String accountType, Action action) {
         Random randomGenerator = new Random();
         this.transactionID = Integer.toString((randomGenerator.nextInt(100000000)));
         this.transactionTime = LocalDateTime.now().toString();
         this.amount = amount;
         this.affiliatedFolio = affiliatedFolio;
+        this.affiliatedFullName = affiliatedFullName;
         this.accountType = accountType;
         this.action = action;
     }
@@ -91,13 +93,7 @@ public class Transaction {
     }
 
     public String getAffiliatedName() {
-        String affiliatedFullName;
-        for(Affiliated affiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afiliated")) {
-            if(affiliated.getFolio().equals(this.affiliatedFolio)) {
-                return affiliated.getFullName();
-            }
-        }
-        return null;
+        return affiliatedFullName;
     }
 
     public Action getAction() {

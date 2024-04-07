@@ -106,7 +106,7 @@ public class MoneyManagementController extends Controller implements Initializab
     public void deposit() {
         String depositAmount = txtDepositAmount.getText();
         if (!depositAmount.isBlank()) {
-            Transaction deposit = new Transaction(Double.valueOf(depositAmount), this.selectedAffiliated.getFolio(), this.selectedAccount.getType(), Transaction.Action.DEPOSITO);
+            Transaction deposit = new Transaction(Double.valueOf(depositAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.DEPOSITO);
             this.selectedAccount.makeTransaction(deposit);
             this.fcbSelectAffiliated.getSelectionModel().clearSelection();
             clearDepositTab();
@@ -159,7 +159,7 @@ public class MoneyManagementController extends Controller implements Initializab
     public void withdraw() {
         String withdrawalAmount = txtWithdrawAmount.getText();
         if (!withdrawalAmount.isBlank()) {
-            Transaction withdraw = new Transaction(Double.valueOf(withdrawalAmount), this.selectedAffiliated.getFolio(), this.selectedAccount.getType(), Transaction.Action.RETIRO);
+            Transaction withdraw = new Transaction(Double.valueOf(withdrawalAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.RETIRO);
             this.selectedAccount.makeTransaction(withdraw);
             clearWithdrawalTab();
             new Mensaje().show(Alert.AlertType.INFORMATION, "RETIRO EXITOSO", "El retiro ha sido exitoso");

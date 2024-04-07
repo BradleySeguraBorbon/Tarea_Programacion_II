@@ -160,7 +160,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
                   <MFXButton fx:id="btnClose" onAction="#close" prefHeight="70.0" prefWidth="180.0" text="CERRAR BUZÓN" />
-                          <MFXButton fx:id="depositValidationButton" prefHeight="70.0" prefWidth="180.0" text="VALIDAR DEPÓSITO" />
+                          <MFXButton fx:id="depositValidationButton" onAction="#validateDeposit" prefHeight="70.0" prefWidth="180.0" text="VALIDAR DEPÓSITO" />
                </children>
             </HBox>
               </children>
