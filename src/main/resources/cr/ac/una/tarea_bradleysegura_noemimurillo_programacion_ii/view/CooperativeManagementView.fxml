@@ -22,17 +22,17 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="cooperativeLogoModifierImageView" fitHeight="168.0" fitWidth="190.0" onMouseClicked="#modifyCooperativeLogo" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imvCooperativeLogoEditor" fitHeight="168.0" fitWidth="190.0" onMouseClicked="#modifyCooperativeLogo" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/companyDefaultLogo.png" />
                      </image>
                   </ImageView>
-                  <MFXTextField fx:id="cooperativeNameModifierTextField" alignment="CENTER" floatMode="BORDER" floatingText="Nombre de Cooperativa" prefHeight="76.0" prefWidth="494.0">
+                  <MFXTextField fx:id="txtCooperativeNameEditor" alignment="CENTER" floatMode="BORDER" floatingText="Nombre de Cooperativa" prefHeight="76.0" prefWidth="494.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </MFXTextField>
-                  <MFXButton fx:id="modifyCooperativeNameButton" onAction="#modifyCooperativeName" prefHeight="82.0" prefWidth="221.0" text="MODIFICAR" />
+                  <MFXButton fx:id="btnMakeChanges" onAction="#makeChanges" prefHeight="82.0" prefWidth="221.0" text="MODIFICAR" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

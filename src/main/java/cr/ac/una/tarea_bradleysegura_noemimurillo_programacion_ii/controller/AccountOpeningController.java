@@ -30,23 +30,13 @@ import javafx.scene.layout.HBox;
 public class AccountOpeningController extends Controller implements Initializable {
 
     @FXML
-    private AnchorPane rootAnchorPane;
+    private AnchorPane root;
     @FXML
-    private FlowPane openingAccountsFlowPane;
+    private FlowPane fpOpeningAccounts;
     @FXML
-    private FlowPane openedAccountsFlowPane;
+    private FlowPane fpOpenedAccounts;
     @FXML
-    private Label accountLabel1;
-    @FXML
-    private Label accountLabel2;
-    @FXML
-    private Label mainLabel;
-    @FXML
-    private Label cooperativeNameLabel;
-    @FXML
-    private ImageView cooperativeLogoImageView;
-    @FXML
-    private Button exitButton;
+    private Label lblSelectedAffiliated;
 
     private Affiliated selectedAffiliated;
     private DraggableMaker dragFactory;
@@ -57,9 +47,13 @@ public class AccountOpeningController extends Controller implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dragFactory = new DraggableMaker();
-        dragFactory.makeDraggable(accountLabel1, rootAnchorPane, openingAccountsFlowPane, openedAccountsFlowPane);
-
         this.selectedAffiliated = (Affiliated) AppContext.getInstance().get("selectedAffiliated");
+        this.lblSelectedAffiliated.setText(this.selectedAffiliated.getFullName());
+        setAccountLabels();
+    }
+
+    @Override
+    public void initialize() {
 
     }
 
@@ -70,32 +64,28 @@ public class AccountOpeningController extends Controller implements Initializabl
         for (String accountType : this.selectedAffiliated.getAccountTypes()) {
             Label accountLabel = new Label(accountType);
             accountLabel.setPrefSize(140, 60);
-            openedAccountsFlowPane.getChildren().add(accountLabel);
+            dragFactory.makeDraggable(accountLabel, root, fpOpeningAccounts, fpOpenedAccounts);
+            fpOpenedAccounts.getChildren().add(accountLabel);
         }
         for (String account : (ArrayList<String>) AppContext.getInstance().get("availableAccounts")) {
             if (!this.selectedAffiliated.getAccountTypes().contains(account)) {
                 Label accountLabel = new Label(account);
                 accountLabel.setPrefSize(140, 60);
-                openingAccountsFlowPane.getChildren().add(accountLabel);
+                dragFactory.makeDraggable(accountLabel, root, fpOpeningAccounts, fpOpenedAccounts);
+                fpOpeningAccounts.getChildren().add(accountLabel);
             }
         }
     }
 
-    @Override
-    public void initialize() {
-    }
-
     public void createAccount(Node labelNode) {
-        String accountType = ((Label)labelNode).getText();
-        if(!selectedAffiliated.getAccountTypes().contains(accountType)) {
+        String accountType = ((Label) labelNode).getText();
+        if (!selectedAffiliated.getAccountTypes().contains(accountType)) {
             this.selectedAffiliated.addAccount(new Account(accountType));
         }
     }
-    
-    public void removeAccount(Node labelNode) {
-         String accountType = ((Label)labelNode).getText();
-         selectedAffiliated.removeAccount(accountType);
-    }
-    
 
+    public void removeAccount(Node labelNode) {
+        String accountType = ((Label) labelNode).getText();
+        selectedAffiliated.removeAccount(accountType);
+    }
 }

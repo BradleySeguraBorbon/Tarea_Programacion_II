@@ -22,12 +22,12 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <MFXTextField fx:id="addAccountTypeTextField" alignment="CENTER" prefHeight="66.0" prefWidth="322.0">
+                  <MFXTextField fx:id="txtAddAccountType" alignment="CENTER" prefHeight="66.0" prefWidth="322.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </MFXTextField>
-                  <MFXButton fx:id="addAccountTypeButton" onAction="#addAccount" prefHeight="84.0" prefWidth="213.0" text="AGREGAR ">
+                  <MFXButton fx:id="btnAddAccountType" onAction="#addAccount" prefHeight="84.0" prefWidth="213.0" text="AGREGAR ">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -36,10 +36,10 @@
             </VBox>
             <MFXScrollPane prefHeight="500.0" prefWidth="484.0">
                <content>
-                  <MFXListView fx:id="accountTypesListView" prefHeight="673.0" prefWidth="374.0" />
+                  <MFXListView fx:id="lstvAccountTypes" prefHeight="673.0" prefWidth="374.0" />
                </content>
             </MFXScrollPane>
-            <MFXButton fx:id="deleteAccountTypeButton" onAction="#deleteSelectedAccountType" prefHeight="56.0" prefWidth="199.0" text="ELIMINAR">
+            <MFXButton fx:id="btnRemoveAccountType" onAction="#deleteSelectedAccountType" prefHeight="56.0" prefWidth="199.0" text="ELIMINAR">
                <font>
                   <Font size="18.0" />
                </font>

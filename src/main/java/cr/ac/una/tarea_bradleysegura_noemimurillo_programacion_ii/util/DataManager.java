@@ -112,23 +112,12 @@ public class DataManager implements Serializable {
     
     public void save(String path) throws IOException {
         packData();
-        /*FileOutputStream fileOutput = new FileOutputStream(path);
-        ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
-        objectOutput.writeObject(this);
-        objectOutput.close();
-        fileOutput.close();*/     
         Gson jsonTransformer = new Gson();
         String dataManagerJSON = jsonTransformer.toJson(this);
         Files.writeString(Paths.get(path), dataManagerJSON, StandardCharsets.UTF_8);
     }
 
     public static DataManager load(String path) throws IOException, ClassNotFoundException {
-        /*FileInputStream fileInput = new FileInputStream(path);
-        ObjectInputStream objectInput = new ObjectInputStream(fileInput);
-        DataManager loadedDataManager = (DataManager) objectInput.readObject();
-        objectInput.close();
-        fileInput.close();*/
-        
         Gson jsonTransformer = new Gson();
         String dataManagerJSON = Files.readString(Paths.get(path));
         DataManager loadedDataManager = jsonTransformer.fromJson(dataManagerJSON, DataManager.class);
