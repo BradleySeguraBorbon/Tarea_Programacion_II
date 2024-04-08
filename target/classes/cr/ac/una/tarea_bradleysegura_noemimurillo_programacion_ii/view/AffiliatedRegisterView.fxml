@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -24,7 +25,6 @@
             <MFXTableView fx:id="tbvUsersList" prefHeight="332.0" prefWidth="289.0" />
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" spacing="20.0">
                <children>
-                  <MFXButton fx:id="btnAddUser" lineSpacing="10.0" onAction="#addNewUser" text="Añadir Nuevo Usuario" />
                   <MFXButton fx:id="btnModify" onAction="#modifyUser" text="Modificar usuario" />
                </children>
             </HBox>
@@ -32,7 +32,11 @@
       </VBox>
       <VBox alignment="CENTER" layoutX="308.0" layoutY="14.0" prefHeight="473.0" prefWidth="681.0" spacing="5.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="308.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="14.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgvUsersFace" fitHeight="105.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/user.png" />
+               </image></ImageView>
+            <MFXButton fx:id="btnNewImage" onAction="#saveNewImage" text="Cargar Imagen de Usuario" />
             <MFXTextField fx:id="txtName" floatingText="Nombre" prefHeight="49.0" prefWidth="155.0" />
             <MFXTextField fx:id="txtSurname" floatingText="Primer apellido" maxWidth="-Infinity" prefHeight="49.0" prefWidth="155.0" />
             <MFXTextField fx:id="txtSecondSurname" floatingText="Segundo apellido" prefHeight="49.0" prefWidth="155.0" />
@@ -48,6 +52,7 @@
                   <RadioButton fx:id="btnMas" mnemonicParsing="false" text="Masculino" toggleGroup="$SexGroup" />
                </children>
             </HBox>
+            <MFXButton fx:id="btnAddUser" lineSpacing="10.0" onAction="#addNewUser" text="Añadir Nuevo Usuario" />
             <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="681.0" spacing="100.0">
                <children>
                   <MFXButton fx:id="btnDeleteUser" opacity="0.0" text="Eliminar usuario" />

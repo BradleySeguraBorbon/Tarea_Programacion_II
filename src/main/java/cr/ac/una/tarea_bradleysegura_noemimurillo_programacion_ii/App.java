@@ -29,9 +29,9 @@ public class App extends Application {
         
         ArrayList<Affiliated> afiliated = new ArrayList();
         AppContext.getInstance().set("afiliated", afiliated);
-        afiliated.add(new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope"));
+        afiliated.add(new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope", null));
         AppContext.getInstance().set("afiliated", afiliated);
-        afiliated.add(new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope"));
+        afiliated.add(new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope", null));
         
         System.out.println("Lista Local");
         for(Affiliated user : afiliated) {

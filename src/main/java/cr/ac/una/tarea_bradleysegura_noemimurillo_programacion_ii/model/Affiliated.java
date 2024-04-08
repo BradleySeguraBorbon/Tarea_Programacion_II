@@ -37,7 +37,7 @@ public class Affiliated {
          age = -1;
      }
 
-    public Affiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexo, String cooperative) {
+    public Affiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexo, String cooperative, String photo) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
@@ -45,6 +45,7 @@ public class Affiliated {
         this.sexo = sexo;
         this.cooperative = cooperative;
         accounts = new ArrayList();
+        this.profileImage = photo;
         
         //Creación de FOLIO ÚNICO
         Random random = new Random(); 

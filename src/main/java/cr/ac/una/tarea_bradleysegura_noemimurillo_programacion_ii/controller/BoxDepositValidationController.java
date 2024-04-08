@@ -96,13 +96,13 @@ public class BoxDepositValidationController extends Controller implements Initia
                 cincoColonesColumn, diezColonesColumn, veinticincoColonesColumn, cincuentaColonesColumn, cienColonesColumn, quinientosColonesColumn, milColonesColumn,
                 dosMilColonesLabel, cincoMilColonesLabel, diezMilColonesLabel, ventieMilColonesLabel, transactionAmountColumn);
 
-        BoxDeposit depositA = new BoxDeposit(0.d, new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope"), Transaction.Action.DEPOSITO);
+        BoxDeposit depositA = new BoxDeposit(0.d, new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope", null), Transaction.Action.DEPOSITO);
         depositA.addDenomination(BoxDeposit.Denomination.CINCO, 50);
         depositA.addDenomination(BoxDeposit.Denomination.DIEZ, 100);
         depositA.addDenomination(BoxDeposit.Denomination.CINCUENTA, 20);
         depositA.calculateTotal();
 
-        BoxDeposit depositB = new BoxDeposit(0.d, new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope"),Transaction.Action.DEPOSITO);
+        BoxDeposit depositB = new BoxDeposit(0.d, new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope", null),Transaction.Action.DEPOSITO);
         depositB.addDenomination(BoxDeposit.Denomination.CINCO, 10);
         depositB.addDenomination(BoxDeposit.Denomination.DIEZ, 20);
         depositB.addDenomination(BoxDeposit.Denomination.CINCUENTA, 100);
