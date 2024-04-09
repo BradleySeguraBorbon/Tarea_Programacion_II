@@ -4,6 +4,7 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
@@ -27,45 +28,46 @@ public class CooperativeManagementController extends Controller implements Initi
     private String cooperativeName;
     private String cooperativeLogoDir;
     @FXML
-    private ImageView cooperativeLogoModifierImageView;
+    private ImageView imvCooperativeLogoEditor;
     @FXML
-    private MFXTextField cooperativeNameModifierTextField;
+    private MFXTextField txtCooperativeNameEditor;
     @FXML
-    private MFXButton modifyCooperativeNameButton;
-    
-    
+    private MFXButton btnMakeChanges;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //MFXThemeManager.addOn(cooperativeLogoModifierImageView.getScene(), Themes.DEFAULT, Themes.LEGACY);
+        //MFXThemeManager.addOn(imvCooperativeLogoEditor.getScene(), Themes.DEFAULT, Themes.LEGACY);
         // TODO
-    }    
+    }
 
     @Override
     public void initialize() {
-        
+
     }
-    
+
     public void modifyCooperativeLogo() {
         FileChooser imageSelector = new FileChooser();
         imageSelector.setTitle("SELECCIÓN DE LOGO DE LA COOPERATIVA");
-        
+
         FileChooser.ExtensionFilter imageSelectorFilter = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg");
         imageSelector.getExtensionFilters().add(imageSelectorFilter);
-        
+
         File selectedImageFile = imageSelector.showOpenDialog(null);
-        if(selectedImageFile != null) {
+        if (selectedImageFile != null) {
             Image selectedImage = new Image(selectedImageFile.toURI().toString());
-            cooperativeLogoModifierImageView.setImage(selectedImage);
+            imvCooperativeLogoEditor.setImage(selectedImage);
         }
     }
-    
-     public void modifyCooperativeName() {
-         String modifiedCooperativeName = cooperativeNameModifierTextField.getText();
-            if(!modifiedCooperativeName.isBlank()) {
-                this.cooperativeName = modifiedCooperativeName;
-            }
+
+    public void makeChanges() {
+        String modifiedCooperativeName = txtCooperativeNameEditor.getText();
+        if (!modifiedCooperativeName.isBlank()) {
+            this.cooperativeName = modifiedCooperativeName;
+            ((TeachersMainController) FlowController.getInstance().getController("TeachersMainView")).setCooperativeLogo(this.imvCooperativeLogoEditor.getImage());
+            ((TeachersMainController) FlowController.getInstance().getController("TeachersMainView")).setCooperativeName(modifiedCooperativeName);
         }
+    }
 }

@@ -32,25 +32,26 @@ import javafx.stage.Stage;
 public class TeachersMainController extends Controller implements Initializable {
 
     @FXML
-    private Label teachersWelcomeLabel;
+    private Label lblTeachersWelcome;
     @FXML
-    private ImageView teachersWelcomeImageView;
+    private ImageView imvTeachersWelcome;
     @FXML
-    private MFXButton accountTypeManagementButton;
+    private MFXButton btnOpenAccountManagement;
     @FXML
-    private MFXButton cooperativeManagementButton;
+    private MFXButton btnOpenCooperativeManagement;
     @FXML
-    private MFXButton exitButton;
+    private MFXButton btnExit;
     @FXML
-    private Label cooperativeNameLabel;
+    private Label lblCooperativeName;
     @FXML
-    private ImageView cooperativeLogoImageView;
+    private ImageView imvCooperativeLogo;
     @FXML
     private HBox mainHBox;
     @FXML
-    private VBox teachersMainMenuVBox;
+    private VBox mainVBox;
 
     DataManager dataBank;
+    private static String cooperativeName;
 
     /**
      * Initializes the controller class.
@@ -67,8 +68,8 @@ public class TeachersMainController extends Controller implements Initializable 
                 dataBank = DataManager.load(absolutePath);
                 dataBank.unpackData();
                 System.out.println(dataBank.getAvailableAccounts());
-                //cooperativeNameLabel.setText((String) AppContext.getInstance().get("cooperativeName"));
-                //cooperativeLogoImageView.setImage(new Image(App.class.getResource("resources/" + AppContext.getInstance().get("cooperativeIcon")).toString()));
+                //lblCooperativeName.setText((String) AppContext.getInstance().get("cooperativeName"));
+                //imvCooperativeLogo.setImage(new Image(App.class.getResource("resources/" + AppContext.getInstance().get("cooperativeIcon")).toString()));
                 System.out.println("SAVED DATAMANAGER WAS LOADED");
             } else {
                 dataBank = new DataManager();
@@ -91,13 +92,23 @@ public class TeachersMainController extends Controller implements Initializable 
         FlowController.getInstance().goView("CooperativeManagementView");
     }
 
+    public void setCooperativeLogo(Image imgCooperativeLogo) {
+        this.imvCooperativeLogo.setImage(imgCooperativeLogo);
+        System.out.println("Coop Logo Modified");
+    }
+
+    public void setCooperativeName(String newCooperativeName) {
+        lblCooperativeName.setText(cooperativeName);
+        System.out.println("Coop Name Modified");
+    }
+
     public void exit() throws IOException {
         String currentDirectory = System.getProperty("user.dir");
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
         dataBank.save(absolutePath);
-        if (mainHBox.getChildren().contains(this.teachersMainMenuVBox)) {
-            ((Stage) (this.exitButton.getScene().getWindow())).close();
+        if (mainHBox.getChildren().contains(this.mainVBox)) {
+            ((Stage) (this.btnExit.getScene().getWindow())).close();
         } else {
             FlowController.getInstance().goMain();
         }

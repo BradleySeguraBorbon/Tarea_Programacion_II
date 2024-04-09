@@ -33,10 +33,10 @@ public class BoxDeposit extends Transaction {
         depositDenomination.put(Denomination.VEINTEMIL, 0);
     }
 
-    public BoxDeposit(Double amount, Affiliated afiliated, Action action) {
-        super(amount, afiliated, action);
+    public BoxDeposit(Double amount, String affiliatedFolio, String affiliatedFullName, String accountType, Action action) {
+        super(amount, affiliatedFolio, affiliatedFullName, accountType, action);
         depositDenomination = new HashMap<>();
-        
+
         depositDenomination.put(Denomination.CINCO, 0);
         depositDenomination.put(Denomination.DIEZ, 0);
         depositDenomination.put(Denomination.VEINTICINCO, 0);
@@ -50,7 +50,7 @@ public class BoxDeposit extends Transaction {
         depositDenomination.put(Denomination.VEINTEMIL, 0);
     }
 
-    public void setDepositDenominacion(HashMap<Denomination, Integer> newDenomination) {
+    public void setDepositDenomination(HashMap<Denomination, Integer> newDenomination) {
         this.depositDenomination = newDenomination;
     }
 
@@ -58,7 +58,7 @@ public class BoxDeposit extends Transaction {
         return depositDenomination;
     }
 
-    public void addDenomination(Denomination moneda, Integer quantity) {
+    public void setDenomination(Denomination moneda, Integer quantity) {
         depositDenomination.put(moneda, quantity);
     }
 
@@ -112,46 +112,62 @@ public class BoxDeposit extends Transaction {
     }
 
     public int getCincoColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.CINCO);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.CINCO);
     }
 
     public int getDiezColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.DIEZ);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.DIEZ);
     }
 
     public int getVeinticincoColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.VEINTICINCO);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.VEINTICINCO);
     }
 
     public int getCincuentaColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.CINCUENTA);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.CINCUENTA);
     }
 
     public int getCienColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.CIEN);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.CIEN);
     }
 
     public int getQuinientosColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.QUINIENTOS);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.QUINIENTOS);
     }
 
     public int getMilColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.MIL);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.MIL);
     }
 
     public int getDosMilColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.DOSMIL);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.DOSMIL);
     }
 
     public int getCincoMilColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.CINCOMIL);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.CINCOMIL);
     }
 
     public int getDiezMilColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.DIEZMIL);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.DIEZMIL);
     }
 
     public int getVeinteMilColonesDenomination() {
-        return (int)depositDenomination.get(BoxDeposit.Denomination.VEINTEMIL);
+        return (int) depositDenomination.get(BoxDeposit.Denomination.VEINTEMIL);
+    }
+
+    @Override
+    public String toString() {
+        String objectString;
+        objectString = "transactionID: " + this.transactionID + 
+                "\ntransactionTime: " + this.transactionTime +
+                "\namount: " + this.amount + 
+                "\nafiliated: " + getAffiliatedName() + 
+                "\naccount: " + this.accountType +
+                "\naction: " + this.action.toString() +
+                "\nDenominations: ";
+        for(Denomination coin : this.depositDenomination.keySet()) {
+            objectString += "\n" + coin.toString() + ": " + this.depositDenomination.get(coin).toString();
+        }
+        return objectString;
     }
 }

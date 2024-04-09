@@ -4,6 +4,7 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import java.io.File;
@@ -85,8 +86,8 @@ public class OfficersMainController extends Controller implements Initializable 
         
     }
     
-    public void openAffiliatedRegister() {
-         FlowController.getInstance().goView("AffiliatedRegisterView");
+    public void openRegistryManager() {
+         FlowController.getInstance().goView("RegistryManagerView");
     }
     
     public void openCardPrint() {
@@ -95,7 +96,9 @@ public class OfficersMainController extends Controller implements Initializable 
     
     public void openAccountOpening() {
         FlowController.getInstance().goViewInWindowModal("AffiliatedSelectionView", null, false);
-        FlowController.getInstance().goView("AccountOpeningView");
+        if(AppContext.getInstance().get("selectedAffiliated") != null) {
+            FlowController.getInstance().goView("AccountOpeningView");
+        }
     }
     
     public void openMoneyManagement() {

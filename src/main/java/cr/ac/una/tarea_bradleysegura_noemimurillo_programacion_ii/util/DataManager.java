@@ -96,7 +96,7 @@ public class DataManager implements Serializable {
     //IMPORTANTE
     public void packData() {
         this.availableAccounts = (ArrayList<String>) AppContext.getInstance().get("availableAccounts");
-        this.afiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
+        this.afiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
         this.cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
         this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeIcon");
         this.boxDeposits = (ArrayList<BoxDeposit>) AppContext.getInstance().get("boxDeposits");
@@ -104,7 +104,7 @@ public class DataManager implements Serializable {
     
     public void unpackData() {
         AppContext.getInstance().set("availableAccounts", this.availableAccounts);
-        AppContext.getInstance().set("afiliated", this.afiliated);
+        AppContext.getInstance().set("affiliated", this.afiliated);
         AppContext.getInstance().set("cooperativeName",  this.cooperativeName);
         AppContext.getInstance().set("cooperativeIcon",  this.cooperativeIcon);
         AppContext.getInstance().set("boxDeposits", this.boxDeposits);
@@ -112,24 +112,12 @@ public class DataManager implements Serializable {
     
     public void save(String path) throws IOException {
         packData();
-        /*FileOutputStream fileOutput = new FileOutputStream(path);
-        ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
-        objectOutput.writeObject(this);
-        objectOutput.close();
-        fileOutput.close();*/
-        
         Gson jsonTransformer = new Gson();
         String dataManagerJSON = jsonTransformer.toJson(this);
         Files.writeString(Paths.get(path), dataManagerJSON, StandardCharsets.UTF_8);
     }
 
     public static DataManager load(String path) throws IOException, ClassNotFoundException {
-        /*FileInputStream fileInput = new FileInputStream(path);
-        ObjectInputStream objectInput = new ObjectInputStream(fileInput);
-        DataManager loadedDataManager = (DataManager) objectInput.readObject();
-        objectInput.close();
-        fileInput.close();*/
-        
         Gson jsonTransformer = new Gson();
         String dataManagerJSON = Files.readString(Paths.get(path));
         DataManager loadedDataManager = jsonTransformer.fromJson(dataManagerJSON, DataManager.class);

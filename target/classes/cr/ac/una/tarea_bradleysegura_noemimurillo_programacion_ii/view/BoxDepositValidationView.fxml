@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
-<?import io.github.palexdev.materialfx.controls.MFXTableView?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,64 +14,159 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.BoxDepositValidationController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1180.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.BoxDepositValidationController">
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
-   <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="929.0" spacing="5.0">
+    <children>
+          <VBox alignment="TOP_CENTER" prefHeight="650.0" prefWidth="1180.0" spacing="5.0">
+              <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="1180.0">
                <children>
-                  <MFXScrollPane prefHeight="458.0" prefWidth="850.0">
-                     <content>
-                        <AnchorPane prefHeight="436.0" prefWidth="1002.0">
-                           <children>
-                              <MFXTableView fx:id="depositBoxTableView" layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="384.0" prefWidth="1002.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0" />
-                              <HBox alignment="TOP_RIGHT" prefHeight="58.0" prefWidth="826.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../resources/1000colones.jpg" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                              <Label layoutX="10.0" layoutY="10.0" text="VALIDACIÓN DE BUZÓN DE DEPÓSITOS">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </MFXScrollPane>
-                  <MFXButton fx:id="amountCorrectionButton" onAction="#setCorrectionElement" prefHeight="50.0" prefWidth="150.0" text="CORREGIR" />
+                  <Label text="VALIDACIÓN DE BUZÓN DE DEPÓSITOS">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="52.0" prefWidth="170.0" />
+                  <Label text="Nota: Al modificar una denominación, presiona ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="49.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/enterKey.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="para guardar los cambios">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
                <padding>
-                  <Insets bottom="5.0" />
+                  <Insets left="20.0" />
                </padding>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="589.0" prefWidth="254.0" HBox.hgrow="ALWAYS">
+            </HBox>
+            <TableView fx:id="tbvBoxDeposits" prefHeight="513.0" prefWidth="1180.0">
+               <columns>
+                  <TableColumn fx:id="tbcDepositId" prefWidth="115.0" text="ID de Depósito" />
+                  <TableColumn fx:id="tbcDate" prefWidth="115.0" text="Fecha de Depósito" />
+                  <TableColumn fx:id="tbcAffiliated" prefWidth="115.0" text="Persona Afiliada" />
+                  <TableColumn fx:id="tbcFolio" prefWidth="115.0" text="Folio de Afiliado" />
+                  <TableColumn fx:id="tbc5Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc10Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc25Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc50Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc100Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc500Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc1000Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc2000Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc5000Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc10000Colones" onEditCommit="#modifyDenomination" prefWidth="110.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbc20000Colones" onEditCommit="#modifyDenomination" prefWidth="110.0">
+                     <graphic>
+                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="tbcAmount" prefWidth="120.0" text="MONTO TOTAL" />
+               </columns>
+            </TableView>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="415.0" prefWidth="150.0" spacing="20.0">
-                     <children>
-                        <Pane prefHeight="53.0" prefWidth="150.0" />
-                        <MFXTextField fx:id="amountCorrectionTextField" floatingText="Digita el Monto Correcto" prefHeight="50.0" prefWidth="80.0" />
-                        <MFXButton fx:id="applyCorrectionButton" prefHeight="50.0" prefWidth="150.0" text="APLICAR" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="BOTTOM_CENTER" prefHeight="210.0" prefWidth="254.0">
-                     <children>
-                        <MFXButton fx:id="depositValidationButton" prefHeight="60.0" prefWidth="150.0" text="VALIDAR" />
-                     </children>
-                     <padding>
-                        <Insets bottom="20.0" />
-                     </padding>
-                  </VBox>
+                  <MFXButton fx:id="btnClose" onAction="#close" prefHeight="70.0" prefWidth="180.0" text="CERRAR BUZÓN" />
+                          <MFXButton fx:id="depositValidationButton" onAction="#validateDeposit" prefHeight="70.0" prefWidth="180.0" text="VALIDAR DEPÓSITO" />
                </children>
-            </VBox>
-         </children>
-      </HBox>
-   </children>
+            </HBox>
+              </children>
+              <padding>
+                  <Insets bottom="5.0" top="5.0" />
+              </padding>
+          </VBox>
+    </children>
 </AnchorPane>

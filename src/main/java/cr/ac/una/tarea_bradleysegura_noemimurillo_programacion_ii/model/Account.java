@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -13,6 +14,7 @@ public class Account {
     String type;
     String accountNumber;
     Double balance;
+    ArrayList<Transaction> history;
 
     public Account() {
         
@@ -22,10 +24,11 @@ public class Account {
         Random randomFactory = new Random();
         
         this.type = type;
+        this.balance = 0.d;
+        this.history = new ArrayList();
         int sectionA = randomFactory.nextInt(100, 999);      
         int sectionB = randomFactory.nextInt(10, 99);
-        int sectionC = randomFactory.nextInt(1000, 9999);
-        
+        int sectionC = randomFactory.nextInt(1000, 9999);       
         this.accountNumber = Integer.toString(sectionA) + "-" + Integer.toString(sectionB) + "-" + Integer.toString(sectionC);
     }
 
@@ -40,6 +43,10 @@ public class Account {
     public void setBalance(Double balance) {
         this.balance = balance;
     }
+    
+    public void setHistory(ArrayList<Transaction> history) {
+        this.history = history;
+    }
 
     public String getType() {
         return type;
@@ -53,6 +60,10 @@ public class Account {
         return balance;
     }
     
+    public ArrayList<Transaction> getHistory() {
+        return history;
+    }
+    
     public void deposit(Double amount) {
         balance += amount;
     }
@@ -60,5 +71,16 @@ public class Account {
     public Double withdraw(Double amount) {
         balance -= amount;
         return amount;
+    }
+    
+    public Double makeTransaction(Transaction movement) {
+        this.history.add(movement);
+        if(movement.getAction() == Transaction.Action.DEPOSITO) {
+            deposit(movement.getAmount());
+        }
+        else {
+            return withdraw(movement.getAmount());
+        }
+        return null;    
     }
 }

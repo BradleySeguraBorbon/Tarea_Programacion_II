@@ -20,12 +20,12 @@
    <top>
       <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="1280.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="cooperativeNameLabel" text="Nombre de Cooperativa">
+            <Label fx:id="lblCooperativeName" text="Nombre de Cooperativa">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fx:id="cooperativeLogoImageView" fitHeight="115.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imvCooperativeLogo" fitHeight="115.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/companyDefaultLogo.png" />
                </image>
@@ -39,7 +39,7 @@
    <bottom>
       <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <MFXButton fx:id="exitButton" onAction="#exit" prefHeight="86.0" prefWidth="182.0" text="SALIR" />
+            <MFXButton fx:id="btnExit" onAction="#exit" prefHeight="86.0" prefWidth="182.0" text="SALIR" />
          </children>
          <padding>
             <Insets left="20.0" />
@@ -49,26 +49,26 @@
    <center>
       <HBox fx:id="mainHBox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="teachersMainMenuVBox" alignment="CENTER" prefHeight="500.0" prefWidth="1000.0" spacing="40.0">
+            <VBox fx:id="mainVBox" alignment="CENTER" prefHeight="500.0" prefWidth="1000.0" spacing="40.0">
                <children>
-                  <Label fx:id="teachersWelcomeLabel" text="Bienvenidos Profesores">
+                  <Label fx:id="lblTeachersWelcome" text="Bienvenidos Profesores">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="teachersWelcomeImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imvTeachersWelcome" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/teachersWelcomeImage.png" />
                      </image>
                   </ImageView>
                   <HBox alignment="CENTER" prefWidth="1001.0" spacing="40.0">
                      <children>
-                        <MFXButton fx:id="accountTypeManagementButton" onAction="#openAccountTypeManagementView" prefHeight="135.0" prefWidth="250.0" text="Mantenimiento de Tipos de Cuenta" textAlignment="CENTER">
+                        <MFXButton fx:id="btnOpenAccountManagement" onAction="#openAccountTypeManagementView" prefHeight="135.0" prefWidth="250.0" text="Mantenimiento de Tipos de Cuenta" textAlignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton fx:id="cooperativeManagementButton" onAction="#openCooperativeManagementView" prefHeight="135.0" prefWidth="250.0" text="Mantenimiento de Nombre y Logo" textAlignment="CENTER">
+                        <MFXButton fx:id="btnOpenCooperativeManagement" onAction="#openCooperativeManagementView" prefHeight="135.0" prefWidth="250.0" text="Mantenimiento de Nombre y Logo" textAlignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>

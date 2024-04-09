@@ -8,143 +8,68 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AccountOpeningController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AccountOpeningController">
    <children>
-      <HBox fx:id="centerHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <FlowPane fx:id="openingAccountsFlowPane" hgap="15.0" prefHeight="399.0" prefWidth="446.0" rowValignment="TOP" vgap="15.0">
+            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="1000.0">
                <children>
-                  <HBox prefHeight="50.0" prefWidth="455.0">
+                  <Label prefHeight="18.0" prefWidth="54.0" text="Afiliado: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblSelectedAffiliated" prefHeight="23.0" prefWidth="235.0" text=" ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="centerHBox" alignment="CENTER" prefHeight="500.0" prefWidth="200.0">
+               <children>
+                  <FlowPane fx:id="fpOpeningAccounts" hgap="15.0" prefHeight="399.0" prefWidth="446.0" rowValignment="TOP" vgap="15.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="455.0" text="CUENTAS A APERTURAR">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                        <HBox prefHeight="50.0" prefWidth="455.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="455.0" text="CUENTAS A APERTURAR">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <Label fx:id="accountLabel1" alignment="CENTER" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: red;" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label fx:id="accountLabel2" alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </FlowPane>
+                  <VBox prefHeight="497.0" prefWidth="50.0" />
+                  <FlowPane fx:id="fpOpenedAccounts" columnHalignment="RIGHT" hgap="15.0" prefHeight="200.0" prefWidth="455.0" rowValignment="TOP" vgap="15.0">
+                     <children>
+                        <HBox prefHeight="50.0" prefWidth="455.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="455.0" text="CUENTAS DISPONIBLES">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </FlowPane>
                </children>
                <padding>
-                  <Insets top="5.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
-            </FlowPane>
-            <VBox prefHeight="497.0" prefWidth="50.0" />
-            <FlowPane fx:id="openedAccountsFlowPane" columnHalignment="RIGHT" hgap="15.0" prefHeight="200.0" prefWidth="455.0" rowValignment="TOP" vgap="15.0">
-               <children>
-                  <HBox prefHeight="50.0" prefWidth="455.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="455.0" text="CUENTAS DISPONIBLES">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="140.0" text="CUENTA NAVIDEÑA">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-               </children>
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
-            </FlowPane>
+            </HBox>
          </children>
          <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets top="5.0" />
          </padding>
-      </HBox>
+      </VBox>
    </children>
 </AnchorPane>

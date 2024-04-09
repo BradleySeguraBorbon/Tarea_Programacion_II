@@ -4,244 +4,129 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamResolution;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated.Sexo;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXTableColumn;
-import io.github.palexdev.materialfx.controls.MFXTableView;
+import io.github.palexdev.materialfx.controls.MFXRadioButton;
+import io.github.palexdev.materialfx.controls.MFXSpinner;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
-import java.io.ByteArrayInputStream;
+import io.github.palexdev.materialfx.controls.models.spinner.IntegerSpinnerModel;
+import io.github.palexdev.materialfx.controls.models.spinner.SpinnerModel;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Comparator;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import static javafx.scene.control.Alert.AlertType.ERROR;
-import static javafx.scene.control.Alert.AlertType.INFORMATION;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
+import javafx.scene.control.Alert;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
  *
- * @author Fiorella
+ * @author Bradley
  */
 public class AffiliatedRegisterController extends Controller implements Initializable {
 
     @FXML
-    private MFXButton btnAddUser;
+    private ImageView imvAffiliatedImage;
     @FXML
-    private MFXTextField txtName;
+    private MFXTextField txtAffiliatedName;
     @FXML
-    private MFXTextField txtSurname;
+    private MFXTextField txtAffiliatedFirstLastName;
     @FXML
-    private MFXTextField txtSecondSurname;
+    private MFXTextField txtAffiliatedSecondLastName;
     @FXML
-    private MFXTextField txtAge;
+    private MFXSpinner<Integer> spnrAffiliatedAge;
     @FXML
-    private ToggleGroup SexGroup;
+    private MFXRadioButton rBtnMasculino;
     @FXML
-    private MFXButton btnDeleteUser;
+    private MFXRadioButton rBtnFemenino;
     @FXML
-    private MFXButton btnSaveChanges;
+    private MFXButton btnRegister;
     @FXML
-    private MFXTableView tbvUsersList;
-    @FXML
-    private ImageView imgvUsersFace;
-    
-    ArrayList<Affiliated> newAffiliates = new ArrayList<>();
-    String convertedImg = "";
+    private ToggleGroup SexSelection;
 
-
+    private ArrayList<Affiliated> affiliated;
+    private String affiliatedImageDir;
 
     /**
      * Initializablelizes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        //ArrayList<Affiliated> Affiliated2 = new ArrayList<>();
-        //AppContext.getInstance().set("afiliated", Affiliated2);
-        
-        this.newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
-       // txtAge.setTextFormatter(Formato.getInstance().integerFormat());
-        setUpUserBox();
-
-        // TODO
+        initialize();
     }
 
     @Override
     public void initialize() {
-
-    }
-    
-    
-    
-    public void setUpUserBox(){
-        
-        MFXTableColumn<Affiliated> folioColumn = new MFXTableColumn<>("Folio", true, Comparator.comparing(Affiliated::getFolio));
-        MFXTableColumn<Affiliated> nameColumn = new MFXTableColumn<>("Nombre", true, Comparator.comparing(Affiliated::getFullName));
-        
-        //Especificar qué se está mostrando y dónde
-        folioColumn.setRowCellFactory(folioNumber -> new MFXTableRowCell<>(Affiliated::getFolio));
-        nameColumn.setRowCellFactory(nameString -> new MFXTableRowCell<>(Affiliated::getFullName));
-        
-        this.tbvUsersList.getTableColumns().addAll(folioColumn, nameColumn);
-        this.tbvUsersList.setItems(FXCollections.observableArrayList(newAffiliates));
-        
-    }
-    
-    
-    public static String convertImageToBase64(String filePath) {
-        String base64Image = "";
-        try (InputStream inputStream = new FileInputStream(filePath)) {
-            byte[] imageBytes = inputStream.readAllBytes();
-            base64Image = Base64.getEncoder().encodeToString(imageBytes);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (AppContext.getInstance().get("affiliated") != null) {
+            this.affiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
+            spnrAffiliatedAge.setSpinnerModel(new IntegerSpinnerModel(0));
         }
-        return base64Image;
     }
-    
-    public static Image convertBase64ToImage(String base64String) {
+
+    public void register() {
+        Mensaje alerta = new Mensaje();
+        String name = txtAffiliatedName.getText(),
+                firstLastName = txtAffiliatedFirstLastName.getText(),
+                secondLastName = txtAffiliatedSecondLastName.getText(),
+                cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
+        Integer age = (int) spnrAffiliatedAge.getSpinnerModel().getValue();
+
+        if (name.isBlank()) {
+            alerta.show(Alert.AlertType.WARNING, "NOMBRE INCOMPLETO", "Debes ingresar tu nombre para continuar");
+            System.out.println("ERROR");
+            txtAffiliatedName.requestFocus();
+        } else if (firstLastName.isBlank()) {
+            alerta.show(Alert.AlertType.WARNING, "PRIMER APELLIDO INCOMPLETO", "Debes ingresar tu primer apellido para continuar");
+            System.out.println("ERROR");
+            txtAffiliatedFirstLastName.requestFocus();
+        } else if (secondLastName.isBlank()) {
+            alerta.show(Alert.AlertType.WARNING, "SEGUNDO APELLIDO INCOMPLETO", "Debes ingresar tu segundo apellido para continuar");
+            System.out.println("ERROR");
+            txtAffiliatedSecondLastName.requestFocus();
+        } else if (spnrAffiliatedAge.getSpinnerModel().getValue() == null) {
+            alerta.show(Alert.AlertType.WARNING, "EDAD NO INDICADA", "Debes indicar tu edad para continuar");
+            System.out.println("ERROR");
+            spnrAffiliatedAge.requestFocus();
+        } else if (!rBtnMasculino.isSelected() && !rBtnFemenino.isSelected()) {
+            alerta.show(Alert.AlertType.WARNING, "SEXO NO INDICADO", "Debes indicar tu sexo para continuar");
+            System.out.println("ERROR");
+        } else {
+            Affiliated.Sexo sexo = (rBtnMasculino.isSelected()) ? Affiliated.Sexo.MASCULINO : Affiliated.Sexo.FEMENINO;
+            this.affiliated.add(new Affiliated(name, firstLastName, secondLastName, age, sexo, affiliatedImageDir, cooperativeName));
+            alerta.show(Alert.AlertType.INFORMATION, "REGISTRO EXITOSO", "'¡Bienvenid@ a " + cooperativeName + ", " + name + "!");
+            AppContext.getInstance().set("affiliated", this.affiliated);
+        }
+    }
+
+    public void takePicture() {
+        FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), false);
+    }
+
+    public void recoverFocus(Image takenImage) {
         try {
-            byte[] decodedBytes = Base64.getDecoder().decode(base64String);
-            return new Image(new ByteArrayInputStream(decodedBytes));
+            if (takenImage != null) {
+                this.affiliatedImageDir = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/" + (new Random()).nextInt(100000) + ".jpg";
+                ImageIO.write(SwingFXUtils.fromFXImage(takenImage, null), "JPG", new File(this.affiliatedImageDir));
+                this.imvAffiliatedImage.setImage(takenImage);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        FlowController.getInstance().limpiarLoader("ImageTakerView");
     }
-    
-    
-    public void saveNewImage(){
-                 // Crear un FileChooser para seleccionar el archivo de imagen
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar Imagen");
 
-        // Filtrar solo archivos de imagen
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg", "*.gif");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        // Mostrar el diálogo de selección de archivo
-        File file = fileChooser.showOpenDialog(null);
-
-        // Verificar si se seleccionó un archivo
-        if (file != null) {
-            // Crear una imagen a partir del archivo seleccionado
-            //Image image = new Image(file.toURI().toString());
-            String image64 = file.getAbsolutePath();
-            //String image64 = "C:\\Users\\Fiorella\\Pictures\\20181031_170733.jpg";
-            convertedImg = convertImageToBase64(image64);
-            
-            Image bs64ToImg = convertBase64ToImage(convertedImg);
-            
-            // Mostrar la imagen en el ImageView
-            imgvUsersFace.setImage(bs64ToImg);
-            
-         }
-
-    }
-    
-
-    public void addNewUser() {
-        btnDeleteUser.setDisable(false);
-        btnSaveChanges.setDisable(false);
-        //Se crea una instancia de mensaje para las advertencias en caso de que algún espacio esté vació o si se agregó el usuario exitosamente.
-        Mensaje msj = new Mensaje();
-        
-        //Estos if validan si los espacios están llenos y si no se salen del método.
-        if(convertedImg.equals("")){
-            msj.show(ERROR, "Imagen vacía", "La iamgen del nuevo usuario está vacía");
-            return;
-        }
-        if (txtName.getText().equals("")) {
-            msj.show(ERROR, "Nombre vacío", "La casilla de nombre del nuevo usuario está vacía");
-            return;
-        }
-        if (txtSurname.getText().equals("")) {
-            msj.show(ERROR, "Primer apellido vacío", "La casilla del primer apellido del nuevo usuario está vacía");
-            return;
-        }
-        if (txtSecondSurname.getText().equals("")) {
-            msj.show(ERROR, "Segundo apellido vacío", "La casilla del segundo apellido del nuevo usuario está vacía");
-            return;
-        }
-        if (getNewSex() == null){
-            msj.show(ERROR, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía"); 
-            return;
-        }
-        
-        //Si todos los espacios están llenos, se salta los if y se crea el nuevo usuario
-        newAffiliates.add(new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), Integer.parseInt(txtAge.getText()), getNewSex(), (String)AppContext.getInstance().get("cooperativeName"), convertedImg));
-        Affiliated actualUser = newAffiliates.getLast();
-        
-        //Mensaje que indica el folio del nuevo usuario.
-        msj.show(INFORMATION, "Nuevo Folio","El folio del nuevo usuario es: " + actualUser.getFolio());
-        //Mensaje de nuevo usuario agregado exitosamente.
-        msj.show(INFORMATION, "Nuevo Afiliado","¡Se ha añadido un nuevo afiliado exitosamente!");
-        
-        clean();
-        
-         }
-         
-    
-    public Sexo getNewSex(){
-    Toggle seleccionado = SexGroup.getSelectedToggle();
-    if (seleccionado != null) {
-        String valor = ((RadioButton) seleccionado).getText();
-        if (valor.equals("Masculino")) {
-            return Sexo.MASCULINO;
-        } else if (valor.equals("Femenino")) {
-            return Sexo.FEMENINO;
-        }
-    }
-    return null;
-    }
-    
-
-
-    public void modifyUser() {
-        btnDeleteUser.setOpacity(1);
-        btnSaveChanges.setOpacity(1);
-        btnAddUser.setOpacity(0);
-        btnAddUser.setDisable(false);
-
-        
-
-
-       
-       
-        
-    }
-    
-    
-    public void clean(){
-         //Esto es para limpiar todos los campos
-        txtName.clear();
-        txtSurname.clear();
-        txtSecondSurname.clear();
-        SexGroup.getSelectedToggle().setSelected(false);
-        txtAge.clear();
-        Image defaultImg  = new Image(getClass().getResourceAsStream("/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/user.png"));
-        imgvUsersFace.setImage(defaultImg);
-        convertedImg = "";
-        
-    }
 }

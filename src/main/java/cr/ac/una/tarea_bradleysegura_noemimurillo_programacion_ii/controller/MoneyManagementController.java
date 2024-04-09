@@ -40,42 +40,33 @@ import javafx.scene.image.ImageView;
 public class MoneyManagementController extends Controller implements Initializable {
 
     @FXML
-    private MFXFilterComboBox<Affiliated> selectAffiliatedDepositBox;
+    private MFXFilterComboBox<Affiliated> fcbSelectAffiliated;
     @FXML
-    private MFXFilterComboBox selectAccountDepositBox;
+    private MFXFilterComboBox fcbSelectDepositAccount;
     @FXML
-    private MFXTextField depositAmountTextField;
+    private MFXTextField txtDepositAmount;
     @FXML
-    private MFXButton depositButton;
+    private MFXButton btnDeposit;
     @FXML
-    private MFXButton openDepositBoxButton;
+    private MFXButton btnOpenDepositBox;
     @FXML
-    private MFXTextField afiliatedFolioTextField;
+    private MFXTextField txtAffiliatedFolio;
     @FXML
-    private MFXButton browseAffiliatedButton;
+    private MFXButton btnSearchAffiliated;
     @FXML
-    private MFXFilterComboBox selectAccountWithdrawalBox;
+    private MFXFilterComboBox fcbSelectWithdrawAccount;
     @FXML
-    private MFXTextField withdrawalAmountTextField;
+    private MFXTextField txtWithdrawAmount;
     @FXML
-    private MFXButton withdrawalButton;
+    private MFXButton btnWithdraw;
     @FXML
     private Label validateAffiliatedLabel;
     @FXML
-    private ImageView afiliatedImageView;
+    private ImageView imvAffiliatedImage;
     @FXML
-    private Label afiliatedNameLabel;
+    private Label lblAffiliatedName;
     @FXML
-    private MFXButton validateAffiliatedButton;
-    @FXML
-    private MFXTableView depositBoxTableView;
-    @FXML
-    private MFXButton depositValidationButton;
-    @FXML
-    private MFXTextField amountCorrectionTextField;
-
-    @FXML
-    private MFXFilterComboBox selectAccountComboBox;
+    private MFXButton btnValidateAffiliated;
 
     private ArrayList<Affiliated> afiliatedList;
     private Affiliated selectedAffiliated;
@@ -86,105 +77,117 @@ public class MoneyManagementController extends Controller implements Initializab
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.afiliatedList = new ArrayList();
-        StringConverter<Affiliated> converter = FunctionalStringConverter.to(afiliated -> (afiliated == null) ? "" : afiliated.getFullName());
-        this.selectAffiliatedDepositBox.setItems(FXCollections.observableArrayList(afiliatedList));
-        this.selectAffiliatedDepositBox.setConverter(converter);
+        initialize();
     }
 
     @Override
     public void initialize() {
-            
+        this.afiliatedList = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
+        StringConverter<Affiliated> affiliatedConverter = FunctionalStringConverter.to(afiliated -> (afiliated == null) ? "" : afiliated.getFullName());
+        this.fcbSelectAffiliated.setConverter(affiliatedConverter);
+        StringConverter<Account> accountConverter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
+        fcbSelectDepositAccount.setConverter(accountConverter);
+        this.fcbSelectAffiliated.setItems(FXCollections.observableArrayList(afiliatedList));
     }
-    
+
     public void selectAffiliated() {
-        selectedAffiliated = this.selectAffiliatedDepositBox.getSelectedItem();      
-        
-        StringConverter<Account> converter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
-        ArrayList<Account> userAccounts = selectedAffiliated.getAccounts();
-        selectAccountDepositBox.setItems(FXCollections.observableArrayList(userAccounts));
-        selectAccountDepositBox.setConverter(converter);
-        selectAccountDepositBox.setDisable(false);
+        clearDepositTab();
+        selectedAffiliated = this.fcbSelectAffiliated.getSelectedItem();
+        fcbSelectDepositAccount.setItems(FXCollections.observableArrayList(selectedAffiliated.getAccounts()));       
+        fcbSelectDepositAccount.setDisable(false);
     }
-    
+
     public void selectDepositAccount() {
-        selectedAccount = (Account)selectAccountDepositBox.getSelectedItem();
-        depositAmountTextField.setDisable(false);
-        depositButton.setDisable(false);
+        selectedAccount = (Account) fcbSelectDepositAccount.getSelectedItem();
+        txtDepositAmount.setDisable(false);
+        btnDeposit.setDisable(false);
     }
-    
+
     public void deposit() {
-        String depositAmount = depositAmountTextField.getText();
-        if(!depositAmount.isBlank()) {
-            selectedAccount.deposit(Double.parseDouble(depositAmount));
+        String depositAmount = txtDepositAmount.getText();
+        if (!depositAmount.isBlank()) {
+            Transaction deposit = new Transaction(Double.valueOf(depositAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.DEPOSITO);
+            this.selectedAccount.makeTransaction(deposit);
+            this.fcbSelectAffiliated.getSelectionModel().clearSelection();
+            clearDepositTab();
             new Mensaje().show(Alert.AlertType.INFORMATION, "DEPÓSITO EXITOSO", "El depósito ha sido exitoso");
-        }
-        else {
+        } else {
             new Mensaje().show(Alert.AlertType.WARNING, "DEPÓSITO INVALIDO", "Debes indicar el monto a depositar");
         }
     }
-    
+
     public void browseAffiliated() {
-        clearWithdrawalPane();
-        String typedFolio = afiliatedFolioTextField.getText();
-        if(!typedFolio.isBlank()) {
-            for(Affiliated afiliated : afiliatedList) {
-                if(afiliated.getFolio().equals(typedFolio)) {
+        clearWithdrawalTab();
+        String typedFolio = txtAffiliatedFolio.getText();
+        if (!typedFolio.isBlank()) {
+            for (Affiliated afiliated : afiliatedList) {
+                if (afiliated.getFolio().equals(typedFolio)) {
                     selectedAffiliated = afiliated;
                     break;
                 }
             }
-            if(selectedAffiliated != null) {
-                afiliatedImageView.setImage(new Image(selectedAffiliated.getProfileImage()));
-                afiliatedNameLabel.setText(selectedAffiliated.getFullName());
+            if (selectedAffiliated != null) {
+                //imvAffiliatedImage.setImage(new Image(selectedAffiliated.getProfileImage()));
+                lblAffiliatedName.setText(selectedAffiliated.getFullName());
                 validateAffiliatedLabel.setOpacity(1);
-                validateAffiliatedButton.setDisable(false);
-            }
-            else {
+                btnValidateAffiliated.setDisable(false);
+                btnValidateAffiliated.setOpacity(1);
+            } else {
                 new Mensaje().show(Alert.AlertType.WARNING, "AFILIADO NO ENCONTRADO", "No se ha encontrado el afiliado con el folio digitado");
                 validateAffiliatedLabel.setOpacity(0);
-                validateAffiliatedButton.setDisable(true);
+                btnValidateAffiliated.setDisable(true);
             }
         }
     }
-    
+
     public void validateAffiliated() {
-         validateAffiliatedLabel.setOpacity(0);
-         validateAffiliatedButton.setDisable(true);
-        
+        validateAffiliatedLabel.setOpacity(0);
+        btnValidateAffiliated.setDisable(true);
+
         StringConverter<Account> converter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
-        selectAccountWithdrawalBox.setItems(FXCollections.observableArrayList(selectedAffiliated.getAccounts()));
-        selectAccountWithdrawalBox.setConverter(converter);
-        selectAccountWithdrawalBox.setDisable(false);
+        fcbSelectWithdrawAccount.setItems(FXCollections.observableArrayList(selectedAffiliated.getAccounts()));
+        fcbSelectWithdrawAccount.setConverter(converter);
+        fcbSelectWithdrawAccount.setDisable(false);
     }
-    
+
     public void selectWithdrawalAccount() {
-        selectedAccount = (Account)selectAccountWithdrawalBox.getSelectedItem();
-        withdrawalAmountTextField.setDisable(false);
-        withdrawalButton.setDisable(false);
+        selectedAccount = (Account) fcbSelectWithdrawAccount.getSelectedItem();
+        txtWithdrawAmount.setDisable(false);
+        btnWithdraw.setDisable(false);
     }
-    
+
     public void withdraw() {
-        String withdrawalAmount = withdrawalAmountTextField.getText();
-        if(!withdrawalAmount.isBlank()) {
-            selectedAccount.withdraw(Double.parseDouble(withdrawalAmount));
-        }
-        else {
-            
+        String withdrawalAmount = txtWithdrawAmount.getText();
+        if (!withdrawalAmount.isBlank()) {
+            Transaction withdraw = new Transaction(Double.valueOf(withdrawalAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.RETIRO);
+            this.selectedAccount.makeTransaction(withdraw);
+            clearWithdrawalTab();
+            new Mensaje().show(Alert.AlertType.INFORMATION, "RETIRO EXITOSO", "El retiro ha sido exitoso");
+        } else {
+            new Mensaje().show(Alert.AlertType.WARNING, "RETIRO INVALIDO", "Debes indicar el monto a retirar");
         }
     }
-    
-    public void clearWithdrawalPane() {
-        this.selectAccountWithdrawalBox.clear();
-        this.selectAccountWithdrawalBox.setDisable(true);
-        this.withdrawalAmountTextField.clear();
-        this.withdrawalAmountTextField.setDisable(true);
-        withdrawalButton.setDisable(true);
-        this.validateAffiliatedButton.setOpacity(0);
-        this.afiliatedImageView.setImage(null);
-        this.afiliatedNameLabel.setText("usuario");
-        this.validateAffiliatedButton.setDisable(true);
-        
+
+    public void clearDepositTab() {
+        this.fcbSelectDepositAccount.clear();
+        this.fcbSelectDepositAccount.getSelectionModel().clearSelection();
+        this.fcbSelectDepositAccount.setDisable(true);
+        this.txtDepositAmount.setText("");
+        this.txtDepositAmount.setDisable(true);
+        this.btnDeposit.setDisable(true);
+    }
+
+    public void clearWithdrawalTab() {
+        this.fcbSelectWithdrawAccount.clear();
+        this.fcbSelectWithdrawAccount.setDisable(true);
+        this.txtWithdrawAmount.clear();
+        this.txtWithdrawAmount.setDisable(true);
+        btnWithdraw.setDisable(true);
+        this.btnValidateAffiliated.setOpacity(0);
+        this.imvAffiliatedImage.setImage(null);
+        this.lblAffiliatedName.setText("usuario");
+        this.btnValidateAffiliated.setDisable(true);
+
     }
 
     public void openBoxDepositValidation() {

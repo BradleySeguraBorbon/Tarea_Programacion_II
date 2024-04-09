@@ -4,8 +4,10 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Account;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.net.URL;
@@ -41,30 +43,30 @@ public class AffiliatedSelectionController extends Controller implements Initial
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        /*//PRUEBA
+        ArrayList<Affiliated> affiliated = new ArrayList<>();
+        Affiliated affiliated1 = new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope");
+        affiliated1.addAccount(new Account("Ahorro Navideño"));
+        affiliated.add(affiliated1);
+        System.out.println("FOLIO DE BRADLEY: " + affiliated1.getFolio());
+        AppContext.getInstance().set("afiliated", affiliated);
+        //FIN PRUEBA    */
         afiliatedNames = new ArrayList();
-        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afiliated")) {
+        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("affiliated")) {
             afiliatedNames.add(afiliated.getFullName());
         }
         afiliatedSelectionComboBox.setItems(FXCollections.observableArrayList(afiliatedNames));      
     }    
     
-    /**
-     *
-     */
     @Override
     public void initialize() {
         
     }
-    
-    /**
-     *
-     */
+ 
     public void setSelectedAffiliated() {
-        String selectedAffiliatedName = afiliatedSelectionComboBox.getSelectedText();
-        
-        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afilated")) {
-            if(afiliated.getName().equals(selectedAffiliatedName)) {
+        String selectedAffiliatedName = (String)afiliatedSelectionComboBox.getSelectionModel().getSelectedItem();   
+        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("affiliated")) {
+            if(afiliated.getFullName().equals(selectedAffiliatedName)) {
                 this.selectedAffiliated = afiliated;
                 break;
             }
@@ -73,24 +75,16 @@ public class AffiliatedSelectionController extends Controller implements Initial
             displayAffiliatedInfo();
         }
     }
-    
-    /**
-     *
-     */
+ 
     public void displayAffiliatedInfo() {
         this.afiliatedNameLabel.setText(this.selectedAffiliated.getFullName());
         this.afiliatedFolioLabel.setText(this.selectedAffiliated.getFolio());  
     }
     
-    /**
-     *
-     */
     public void close() {
-        /*if(selectedAffiliated != null) {
+        if(selectedAffiliated != null) {
             AppContext.getInstance().set("selectedAffiliated", selectedAffiliated);
-        }*/
+            getStage().close();
+        }
     }
-
-    
-    
 }

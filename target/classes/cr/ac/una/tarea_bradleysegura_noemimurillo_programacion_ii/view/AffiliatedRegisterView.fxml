@@ -1,65 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
+<?import io.github.palexdev.materialfx.controls.MFXSpinner?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AffiliatedRegisterController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AffiliatedRegisterController">
+    <stylesheets>
+        <URL value="@SystemStyleSheet.css" />
+    </stylesheets>
    <children>
-      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="300.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="268.0" layoutY="150.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Lista de Usuarios">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <MFXTableView fx:id="tbvUsersList" prefHeight="332.0" prefWidth="289.0" />
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" spacing="20.0">
-               <children>
-                  <MFXButton fx:id="btnModify" onAction="#modifyUser" text="Modificar usuario" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="308.0" layoutY="14.0" prefHeight="473.0" prefWidth="681.0" spacing="5.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="308.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="14.0">
-         <children>
-            <ImageView fx:id="imgvUsersFace" fitHeight="105.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <Label text="Haz click sobre la imagen para capturar " />
+            <ImageView fx:id="imvAffiliatedImage" fitHeight="139.0" fitWidth="194.0" onMouseClicked="#takePicture" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/user.png" />
-               </image></ImageView>
-            <MFXButton fx:id="btnNewImage" onAction="#saveNewImage" text="Cargar Imagen de Usuario" />
-            <MFXTextField fx:id="txtName" floatingText="Nombre" prefHeight="49.0" prefWidth="155.0" />
-            <MFXTextField fx:id="txtSurname" floatingText="Primer apellido" maxWidth="-Infinity" prefHeight="49.0" prefWidth="155.0" />
-            <MFXTextField fx:id="txtSecondSurname" floatingText="Segundo apellido" prefHeight="49.0" prefWidth="155.0" />
-            <MFXTextField fx:id="txtAge" floatingText="Edad" prefHeight="49.0" prefWidth="155.0" />
-            <Label text="Sexo" />
-            <HBox alignment="CENTER" prefHeight="21.0" prefWidth="681.0" spacing="20.0">
+                  <Image url="@../resources/takePicture.png" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1000.0" spacing="40.0">
                <children>
-                  <RadioButton fx:id="btnFem" mnemonicParsing="false" text="Femenino">
+                  <MFXTextField fx:id="txtAffiliatedName" floatingText="Nombre" prefHeight="60.0" prefWidth="250.0" />
+                  <MFXTextField fx:id="txtAffiliatedFirstLastName" floatingText="Primer Apellido" prefHeight="60.0" prefWidth="250.0" />
+                  <MFXTextField fx:id="txtAffiliatedSecondLastName" floatingText="Segundo Apellido" prefHeight="60.0" prefWidth="250.0" />
+               </children>
+            </HBox>
+            <Pane prefHeight="6.0" prefWidth="1000.0" />
+            <MFXSpinner fx:id="spnrAffiliatedAge" editable="true" prefHeight="40.0" prefWidth="250.0" promptText="Edad" />
+            <Label text="Sexo">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1000.0" spacing="20.0">
+               <children>
+                  <MFXRadioButton fx:id="rBtnMasculino" text="Masculino">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                      <toggleGroup>
-                        <ToggleGroup fx:id="SexGroup" />
+                        <ToggleGroup fx:id="SexSelection" />
                      </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="btnMas" mnemonicParsing="false" text="Masculino" toggleGroup="$SexGroup" />
+                  </MFXRadioButton>
+                  <MFXRadioButton fx:id="rBtnFemenino" text="Femenino" toggleGroup="$SexSelection">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </MFXRadioButton>
                </children>
             </HBox>
-            <MFXButton fx:id="btnAddUser" lineSpacing="10.0" onAction="#addNewUser" text="Añadir Nuevo Usuario" />
-            <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="681.0" spacing="100.0">
-               <children>
-                  <MFXButton fx:id="btnDeleteUser" opacity="0.0" text="Eliminar usuario" />
-                  <MFXButton fx:id="btnSaveChanges" opacity="0.0" text="Guardar cambios" />
-               </children>
-            </HBox>
+            <MFXButton fx:id="btnRegister" onAction="#register" prefHeight="70.0" prefWidth="170.0" text="REGISTRARME" />
          </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>

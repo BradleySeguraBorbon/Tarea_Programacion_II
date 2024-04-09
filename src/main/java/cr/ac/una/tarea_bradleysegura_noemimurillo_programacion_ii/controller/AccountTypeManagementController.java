@@ -37,13 +37,13 @@ public class AccountTypeManagementController extends Controller implements Initi
     private ArrayList<String> availableAccounts;
 
     @FXML
-    private MFXTextField addAccountTypeTextField;
+    private MFXTextField txtAddAccountType;
     @FXML
-    private MFXButton addAccountTypeButton;
+    private MFXButton btnAddAccountType;
     @FXML
-    private MFXListView<String> accountTypesListView;
+    private MFXListView<String> lstvAccountTypes;
     @FXML
-    private MFXButton deleteAccountTypeButton;
+    private MFXButton btnRemoveAccountType;
 
     /**
      * Initializes the controller class.
@@ -59,28 +59,20 @@ public class AccountTypeManagementController extends Controller implements Initi
     public void initialize() {
         if(AppContext.getInstance().get("availableAccounts") != null) {
             this.availableAccounts = (ArrayList<String>)AppContext.getInstance().get("availableAccounts");
-            accountTypesListView.setItems(FXCollections.observableArrayList(this.availableAccounts));
+            lstvAccountTypes.setItems(FXCollections.observableArrayList(this.availableAccounts));
         }
     }
-    
-    /*private void setupListView() {
-        accountTypesListView.setItems(FXCollections.observableArrayList((ArrayList<String>)AppContext.getInstance().get("availableAccounts")));
-        System.out.println(AppContext.getInstance().get("availableAccounts"));
-    }*/
-    
+   
     public void addAccount() {
         try {
-            String newAccountType = addAccountTypeTextField.getText();
+            String newAccountType = txtAddAccountType.getText();
             if(!newAccountType.isBlank()) {
-                ObservableList<String> modifiedList = accountTypesListView.getItems();
+                ObservableList<String> modifiedList = lstvAccountTypes.getItems();
                 modifiedList.add(newAccountType);
-                accountTypesListView.setItems(modifiedList);
-                addAccountTypeTextField.setText("");
+                lstvAccountTypes.setItems(modifiedList);
+                txtAddAccountType.setText("");
                 this.availableAccounts.add(newAccountType);
                 AppContext.getInstance().set("availableAccounts", this.availableAccounts);
-                
-                ArrayList<Affiliated> newAffiliated = new ArrayList();
-                AppContext.getInstance().set("afiliated", newAffiliated);
             }
         }
         catch(Exception e) {
@@ -89,6 +81,7 @@ public class AccountTypeManagementController extends Controller implements Initi
     }  
     
     public void deleteSelectedAccountType() {
-        
+        this.availableAccounts.remove(this.lstvAccountTypes.getSelectionModel().getSelectedValue());
+        this.lstvAccountTypes.setItems(FXCollections.observableArrayList(this.availableAccounts));
     }
 }

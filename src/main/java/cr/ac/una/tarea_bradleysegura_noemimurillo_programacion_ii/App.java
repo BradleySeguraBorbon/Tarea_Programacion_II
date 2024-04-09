@@ -29,7 +29,8 @@ public class App extends Application {
         
         ArrayList<Affiliated> afiliated = new ArrayList();
         AppContext.getInstance().set("afiliated", afiliated);
-        afiliated.add(new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope", null));
+        /*
+        afiliated.add(new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope"));
         AppContext.getInstance().set("afiliated", afiliated);
         afiliated.add(new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope", null));
         
@@ -41,7 +42,7 @@ public class App extends Application {
         System.out.println("Lista de AppContext");
         for(Affiliated user : (ArrayList<Affiliated>)AppContext.getInstance().get("afiliated")) {
             System.out.println(user.toString());
-        }
+        }*/
         
         //MFXThemeManager.addOn(FlowController.getInstance().getMainScene(), Themes.DEFAULT, Themes.LEGACY);
     }

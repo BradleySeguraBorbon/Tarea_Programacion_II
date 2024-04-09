@@ -37,16 +37,16 @@
                                        </font>
                                     </Label>
                                     <Pane prefHeight="4.0" prefWidth="422.0" />
-                                    <MFXFilterComboBox fx:id="selectAffiliatedDepositBox" floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" onAction="#selectAffiliated" prefHeight="60.0" prefWidth="300.0" />
-                                    <MFXFilterComboBox fx:id="selectAccountDepositBox" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" onAction="#selectDepositAccount" prefHeight="60.0" prefWidth="300.0" />
-                                    <MFXTextField fx:id="depositAmountTextField" disable="true" floatMode="BORDER" floatingText="MONTO A DEPOSITAR" prefHeight="60.0" prefWidth="300.0" />
+                                    <MFXFilterComboBox fx:id="fcbSelectAffiliated" floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" onAction="#selectAffiliated" prefHeight="60.0" prefWidth="300.0" />
+                                    <MFXFilterComboBox fx:id="fcbSelectDepositAccount" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" onAction="#selectDepositAccount" prefHeight="60.0" prefWidth="300.0" />
+                                    <MFXTextField fx:id="txtDepositAmount" disable="true" floatMode="BORDER" floatingText="MONTO A DEPOSITAR" prefHeight="60.0" prefWidth="300.0" />
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <Pane prefHeight="200.0" prefWidth="200.0" />
                                           <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <MFXButton fx:id="depositButton" disable="true" onAction="#deposit" prefHeight="70.0" prefWidth="180.0" text="DEPOSITAR" />
+                                          <MFXButton fx:id="btnDeposit" disable="true" onAction="#deposit" prefHeight="70.0" prefWidth="180.0" text="DEPOSITAR" />
                                           <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <MFXButton fx:id="openDepositBoxButton" onAction="#openBoxDepositValidation" prefHeight="70.0" prefWidth="180.0" text="BUZÓN DE DEPÓSITOS" />
+                                          <MFXButton fx:id="btnOpenDepositBox" onAction="#openBoxDepositValidation" prefHeight="70.0" prefWidth="180.0" text="BUZÓN DE DEPÓSITOS" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -70,11 +70,11 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <MFXTextField fx:id="afiliatedFolioTextField" floatingText="INGRESA EL FOLIO DE AFILIADO" prefHeight="60.0" prefWidth="350.0" />
-                                    <MFXButton fx:id="browseAffiliatedButton" onAction="#browseAffiliated" prefHeight="50.0" prefWidth="150.0" text="BUSCAR AFILIADO" />
-                                    <MFXFilterComboBox fx:id="selectAccountWithdrawalBox" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" onAction="#selectWithdrawalAccount" prefHeight="60.0" prefWidth="350.0" />
-                                    <MFXTextField fx:id="withdrawalAmountTextField" disable="true" floatMode="BORDER" floatingText="MONTO A RETIRAR" prefHeight="60.0" prefWidth="350.0" />
-                                    <MFXButton fx:id="withdrawalButton" disable="true" onAction="#withdraw" prefHeight="70.0" prefWidth="200.0" text="RETIRAR">
+                                    <MFXTextField fx:id="txtAffiliatedFolio" floatingText="INGRESA EL FOLIO DE AFILIADO" prefHeight="60.0" prefWidth="350.0" />
+                                    <MFXButton fx:id="btnSearchAffiliated" onAction="#browseAffiliated" prefHeight="50.0" prefWidth="150.0" text="BUSCAR AFILIADO" />
+                                    <MFXFilterComboBox fx:id="fcbSelectWithdrawAccount" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" onAction="#selectWithdrawalAccount" prefHeight="60.0" prefWidth="350.0" />
+                                    <MFXTextField fx:id="txtWithdrawAmount" disable="true" floatMode="BORDER" floatingText="MONTO A RETIRAR" prefHeight="60.0" prefWidth="350.0" />
+                                    <MFXButton fx:id="btnWithdraw" disable="true" onAction="#withdraw" prefHeight="70.0" prefWidth="200.0" text="RETIRAR">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -84,13 +84,13 @@
                               <VBox alignment="TOP_CENTER" prefHeight="471.0" prefWidth="358.0" spacing="20.0">
                                  <children>
                                     <Label fx:id="validateAffiliatedLabel" alignment="CENTER" opacity="0.0" prefHeight="34.0" prefWidth="322.0" text="VALIDA EL USUARIO ADECUADO" />
-                                    <ImageView fx:id="afiliatedImageView" fitHeight="183.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="imvAffiliatedImage" fitHeight="183.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../resources/childPicture.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="afiliatedNameLabel" alignment="CENTER" prefHeight="26.0" prefWidth="322.0" text="Usuario" />
-                                    <MFXButton fx:id="validateAffiliatedButton" disable="true" onAction="#validateAffiliated" prefHeight="50.0" prefWidth="150.0" text="VALIDAR USUARIO" />
+                                    <Label fx:id="lblAffiliatedName" alignment="CENTER" prefHeight="26.0" prefWidth="322.0" text="Usuario" />
+                                    <MFXButton fx:id="btnValidateAffiliated" disable="true" onAction="#validateAffiliated" prefHeight="50.0" prefWidth="150.0" text="VALIDAR USUARIO" />
                                  </children>
                                  <padding>
                                     <Insets right="30.0" top="20.0" />

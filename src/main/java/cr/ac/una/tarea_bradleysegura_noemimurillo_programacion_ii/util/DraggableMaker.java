@@ -47,17 +47,17 @@ public class DraggableMaker {
         draggableNode.setOnMouseReleased(mouseEvent -> {
             if (externalContainer.getChildren().contains(draggableNode)) {
                 System.out.println("AnchorPane contains Draggable Node");
-                if (draggableNode.getLayoutX() <= externalContainer.getWidth() / 2 /*&&
-                        ((Affiliated)AppContext.getInstance().get("selectedAffiliated")).isAccountRemovable(((Label)draggableNode).getText())*/) {
+                if (draggableNode.getLayoutX() <= externalContainer.getWidth() / 2 &&
+                        ((Affiliated)AppContext.getInstance().get("selectedAffiliated")).isAccountRemovable(((Label)draggableNode).getText())) {
                     externalContainer.getChildren().remove(draggableNode);
                     internalContainerA.getChildren().add(draggableNode);
-                   //((AccountOpeningController)FlowController.getInstance().getController("AccountOpeningView")).removeAccount(draggableNode);
+                   ((AccountOpeningController)FlowController.getInstance().getController("AccountOpeningView")).removeAccount(draggableNode);
                     System.out.println("Draggable Node intersects first half");
                 }
-                else if(draggableNode.getLayoutX() >=  externalContainer.getWidth() / 2) {
+                else /*if(draggableNode.getLayoutX() >=  externalContainer.getWidth() / 2)*/ {
                     externalContainer.getChildren().remove(draggableNode);
                     internalContainerB.getChildren().add(draggableNode);
-                    //((AccountOpeningController)FlowController.getInstance().getController("AccountOpeningView")).createAccount(draggableNode);
+                    ((AccountOpeningController)FlowController.getInstance().getController("AccountOpeningView")).createAccount(draggableNode);
                     System.out.println("Draggable Node intersects second half");
                 }
             }

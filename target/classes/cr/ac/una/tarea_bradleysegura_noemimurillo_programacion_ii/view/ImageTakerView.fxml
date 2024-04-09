@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.ImageTakerController">
+    <stylesheets>
+        <URL value="@SystemStyleSheet.css" />
+    </stylesheets>
+   <children>
+      <VBox alignment="CENTER" layoutX="312.0" layoutY="177.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="imvAffiliatedImage" fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <MFXButton fx:id="btnExit" onAction="#goBack" prefHeight="80.0" prefWidth="240.0" text="REGRESAR" />
+                  <StackPane prefHeight="80.0" prefWidth="240.0">
+                     <children>
+                        <MFXButton fx:id="btnRetryCapture" onAction="#retryCapture" prefHeight="80.0" prefWidth="240.0" text="VOLVER A CAPTURAR" />
+                        <MFXButton fx:id="btnCaptureImage" onAction="#capture" prefHeight="80.0" prefWidth="240.0" text="CAPTURAR IMAGEN" />
+                     </children>
+                  </StackPane>
+                  <MFXButton fx:id="btnSave" disable="true" onAction="#save" prefHeight="80.0" prefWidth="240.0" text="GUARDAR" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
