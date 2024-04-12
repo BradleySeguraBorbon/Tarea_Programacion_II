@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXSpinner?>
+<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -19,27 +20,11 @@
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
     <children>
-          <VBox alignment="TOP_CENTER" prefHeight="650.0" prefWidth="1180.0" spacing="5.0">
+          <VBox alignment="TOP_CENTER" prefHeight="650.0" prefWidth="1180.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="1180.0">
+            <HBox alignment="CENTER" prefHeight="69.0" prefWidth="1180.0">
                <children>
                   <Label text="VALIDACIÓN DE BUZÓN DE DEPÓSITOS">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="52.0" prefWidth="170.0" />
-                  <Label text="Nota: Al modificar una denominación, presiona ">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="49.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/enterKey.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="para guardar los cambios">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -49,117 +34,176 @@
                   <Insets left="20.0" />
                </padding>
             </HBox>
-            <TableView fx:id="tbvBoxDeposits" prefHeight="513.0" prefWidth="1180.0">
-               <columns>
-                  <TableColumn fx:id="tbcDepositId" prefWidth="115.0" text="ID de Depósito" />
-                  <TableColumn fx:id="tbcDate" prefWidth="115.0" text="Fecha de Depósito" />
-                  <TableColumn fx:id="tbcAffiliated" prefWidth="115.0" text="Persona Afiliada" />
-                  <TableColumn fx:id="tbcFolio" prefWidth="115.0" text="Folio de Afiliado" />
-                  <TableColumn fx:id="tbc5Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc10Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc25Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc50Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc100Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc500Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc1000Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc2000Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc5000Colones" onEditCommit="#modifyDenomination" prefWidth="100.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc10000Colones" onEditCommit="#modifyDenomination" prefWidth="110.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbc20000Colones" onEditCommit="#modifyDenomination" prefWidth="110.0">
-                     <graphic>
-                        <ImageView fitHeight="49.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </TableColumn>
-                  <TableColumn fx:id="tbcAmount" prefWidth="120.0" text="MONTO TOTAL" />
-               </columns>
-            </TableView>
+            <HBox prefHeight="459.0" prefWidth="1180.0">
+               <children>
+                  <MFXTableView fx:id="tbvBoxDeposits" prefHeight="489.0" prefWidth="583.0">
+                      <tableColumns>
+                        <MFXTableColumn fx:id="tbcAffiliated" prefWidth="120.0" text="Afiliado" />
+                        <MFXTableColumn fx:id="tbcFolio" prefWidth="120.0" text="Folio" />
+                        <MFXTableColumn fx:id="tbcAccount" prefWidth="120.0" text="Cuenta" />
+                        <MFXTableColumn fx:id="tbcAmount" prefWidth="120.0" text="Monto" />
+                     </tableColumns>
+                   </MFXTableView>
+                  <VBox prefHeight="459.0" prefWidth="722.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="1000.0" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="5 COLONES" textAlignment="CENTER">
+                                 <graphic>
+                                    <ImageView fx:id="imvCincoColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/5colones.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="10 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvDiezColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/10Colones.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="25 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvVeinticincoColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/25Colones.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1180.0" spacing="10.0">
+                           <children>
+                              <MFXSpinner fx:id="spnrCincoColones" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
+                              <MFXSpinner fx:id="spnrDiezColones" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
+                              <MFXSpinner fx:id="spnrVeinticincoColones" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="1000.0" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="50 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvCincuentaColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/50Colones.jpeg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="100 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvCienColones1" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/100Colones.jpeg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="500 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvQuinientosColones1" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/500Colones.jpeg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1180.0" spacing="10.0">
+                           <children>
+                              <MFXSpinner fx:id="spnrCincuentaColones" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
+                              <MFXSpinner fx:id="spnrCienColones" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
+                              <MFXSpinner fx:id="spnrQuinientosColones" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1180.0" spacing="25.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="80.0" prefWidth="182.0" text="1000 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/1000colones.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="2000 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvDosMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/1000colones.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="5000 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvCincoMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/1000colones.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="1180.0" spacing="10.0">
+                           <children>
+                              <MFXSpinner fx:id="spnrMilColones" prefHeight="43.0" prefWidth="149.0" />
+                              <MFXSpinner fx:id="spnrDosMilColones" prefHeight="43.0" prefWidth="149.0" />
+                              <MFXSpinner fx:id="spnrCincoMilColones" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1180.0" spacing="25.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="10 000 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvDiezMilColones1" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/1000colones.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="20 000 COLONES">
+                                 <graphic>
+                                    <ImageView fx:id="imvVeinteMilColones1" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/1000colones.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="1180.0" spacing="10.0">
+                           <children>
+                              <MFXSpinner fx:id="spnrDiezMilColones" />
+                              <MFXSpinner fx:id="spnrVeinteMilColones" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
                   <MFXButton fx:id="btnClose" onAction="#close" prefHeight="70.0" prefWidth="180.0" text="CERRAR BUZÓN" />
+                  <StackPane prefHeight="70.0" prefWidth="180.0">
+                     <children>
+                        <MFXButton fx:id="btnSaveCorrections" onAction="#saveCorrections" prefHeight="70.0" prefWidth="180.0" text="GUARDAR CORRECIONES" />
+                        <MFXButton fx:id="btnModifyDeposit" onAction="#modifyDeposit" prefHeight="70.0" prefWidth="180.0" text="REVISAR DENOMINACIONES" />
+                     </children>
+                  </StackPane>
                           <MFXButton fx:id="depositValidationButton" onAction="#validateDeposit" prefHeight="70.0" prefWidth="180.0" text="VALIDAR DEPÓSITO" />
                </children>
             </HBox>

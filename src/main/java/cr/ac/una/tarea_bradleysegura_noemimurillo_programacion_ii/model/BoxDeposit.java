@@ -4,6 +4,8 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -57,47 +59,30 @@ public class BoxDeposit extends Transaction {
     public HashMap<Denomination, Integer> getDepositDenomination() {
         return depositDenomination;
     }
+    
+    public ArrayList<Denomination> getCoins() {
+        return (ArrayList<Denomination>)Arrays.asList(Denomination.class.getEnumConstants());
+    }
 
     public void setDenomination(Denomination moneda, Integer quantity) {
         depositDenomination.put(moneda, quantity);
     }
 
     public void calculateTotal() {
-        for (Denomination moneda : depositDenomination.keySet()) {
+        this.amount = 0.d;
+        for (Denomination moneda : this.depositDenomination.keySet()) {
             switch (moneda) {
-                case CINCO:
-                    this.amount += (depositDenomination.get(moneda) * 5);
-                    break;
-                case DIEZ:
-                    this.amount += (depositDenomination.get(moneda) * 10);
-                    break;
-                case VEINTICINCO:
-                    this.amount += (depositDenomination.get(moneda) * 25);
-                    break;
-                case CINCUENTA:
-                    this.amount += (depositDenomination.get(moneda) * 50);
-                    break;
-                case CIEN:
-                    this.amount += (depositDenomination.get(moneda) * 100);
-                    break;
-                case QUINIENTOS:
-                    this.amount += (depositDenomination.get(moneda) * 500);
-                    break;
-                case MIL:
-                    this.amount += (depositDenomination.get(moneda) * 1000);
-                    break;
-                case DOSMIL:
-                    this.amount += (depositDenomination.get(moneda) * 2000);
-                    break;
-                case CINCOMIL:
-                    this.amount += (depositDenomination.get(moneda) * 5000);
-                    break;
-                case DIEZMIL:
-                    this.amount += (depositDenomination.get(moneda) * 10000);
-                    break;
-                case VEINTEMIL:
-                    this.amount += (depositDenomination.get(moneda) * 20000);
-                    break;
+                case CINCO -> this.amount += (depositDenomination.get(moneda) * 5);
+                case DIEZ -> this.amount += (depositDenomination.get(moneda) * 10);
+                case VEINTICINCO -> this.amount += (depositDenomination.get(moneda) * 25);
+                case CINCUENTA -> this.amount += (depositDenomination.get(moneda) * 50);
+                case CIEN -> this.amount += (depositDenomination.get(moneda) * 100);
+                case QUINIENTOS -> this.amount += (depositDenomination.get(moneda) * 500);
+                case MIL -> this.amount += (depositDenomination.get(moneda) * 1000);
+                case DOSMIL -> this.amount += (depositDenomination.get(moneda) * 2000);
+                case CINCOMIL -> this.amount += (depositDenomination.get(moneda) * 5000);
+                case DIEZMIL -> this.amount += (depositDenomination.get(moneda) * 10000);
+                case VEINTEMIL -> this.amount += (depositDenomination.get(moneda) * 20000);
             }
         }
     }

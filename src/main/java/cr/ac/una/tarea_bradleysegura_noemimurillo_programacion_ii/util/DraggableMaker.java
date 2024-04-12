@@ -38,7 +38,7 @@ public class DraggableMaker {
                 draggableNode.setLayoutY((mouseEvent.getSceneY() - 110) - insideMouseY);
             }
         });
-    
+     
         draggableNode.setOnMouseDragged(mouseEvent -> {
             draggableNode.setLayoutX((mouseEvent.getSceneX() - 140) - insideMouseX);
             draggableNode.setLayoutY((mouseEvent.getSceneY() - 110) - insideMouseY);
