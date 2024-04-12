@@ -63,7 +63,7 @@ public class OfficersMainController extends Controller implements Initializable 
         String currentDirectory = System.getProperty("user.dir");
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
-
+        System.out.println(absolutePath);
         try {
             if (new File(absolutePath).isFile()) {
                 dataBank = DataManager.load(absolutePath);
@@ -72,6 +72,7 @@ public class OfficersMainController extends Controller implements Initializable 
                 //cooperativeNameLabel.setText((String) AppContext.getInstance().get("cooperativeName"));
                 //cooperativeLogoImageView.setImage(new Image(App.class.getResource("resources/" + AppContext.getInstance().get("cooperativeIcon")).toString()));
                 System.out.println("SAVED DATAMANAGER WAS LOADED");
+
             } else {
                 dataBank = new DataManager();
             }

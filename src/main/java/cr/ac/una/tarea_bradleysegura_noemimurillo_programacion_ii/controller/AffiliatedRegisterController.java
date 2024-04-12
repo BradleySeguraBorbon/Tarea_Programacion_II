@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -61,7 +62,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     private String affiliatedImageDir;
 
     /**
-     * Initializes the controller class.
+     * Initializablelizes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

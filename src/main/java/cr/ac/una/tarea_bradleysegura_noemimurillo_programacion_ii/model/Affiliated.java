@@ -50,6 +50,7 @@ public class Affiliated {
         this.profileImage = profileImage;
         this.cooperative = cooperative;
         accounts = new ArrayList();
+        this.profileImage = photo;
         
         //Creación de FOLIO ÚNICO
         Random random = new Random(); 
