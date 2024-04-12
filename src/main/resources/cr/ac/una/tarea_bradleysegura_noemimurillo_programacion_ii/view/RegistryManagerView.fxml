@@ -21,11 +21,11 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <MFXListView prefHeight="396.0" prefWidth="281.0" />
+            <MFXListView fx:id="tbvUsersList" prefHeight="396.0" prefWidth="281.0" />
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" spacing="20.0">
                <children>
                   <MFXButton fx:id="btnAddUser" lineSpacing="10.0" onAction="#addNewUser" text="Añadir Nuevo Usuario" />
-                  <MFXButton text="Modificar usuario" />
+                  <MFXButton fx:id="btnModifyUser" onAction="#modifyUser" text="Modificar usuario" />
                </children>
             </HBox>
          </children>
