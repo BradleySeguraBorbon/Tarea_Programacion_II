@@ -51,6 +51,8 @@ public class RegistryManagerController extends Controller implements Initializab
     @FXML
     private MFXTextField txtSurname;
     @FXML
+    private MFXTextField txtName;
+    @FXML
     private MFXTextField txtSecondSurname;
     @FXML
     private MFXTextField txtAge;
@@ -65,28 +67,6 @@ public class RegistryManagerController extends Controller implements Initializab
     @FXML
     private ImageView imgvUsersFace;
 
-    ArrayList<Affiliated> newAffiliates = new ArrayList<>();
-    String convertedImg = "";
-    
-    @FXML
-    private MFXTextField txtName;
-    @FXML
-     private MFXTextField txtSurname;
-    @FXML
-    private MFXTextField txtSecondSurname;
-    @FXML
-    private MFXTextField txtAge;
-    @FXML
-    private ToggleGroup SexGroup;
-    @FXML
-    private MFXButton btnDeleteUser;
-    @FXML
-    private MFXButton btnSaveChanges;
-    @FXML
-    private MFXTableView tbvUsersList;
-    @FXML
-    private ImageView imgvUsersFace;
-    
     ArrayList<Affiliated> newAffiliates = new ArrayList<>();
     String convertedImg = "";
 

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AffiliatedRegisterController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AffiliatedRegisterController">
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
@@ -26,7 +26,7 @@
             <Label text="Haz click sobre la imagen para capturar " />
             <ImageView fx:id="imvAffiliatedImage" fitHeight="139.0" fitWidth="194.0" onMouseClicked="#takePicture" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/takePicture.png" />
+                  <Image url="@../resources/DefaultImage.png" />
                </image>
             </ImageView>
             <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1000.0" spacing="40.0">

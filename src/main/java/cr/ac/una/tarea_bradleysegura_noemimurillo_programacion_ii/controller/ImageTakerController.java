@@ -41,8 +41,7 @@ public class ImageTakerController extends Controller implements Initializable {
 
     private Webcam webcam;
     private VideoTaker videoTaker;
-    private Image capturedImage;
-    private BufferedImage capturedFrame;
+    private BufferedImage capturedImage;
 
     /**
      * Initializes the controller class.
@@ -59,14 +58,22 @@ public class ImageTakerController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
-
+        if (!this.webcam.isOpen()) {
+            this.webcam = Webcam.getDefault();
+            this.webcam.setViewSize(WebcamResolution.VGA.getSize());
+            this.webcam.open();
+        }
+        if (this.videoTaker == null) {
+            this.videoTaker = new VideoTaker();
+            this.videoTaker.start();
+            retryCapture();
+        }       
     }
 
     public void capture() {
-        this.capturedFrame = this.webcam.getImage();
-        this.capturedImage = SwingFXUtils.toFXImage(capturedFrame, null);     
+        this.capturedImage = this.webcam.getImage();
         this.videoTaker.isThreadSuspended = true;
-        this.imvAffiliatedImage.setImage(capturedImage);
+        this.imvAffiliatedImage.setImage(SwingFXUtils.toFXImage(capturedImage, null));
         this.btnCaptureImage.setDisable(true);
         this.btnRetryCapture.setDisable(false);
         this.btnSave.setDisable(false);
@@ -101,6 +108,8 @@ public class ImageTakerController extends Controller implements Initializable {
     public void close() {
         this.webcam.close();
         this.videoTaker.isThreadSuspended = true;
+        this.videoTaker.interrupt();
+        this.videoTaker = null;
         ((Stage) this.btnExit.getScene().getWindow()).close();
     }
 

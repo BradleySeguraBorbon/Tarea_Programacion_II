@@ -4,15 +4,19 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,12 +33,10 @@ import javafx.stage.Stage;
  *
  * @author Bradley
  */
-
 public class MainController extends Controller implements Initializable {
 
     //Universal Attributes
     DataManager dataBank;
-    private static String cooperativeName;
     @FXML
     private StackPane mainStackPane;
     @FXML
@@ -77,7 +79,7 @@ public class MainController extends Controller implements Initializable {
     private Label officersWelcomeLabel;
 
     //AffiliatedView Components
-     @FXML
+    @FXML
     private VBox vboxAffiliated;
     @FXML
     private MFXButton btnOpenRegisterView;
@@ -110,24 +112,29 @@ public class MainController extends Controller implements Initializable {
 
             } else {
                 dataBank = new DataManager();
+                AppContext.getInstance().set("affiliated", new ArrayList<Affiliated>());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        AppContext.getInstance().set("User", "Officers");
+
+        AppContext.getInstance().set("User", "Teachers");
         setTeachersMainView(false);
         setOfficersMainView(false);
         setAffiliatedMainView(false);
-        switch((String)AppContext.getInstance().get("User")) {
-            case "Teachers" -> setTeachersMainView(true);
-            case "Officers" -> setOfficersMainView(true);
-           default -> setAffiliatedMainView(true);        
+        switch ((String) AppContext.getInstance().get("User")) {
+            case "Teachers" ->
+                setTeachersMainView(true);
+            case "Officers" ->
+                setOfficersMainView(true);
+            default ->
+                setAffiliatedMainView(true);
         }
     }
 
     @Override
     public void initialize() {
-
+        updateCooperativeInfo();
     }
 
     //TeachersView Methods
@@ -153,16 +160,6 @@ public class MainController extends Controller implements Initializable {
 
     public void openCooperativeManagementView() {
         FlowController.getInstance().goView("CooperativeManagementView");
-    }
-
-    public void setCooperativeLogo(Image imgCooperativeLogo) {
-        this.imvCooperativeLogo.setImage(imgCooperativeLogo);
-        System.out.println("Coop Logo Modified");
-    }
-
-    public void setCooperativeName(String newCooperativeName) {
-        lblCooperativeName.setText(cooperativeName);
-        System.out.println("Coop Name Modified");
     }
 
     //OfficersView Methods
@@ -207,7 +204,7 @@ public class MainController extends Controller implements Initializable {
 
     //AffiliatedView Methods
     public void setAffiliatedMainView(Boolean state) {
-         if (state) {
+        if (state) {
             vboxAffiliated.toFront();
             vboxAffiliated.setOpacity(1);
         } else {
@@ -237,6 +234,16 @@ public class MainController extends Controller implements Initializable {
     }
 
     //Universal Methods
+    public void updateCooperativeInfo() {
+        String cooperativeLogo = (String) AppContext.getInstance().get("CooperativeLogo");
+        String cooperativeName = (String) AppContext.getInstance().get("CooperativeName");
+        if (cooperativeLogo != null && cooperativeName != null) {
+            this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(cooperativeLogo));
+            lblCooperativeName.setText(cooperativeName);
+            System.out.println("Coop's Logo and Name Modified");
+        }
+    }
+
     public void exit() throws IOException {
         String currentDirectory = System.getProperty("user.dir");
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";

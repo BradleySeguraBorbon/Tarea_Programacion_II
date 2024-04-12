@@ -10,6 +10,7 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.BoxDepos
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Transaction;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -127,7 +128,7 @@ public class MoneyManagementController extends Controller implements Initializab
                 }
             }
             if (selectedAffiliated != null) {
-                //imvAffiliatedImage.setImage(new Image(selectedAffiliated.getProfileImage()));
+                imvAffiliatedImage.setImage(ImageConverter.fromBase64(selectedAffiliated.getProfileImage()));
                 lblAffiliatedName.setText(selectedAffiliated.getFullName());
                 validateAffiliatedLabel.setOpacity(1);
                 btnValidateAffiliated.setDisable(false);
