@@ -11,13 +11,16 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Transact
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXSpinner;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.controls.models.spinner.IntegerSpinnerModel;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -38,28 +41,22 @@ import javafx.util.Callback;
  *
  * @author Bradley
  */
+
 public class BoxDepositValidationController extends Controller implements Initializable {
 
     /*@FXML
-    private MFXTableView<BoxDeposit> tbvBoxDeposits;
-    @FXML
     private MFXButton amountCorrectionButton;
     @FXML
     private MFXTextField amountCorrectionTextField;
     @FXML
     private MFXButton applyCorrectionButton;*/
-    @FXML
-    private MFXButton depositValidationButton;
-    @FXML
-    private MFXButton btnClose;
-    /*@FXML
+ /*@FXML
     private MFXTableColumn tbcDepositId;
     @FXML
     private MFXTableColumn tbcDate;
     @FXML
     private MFXTableColumn tbcAmount;
-    @FXML
-    private MFXTableColumn tbcAffiliated;
+    
     @FXML
     private MFXTableColumn tbcFolio;
     @FXML
@@ -71,7 +68,7 @@ public class BoxDepositValidationController extends Controller implements Initia
     @FXML
     private MFXTableColumn tbc50Colones;
     @FXML
-    private MFXTableColumn tbc100Colones;
+    private MFXTableColumn<BoxDeposit, String> tbc100Colones;
     @FXML
     private MFXTableColumn tbc500Colones;
     @FXML
@@ -84,43 +81,50 @@ public class BoxDepositValidationController extends Controller implements Initia
     private MFXTableColumn tbc10000Colones;
     @FXML
     private MFXTableColumn tbc20000Colones;*/
-
     @FXML
-    private TableView<BoxDeposit> tbvBoxDeposits;
+    private MFXTableView<BoxDeposit> tbvBoxDeposits;
     @FXML
-    private TableColumn<BoxDeposit, String> tbcDepositId;
+    private MFXTableColumn<BoxDeposit> tbcAffiliated;
     @FXML
-    private TableColumn<BoxDeposit, String> tbcDate;
+    private MFXTableColumn<BoxDeposit> tbcFolio;
     @FXML
-    private TableColumn<BoxDeposit, String> tbcAmount;
+    private MFXTableColumn<BoxDeposit> tbcAccount;
     @FXML
-    private TableColumn<BoxDeposit, String> tbcAffiliated;
+    private MFXTableColumn<BoxDeposit> tbcAmount;
     @FXML
-    private TableColumn<BoxDeposit, String> tbcFolio;
+    private MFXSpinner<Integer> spnrCincoColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc5Colones;
+    private MFXSpinner<Integer> spnrDiezColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc10Colones;
+    private MFXSpinner<Integer> spnrVeinticincoColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc25Colones;
+    private MFXSpinner<Integer> spnrCincuentaColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc50Colones;
+    private MFXSpinner<Integer> spnrCienColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc100Colones;
+    private MFXSpinner<Integer> spnrQuinientosColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc500Colones;
+    private MFXSpinner<Integer> spnrMilColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc1000Colones;
+    private MFXSpinner<Integer> spnrDosMilColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc2000Colones;
+    private MFXSpinner<Integer> spnrCincoMilColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc5000Colones;
+    private MFXSpinner<Integer> spnrDiezMilColones;
     @FXML
-    private TableColumn<BoxDeposit, String> tbc10000Colones;
+    private MFXSpinner<Integer> spnrVeinteMilColones; 
     @FXML
-    private TableColumn<BoxDeposit, String> tbc20000Colones;
+    private MFXButton btnValidateDeposit;
+    @FXML
+    private MFXButton btnModifyDeposit;
+    @FXML
+    private MFXButton btnSaveCorrections;
+    @FXML
+    private MFXButton btnClose;
 
     private ArrayList<Affiliated> affiliatedList;
+    private BoxDeposit selectedDeposit;
+    private HashMap<BoxDeposit.Denomination, MFXSpinner> spinners;
 
     /**
      * Initializes the controller class.
@@ -138,137 +142,82 @@ public class BoxDepositValidationController extends Controller implements Initia
     }
 
     public void setupTbvBoxDeposits() {
-        this.tbcDepositId.setCellValueFactory(new PropertyValueFactory<BoxDeposit, String>("transactionID"));
-        this.tbcDate.setCellValueFactory(new PropertyValueFactory<BoxDeposit, String>("transactionTime"));
-        this.tbcAmount.setCellValueFactory(new PropertyValueFactory<BoxDeposit, String>("amount"));
-        this.tbcAffiliated.setCellValueFactory(boxDeposit -> new SimpleStringProperty(boxDeposit.getValue().getAffiliatedName()));
-        this.tbcFolio.setCellValueFactory(boxDeposit -> new SimpleStringProperty(boxDeposit.getValue().getAffiliatedFolio()));
-
-        this.tbc5Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.CINCO));
-        this.tbc10Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.DIEZ));
-        this.tbc25Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.VEINTICINCO));
-        this.tbc50Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.CINCUENTA));
-        this.tbc100Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.CIEN));
-        this.tbc500Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.QUINIENTOS));
-        this.tbc1000Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.MIL));
-        this.tbc2000Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.DOSMIL));
-        this.tbc5000Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.CINCOMIL));
-        this.tbc10000Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.DIEZMIL));
-        this.tbc20000Colones.setCellValueFactory(new DenominationCellValueFactory(BoxDeposit.Denomination.VEINTEMIL));
-
-        /*//EJEMPLO
-        Affiliated affiliated1 = new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope");
-        affiliated1.addAccount(new Account("Prueba"));
-        BoxDeposit depositA = new BoxDeposit(0.d, affiliated1.getFolio(), "Prueba", Transaction.Action.DEPOSITO);
-        depositA.setDenomination(BoxDeposit.Denomination.CINCO, 50);
-        depositA.setDenomination(BoxDeposit.Denomination.DIEZ, 100);
-        depositA.setDenomination(BoxDeposit.Denomination.CINCUENTA, 20);
-        depositA.calculateTotal();
-
-        Affiliated affiliated2 = new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope");
-        affiliated2.addAccount(new Account("Prueba"));
-        BoxDeposit depositB = new BoxDeposit(0.d, affiliated2.getFolio(), "Prueba", Transaction.Action.DEPOSITO);
-        depositB.setDenomination(BoxDeposit.Denomination.CINCO, 10);
-        depositB.setDenomination(BoxDeposit.Denomination.DIEZ, 20);
-        depositB.setDenomination(BoxDeposit.Denomination.CINCUENTA, 100);
-        depositB.calculateTotal();
-
-        ArrayList<BoxDeposit> boxDepositsArray = new ArrayList();
-        boxDepositsArray.add(depositA);
-        boxDepositsArray.add(depositB);
-        //FIN EJEMPLO */
+        this.tbcAffiliated.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAffiliatedName));
+        this.tbcFolio.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAffiliatedFolio));
+        this.tbcAccount.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAccountType));
+        this.tbcAmount.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAmount));
+        
+        this.spinners = new HashMap<>();
+        this.spinners.put(BoxDeposit.Denomination.CINCO, spnrCincoColones);
+        this.spinners.put(BoxDeposit.Denomination.DIEZ, spnrDiezColones);
+        this.spinners.put(BoxDeposit.Denomination.VEINTICINCO, spnrVeinticincoColones);
+        this.spinners.put(BoxDeposit.Denomination.CINCUENTA, spnrCincuentaColones);
+        this.spinners.put(BoxDeposit.Denomination.CIEN, spnrCienColones);
+        this.spinners.put(BoxDeposit.Denomination.QUINIENTOS, spnrQuinientosColones);
+        this.spinners.put(BoxDeposit.Denomination.MIL, spnrMilColones);
+        this.spinners.put(BoxDeposit.Denomination.DOSMIL, spnrDosMilColones);
+        this.spinners.put(BoxDeposit.Denomination.CINCOMIL, spnrCincoMilColones);
+        this.spinners.put(BoxDeposit.Denomination.DIEZMIL, spnrDiezMilColones);
+        this.spinners.put(BoxDeposit.Denomination.VEINTEMIL, spnrVeinteMilColones);
+        
+        for(MFXSpinner<Integer> spinner : this.spinners.values()) {
+            spinner.setSpinnerModel(new IntegerSpinnerModel(0));
+        }
         if (AppContext.getInstance().get("boxDeposits") != null) {
             this.tbvBoxDeposits.setItems(FXCollections.observableArrayList((ArrayList<BoxDeposit>) AppContext.getInstance().get("boxDeposits")));
         }
-        this.tbvBoxDeposits.setEditable(true);
-        this.tbc5Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc10Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc25Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc50Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc100Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc500Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc1000Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc2000Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc5000Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc10000Colones.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.tbc20000Colones.setCellFactory(TextFieldTableCell.forTableColumn());
     }
-
-    public class DenominationCellValueFactory implements Callback<TableColumn.CellDataFeatures<BoxDeposit, String>, ObservableValue<String>> {
-
-        private final BoxDeposit.Denomination denomination;
-
-        public DenominationCellValueFactory(BoxDeposit.Denomination denomination) {
-            this.denomination = denomination;
+    
+    public void modifyDeposit() {
+        selectedDeposit = this.tbvBoxDeposits.getSelectionModel().getSelectedValue();
+        if(selectedDeposit != null) {
+            for(BoxDeposit.Denomination denomination : this.spinners.keySet()) {
+                spinners.get(denomination).setDisable(false);
+                spinners.get(denomination).setValue(this.selectedDeposit.getSpecificDenomination(denomination));
+            }         
+            this.btnModifyDeposit.setDisable(true);
+            this.btnSaveCorrections.setDisable(false);
+            this.btnSaveCorrections.toFront();           
         }
-
-        @Override
-        public ObservableValue<String> call(TableColumn.CellDataFeatures<BoxDeposit, String> parameter) {
-            BoxDeposit boxDeposit = parameter.getValue();
-            if (boxDeposit != null && boxDeposit.getDepositDenomination().containsKey(denomination)) {
-                return new SimpleStringProperty(String.valueOf(boxDeposit.getDepositDenomination().get(denomination)));
-            } else {
-                return new SimpleStringProperty("");
+    }
+    
+    public void saveCorrections() {
+        selectedDeposit = this.tbvBoxDeposits.getSelectionModel().getSelectedValue();
+        if(selectedDeposit != null) { 
+            for(BoxDeposit.Denomination denomination : this.spinners.keySet()) {
+                this.selectedDeposit.setDenomination(denomination, (Integer)spinners.get(denomination).getSpinnerModel().getValue());
+                spinners.get(denomination).setDisable(true);
             }
+            this.btnModifyDeposit.setDisable(false);
+            this.btnSaveCorrections.setDisable(true);
+            this.btnModifyDeposit.toFront();
         }
-    }
-
-    public void modifyDenomination(CellEditEvent edittedCell) {
-        BoxDeposit selectedDeposit = tbvBoxDeposits.getSelectionModel().getSelectedItem();
-        BoxDeposit.Denomination selectedDenomination = null;
-
-        switch (edittedCell.getTableColumn().getId()) {
-            case "tbc5Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.CINCO;
-            case "tbc10Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.DIEZ;
-            case "tbc25Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.VEINTICINCO;
-            case "tbc50Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.CINCUENTA;
-            case "tbc100Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.CIEN;
-            case "tbc500Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.QUINIENTOS;
-            case "tbc1000Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.MIL;
-            case "tbc2000Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.DOSMIL;
-            case "tbc5000Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.CINCOMIL;
-            case "tbc10000Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.DIEZMIL;
-            case "tbc20000Colones" ->
-                selectedDenomination = BoxDeposit.Denomination.VEINTEMIL;
-        }
-        selectedDeposit.setDenomination(selectedDenomination, Integer.valueOf(edittedCell.getNewValue().toString()));
-        selectedDeposit.calculateTotal();
-        this.tbvBoxDeposits.refresh();
-        System.out.println(selectedDeposit.toString());
+        this.selectedDeposit.calculateTotal();
+        this.tbvBoxDeposits.update();
     }
 
     public void validateDeposit() {
-        BoxDeposit selectedDeposit = tbvBoxDeposits.getSelectionModel().getSelectedItem();
-        if(selectedDeposit == null) {
+        BoxDeposit selectedDeposit = tbvBoxDeposits.getSelectionModel().getSelectedValue();
+        if (selectedDeposit == null) {
             new Mensaje().show(Alert.AlertType.ERROR, "NO HAY UN DEPÓSITO SELECCIONADO", "Selecciona un depósito de buzón para continuar");
             return;
-        }        
+        }
         Affiliated depositAffiliated = null;
         for (Affiliated affiliated : this.affiliatedList) {
-            if(affiliated.getFolio().equals(selectedDeposit.getAffiliatedFolio())) {
+            if (affiliated.getFolio().equals(selectedDeposit.getAffiliatedFolio())) {
                 depositAffiliated = affiliated;
                 break;
             }
         }
-        if(depositAffiliated == null) {
+        if (depositAffiliated == null) {
             new Mensaje().show(Alert.AlertType.ERROR, "PERSONA AFILIADA NO ENCONTRADA", "La persona afiliada que recibe el depósito no se encuentra registrada en el sistema");
             return;
         }
-        for(Account account : depositAffiliated.getAccounts()) {
-            if(account.getType().equals(selectedDeposit.getAccountType())) {
+        for (Account account : depositAffiliated.getAccounts()) {
+            if (account.getType().equals(selectedDeposit.getAccountType())) {
                 account.makeTransaction(selectedDeposit);
                 this.tbvBoxDeposits.getItems().remove(selectedDeposit);
-                this.tbvBoxDeposits.refresh();
+                this.tbvBoxDeposits.update();
                 new Mensaje().show(Alert.AlertType.INFORMATION, "DEPÓSITO DE BUZÓN REALIZADO EXITOSAMENTE", "El depósito de buzón fue exitosamente completado");
                 return;
             }
@@ -280,81 +229,4 @@ public class BoxDepositValidationController extends Controller implements Initia
         getStage().close();
     }
 
-//    public void setuptbvBoxDeposits() {
-//        this.tbcDepositId.setComparator(Comparator.comparing(BoxDeposit::getTransactionID));
-//        this.tbcDate.setComparator(Comparator.comparing(BoxDeposit::getTransactionTime));
-//        this.tbcAmount.setComparator(Comparator.comparing(BoxDeposit::getAmount));
-//        this.tbcAffiliated.setComparator(Comparator.comparing(BoxDeposit::getAffiliatedName));
-//        this.tbcFolio.setComparator(Comparator.comparing(BoxDeposit::getAffiliatedFolio));
-//        this.tbc5Colones.setComparator(Comparator.comparing(BoxDeposit::getCincoColonesDenomination));
-//        this.tbc10Colones.setComparator(Comparator.comparing(BoxDeposit::getDiezColonesDenomination));
-//        this.tbc25Colones.setComparator(Comparator.comparing(BoxDeposit::getVeinticincoColonesDenomination));
-//        this.tbc50Colones.setComparator(Comparator.comparing(BoxDeposit::getCincuentaColonesDenomination));
-//        this.tbc100Colones.setComparator(Comparator.comparing(BoxDeposit::getCienColonesDenomination));
-//        this.tbc500Colones.setComparator(Comparator.comparing(BoxDeposit::getQuinientosColonesDenomination));
-//        this.tbc1000Colones.setComparator(Comparator.comparing(BoxDeposit::getMilColonesDenomination));
-//        this.tbc2000Colones.setComparator(Comparator.comparing(BoxDeposit::getDosMilColonesDenomination));
-//        this.tbc5000Colones.setComparator(Comparator.comparing(BoxDeposit::getCincoMilColonesDenomination));
-//        this.tbc10000Colones.setComparator(Comparator.comparing(BoxDeposit::getDiezMilColonesDenomination));
-//        this.tbc20000Colones.setComparator(Comparator.comparing(BoxDeposit::getVeinteMilColonesDenomination));
-//
-//        tbcDepositId.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getTransactionID));
-//        tbcDate.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getTransactionTime));
-//        tbcAmount.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAmount));
-//        tbcAffiliated.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAffiliatedName));
-//        tbcFolio.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAffiliatedFolio));
-//        tbc5Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getCincoColonesDenomination));
-//        tbc10Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getDiezColonesDenomination));
-//        tbc25Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getVeinticincoColonesDenomination));
-//        tbc50Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getCincuentaColonesDenomination));
-//        tbc100Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getCienColonesDenomination));
-//        tbc500Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getQuinientosColonesDenomination));
-//        tbc1000Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getMilColonesDenomination));
-//        tbc2000Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getDosMilColonesDenomination));
-//        tbc5000Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getCincoMilColonesDenomination));
-//        tbc10000Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getDiezMilColonesDenomination));
-//        tbc20000Colones.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getVeinteMilColonesDenomination));
-//
-//        //EJEMPLO
-//        BoxDeposit depositA = new BoxDeposit(0.d, new Affiliated("Noemi", "Murillo", "Godinez", 22, Affiliated.Sexo.FEMENINO, "Coope"), new Account("Prueba"), Transaction.Action.DEPOSITO);
-//        depositA.setDenomination(BoxDeposit.Denomination.CINCO, 50);
-//        depositA.setDenomination(BoxDeposit.Denomination.DIEZ, 100);
-//        depositA.setDenomination(BoxDeposit.Denomination.CINCUENTA, 20);
-//        depositA.calculateTotal();
-//
-//        BoxDeposit depositB = new BoxDeposit(0.d, new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope"), new Account("Prueba"), Transaction.Action.DEPOSITO);
-//        depositB.setDenomination(BoxDeposit.Denomination.CINCO, 10);
-//        depositB.setDenomination(BoxDeposit.Denomination.DIEZ, 20);
-//        depositB.setDenomination(BoxDeposit.Denomination.CINCUENTA, 100);
-//        depositB.calculateTotal();
-//
-//        ArrayList<BoxDeposit> boxDepositsArray = new ArrayList();
-//        boxDepositsArray.add(depositA);
-//        boxDepositsArray.add(depositB);
-//
-//        this.tbvBoxDeposits.setItems(FXCollections.observableArrayList(boxDepositsArray));
-//        //AppContext.getInstance().set("BoxDepositA", depositA);
-//    }
-//
-//    @FXML
-//    public void setCorrectionElement() {
-//        if (tbvBoxDeposits.getSelectionModel().getSelectedValue() != null) {
-//            BoxDeposit selectedDeposit = (BoxDeposit) tbvBoxDeposits.getSelectionModel().getSelectedValue();
-//            amountCorrectionTextField.setText(Double.toString(selectedDeposit.getAmount()));
-//        }
-//    }
-//
-//    public void applyCorrection() {
-//        String correctedAmount = amountCorrectionTextField.getText();
-//        if (tbvBoxDeposits.getSelectionModel().getSelectedValue() != null && !correctedAmount.isBlank()) {
-//            ObservableList<BoxDeposit> deposits = tbvBoxDeposits.getItems();
-//            for (BoxDeposit deposit : deposits) {
-//                if (deposit == tbvBoxDeposits.getSelectionModel().getSelectedValue()) {
-//                    deposit.setAmount(Double.parseDouble(correctedAmount));
-//                }
-//            }
-//            tbvBoxDeposits.setItems(deposits);
-//        }
-//    }
-//
 }

@@ -1,3 +1,4 @@
+cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\Main.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\ImageTakerController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\FlowController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\MoneyManagementController.class
@@ -30,5 +31,4 @@ cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\BoxDeposit
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\Mensaje.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\TeachersMainController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\ImageTakerController$VideoTaker.class
-cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\BoxDepositValidationController$DenominationCellValueFactory.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\BoxDepositController.class

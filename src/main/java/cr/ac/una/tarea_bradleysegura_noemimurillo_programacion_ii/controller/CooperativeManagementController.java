@@ -62,6 +62,7 @@ public class CooperativeManagementController extends Controller implements Initi
         }
     }
 
+    @FXML
     public void makeChanges() {
         String modifiedCooperativeName = txtCooperativeNameEditor.getText();
         if (!modifiedCooperativeName.isBlank()) {
