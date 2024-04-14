@@ -2,6 +2,150 @@
  * Empty Stylesheet file.
  */
 
+* {
+    -fx-main-title-color: #333333;
+    -fx-informative-title-color: #33ff00;
+    -fx-base-btn-color: #6666ff;
+    -fx-base-btn-text-color: #000000;
+    -fx-base-alert-color: #ff0033;
+}
+
 .mainFxmlClass {
 
+}
+
+.mainBackground {
+    -fx-background-image: url("../resources/MainBackground.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.label {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-weight: bold;
+}
+
+.jfx-lbl-title {
+    -fx-font-size: 36px;
+    -fx-text-fill: -fx-main-title-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 2, 0.0, 1, 1);
+}
+
+.jfx-lbl-information {
+    -fx-font-size: 16px;
+    -fx-text-fill: -fx-informative-title-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 2, 0.0, 1, 1);
+}
+
+.mfx-button:armed,
+.mfx-button:hover,
+.mfx-button:focused,
+.mfx-button {
+    -fx-background-radius: 15px;
+    -fx-background-insets: 0px;
+    -fx-font: bold 14px "Comic Sans MS";
+    -mfx-button-type: RAISED;
+    -fx-content-display: left;
+    -fx-alignment:CENTER;
+    -fx-text-fill: -fx-base-btn-text-color;
+    -fx-background-color: -fx-base-btn-color;
+}
+
+.button:hover {
+    -fx-background-color: #33ffcc;
+    -fx-effect:dropshadow(gaussian, rgba(225, 225, 225, 1), 10, 0.5, 0, 0);
+}
+
+.jfx-btn-first-template {
+    -fx-background-color: #3333ff;
+}
+
+.jfx-btn-second-template {
+    -fx-background-color: #cc00ff;
+}
+
+.btn-alert-action{
+    -fx-background-color: -fx-base-alert-color;
+}
+
+.btn-alert-action:hover {
+    -fx-background-color: #ff1ca5
+}
+
+.mfx-button#btnOpenAccountManagement>ImageView {
+    -fx-image: url("../resources/TiposCuentasBancarias.png");
+}
+
+.mfx-button#btnOpenCooperativeManagement>ImageView {
+    -fx-image: url("../resources/Edit.png");
+}
+
+.mfx-button#btnExit>ImageView{
+    -fx-image: url("../resources/Exit.png");
+}
+
+.ImageView#imvTeachersWelcome {
+    -fx-image:url("../resources/TeachersWelcomeGif.gif");
+}
+
+.mfx-text-field {
+    -mfx-main: -mfx-purple;
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: lightgray;
+    -fx-border-radius: 10;
+    -fx-padding: 5;
+    -fx-font-family: "Gill Sans";
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+}
+
+.mfx-text-field:floating .floating-text {
+    -fx-font-weight: bold;
+}
+
+.mfx-list-view {
+    -mfx-track-color: rgb(255, 255, 255);
+    -mfx-thumb-color: rgb(137, 137, 137);
+    -mfx-thumb-hover-color: rgb(89, 88, 91);
+}
+
+.mfx-list-view .virtual-flow .scroll-bar .track {
+    -fx-background-color: -mfx-track-color;
+}
+
+.mfx-list-view .virtual-flow .scroll-bar .thumb {
+    -fx-background-color: -mfx-thumb-color;
+}
+
+.mfx-list-view .virtual-flow .scroll-bar .thumb:pressed,
+.mfx-list-view .virtual-flow .scroll-bar .thumb:hover {
+  -fx-background-color: -mfx-thumb-hover-color;
+}
+
+.mfx-list-cell {
+  -fx-background-color: #00cccc;
+  -fx-border-color: #00cccc;
+  -fx-padding: 5;
+}
+
+.mfx-list-cell:hover {
+  -fx-background-color: #0099ff;
+  -fx-border-color: #0099ff;
+}
+
+.mfx-list-cell:selected {
+    -fx-background-color: #cc00ff;
+    -fx-border-color: #ff3399;
+}
+
+.mfx-list-cell:empty {
+    -fx-background-color: #33ffcc;
+    -fx-border-color: #33ffcc;
+}
+
+.mfx-list-cell .data-label {
+    -fx-font-family: "Open Sans Regular";
+    -fx-text-fill: -mfx-text-he;
 }

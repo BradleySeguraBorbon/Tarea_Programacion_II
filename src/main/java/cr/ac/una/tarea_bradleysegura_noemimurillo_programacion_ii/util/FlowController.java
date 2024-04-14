@@ -88,7 +88,7 @@ public class FlowController {
     public void goMain() {
         try {
             this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/MainView.fxml"), this.idioma)));
-            MFXThemeManager.addOn(getInstance().getMainScene(), Themes.DEFAULT, Themes.LEGACY);
+            MFXThemeManager.addOn(this.mainStage.getScene(), Themes.DEFAULT, Themes.LEGACY);
             this.mainStage.show();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);

@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.CooperativeManagementController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="jfx-lbl-information" stylesheets="@SystemStyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.CooperativeManagementController">
    <children>
       <HBox alignment="CENTER" layoutX="-7.0" layoutY="6.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="6.0">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="719.0" prefWidth="556.0" spacing="30.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="498.0" text="HAS CLICK PARA MODIFICAR EL LOGO DE LA COOPERATIVA">
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="512.0" styleClass="jfx-lbl-information" text="HAS CLICK PARA MODIFICAR EL LOGO DE LA COOPERATIVA">
                      <font>
                         <Font size="14.0" />
                      </font>

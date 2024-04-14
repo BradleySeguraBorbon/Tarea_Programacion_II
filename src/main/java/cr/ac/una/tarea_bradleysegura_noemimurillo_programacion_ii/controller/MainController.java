@@ -118,7 +118,7 @@ public class MainController extends Controller implements Initializable {
             e.printStackTrace();
         }
 
-        AppContext.getInstance().set("User", "Teachers");
+        AppContext.getInstance().set("User", "Officers");
         setTeachersMainView(false);
         setOfficersMainView(false);
         setAffiliatedMainView(false);

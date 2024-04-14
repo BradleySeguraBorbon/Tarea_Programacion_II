@@ -67,6 +67,7 @@ public class AccountTypeManagementController extends Controller implements Initi
         try {
             String newAccountType = txtAddAccountType.getText();
             if(!newAccountType.isBlank()) {
+                this.lstvAccountTypes.getSelectionModel().clearSelection();
                 ObservableList<String> modifiedList = lstvAccountTypes.getItems();
                 modifiedList.add(newAccountType);
                 lstvAccountTypes.setItems(modifiedList);
@@ -83,5 +84,6 @@ public class AccountTypeManagementController extends Controller implements Initi
     public void deleteSelectedAccountType() {
         this.availableAccounts.remove(this.lstvAccountTypes.getSelectionModel().getSelectedValue());
         this.lstvAccountTypes.setItems(FXCollections.observableArrayList(this.availableAccounts));
+        this.lstvAccountTypes.getSelectionModel().clearSelection();
     }
 }

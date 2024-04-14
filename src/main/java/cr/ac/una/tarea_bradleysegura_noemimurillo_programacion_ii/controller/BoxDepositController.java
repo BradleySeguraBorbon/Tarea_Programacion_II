@@ -88,6 +88,8 @@ public class BoxDepositController extends Controller implements Initializable {
     private Label lblTotalAmount;
     @FXML
     private MFXButton btnDone;
+    @FXML
+    private MFXButton btnClose;
 
     private Affiliated selectedAffiliated;
     private Account selectedAccount;
@@ -134,7 +136,7 @@ public class BoxDepositController extends Controller implements Initializable {
 
     }
 
-    public void searchAffiliated() { 
+    public void searchAffiliated() {
         clear();
         String typedFolio = txtFolio.getText();
         if (!typedFolio.isBlank()) {
@@ -180,6 +182,13 @@ public class BoxDepositController extends Controller implements Initializable {
         this.spnrVeinteMilColones.setValue(0);
         this.lblTotalAmount.setText("0");
     }
+    
+    private Boolean spinnersBlank() {
+        return this.spnrCincoColones.getValue() == 0 && this.spnrDiezColones.getValue() == 0 && this.spnrVeinticincoColones.getValue() == 0 &&
+                this.spnrCincuentaColones.getValue() == 0 && this.spnrCienColones.getValue() == 0 && this.spnrQuinientosColones.getValue() == 0 &&
+                this.spnrMilColones.getValue() == 0 && this.spnrDosMilColones.getValue() == 0 && this.spnrCincoMilColones.getValue() == 0 &&
+                this.spnrDiezMilColones.getValue() == 0 && this.spnrVeinteMilColones.getValue() == 0;
+    }
 
     public void save() {
         if (this.txtFolio.getText().isBlank()) {
@@ -188,6 +197,9 @@ public class BoxDepositController extends Controller implements Initializable {
         } else if (this.fcbSelectAccount.getSelectedItem() == null) {
             new Mensaje().show(Alert.AlertType.WARNING, "CUENTA NO SELECCIONADA", "Selecciona la cuenta de afiliado para continuar");
             this.txtFolio.requestFocus();
+        } else if (spinnersBlank()) {
+            new Mensaje().show(Alert.AlertType.WARNING, "DENOMINACIONES NO INDICADAS", "Agrega las denominaciones para continuar");
+            this.spnrCincoColones.requestFocus();
         } else {
             HashMap<BoxDeposit.Denomination, Integer> boxDepositDenomination = new HashMap<>();
 
@@ -211,6 +223,10 @@ public class BoxDepositController extends Controller implements Initializable {
             clear();
             getStage().close();
         }
+    }
+    
+    public void close() {
+        getStage().close();
     }
 
 }

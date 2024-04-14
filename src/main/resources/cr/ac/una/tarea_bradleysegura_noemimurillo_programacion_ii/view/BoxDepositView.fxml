@@ -22,7 +22,7 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="423.0" layoutY="92.0" prefHeight="613.0" prefWidth="1180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label prefHeight="55.0" prefWidth="332.0" text="BIENVENID@ AL BUZÓN DE DEPÓSITOS">
+            <Label prefHeight="55.0" prefWidth="383.0" text="BIENVENID@ AL BUZÓN DE DEPÓSITOS">
                <font>
                   <Font size="18.0" />
                </font>
@@ -180,11 +180,20 @@
                   </Label>
                </children>
             </HBox>
-            <MFXButton fx:id="btnDone" onAction="#save" prefHeight="63.0" prefWidth="250.0" text="FINALIZAR">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </MFXButton>
+            <HBox alignment="CENTER" spacing="40.0">
+               <children>
+                  <MFXButton fx:id="btnClose" onAction="#close" prefHeight="63.0" prefWidth="250.0" text="CERRAR">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton fx:id="btnDone" onAction="#save" prefHeight="63.0" prefWidth="250.0" text="FINALIZAR">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXButton>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>
