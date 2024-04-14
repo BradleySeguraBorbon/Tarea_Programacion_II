@@ -66,15 +66,15 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private HBox hboxOfficers;
     @FXML
-    private Button openAffiliatedRegisterButton;
+    private Button btnOpenAffiliatedRegister;
     @FXML
-    private Button openCardPrintButton;
+    private Button btnOpenCardPrint;
     @FXML
-    private Button openAccountOpeningButton;
+    private Button btnOpenAccountOpening;
     @FXML
-    private Button openMoneyManagementButton;
+    private Button btnOpenMoneyManagement;
     @FXML
-    private ImageView mainIconImageView;
+    private ImageView imvOfficersWelcome;
     @FXML
     private Label officersWelcomeLabel;
 
@@ -171,15 +171,15 @@ public class MainController extends Controller implements Initializable {
             hboxOfficers.toBack();
             hboxOfficers.setOpacity(0);
         }
-        openAffiliatedRegisterButton.setDisable(!state);
-        openAffiliatedRegisterButton.setOpacity(state ? 1 : 0);
-        openCardPrintButton.setDisable(!state);
-        openCardPrintButton.setOpacity(state ? 1 : 0);
-        openAccountOpeningButton.setDisable(!state);
-        openAccountOpeningButton.setOpacity(state ? 1 : 0);
-        openMoneyManagementButton.setDisable(!state);
-        openMoneyManagementButton.setOpacity(state ? 1 : 0);
-        mainIconImageView.setOpacity(state ? 1 : 0);
+        btnOpenAffiliatedRegister.setDisable(!state);
+        btnOpenAffiliatedRegister.setOpacity(state ? 1 : 0);
+        btnOpenCardPrint.setDisable(!state);
+        btnOpenCardPrint.setOpacity(state ? 1 : 0);
+        btnOpenAccountOpening.setDisable(!state);
+        btnOpenAccountOpening.setOpacity(state ? 1 : 0);
+        btnOpenMoneyManagement.setDisable(!state);
+        btnOpenMoneyManagement.setOpacity(state ? 1 : 0);
+        imvOfficersWelcome.setOpacity(state ? 1 : 0);
         officersWelcomeLabel.setOpacity(state ? 1 : 0);
     }
 

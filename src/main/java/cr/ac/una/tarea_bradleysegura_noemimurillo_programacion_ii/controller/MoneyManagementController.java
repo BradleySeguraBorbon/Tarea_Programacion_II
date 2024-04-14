@@ -32,6 +32,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -40,6 +41,8 @@ import javafx.scene.image.ImageView;
  */
 public class MoneyManagementController extends Controller implements Initializable {
 
+    @FXML
+    private AnchorPane apMoneyManagement;
     @FXML
     private MFXFilterComboBox<Affiliated> fcbSelectAffiliated;
     @FXML

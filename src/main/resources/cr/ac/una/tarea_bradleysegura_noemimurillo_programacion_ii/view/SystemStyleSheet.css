@@ -3,12 +3,20 @@
  */
 
 * {
+    -fx-base-font: "Comic Sans MS";
     -fx-main-title-color: #333333;
-    -fx-informative-title-color: #33ff00;
+    -fx-informative-dark-lbl-color: #3333ff;
+    -fx-informative-light-lbl-color: #00ffcc;
+    -fx-important-lbl-color: #ff0066;
     -fx-base-btn-color: #6666ff;
     -fx-base-btn-text-color: #000000;
     -fx-base-alert-color: #ff0033;
+    -fx-background-subcolor-a: #00ffcc;
+    -fx-background-subcolor-b: #9999ff;
+
 }
+
+/* ---------------------------------------------------- Panes ----------------------------------------------------*/
 
 .mainFxmlClass {
 
@@ -21,6 +29,53 @@
     -fx-background-position: center center;
 }
 
+.jfx-sub-background-a {
+    -fx-background-color: -fx-background-subcolor-a;
+    -fx-background-opacity: 0.8;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: -fx-background-subcolor-b;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
+}
+
+.jfx-sub-background-b {
+    -fx-background-color: -fx-background-subcolor-b;
+    -fx-background-opacity: 0.8;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: -fx-background-subcolor-a;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
+}
+
+.jfx-internal-pane {
+    -fx-background-image: url("../resources/SecondBackground.png");
+}
+
+.jfx-internal-pane-bordered {
+    -fx-background-image: url("../resources/SecondBackground.png");
+    -fx-border-color: #3333ff;
+    -fx-border-width: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1), 10.0, 0.7, 0.0, 1.5);
+}
+
+.tab-pane {
+    -fx-background-color: rgba(102, 255, 204, 0.3);
+}
+
+.tab-header-background {
+    -fx-background-color: -fx-background-subcolor-a;
+}
+
+.tab {
+    -fx-background-color: #0099ff;
+    -fx-font-family: "Comic Sans MS";
+}
+
+/* ---------------------------------------------------- Labels ----------------------------------------------------*/
 .label {
     -fx-font-family: "Comic Sans MS";
     -fx-font-weight: bold;
@@ -32,11 +87,46 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 2, 0.0, 1, 1);
 }
 
-.jfx-lbl-information {
-    -fx-font-size: 16px;
-    -fx-text-fill: -fx-informative-title-color;
+.jx-lbl-subtitle {
+    -fx-font-size: 18px;
+    -fx-text-fill: -fx-main-title-color;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 2, 0.0, 1, 1);
 }
+
+.jfx-dark-lbl-information {
+    -fx-font-size: 18px;
+    -fx-text-fill: -fx-informative-dark-lbl-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 2, 0.0, 1, 1);
+}
+
+.jfx-light-lbl-information {
+    -fx-font-size: 18px;
+    -fx-text-fill: -fx-informative-light-lbl-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 2, 0.0, 1, 1);
+}
+
+.jfx-lbl-important-indication {
+    -fx-text-fill: -fx-important-lbl-color;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 2, 0.0, 1, 1);
+}
+
+.jfx-lbl-small {
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-text-fill: -fx-main-title-color;
+}
+
+.jfx-lbl-draggable {
+    -fx-shape:"M 100,10 L 115,45 L 155,45 L 120,70 L 135,105 L 100,80 L 65,105 L 80,70 L 45,45 L 85,45 Z";
+    -fx-background-color: #ffff66;
+    -fx-font-size: 10px;
+    -fx-pref-width: 100;
+    -fx-pref-height: 85;
+    -fx-alignment: center;
+}
+
+/* ---------------------------------------------------- Buttons ----------------------------------------------------*/
 
 .mfx-button:armed,
 .mfx-button:hover,
@@ -65,6 +155,14 @@
     -fx-background-color: #cc00ff;
 }
 
+.jfx-btn-third-template {
+    -fx-background-color: #33ff66
+}
+
+.jfx-btn-fourth-template {
+    -fx-background-color: #ff33cc
+}
+
 .btn-alert-action{
     -fx-background-color: -fx-base-alert-color;
 }
@@ -85,12 +183,37 @@
     -fx-image: url("../resources/Exit.png");
 }
 
+.mfx-button#btnOpenMoneyManagement>ImageView {
+    -fx-image: url("../resources/money.png");
+}
+
+.mfx-button#btnOpenCardPrint>ImageView {
+    -fx-image: url("../resources/id.png");
+}
+
+.mfx-button#btnOpenAffiliatedRegister>ImageView {
+    -fx-image: url("../resources/affiliated.png");
+}
+
+.mfx-button#btnOpenAccountOpening>ImageView {
+    -fx-image: url("../resources/ahorro.png");
+}
+
+/* ---------------------------------------------------- ImageView ----------------------------------------------------*/
+
 .ImageView#imvTeachersWelcome {
     -fx-image:url("../resources/TeachersWelcomeGif.gif");
 }
 
+.ImageView#imvOfficersWelcome {
+    -fx-image:url("../resources/OfficerCat.gif");
+}
+
+/* ---------------------------------------------------- TextField ----------------------------------------------------*/
+
 .mfx-text-field {
     -mfx-main: -mfx-purple;
+    -mfx-float-mode: BORDER;
     -fx-background-color: white;
     -fx-background-radius: 10;
     -fx-border-color: lightgray;
@@ -101,9 +224,16 @@
     -fx-font-size: 14px;
 }
 
+.mfx-text-field .floating-text, 
+.mfx-text-field:floating .floating text {
+    -fx-font-family: "Comic Sans MS";
+}
+
 .mfx-text-field:floating .floating-text {
     -fx-font-weight: bold;
 }
+
+/* ---------------------------------------------------- ListView ----------------------------------------------------*/
 
 .mfx-list-view {
     -mfx-track-color: rgb(255, 255, 255);
@@ -121,18 +251,18 @@
 
 .mfx-list-view .virtual-flow .scroll-bar .thumb:pressed,
 .mfx-list-view .virtual-flow .scroll-bar .thumb:hover {
-  -fx-background-color: -mfx-thumb-hover-color;
+    -fx-background-color: -mfx-thumb-hover-color;
 }
 
 .mfx-list-cell {
-  -fx-background-color: #00cccc;
-  -fx-border-color: #00cccc;
-  -fx-padding: 5;
+    -fx-background-color: #00cccc;
+    -fx-border-color: #00cccc;
+    -fx-padding: 5;
 }
 
 .mfx-list-cell:hover {
-  -fx-background-color: #0099ff;
-  -fx-border-color: #0099ff;
+    -fx-background-color: #0099ff;
+    -fx-border-color: #0099ff;
 }
 
 .mfx-list-cell:selected {

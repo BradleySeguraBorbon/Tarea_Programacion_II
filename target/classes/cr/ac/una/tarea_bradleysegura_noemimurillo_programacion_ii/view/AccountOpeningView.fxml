@@ -14,12 +14,12 @@
          <children>
             <HBox alignment="CENTER" prefHeight="51.0" prefWidth="1000.0">
                <children>
-                  <Label prefHeight="22.0" prefWidth="66.0" text="Afiliado: ">
+                  <Label prefHeight="22.0" prefWidth="65.0" text="Afiliado: ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblSelectedAffiliated" prefHeight="23.0" prefWidth="235.0" text=" ">
+                  <Label fx:id="lblSelectedAffiliated" prefHeight="23.0" prefWidth="235.0" styleClass="jfx-lbl-important-indication" text=" ">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -28,11 +28,11 @@
             </HBox>
             <HBox fx:id="centerHBox" alignment="CENTER" prefHeight="500.0" prefWidth="200.0">
                <children>
-                  <FlowPane fx:id="fpOpeningAccounts" hgap="15.0" prefHeight="399.0" prefWidth="446.0" rowValignment="TOP" vgap="15.0">
+                  <FlowPane fx:id="fpOpeningAccounts" hgap="15.0" prefHeight="399.0" prefWidth="459.0" rowValignment="TOP" styleClass="jfx-sub-background-a" vgap="15.0">
                      <children>
                         <HBox prefHeight="50.0" prefWidth="455.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="455.0" text="CUENTAS A APERTURAR">
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="455.0" styleClass="jfx-lbl-information" text="CUENTAS A APERTURAR">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -45,11 +45,11 @@
                      </padding>
                   </FlowPane>
                   <VBox prefHeight="497.0" prefWidth="50.0" />
-                  <FlowPane fx:id="fpOpenedAccounts" columnHalignment="RIGHT" hgap="15.0" prefHeight="200.0" prefWidth="455.0" rowValignment="TOP" vgap="15.0">
+                  <FlowPane fx:id="fpOpenedAccounts" columnHalignment="RIGHT" hgap="15.0" prefHeight="200.0" prefWidth="455.0" rowValignment="TOP" styleClass="jfx-sub-background-b" vgap="15.0">
                      <children>
                         <HBox prefHeight="50.0" prefWidth="455.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="455.0" text="CUENTAS DISPONIBLES">
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="455.0" styleClass="jfx-lbl-information" text="CUENTAS DISPONIBLES">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -63,7 +63,7 @@
                   </FlowPane>
                </children>
                <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </HBox>
          </children>

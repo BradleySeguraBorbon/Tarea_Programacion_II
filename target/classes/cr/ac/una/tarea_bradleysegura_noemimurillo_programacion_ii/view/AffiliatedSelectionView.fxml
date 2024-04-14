@@ -16,7 +16,7 @@
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="176.0" layoutY="67.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="176.0" layoutY="67.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="jfx-internal-pane-bordered" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="SELECCIÓN DE AFILIADO">
                <font>
@@ -26,10 +26,10 @@
             <ImageView fitHeight="87.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" />
             <MFXFilterComboBox fx:id="afiliatedSelectionComboBox" onAction="#setSelectedAffiliated" prefWidth="250.0" />
             <Pane prefHeight="26.0" prefWidth="400.0" />
-            <Label text="AFILIADO SELECCIONADO" />
-            <Label fx:id="afiliatedNameLabel" text="-------------" />
-            <Label text="NÚMERO DE FOLIO" />
-            <Label fx:id="afiliatedFolioLabel" text="-------------" />
+            <Label styleClass="jfx-light-lbl-information" text="AFILIADO SELECCIONADO" />
+            <Label fx:id="afiliatedNameLabel" styleClass="jfx-lbl-small" text="-------------" />
+            <Label styleClass="jfx-light-lbl-information" text="NÚMERO DE FOLIO" />
+            <Label fx:id="afiliatedFolioLabel" styleClass="jfx-lbl-small" text="-------------" />
             <Pane prefHeight="22.0" prefWidth="400.0" />
             <MFXButton fx:id="continueButton" onAction="#close" prefHeight="47.0" prefWidth="155.0" text="CONTINUAR" />
          </children>
