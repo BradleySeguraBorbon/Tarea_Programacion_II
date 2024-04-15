@@ -4,12 +4,14 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.App;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -100,19 +102,23 @@ public class MainController extends Controller implements Initializable {
         String currentDirectory = System.getProperty("user.dir");
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
-        System.out.println(absolutePath);
+        //System.out.println("DEFAULT LOGO ON BASE 64 : " + ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
+        AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
+        AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
         try {
             if (new File(absolutePath).isFile()) {
                 dataBank = DataManager.load(absolutePath);
                 dataBank.unpackData();
                 System.out.println(dataBank.getAvailableAccounts());
-                //cooperativeNameLabel.setText((String) AppContext.getInstance().get("cooperativeName"));
-                //cooperativeLogoImageView.setImage(new Image(App.class.getResource("resources/" + AppContext.getInstance().get("cooperativeIcon")).toString()));
+                //lblCooperativeName.setText((String) AppContext.getInstance().get("cooperativeName"));
+                //imvCooperativeLogo.setImage(new Image(App.class.getResource("resources/" + AppContext.getInstance().get("cooperativeIcon")).toString()));
                 System.out.println("SAVED DATAMANAGER WAS LOADED");
 
             } else {
                 dataBank = new DataManager();
                 AppContext.getInstance().set("affiliated", new ArrayList<Affiliated>());
+                AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
+                AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
             }
         } catch (Exception e) {
             e.printStackTrace();
