@@ -9,6 +9,7 @@ import com.github.sarxos.webcam.WebcamResolution;*/
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
@@ -17,6 +18,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.models.spinner.IntegerSpinnerModel;
 import io.github.palexdev.materialfx.controls.models.spinner.SpinnerModel;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -59,7 +61,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     private ToggleGroup SexSelection;
 
     private ArrayList<Affiliated> affiliated;
-    private String affiliatedImageDir;
+    private BufferedImage image;
 
     /**
      * Initializablelizes the controller class.
@@ -104,9 +106,13 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         } else if (!rBtnMasculino.isSelected() && !rBtnFemenino.isSelected()) {
             alerta.show(Alert.AlertType.WARNING, "SEXO NO INDICADO", "Debes indicar tu sexo para continuar");
             System.out.println("ERROR");
+        } else if (image == null) {
+            alerta.show(Alert.AlertType.WARNING, "IMAGEN NO CAPTURADA", "Debes capturar una imagen para continuar");
+            System.out.println("ERROR");
         } else {
             Affiliated.Sexo sexo = (rBtnMasculino.isSelected()) ? Affiliated.Sexo.MASCULINO : Affiliated.Sexo.FEMENINO;
-            this.affiliated.add(new Affiliated(name, firstLastName, secondLastName, age, sexo, affiliatedImageDir, cooperativeName));
+            System.out.println("IMAGE IN JSON " + ImageConverter.toBase64(image, "JPG"));
+            this.affiliated.add(new Affiliated(name, firstLastName, secondLastName, age, sexo, ImageConverter.toBase64(image, "JPG"), cooperativeName));
             alerta.show(Alert.AlertType.INFORMATION, "REGISTRO EXITOSO", "'¡Bienvenid@ a " + cooperativeName + ", " + name + "!");
             AppContext.getInstance().set("affiliated", this.affiliated);
         }
@@ -116,17 +122,15 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), false);
     }
 
-    public void recoverFocus(Image takenImage) {
+    public void recoverFocus(BufferedImage takenImage) {
         try {
             if (takenImage != null) {
-                this.affiliatedImageDir = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/" + (new Random()).nextInt(100000) + ".jpg";
-                ImageIO.write(SwingFXUtils.fromFXImage(takenImage, null), "JPG", new File(this.affiliatedImageDir));
-                this.imvAffiliatedImage.setImage(takenImage);
+                this.image = takenImage;
+                this.imvAffiliatedImage.setImage(SwingFXUtils.toFXImage(takenImage, null));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        FlowController.getInstance().limpiarLoader("ImageTakerView");
     }
 
 }

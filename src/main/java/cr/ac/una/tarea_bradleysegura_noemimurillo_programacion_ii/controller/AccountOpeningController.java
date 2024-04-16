@@ -63,14 +63,16 @@ public class AccountOpeningController extends Controller implements Initializabl
         }
         for (String accountType : this.selectedAffiliated.getAccountTypes()) {
             Label accountLabel = new Label(accountType);
-            accountLabel.setPrefSize(140, 60);
+            //accountLabel.setPrefSize(140, 120);
+            accountLabel.getStyleClass().add("jfx-lbl-draggable");
             dragFactory.makeDraggable(accountLabel, root, fpOpeningAccounts, fpOpenedAccounts);
             fpOpenedAccounts.getChildren().add(accountLabel);
         }
         for (String account : (ArrayList<String>) AppContext.getInstance().get("availableAccounts")) {
             if (!this.selectedAffiliated.getAccountTypes().contains(account)) {
                 Label accountLabel = new Label(account);
-                accountLabel.setPrefSize(140, 60);
+                //accountLabel.setPrefSize(140, 120);
+                accountLabel.getStyleClass().add("jfx-lbl-draggable");
                 dragFactory.makeDraggable(accountLabel, root, fpOpeningAccounts, fpOpenedAccounts);
                 fpOpeningAccounts.getChildren().add(accountLabel);
             }
@@ -90,11 +92,11 @@ public class AccountOpeningController extends Controller implements Initializabl
         selectedAffiliated.removeAccount(accountType);
         printAvailableAccounts();
     }
-    
+
     //aux method
     public void printAvailableAccounts() {
         System.out.print("CUENTAS ABIERTAS: ");
-        for(Account account : this.selectedAffiliated.getAccounts()) {
+        for (Account account : this.selectedAffiliated.getAccounts()) {
             System.out.println(account.getType() + " | ");
         }
     }

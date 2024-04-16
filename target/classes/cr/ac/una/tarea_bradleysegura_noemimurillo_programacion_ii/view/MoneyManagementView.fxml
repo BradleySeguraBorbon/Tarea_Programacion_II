@@ -16,12 +16,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MoneyManagementController">
+<AnchorPane id="AnchorPane" fx:id="apMoneyManagement" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MoneyManagementController">
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
    <children>
-      <TabPane layoutX="201.0" layoutY="124.0" prefHeight="280.0" prefWidth="518.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane layoutX="201.0" layoutY="124.0" prefHeight="280.0" prefWidth="518.0" styleClass="fx" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="DEPOSITAR DINERO">
             <content>
@@ -31,7 +31,7 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="471.0" prefWidth="1002.0" spacing="20.0">
                                  <children>
-                                    <Label text="DEPÓSITO A AFILIADOS">
+                                    <Label styleClass="jx-lbl-subtitle" text="DEPÓSITO A AFILIADOS">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -44,9 +44,9 @@
                                        <children>
                                           <Pane prefHeight="200.0" prefWidth="200.0" />
                                           <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <MFXButton fx:id="btnDeposit" disable="true" onAction="#deposit" prefHeight="70.0" prefWidth="180.0" text="DEPOSITAR" />
+                                          <MFXButton fx:id="btnDeposit" disable="true" onAction="#deposit" prefHeight="70.0" prefWidth="180.0" styleClass="jfx-btn-third-template" text="DEPOSITAR" />
                                           <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <MFXButton fx:id="btnOpenDepositBox" onAction="#openBoxDepositValidation" prefHeight="70.0" prefWidth="180.0" text="BUZÓN DE DEPÓSITOS" />
+                                          <MFXButton fx:id="btnOpenDepositBox" onAction="#openBoxDepositValidation" prefHeight="70.0" prefWidth="200.0" styleClass="jfx-btn-second-template" text="BUZÓN DE DEPÓSITOS" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -65,16 +65,16 @@
                            <children>
                               <VBox alignment="CENTER" fillWidth="false" prefHeight="471.0" prefWidth="701.0" spacing="20.0">
                                  <children>
-                                    <Label text="RETIRO A CUENTA DE AFILIADO">
+                                    <Label styleClass="jx-lbl-subtitle" text="RETIRO A CUENTA DE AFILIADO">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                     <MFXTextField fx:id="txtAffiliatedFolio" floatingText="INGRESA EL FOLIO DE AFILIADO" prefHeight="60.0" prefWidth="350.0" />
-                                    <MFXButton fx:id="btnSearchAffiliated" onAction="#browseAffiliated" prefHeight="50.0" prefWidth="150.0" text="BUSCAR AFILIADO" />
+                                    <MFXButton fx:id="btnSearchAffiliated" onAction="#browseAffiliated" prefHeight="50.0" prefWidth="170.0" text="BUSCAR AFILIADO" />
                                     <MFXFilterComboBox fx:id="fcbSelectWithdrawAccount" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" onAction="#selectWithdrawalAccount" prefHeight="60.0" prefWidth="350.0" />
                                     <MFXTextField fx:id="txtWithdrawAmount" disable="true" floatMode="BORDER" floatingText="MONTO A RETIRAR" prefHeight="60.0" prefWidth="350.0" />
-                                    <MFXButton fx:id="btnWithdraw" disable="true" onAction="#withdraw" prefHeight="70.0" prefWidth="200.0" text="RETIRAR">
+                                    <MFXButton fx:id="btnWithdraw" disable="true" onAction="#withdraw" prefHeight="70.0" prefWidth="200.0" styleClass="btn-alert-action" text="RETIRAR">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -90,7 +90,7 @@
                                        </image>
                                     </ImageView>
                                     <Label fx:id="lblAffiliatedName" alignment="CENTER" prefHeight="26.0" prefWidth="322.0" text="Usuario" />
-                                    <MFXButton fx:id="btnValidateAffiliated" disable="true" onAction="#validateAffiliated" prefHeight="50.0" prefWidth="150.0" text="VALIDAR USUARIO" />
+                                    <MFXButton fx:id="btnValidateAffiliated" disable="true" onAction="#validateAffiliated" prefHeight="50.0" prefWidth="170.0" styleClass="jfx-btn-second-template" text="VALIDAR USUARIO" />
                                  </children>
                                  <padding>
                                     <Insets right="30.0" top="20.0" />

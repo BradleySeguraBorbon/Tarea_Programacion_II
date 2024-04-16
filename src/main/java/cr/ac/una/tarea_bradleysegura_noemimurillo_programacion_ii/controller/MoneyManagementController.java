@@ -10,6 +10,7 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.BoxDepos
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Transaction;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -31,6 +32,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -39,6 +41,8 @@ import javafx.scene.image.ImageView;
  */
 public class MoneyManagementController extends Controller implements Initializable {
 
+    @FXML
+    private AnchorPane apMoneyManagement;
     @FXML
     private MFXFilterComboBox<Affiliated> fcbSelectAffiliated;
     @FXML
@@ -127,7 +131,7 @@ public class MoneyManagementController extends Controller implements Initializab
                 }
             }
             if (selectedAffiliated != null) {
-                //imvAffiliatedImage.setImage(new Image(selectedAffiliated.getProfileImage()));
+                imvAffiliatedImage.setImage(ImageConverter.fromBase64(selectedAffiliated.getProfileImage()));
                 lblAffiliatedName.setText(selectedAffiliated.getFullName());
                 validateAffiliatedLabel.setOpacity(1);
                 btnValidateAffiliated.setDisable(false);

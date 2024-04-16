@@ -1,4 +1,5 @@
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\Main.class
+cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\MainController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\ImageTakerController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\FlowController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\MoneyManagementController.class
@@ -10,6 +11,7 @@ cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\DraggableMaker.c
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\CardPrintController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\Controller.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\model\Transaction.class
+cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\util\ImageConverter.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\model\Affiliated.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\controller\OfficersMainController.class
 cr\ac\una\tarea_bradleysegura_noemimurillo_programacion_ii\model\Affiliated$Sexo.class

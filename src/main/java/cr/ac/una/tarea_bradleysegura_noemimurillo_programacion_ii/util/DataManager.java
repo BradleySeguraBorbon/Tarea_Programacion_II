@@ -33,6 +33,8 @@ public class DataManager implements Serializable {
     public DataManager() {
         availableAccounts = new ArrayList();
         afiliated = new ArrayList();
+        cooperativeName = null;
+        cooperativeIcon = null;
         boxDeposits = new ArrayList();
     }
 

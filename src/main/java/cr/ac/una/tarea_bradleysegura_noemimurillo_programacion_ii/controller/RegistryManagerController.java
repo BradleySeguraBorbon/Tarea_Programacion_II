@@ -47,9 +47,11 @@ public class RegistryManagerController extends Controller implements Initializab
     @FXML
     private MFXButton btnAddUser;
     @FXML
-    private MFXTextField txtName;
+    private ImageView imvAffiliatedImage;
     @FXML
-     private MFXTextField txtSurname;
+    private MFXTextField txtSurname;
+    @FXML
+    private MFXTextField txtName;
     @FXML
     private MFXTextField txtSecondSurname;
     @FXML
@@ -61,10 +63,10 @@ public class RegistryManagerController extends Controller implements Initializab
     @FXML
     private MFXButton btnSaveChanges;
     @FXML
-    private MFXListView tbvUsersList;
+    private MFXTableView tbvUsersList;
     @FXML
     private ImageView imgvUsersFace;
-    
+
     ArrayList<Affiliated> newAffiliates = new ArrayList<>();
     String convertedImg = "";
 

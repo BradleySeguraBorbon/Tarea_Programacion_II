@@ -44,43 +44,6 @@ import javafx.util.Callback;
 
 public class BoxDepositValidationController extends Controller implements Initializable {
 
-    /*@FXML
-    private MFXButton amountCorrectionButton;
-    @FXML
-    private MFXTextField amountCorrectionTextField;
-    @FXML
-    private MFXButton applyCorrectionButton;*/
- /*@FXML
-    private MFXTableColumn tbcDepositId;
-    @FXML
-    private MFXTableColumn tbcDate;
-    @FXML
-    private MFXTableColumn tbcAmount;
-    
-    @FXML
-    private MFXTableColumn tbcFolio;
-    @FXML
-    private MFXTableColumn tbc5Colones;
-    @FXML
-    private MFXTableColumn tbc10Colones;
-    @FXML
-    private MFXTableColumn tbc25Colones;
-    @FXML
-    private MFXTableColumn tbc50Colones;
-    @FXML
-    private MFXTableColumn<BoxDeposit, String> tbc100Colones;
-    @FXML
-    private MFXTableColumn tbc500Colones;
-    @FXML
-    private MFXTableColumn tbc1000Colones;
-    @FXML
-    private MFXTableColumn tbc2000Colones;
-    @FXML
-    private MFXTableColumn tbc5000Colones;
-    @FXML
-    private MFXTableColumn tbc10000Colones;
-    @FXML
-    private MFXTableColumn tbc20000Colones;*/
     @FXML
     private MFXTableView<BoxDeposit> tbvBoxDeposits;
     @FXML
@@ -228,5 +191,4 @@ public class BoxDepositValidationController extends Controller implements Initia
     public void close() {
         getStage().close();
     }
-
 }
