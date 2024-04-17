@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MainMenuController">
+    <stylesheets>
+        <URL value="@SystemStyleSheet.css" />
+    </stylesheets>
+   <children>
+      <StackPane fx:id="mainStackPane" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox fx:id="hboxOfficers" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.0" prefHeight="500.0" prefWidth="1000.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="332.0" spacing="150.0">
+                     <children>
+                        <MFXButton fx:id="btnOpenAffiliatedRegister" onAction="#openRegistryManager" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-first-template" text="REGISTRO DE ASOCIADOS">
+                           <graphic>
+                              <ImageView fitHeight="82.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="btnOpenCardPrint" onAction="#openCardPrint" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-second-template" text="IMPRESIÓN DE CARNET">
+                           <graphic>
+                              <ImageView fitHeight="82.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="500.0" prefWidth="335.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="officersWelcomeLabel" text="Bienvenid@ Funcionari@">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label text="Seleccione una acción">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="imvOfficersWelcome" fitHeight="181.0" fitWidth="242.0" pickOnBounds="true" styleClass="ImageView" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="332.0" spacing="150.0">
+                     <children>
+                        <MFXButton fx:id="btnOpenAccountOpening" onAction="#openAccountOpening" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-fourth-template" text="APERTURA DE CUENTAS">
+                           <graphic>
+                              <ImageView fitHeight="82.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="btnOpenMoneyManagement" onAction="#openMoneyManagement" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-third-template" text="RETIRO Y DEPÓSITO">
+                           <graphic>
+                              <ImageView fitHeight="82.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox fx:id="vboxTeachers" alignment="CENTER" opacity="0.0" prefHeight="500.0" prefWidth="1000.0" spacing="40.0">
+               <children>
+                  <Label fx:id="lblTeachersWelcome" styleClass="jfx-lbl-title" text="Bienvenidos Profesores">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imvTeachersWelcome" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageView" />
+                  <HBox alignment="CENTER" prefWidth="1001.0" spacing="40.0">
+                     <children>
+                        <MFXButton fx:id="btnOpenAccountManagement" onAction="#openAccountTypeManagementView" prefHeight="135.0" prefWidth="325.0" styleClass="jfx-btn-first-template" text="Tipos de Cuenta" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="66.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="btnOpenCooperativeManagement" onAction="#openCooperativeManagementView" prefHeight="135.0" prefWidth="325.0" styleClass="jfx-btn-second-template" text="Nombre y Logo de Cooperativa" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="66.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="vboxAffiliated" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0">
+               <children>
+                  <HBox prefHeight="325.0" prefWidth="1000.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="250.0">
+                           <children>
+                              <ImageView fx:id="imvWelcomeLeft" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/welcome.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="500.0" spacing="20.0">
+                           <children>
+                              <Label text="Bienvenid@ Afiliad@">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Seleccione una acción">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="34.0" prefWidth="500.0" />
+                              <MFXButton fx:id="btnOpenRegisterView" onAction="#openRegisterView" prefHeight="125.0" prefWidth="250.0" text="REGISTRARME">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0">
+                           <children>
+                              <ImageView fx:id="imvWelcomeRight" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/happy-face.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="175.0" prefWidth="1000.0" spacing="100.0">
+                     <children>
+                        <MFXButton fx:id="btnOpenAccountStatement" onAction="#openAccountStatement" prefHeight="125.0" prefWidth="250.0" text="ESTADO DE CUENTA">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="btnOpenDepositBox" onAction="#openDepositBox" prefHeight="125.0" prefWidth="250.0" text="BUZÓN DE DEPÓSITOS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

@@ -224,7 +224,7 @@
     -fx-font-size: 14px;
 }
 
-.mfx-text-field .floating-text, 
+.mfx-text-field .floating-text,
 .mfx-text-field:floating .floating text {
     -fx-font-family: "Comic Sans MS";
 }
@@ -232,6 +232,33 @@
 .mfx-text-field:floating .floating-text {
     -fx-font-weight: bold;
 }
+
+/* ---------------------------------------------------- Spinner ----------------------------------------------------*/
+.mfx-spinner .mfx-text-field {
+    -mfx-float-mode: default;
+    -fx-font-size: 12px;
+}
+/*
+.mfx-spinner:focused,
+.mfx-spinner:focus-within {
+  -fx-border-color: -fx-background-subcolor-a;
+}
+
+.mfx-spinner .mfx-icon-wrapper {
+  -fx-background-color: derive(-fx-background-subcolor-a, 155%);
+  -mfx-size: 27;
+}
+
+.mfx-spinner .mfx-icon-wrapper:focused,
+.mfx-spinner .mfx-icon-wrapper:hover {
+  -fx-background-color: derive(-fx-background-subcolor-a, 50%);
+}
+
+.mfx-spinner .mfx-icon-wrapper .mfx-font-icon {
+  -mfx-color: -fx-background-subcolor-a;
+  -mfx-size: 14;
+} */
+
 
 /* ---------------------------------------------------- ListView ----------------------------------------------------*/
 

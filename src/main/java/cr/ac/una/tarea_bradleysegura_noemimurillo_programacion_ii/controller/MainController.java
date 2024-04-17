@@ -40,8 +40,6 @@ public class MainController extends Controller implements Initializable {
     //Universal Attributes
     DataManager dataBank;
     @FXML
-    private StackPane mainStackPane;
-    @FXML
     private HBox mainHBox;
     @FXML
     private VBox mainVBox;
@@ -52,53 +50,11 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private MFXButton btnExit;
 
-    //TeachersView Components
-    @FXML
-    private VBox vboxTeachers;
-    @FXML
-    private Label lblTeachersWelcome;
-    @FXML
-    private ImageView imvTeachersWelcome;
-    @FXML
-    private MFXButton btnOpenAccountManagement;
-    @FXML
-    private MFXButton btnOpenCooperativeManagement;
-
-    //OfficersView Components
-    @FXML
-    private HBox hboxOfficers;
-    @FXML
-    private Button btnOpenAffiliatedRegister;
-    @FXML
-    private Button btnOpenCardPrint;
-    @FXML
-    private Button btnOpenAccountOpening;
-    @FXML
-    private Button btnOpenMoneyManagement;
-    @FXML
-    private ImageView imvOfficersWelcome;
-    @FXML
-    private Label officersWelcomeLabel;
-
-    //AffiliatedView Components
-    @FXML
-    private VBox vboxAffiliated;
-    @FXML
-    private MFXButton btnOpenRegisterView;
-    @FXML
-    private MFXButton btnOpenAccountStatement;
-    @FXML
-    private MFXButton btnOpenDepositBox;
-    @FXML
-    private ImageView imvWelcomeLeft;
-    @FXML
-    private ImageView imvWelcomeRight;
-
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {  
         String currentDirectory = System.getProperty("user.dir");
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
@@ -123,19 +79,6 @@ public class MainController extends Controller implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        AppContext.getInstance().set("User", "Officers");
-        setTeachersMainView(false);
-        setOfficersMainView(false);
-        setAffiliatedMainView(false);
-        switch ((String) AppContext.getInstance().get("User")) {
-            case "Teachers" ->
-                setTeachersMainView(true);
-            case "Officers" ->
-                setOfficersMainView(true);
-            default ->
-                setAffiliatedMainView(true);
-        }
     }
 
     @Override
@@ -143,106 +86,14 @@ public class MainController extends Controller implements Initializable {
         updateCooperativeInfo();
     }
 
-    //TeachersView Methods
-    public void setTeachersMainView(Boolean state) {
-        if (state) {
-            vboxTeachers.toFront();
-            vboxTeachers.setOpacity(1);
-        } else {
-            vboxTeachers.toBack();
-            vboxTeachers.setOpacity(0);
-        }
-        lblTeachersWelcome.setOpacity(state ? 1 : 0);
-        imvTeachersWelcome.setOpacity(state ? 1 : 0);
-        btnOpenAccountManagement.setDisable(!state);
-        btnOpenAccountManagement.setOpacity(state ? 1 : 0);
-        btnOpenCooperativeManagement.setDisable(!state);
-        btnOpenCooperativeManagement.setOpacity(state ? 1 : 0);
-    }
-
-    public void openAccountTypeManagementView() {
-        FlowController.getInstance().goView("AccountTypeManagementView");
-    }
-
-    public void openCooperativeManagementView() {
-        FlowController.getInstance().goView("CooperativeManagementView");
-    }
-
-    //OfficersView Methods
-    public void setOfficersMainView(Boolean state) {
-        if (state) {
-            hboxOfficers.toFront();
-            hboxOfficers.setOpacity(1);
-        } else {
-            hboxOfficers.toBack();
-            hboxOfficers.setOpacity(0);
-        }
-        btnOpenAffiliatedRegister.setDisable(!state);
-        btnOpenAffiliatedRegister.setOpacity(state ? 1 : 0);
-        btnOpenCardPrint.setDisable(!state);
-        btnOpenCardPrint.setOpacity(state ? 1 : 0);
-        btnOpenAccountOpening.setDisable(!state);
-        btnOpenAccountOpening.setOpacity(state ? 1 : 0);
-        btnOpenMoneyManagement.setDisable(!state);
-        btnOpenMoneyManagement.setOpacity(state ? 1 : 0);
-        imvOfficersWelcome.setOpacity(state ? 1 : 0);
-        officersWelcomeLabel.setOpacity(state ? 1 : 0);
-    }
-
-    public void openRegistryManager() {
-        FlowController.getInstance().goView("RegistryManagerView");
-    }
-
-    public void openCardPrint() {
-        FlowController.getInstance().goView("CardPrintView");
-    }
-
-    public void openAccountOpening() {
-        FlowController.getInstance().goViewInWindowModal("AffiliatedSelectionView", null, false);
-        if (AppContext.getInstance().get("selectedAffiliated") != null) {
-            FlowController.getInstance().goView("AccountOpeningView");
-        }
-    }
-
-    public void openMoneyManagement() {
-        FlowController.getInstance().goView("MoneyManagementView");
-    }
-
-    //AffiliatedView Methods
-    public void setAffiliatedMainView(Boolean state) {
-        if (state) {
-            vboxAffiliated.toFront();
-            vboxAffiliated.setOpacity(1);
-        } else {
-            vboxAffiliated.toBack();
-            vboxAffiliated.setOpacity(0);
-        }
-        btnOpenRegisterView.setDisable(!state);
-        btnOpenRegisterView.setOpacity(state ? 1 : 0);
-        btnOpenAccountStatement.setDisable(!state);
-        btnOpenAccountStatement.setOpacity(state ? 1 : 0);
-        btnOpenDepositBox.setDisable(!state);
-        btnOpenDepositBox.setOpacity(state ? 1 : 0);
-        imvWelcomeLeft.setOpacity(state ? 1 : 0);
-        imvWelcomeRight.setOpacity(state ? 1 : 0);
-    }
-
-    public void openRegisterView() {
-        FlowController.getInstance().goView("AffiliatedRegisterView");
-    }
-
-    public void openAccountStatement() {
-
-    }
-
-    public void openDepositBox() {
-        FlowController.getInstance().goViewInWindowModal("BoxDepositView", getStage(), true);
-    }
-
     //Universal Methods
     public void updateCooperativeInfo() {
         String cooperativeLogo = (String) AppContext.getInstance().get("CooperativeLogo");
         String cooperativeName = (String) AppContext.getInstance().get("CooperativeName");
+        
+        System.out.println("PPP -- COOP LOGO: " + cooperativeLogo);
+        System.out.println("PPP -- COOP NAME: " + cooperativeName);
+        
         if (cooperativeLogo != null && cooperativeName != null) {
             this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(cooperativeLogo));
             lblCooperativeName.setText(cooperativeName);
@@ -255,10 +106,12 @@ public class MainController extends Controller implements Initializable {
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
         this.dataBank.save(absolutePath);
-        if (this.mainStackPane.getChildren().contains(this.vboxTeachers)) {
+        
+        if ((Boolean)AppContext.getInstance().get("inMainMenu")) {
             ((Stage) (this.btnExit.getScene().getWindow())).close();
         } else {
-            FlowController.getInstance().goMain();
+            FlowController.getInstance().goView("MainMenuView");
+            AppContext.getInstance().set("inMainMenu", true);
         }
     }
 

@@ -46,15 +46,16 @@ public class AccountOpeningController extends Controller implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        dragFactory = new DraggableMaker();
-        this.selectedAffiliated = (Affiliated) AppContext.getInstance().get("selectedAffiliated");
-        this.lblSelectedAffiliated.setText(this.selectedAffiliated.getFullName());
-        setAccountLabels();
+        initialize();
     }
 
     @Override
     public void initialize() {
-
+        clearView();
+        dragFactory = new DraggableMaker();
+        this.selectedAffiliated = (Affiliated) AppContext.getInstance().get("selectedAffiliated");
+        this.lblSelectedAffiliated.setText(this.selectedAffiliated.getFullName());
+        setAccountLabels();
     }
 
     public void setAccountLabels() {
@@ -91,6 +92,14 @@ public class AccountOpeningController extends Controller implements Initializabl
         String accountType = ((Label) labelNode).getText();
         selectedAffiliated.removeAccount(accountType);
         printAvailableAccounts();
+    }
+    
+    public void clearView() {
+        this.fpOpeningAccounts.getChildren().clear();
+        this.fpOpenedAccounts.getChildren().clear();
+        this.lblSelectedAffiliated.setText("");
+        this.selectedAffiliated = null;
+        this.dragFactory = null;
     }
 
     //aux method

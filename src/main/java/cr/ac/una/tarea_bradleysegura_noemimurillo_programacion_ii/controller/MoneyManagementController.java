@@ -97,7 +97,7 @@ public class MoneyManagementController extends Controller implements Initializab
     public void selectAffiliated() {
         clearDepositTab();
         selectedAffiliated = this.fcbSelectAffiliated.getSelectedItem();
-        fcbSelectDepositAccount.setItems(FXCollections.observableArrayList(selectedAffiliated.getAccounts()));       
+        fcbSelectDepositAccount.setItems(FXCollections.observableArrayList(selectedAffiliated.getAccounts()));
         fcbSelectDepositAccount.setDisable(false);
     }
 
@@ -163,10 +163,14 @@ public class MoneyManagementController extends Controller implements Initializab
     public void withdraw() {
         String withdrawalAmount = txtWithdrawAmount.getText();
         if (!withdrawalAmount.isBlank()) {
-            Transaction withdraw = new Transaction(Double.valueOf(withdrawalAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.RETIRO);
-            this.selectedAccount.makeTransaction(withdraw);
-            clearWithdrawalTab();
-            new Mensaje().show(Alert.AlertType.INFORMATION, "RETIRO EXITOSO", "El retiro ha sido exitoso");
+            if (selectedAccount.getBalance() >= Double.valueOf(withdrawalAmount)) {
+                Transaction withdraw = new Transaction(Double.valueOf(withdrawalAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.RETIRO);
+                this.selectedAccount.makeTransaction(withdraw);
+                clearWithdrawalTab();
+                new Mensaje().show(Alert.AlertType.INFORMATION, "RETIRO EXITOSO", "El retiro ha sido exitoso");
+            } else {
+                new Mensaje().show(Alert.AlertType.WARNING, "RETIRO INVALIDO", "La cuenta tiene fondos insuficientes");
+            }
         } else {
             new Mensaje().show(Alert.AlertType.WARNING, "RETIRO INVALIDO", "Debes indicar el monto a retirar");
         }
