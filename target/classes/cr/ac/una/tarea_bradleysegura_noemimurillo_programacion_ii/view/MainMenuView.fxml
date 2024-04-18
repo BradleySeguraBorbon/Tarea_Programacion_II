@@ -13,129 +13,59 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MainMenuController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MainMenuController">
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
    <children>
       <StackPane fx:id="mainStackPane" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox fx:id="hboxOfficers" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.0" prefHeight="500.0" prefWidth="1000.0">
+            <VBox fx:id="vboxAffiliated" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.0" prefHeight="500.0" prefWidth="1000.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="332.0" spacing="150.0">
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="325.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <MFXButton fx:id="btnOpenAffiliatedRegister" onAction="#openRegistryManager" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-first-template" text="REGISTRO DE ASOCIADOS">
-                           <graphic>
-                              <ImageView fitHeight="82.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                        </MFXButton>
-                        <MFXButton fx:id="btnOpenCardPrint" onAction="#openCardPrint" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-second-template" text="IMPRESIÓN DE CARNET">
-                           <graphic>
-                              <ImageView fitHeight="82.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                        </MFXButton>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="500.0" prefWidth="335.0" spacing="10.0">
-                     <children>
-                        <Label fx:id="officersWelcomeLabel" text="Bienvenid@ Funcionari@">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Label text="Seleccione una acción">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="imvOfficersWelcome" fitHeight="181.0" fitWidth="242.0" pickOnBounds="true" styleClass="ImageView" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="332.0" spacing="150.0">
-                     <children>
-                        <MFXButton fx:id="btnOpenAccountOpening" onAction="#openAccountOpening" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-fourth-template" text="APERTURA DE CUENTAS">
-                           <graphic>
-                              <ImageView fitHeight="82.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                        </MFXButton>
-                        <MFXButton fx:id="btnOpenMoneyManagement" onAction="#openMoneyManagement" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-third-template" text="RETIRO Y DEPÓSITO">
-                           <graphic>
-                              <ImageView fitHeight="82.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                        </MFXButton>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <VBox fx:id="vboxTeachers" alignment="CENTER" opacity="0.0" prefHeight="500.0" prefWidth="1000.0" spacing="40.0">
-               <children>
-                  <Label fx:id="lblTeachersWelcome" styleClass="jfx-lbl-title" text="Bienvenidos Profesores">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="imvTeachersWelcome" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageView" />
-                  <HBox alignment="CENTER" prefWidth="1001.0" spacing="40.0">
-                     <children>
-                        <MFXButton fx:id="btnOpenAccountManagement" onAction="#openAccountTypeManagementView" prefHeight="135.0" prefWidth="325.0" styleClass="jfx-btn-first-template" text="Tipos de Cuenta" textAlignment="CENTER">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="66.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                        </MFXButton>
-                        <MFXButton fx:id="btnOpenCooperativeManagement" onAction="#openCooperativeManagementView" prefHeight="135.0" prefWidth="325.0" styleClass="jfx-btn-second-template" text="Nombre y Logo de Cooperativa" textAlignment="CENTER">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="66.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                        </MFXButton>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox fx:id="vboxAffiliated" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0">
-               <children>
-                  <HBox prefHeight="325.0" prefWidth="1000.0">
-                     <children>
-                        <VBox prefHeight="200.0" prefWidth="250.0">
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <ImageView fx:id="imvWelcomeLeft" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imvWelcomeLeft" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                                  <image>
                                     <Image url="@../resources/welcome.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="500.0" spacing="20.0">
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Bienvenid@ Afiliad@">
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Bienvenid@ Afiliad@" VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Label text="Seleccione una acción">
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Seleccione una acción" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Pane prefHeight="34.0" prefWidth="500.0" />
-                              <MFXButton fx:id="btnOpenRegisterView" onAction="#openRegisterView" prefHeight="125.0" prefWidth="250.0" text="REGISTRARME">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </MFXButton>
+                              <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="439.0" VBox.vgrow="ALWAYS" />
+                              <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <MFXButton fx:id="btnOpenRegisterView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openRegisterView" prefHeight="125.0" prefWidth="250.0" text="REGISTRARME" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </MFXButton>
+                                 </children>
+                                 <padding>
+                                    <Insets left="85.0" right="85.0" />
+                                 </padding>
+                              </HBox>
                            </children>
                            <padding>
-                              <Insets top="20.0" />
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                            </padding>
                         </VBox>
-                        <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="250.0">
+                        <VBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <ImageView fx:id="imvWelcomeRight" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imvWelcomeRight" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                                  <image>
                                     <Image url="@../resources/happy-face.png" />
                                  </image>
@@ -144,22 +74,116 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="175.0" prefWidth="1000.0" spacing="100.0">
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="175.0" prefWidth="1000.0" spacing="100.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <MFXButton fx:id="btnOpenAccountStatement" onAction="#openAccountStatement" prefHeight="125.0" prefWidth="250.0" text="ESTADO DE CUENTA">
+                        <Pane prefHeight="114.0" prefWidth="100.0" />
+                        <MFXButton fx:id="btnOpenAccountStatement" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openAccountStatement" prefHeight="125.0" prefWidth="250.0" text="ESTADO DE CUENTA" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton fx:id="btnOpenDepositBox" onAction="#openDepositBox" prefHeight="125.0" prefWidth="250.0" text="BUZÓN DE DEPÓSITOS">
+                        <MFXButton fx:id="btnOpenDepositBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openDepositBox" prefHeight="125.0" prefWidth="250.0" text="BUZÓN DE DEPÓSITOS" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </MFXButton>
+                        <Pane prefHeight="114.0" prefWidth="100.0" />
                      </children>
+                     <padding>
+                        <Insets bottom="30.0" top="30.0" />
+                     </padding>
                   </HBox>
                </children>
             </VBox>
+            <VBox fx:id="vboxTeachers" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.0" prefHeight="500.0" prefWidth="1000.0" spacing="40.0">
+               <children>
+                  <Label fx:id="lblTeachersWelcome" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="51.0" prefWidth="886.0" styleClass="jfx-lbl-title" text="Bienvenidos Profesores" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imvTeachersWelcome" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageView" />
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="186.0" prefWidth="1000.0" spacing="40.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXButton fx:id="btnOpenAccountManagement" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openAccountTypeManagementView" prefHeight="135.0" prefWidth="325.0" styleClass="jfx-btn-first-template" text="Tipos de Cuenta" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="66.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="btnOpenCooperativeManagement" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openCooperativeManagementView" prefHeight="135.0" prefWidth="325.0" styleClass="jfx-btn-second-template" text="Nombre y Logo de Cooperativa" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="66.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                     <padding>
+                        <Insets bottom="30.0" left="120.0" right="120.0" top="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+            <HBox fx:id="hboxOfficers" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="332.0" spacing="150.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXButton fx:id="btnOpenAffiliatedRegister" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openRegistryManager" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-first-template" text="REGISTRO DE ASOCIADOS" VBox.vgrow="ALWAYS">
+                           <graphic>
+                              <ImageView fitHeight="82.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="btnOpenCardPrint" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openCardPrint" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-second-template" text="IMPRESIÓN DE CARNET" VBox.vgrow="ALWAYS">
+                           <graphic>
+                              <ImageView fitHeight="82.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="335.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="officersWelcomeLabel" text="Bienvenid@ Funcionari@" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label text="Seleccione una acción" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="imvOfficersWelcome" fitHeight="181.0" fitWidth="242.0" pickOnBounds="true" styleClass="ImageView" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="332.0" spacing="150.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXButton fx:id="btnOpenAccountOpening" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openAccountOpening" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-fourth-template" text="APERTURA DE CUENTAS" VBox.vgrow="ALWAYS">
+                           <graphic>
+                              <ImageView fitHeight="82.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="btnOpenMoneyManagement" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openMoneyManagement" prefHeight="150.0" prefWidth="300.0" styleClass="jfx-btn-third-template" text="RETIRO Y DEPÓSITO" VBox.vgrow="ALWAYS">
+                           <graphic>
+                              <ImageView fitHeight="82.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </StackPane>
    </children>

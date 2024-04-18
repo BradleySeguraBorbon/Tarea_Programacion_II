@@ -29,7 +29,6 @@ public class Affiliated {
          FEMENINO,
          MASCULINO,
      }
-
      
      public Affiliated() {
          accounts = new ArrayList();
@@ -58,7 +57,7 @@ public class Affiliated {
         
         String randomNum = Integer.toString(random.nextInt(99));
         String auxFolio = folioBuilder.toString() + randomNum;     
-        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("afiliated")) {
+        for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("affiliated")) {
             while(afiliated.getFolio().equals(auxFolio)) {
                 String newRandomNum = Integer.toString(random.nextInt(99));
                 auxFolio.replace(randomNum, newRandomNum);

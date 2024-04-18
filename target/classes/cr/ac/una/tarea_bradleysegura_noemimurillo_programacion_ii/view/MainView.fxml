@@ -7,49 +7,52 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane onMouseClicked="#updateCooperativeInfo" prefHeight="200.0" prefWidth="200.0" styleClass="mainBackground" stylesheets="@SystemStyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MainController">
    <left>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="1280.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="110.0" prefWidth="1280.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblCooperativeName" text="Nombre de Cooperativa">
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="115.0" prefWidth="793.0" HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblCooperativeName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nombre de Cooperativa" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fx:id="imvCooperativeLogo" fitHeight="115.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imvCooperativeLogo" fitHeight="115.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <image>
                   <Image url="@../resources/companyDefaultLogo.png" />
                </image>
             </ImageView>
          </children>
          <padding>
-            <Insets right="20.0" />
+            <Insets left="20.0" right="20.0" />
          </padding>
       </HBox>
    </top>
    <bottom>
-      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <MFXButton fx:id="btnExit" onAction="#exit" prefHeight="86.0" prefWidth="182.0" styleClass="btn-alert-action" text=" ">
+            <MFXButton fx:id="btnExit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#exit" prefHeight="86.0" prefWidth="182.0" styleClass="btn-alert-action" text=" " HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView fitHeight="77.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true" />
                </graphic></MFXButton>
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="110.0" prefWidth="1057.0" />
          </children>
          <padding>
-            <Insets left="20.0" />
+            <Insets bottom="10.0" left="10.0" top="10.0" />
          </padding>
       </HBox>
    </bottom>
    <center>
-      <VBox prefHeight="500.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

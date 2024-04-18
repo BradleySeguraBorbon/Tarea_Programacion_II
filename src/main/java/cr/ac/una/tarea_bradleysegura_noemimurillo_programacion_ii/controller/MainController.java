@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -39,6 +40,8 @@ public class MainController extends Controller implements Initializable {
 
     //Universal Attributes
     DataManager dataBank;
+    @FXML
+    private BorderPane root;
     @FXML
     private HBox mainHBox;
     @FXML
@@ -61,6 +64,9 @@ public class MainController extends Controller implements Initializable {
         //System.out.println("DEFAULT LOGO ON BASE 64 : " + ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
         AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
         AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
+        
+        AppContext.getInstance().set("inMainMenu", true);
+        
         try {
             if (new File(absolutePath).isFile()) {
                 dataBank = DataManager.load(absolutePath);
