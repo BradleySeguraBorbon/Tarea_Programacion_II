@@ -40,8 +40,8 @@ public class DraggableMaker {
         });
      
         draggableNode.setOnMouseDragged(mouseEvent -> {
-            draggableNode.setLayoutX((mouseEvent.getSceneX() - 140) - insideMouseX);
-            draggableNode.setLayoutY((mouseEvent.getSceneY() - 110) - insideMouseY);
+            draggableNode.setLayoutX((mouseEvent.getSceneX() - 140) - insideMouseX); //vbox izq . getWidth()
+            draggableNode.setLayoutY((mouseEvent.getSceneY() - 110) - insideMouseY); // hbox arr . getHeight ()
         });
 
         draggableNode.setOnMouseReleased(mouseEvent -> {

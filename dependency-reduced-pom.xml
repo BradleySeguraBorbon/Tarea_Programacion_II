@@ -66,7 +66,7 @@
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <transformers>
                 <transformer>
-                  <mainClass>cr.ac.una.unaplanillam2024.Main</mainClass>
+                  <mainClass>cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>

@@ -30,10 +30,10 @@ import javax.imageio.ImageIO;
  * @author Bradley
  */
 public class CooperativeManagementController extends Controller implements Initializable {
-
+    
     private String cooperativeName;
     private String cooperativeIcon;
-
+    
     @FXML
     private ImageView imvCooperativeLogoEditor;
     @FXML
@@ -48,7 +48,7 @@ public class CooperativeManagementController extends Controller implements Initi
     public void initialize(URL url, ResourceBundle rb) {
         initialize();
     }
-
+    
     @Override
     public void initialize() {
         if ((this.cooperativeName = (String) AppContext.getInstance().get("CooperativeName")) != null
@@ -57,17 +57,17 @@ public class CooperativeManagementController extends Controller implements Initi
             this.txtCooperativeNameEditor.setText(this.cooperativeName);
         }
     }
-
+    
     public void modifyCooperativeLogo() {
         try {
             FileChooser imageSelector = new FileChooser();
             imageSelector.setTitle("SELECCIÓN DE LOGO DE LA COOPERATIVA");
-
+            
             FileChooser.ExtensionFilter imageSelectorFilter = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg");
             imageSelector.getExtensionFilters().add(imageSelectorFilter);
-
+            
             File selectedImageFile = imageSelector.showOpenDialog(null);
-
+            
             if (selectedImageFile != null) {
                 imvCooperativeLogoEditor.setImage(new Image(selectedImageFile.toURI().toString()));
                 this.cooperativeIcon = ImageConverter.toBase64(ImageIO.read(selectedImageFile), "PNG");
@@ -76,7 +76,7 @@ public class CooperativeManagementController extends Controller implements Initi
             e.printStackTrace();
         }
     }
-
+    
     @FXML
     public void makeChanges() {
         Mensaje msj = new Mensaje();
@@ -90,6 +90,7 @@ public class CooperativeManagementController extends Controller implements Initi
             this.cooperativeName = modifiedCooperativeName;
             AppContext.getInstance().set("CooperativeName", this.cooperativeName);
             AppContext.getInstance().set("CooperativeLogo", this.cooperativeIcon);
+            ((MainController) FlowController.getInstance().getController("MainView")).updateCooperativeInfo();
         }
     }
 }

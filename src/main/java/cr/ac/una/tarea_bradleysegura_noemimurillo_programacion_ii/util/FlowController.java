@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -90,6 +91,7 @@ public class FlowController {
             this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/MainView.fxml"), this.idioma)));
             MFXThemeManager.addOn(this.mainStage.getScene(), Themes.DEFAULT, Themes.LEGACY);
             this.mainStage.show();
+            goView("MainMenuView");
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
         }
@@ -111,12 +113,14 @@ public class FlowController {
         Stage stage = controller.getStage();
         if (stage == null) {
             stage = this.mainStage;
-            controller.setStage(stage); 
+            controller.setStage(stage);
         }
         switch (location) {
             case "Center":
-                ((StackPane) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().clear();
-                ((StackPane) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().add(loader.getRoot());
+                VBox vbox = ((VBox) ((BorderPane) stage.getScene().getRoot()).getCenter());
+                vbox.getChildren().clear();
+                vbox.getChildren().add(loader.getRoot());
+                VBox.setVgrow(vbox, Priority.ALWAYS);
                 break;
             case "Top":
                 break;

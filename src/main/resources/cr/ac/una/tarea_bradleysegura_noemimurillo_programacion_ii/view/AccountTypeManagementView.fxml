@@ -13,37 +13,54 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@SystemStyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.AccountTypeManagementController">
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="521.0" spacing="40.0">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="521.0" spacing="40.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="359.0" text="DIGITA UN NUEVO TIPO DE CUENTA" textAlignment="CENTER">
+                  <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="21.0" prefWidth="250.0" text="DIGITA UN NUEVO TIPO DE CUENTA" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <MFXTextField fx:id="txtAddAccountType" alignment="CENTER" floatingText="Tipo de Cuenta" prefHeight="66.0" prefWidth="322.0">
+                  <MFXTextField fx:id="txtAddAccountType" alignment="CENTER" floatingText="Tipo de Cuenta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="322.0" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </MFXTextField>
-                  <MFXButton fx:id="btnAddAccountType" onAction="#addAccount" prefHeight="84.0" prefWidth="213.0" text="AGREGAR ">
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXButton fx:id="btnAddAccountType" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#addAccount" prefHeight="84.0" prefWidth="213.0" text="AGREGAR " HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                     <padding>
+                        <Insets left="30.0" right="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="150.0" left="75.0" right="75.0" top="150.0" />
+               </padding>
+            </VBox>
+            <MFXScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="484.0" HBox.hgrow="ALWAYS">
+               <content>
+                  <MFXListView fx:id="lstvAccountTypes" maxHeight="1.7976931348623157E308" prefHeight="673.0" prefWidth="374.0" />
+               </content>
+            </MFXScrollPane>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+               <children>
+                  <MFXButton fx:id="btnRemoveAccountType" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#deleteSelectedAccountType" prefHeight="56.0" prefWidth="199.0" styleClass="btn-alert-action" text="ELIMINAR" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </MFXButton>
                </children>
+               <padding>
+                  <Insets bottom="225.0" top="225.0" />
+               </padding>
             </VBox>
-            <MFXScrollPane prefHeight="500.0" prefWidth="484.0">
-               <content>
-                  <MFXListView fx:id="lstvAccountTypes" prefHeight="673.0" prefWidth="374.0" />
-               </content>
-            </MFXScrollPane>
-            <MFXButton fx:id="btnRemoveAccountType" onAction="#deleteSelectedAccountType" prefHeight="56.0" prefWidth="199.0" styleClass="btn-alert-action" text="ELIMINAR">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </MFXButton>
          </children>
          <padding>
             <Insets right="20.0" />

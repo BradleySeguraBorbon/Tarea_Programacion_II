@@ -16,40 +16,50 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="apMoneyManagement" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MoneyManagementController">
+<AnchorPane id="AnchorPane" fx:id="apMoneyManagement" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.MoneyManagementController">
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
    <children>
-      <TabPane layoutX="201.0" layoutY="124.0" prefHeight="280.0" prefWidth="518.0" styleClass="fx" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane layoutX="201.0" layoutY="124.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="280.0" prefWidth="518.0" styleClass="fx" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="DEPOSITAR DINERO">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="1000.0">
+              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="1000.0">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="471.0" prefWidth="1002.0" spacing="20.0">
+                              <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="1002.0" spacing="20.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label styleClass="jx-lbl-subtitle" text="DEPÓSITO A AFILIADOS">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="jx-lbl-subtitle" text="DEPÓSITO A AFILIADOS" VBox.vgrow="ALWAYS">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                     <Pane prefHeight="4.0" prefWidth="422.0" />
-                                    <MFXFilterComboBox fx:id="fcbSelectAffiliated" floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" onAction="#selectAffiliated" prefHeight="60.0" prefWidth="300.0" />
-                                    <MFXFilterComboBox fx:id="fcbSelectDepositAccount" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" onAction="#selectDepositAccount" prefHeight="60.0" prefWidth="300.0" />
-                                    <MFXTextField fx:id="txtDepositAmount" disable="true" floatMode="BORDER" floatingText="MONTO A DEPOSITAR" prefHeight="60.0" prefWidth="300.0" />
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <MFXFilterComboBox fx:id="fcbSelectAffiliated" floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#selectAffiliated" prefHeight="60.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
+                                    <MFXFilterComboBox fx:id="fcbSelectDepositAccount" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#selectDepositAccount" prefHeight="60.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
+                                    <MFXTextField fx:id="txtDepositAmount" disable="true" floatMode="BORDER" floatingText="MONTO A DEPOSITAR" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <MFXButton fx:id="btnDeposit" disable="true" onAction="#deposit" prefHeight="70.0" prefWidth="180.0" styleClass="jfx-btn-third-template" text="DEPOSITAR" />
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <MFXButton fx:id="btnOpenDepositBox" onAction="#openBoxDepositValidation" prefHeight="70.0" prefWidth="200.0" styleClass="jfx-btn-second-template" text="BUZÓN DE DEPÓSITOS" />
+                                          <MFXButton fx:id="btnDeposit" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#deposit" prefHeight="70.0" prefWidth="180.0" styleClass="jfx-btn-third-template" text="DEPOSITAR" HBox.hgrow="ALWAYS" />
+                                          <Pane prefHeight="62.0" prefWidth="75.0" />
+                                          <MFXButton fx:id="btnOpenDepositBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#openBoxDepositValidation" prefHeight="70.0" prefWidth="200.0" styleClass="jfx-btn-second-template" text="BUZÓN DE DEPÓSITOS" HBox.hgrow="ALWAYS" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
                                     </HBox>
                                  </children>
+                                 <HBox.margin>
+                                    <Insets left="250.0" right="250.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </HBox>
@@ -59,42 +69,48 @@
           </Tab>
           <Tab text="RETIRAR DINERO">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox alignment="CENTER" fillWidth="false" prefHeight="471.0" prefWidth="701.0" spacing="20.0">
+                              <VBox alignment="CENTER" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="701.0" spacing="20.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label styleClass="jx-lbl-subtitle" text="RETIRO A CUENTA DE AFILIADO">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="jx-lbl-subtitle" text="RETIRO A CUENTA DE AFILIADO" VBox.vgrow="ALWAYS">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <MFXTextField fx:id="txtAffiliatedFolio" floatingText="INGRESA EL FOLIO DE AFILIADO" prefHeight="60.0" prefWidth="350.0" />
-                                    <MFXButton fx:id="btnSearchAffiliated" onAction="#browseAffiliated" prefHeight="50.0" prefWidth="170.0" text="BUSCAR AFILIADO" />
-                                    <MFXFilterComboBox fx:id="fcbSelectWithdrawAccount" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" onAction="#selectWithdrawalAccount" prefHeight="60.0" prefWidth="350.0" />
-                                    <MFXTextField fx:id="txtWithdrawAmount" disable="true" floatMode="BORDER" floatingText="MONTO A RETIRAR" prefHeight="60.0" prefWidth="350.0" />
-                                    <MFXButton fx:id="btnWithdraw" disable="true" onAction="#withdraw" prefHeight="70.0" prefWidth="200.0" styleClass="btn-alert-action" text="RETIRAR">
+                                    <MFXTextField fx:id="txtAffiliatedFolio" floatingText="INGRESA EL FOLIO DE AFILIADO" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="350.0" VBox.vgrow="ALWAYS" />
+                                    <MFXButton fx:id="btnSearchAffiliated" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#browseAffiliated" prefHeight="50.0" prefWidth="170.0" text="BUSCAR AFILIADO" VBox.vgrow="ALWAYS" />
+                                    <MFXFilterComboBox fx:id="fcbSelectWithdrawAccount" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#selectWithdrawalAccount" prefHeight="60.0" prefWidth="350.0" VBox.vgrow="ALWAYS" />
+                                    <MFXTextField fx:id="txtWithdrawAmount" disable="true" floatMode="BORDER" floatingText="MONTO A RETIRAR" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="350.0" VBox.vgrow="ALWAYS" />
+                                    <MFXButton fx:id="btnWithdraw" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#withdraw" prefHeight="70.0" prefWidth="200.0" styleClass="btn-alert-action" text="RETIRAR" VBox.vgrow="ALWAYS">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </MFXButton>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="20.0" top="20.0" />
+                                 </padding>
                               </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="471.0" prefWidth="358.0" spacing="20.0">
+                              <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="358.0" spacing="20.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label fx:id="validateAffiliatedLabel" alignment="CENTER" opacity="0.0" prefHeight="34.0" prefWidth="322.0" text="VALIDA EL USUARIO ADECUADO" />
-                                    <ImageView fx:id="imvAffiliatedImage" fitHeight="183.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="validateAffiliatedLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.0" prefHeight="34.0" prefWidth="322.0" text="VALIDA EL USUARIO ADECUADO" VBox.vgrow="ALWAYS" />
+                                    <ImageView fx:id="imvAffiliatedImage" fitHeight="183.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                                        <image>
                                           <Image url="@../resources/childPicture.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="lblAffiliatedName" alignment="CENTER" prefHeight="26.0" prefWidth="322.0" text="Usuario" />
-                                    <MFXButton fx:id="btnValidateAffiliated" disable="true" onAction="#validateAffiliated" prefHeight="50.0" prefWidth="170.0" styleClass="jfx-btn-second-template" text="VALIDAR USUARIO" />
+                                    <Label fx:id="lblAffiliatedName" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="322.0" text="Usuario" VBox.vgrow="ALWAYS" />
+                                    <MFXButton fx:id="btnValidateAffiliated" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#validateAffiliated" prefHeight="50.0" prefWidth="170.0" styleClass="jfx-btn-second-template" text="VALIDAR USUARIO" VBox.vgrow="ALWAYS" />
                                  </children>
                                  <padding>
-                                    <Insets right="30.0" top="20.0" />
+                                    <Insets bottom="40.0" left="60.0" right="60.0" />
                                  </padding>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                                 </HBox.margin>
                               </VBox>
                            </children>
                         </HBox>
