@@ -9,8 +9,8 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliat
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
-import io.github.palexdev.materialfx.controls.MFXSpinner;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -80,7 +80,7 @@ public class RegistryManagerController extends Controller implements Initializab
         //AppContext.getInstance().set("afiliated", Affiliated2);
         this.newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
         // txtAge.setTextFormatter(Formato.getInstance().integerFormat());
-        setUpUserBox();
+       // setUpUserBox();
 
         // TODO
         initialize();
@@ -92,19 +92,19 @@ public class RegistryManagerController extends Controller implements Initializab
 
     }
 
-    public void setUpUserBox() {
-
-        MFXTableColumn<Affiliated> folioColumn = new MFXTableColumn<>("Folio", true, Comparator.comparing(Affiliated::getFolio));
-        MFXTableColumn<Affiliated> nameColumn = new MFXTableColumn<>("Nombre", true, Comparator.comparing(Affiliated::getFullName));
-
-        //Especificar qué se está mostrando y dónde
-        folioColumn.setRowCellFactory(folioNumber -> new MFXTableRowCell<>(Affiliated::getFolio));
-        nameColumn.setRowCellFactory(nameString -> new MFXTableRowCell<>(Affiliated::getFullName));
-
-        this.tbvUsersList.getTableColumns().addAll(folioColumn, nameColumn);
-        this.tbvUsersList.setItems(FXCollections.observableArrayList(newAffiliates));
-
-    }
+//    public void setUpUserBox() {
+//
+//        MFXTableColumn<Affiliated> folioColumn = new MFXTableColumn<>("Folio", true, Comparator.comparing(Affiliated::getFolio));
+//        MFXTableColumn<Affiliated> nameColumn = new MFXTableColumn<>("Nombre", true, Comparator.comparing(Affiliated::getFullName));
+//
+//        //Especificar qué se está mostrando y dónde
+//        folioColumn.setRowCellFactory(folioNumber -> new MFXTableRowCell<>(Affiliated::getFolio));
+//        nameColumn.setRowCellFactory(nameString -> new MFXTableRowCell<>(Affiliated::getFullName));
+//
+//        this.tbvUsersList.getTableColumns().addAll(folioColumn, nameColumn);
+//        this.tbvUsersList.setItems(FXCollections.observableArrayList(newAffiliates));
+//
+//    }
 
     public static String convertImageToBase64(String filePath) {
         String base64Image = "";
@@ -228,7 +228,6 @@ public class RegistryManagerController extends Controller implements Initializab
         Image defaultImg = new Image(getClass().getResourceAsStream("/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/user.png"));
         imgvUsersFace.setImage(defaultImg);
         convertedImg = "";
-
     }
 
 }
