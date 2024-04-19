@@ -54,6 +54,7 @@ public class ImageTakerController extends Controller implements Initializable {
         this.videoTaker = new VideoTaker();
         this.videoTaker.start();
         this.videoTaker.isThreadSuspended = false;
+        ((Stage) this.btnExit.getScene().getWindow()).setOnCloseRequest(event ->  {goBack();});
     }
 
     @Override

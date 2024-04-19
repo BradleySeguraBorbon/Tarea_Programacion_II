@@ -22,12 +22,12 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <MFXTextField fx:id="txtAddAccountType" alignment="CENTER" floatingText="Tipo de Cuenta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="322.0" VBox.vgrow="ALWAYS">
+                  <MFXTextField fx:id="txtAddAccountType" alignment="CENTER" floatingText="Tipo de Cuenta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="283.0" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </MFXTextField>
-                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="283.0" VBox.vgrow="ALWAYS">
                      <children>
                         <MFXButton fx:id="btnAddAccountType" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#addAccount" prefHeight="84.0" prefWidth="213.0" text="AGREGAR " HBox.hgrow="ALWAYS">
                            <font>

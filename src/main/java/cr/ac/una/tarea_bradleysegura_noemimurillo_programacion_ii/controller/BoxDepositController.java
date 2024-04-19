@@ -35,6 +35,8 @@ import javafx.util.StringConverter;
 public class BoxDepositController extends Controller implements Initializable {
 
     @FXML
+    private Label lblSelectedAffiliated;
+    @FXML
     private MFXTextField txtFolio;
     @FXML
     private MFXButton btnSearchAffiliated;
@@ -143,6 +145,7 @@ public class BoxDepositController extends Controller implements Initializable {
             for (Affiliated affiliated : (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated")) {
                 if (typedFolio.equals(affiliated.getFolio())) {
                     this.selectedAffiliated = affiliated;
+                    this.lblSelectedAffiliated.setText("Afiliado: " + this.selectedAffiliated.getFullName());
                     this.fcbSelectAccount.setDisable(false);
                     this.fcbSelectAccount.setItems(FXCollections.observableArrayList(this.selectedAffiliated.getAccounts()));
                     return;
@@ -167,6 +170,7 @@ public class BoxDepositController extends Controller implements Initializable {
     }
 
     public void clear() {
+        this.lblSelectedAffiliated.setText("");
         this.fcbSelectAccount.clear();
         this.fcbSelectAccount.setDisable(true);
         this.spnrCincoColones.setValue(0);

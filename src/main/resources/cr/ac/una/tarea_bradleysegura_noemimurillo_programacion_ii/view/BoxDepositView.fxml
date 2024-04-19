@@ -3,9 +3,9 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXSpinner?>
-<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,158 +15,192 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1180.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.BoxDepositController">
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1180.0" styleClass="boxDepositBackground" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.BoxDepositController">
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="423.0" layoutY="92.0" prefHeight="613.0" prefWidth="1180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="423.0" layoutY="92.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label prefHeight="55.0" prefWidth="383.0" text="BIENVENID@ AL BUZÓN DE DEPÓSITOS">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="383.0" styleClass="jx-lbl-subtitle" text="BIENVENID@ AL BUZÓN DE DEPÓSITOS" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <MFXTableColumn fx:id="sisisisi" />
-            <Pane prefHeight="18.0" prefWidth="1180.0" />
-            <HBox alignment="TOP_CENTER" prefHeight="119.0" prefWidth="1180.0" spacing="20.0">
+            <Label fx:id="lblSelectedAffiliated" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="jfx-dark-lbl-information" text="Afiliado: " />
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="9.0" prefWidth="1180.0" VBox.vgrow="ALWAYS" />
+            <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="119.0" prefWidth="1180.0" spacing="20.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="75.0" prefWidth="268.0" spacing="10.0">
+                  <ImageView fitHeight="115.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../resources/dinosaur1.gif" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="75.0" prefWidth="268.0" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <MFXTextField fx:id="txtFolio" floatingText="Ingresa tu Número de Folio" prefHeight="60.0" prefWidth="250.0" />
-                        <MFXButton fx:id="btnSearchAffiliated" onAction="#searchAffiliated" prefHeight="42.0" prefWidth="120.0" text="BUSCAR" />
+                        <MFXTextField fx:id="txtFolio" floatingText="Ingresa tu Número de Folio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+                        <MFXButton fx:id="btnSearchAffiliated" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#searchAffiliated" prefHeight="42.0" prefWidth="120.0" text="BUSCAR" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin></MFXButton>
                      </children>
                   </VBox>
-                  <MFXFilterComboBox fx:id="fcbSelectAccount" disable="true" floatingText="Selecciona la Cuenta" onAction="#selectAccount" prefHeight="60.0" prefWidth="250.0" />
+                  <MFXFilterComboBox fx:id="fcbSelectAccount" disable="true" floatingText="Selecciona la Cuenta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#selectAccount" prefHeight="60.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="55.0" />
+                     </HBox.margin></MFXFilterComboBox>
+                  <Pane prefHeight="115.0" prefWidth="125.0" />
                </children>
+               <padding>
+                  <Insets left="200.0" right="200.0" />
+               </padding>
             </HBox>
-            <Pane prefHeight="27.0" prefWidth="1180.0" />
-            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="1000.0" spacing="10.0">
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="1180.0" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="1000.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="5 COLONES" textAlignment="CENTER">
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" styleClass="lbl5colones" text="5 COLONES" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <ImageView fx:id="imvCincoColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvCincoColones" fitHeight="63.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="lbl5colones">
                            <image>
                               <Image url="@../resources/5colones.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="10 COLONES">
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" styleClass="lbl10colones" text="10 COLONES" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <ImageView fx:id="imvDiezColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvDiezColones" fitHeight="62.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/10Colones.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="25 COLONES">
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" text="25 COLONES" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <ImageView fx:id="imvVeinticincoColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvVeinticincoColones" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="lbl25colones">
                            <image>
                               <Image url="@../resources/25Colones.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="50 COLONES">
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" styleClass="lbl50colones" text="50 COLONES" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <ImageView fx:id="imvCincuentaColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvCincuentaColones" fitHeight="55.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/50Colones.jpeg" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="100 COLONES">
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" styleClass="lbl100colones" text="100 COLONES" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <ImageView fx:id="imvCienColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvCienColones" fitHeight="56.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/100Colones.jpeg" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="500 COLONES">
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" styleClass="lbl500colones" text="500 COLONES" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <ImageView fx:id="imvQuinientosColones" fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imvQuinientosColones" fitHeight="55.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/500Colones.jpeg" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Label>
-               </children></HBox>
-            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1180.0" spacing="10.0">
-               <children>
-                  <MFXSpinner fx:id="spnrCincoColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner fx:id="spnrDiezColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner fx:id="spnrVeinticincoColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner fx:id="spnrCincuentaColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner fx:id="spnrCienColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
-                  <MFXSpinner fx:id="spnrQuinientosColones" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" />
                </children>
-            </HBox>
-            <Pane prefHeight="38.0" prefWidth="1180.0" />
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1180.0" spacing="25.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></HBox>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="54.0" prefWidth="1180.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="80.0" prefWidth="182.0" text="1000 COLONES">
-                     <graphic>
-                        <ImageView fx:id="imvMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="2000 COLONES">
-                     <graphic>
-                        <ImageView fx:id="imvDosMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="5000 COLONES">
-                     <graphic>
-                        <ImageView fx:id="imvCincoMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="10 000 COLONES">
-                     <graphic>
-                        <ImageView fx:id="imvDiezMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" prefWidth="183.0" text="20 000 COLONES">
-                     <graphic>
-                        <ImageView fx:id="imvVeinteMilColones" fitHeight="75.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/1000colones.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Label>
-               </children></HBox>
-            <HBox alignment="CENTER" prefHeight="53.0" prefWidth="1180.0" spacing="10.0">
-               <children>
-                  <MFXSpinner fx:id="spnrMilColones" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="149.0" />
-                  <MFXSpinner fx:id="spnrDosMilColones" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="149.0" />
-                  <MFXSpinner fx:id="spnrCincoMilColones" onMouseClicked="#refreshTotal" />
-                  <MFXSpinner fx:id="spnrDiezMilColones" onMouseClicked="#refreshTotal" />
-                  <MFXSpinner fx:id="spnrVeinteMilColones" onMouseClicked="#refreshTotal" />
+                  <MFXSpinner fx:id="spnrCincoColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrDiezColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrVeinticincoColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrCincuentaColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrCienColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrQuinientosColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="180.0" HBox.hgrow="ALWAYS" />
                </children>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1180.0" spacing="15.0">
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="1180.0" spacing="25.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="182.0" styleClass="lbl1000colones" text="1000 COLONES" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fx:id="imvMilColones" fitHeight="51.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" styleClass="lbl2000colones" text="2000 COLONES" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fx:id="imvDosMilColones" fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" styleClass="lbl5000colones" text="5000 COLONES" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fx:id="imvCincoMilColones" fitHeight="48.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" styleClass="lbl10000colones" text="10 000 COLONES" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fx:id="imvDiezMilColones" fitHeight="55.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="183.0" styleClass="lbl20000colones" text="20 000 COLONES" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fx:id="imvVeinteMilColones" fitHeight="51.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/1000colones.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="50.0" right="50.0" top="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin></HBox>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="1180.0" spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <MFXSpinner fx:id="spnrMilColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="149.0" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrDosMilColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#refreshTotal" prefHeight="43.0" prefWidth="149.0" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrCincoMilColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#refreshTotal" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrDiezMilColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#refreshTotal" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrVeinteMilColones" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#refreshTotal" HBox.hgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets bottom="4.0" left="50.0" right="50.0" top="4.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="71.0" prefWidth="1180.0" spacing="15.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label text="TOTAL: ">
                      <font>
@@ -180,8 +214,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" spacing="40.0">
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="40.0" VBox.vgrow="ALWAYS">
                <children>
+                  <Pane prefHeight="62.0" prefWidth="175.0" HBox.hgrow="ALWAYS" />
                   <MFXButton fx:id="btnClose" onAction="#close" prefHeight="63.0" prefWidth="250.0" text="CERRAR">
                      <font>
                         <Font size="18.0" />
@@ -192,9 +227,16 @@
                         <Font size="18.0" />
                      </font>
                   </MFXButton>
+                  <Pane prefHeight="62.0" prefWidth="168.0" HBox.hgrow="ALWAYS" />
                </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
             </HBox>
          </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>
