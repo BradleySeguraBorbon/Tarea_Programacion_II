@@ -3,6 +3,7 @@ package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
 import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.application.Application;
@@ -26,6 +27,7 @@ public class App extends Application {
         FlowController.getInstance().InitializeFlow(stage, null);
         stage.setTitle("SISTEMA DE COOPERATIVA FINANCIERA");
         FlowController.getInstance().goMain();
+        
     }
 
     public static void main(String[] args) {

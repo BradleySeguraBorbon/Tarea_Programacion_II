@@ -89,7 +89,7 @@ public class AffiliatedMainController extends Controller implements Initializabl
     }
 
     public void openAccountStatement() {
-
+        FlowController.getInstance().goView("AccountDetailsView");
     }
 
     public void openDepositBox() {

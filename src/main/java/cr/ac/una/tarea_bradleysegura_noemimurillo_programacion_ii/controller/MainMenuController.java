@@ -195,7 +195,8 @@ public class MainMenuController extends Controller implements Initializable {
     }
 
     public void openAccountStatement() {
-
+        FlowController.getInstance().goView("AccountDetailsView");
+        AppContext.getInstance().set("inMainMenu", false);
     }
 
     public void openDepositBox() {
