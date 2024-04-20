@@ -357,6 +357,8 @@
     -fx-font-family: "Gill Sans";
     -fx-alignment: center;
     -fx-font-size: 14px;
+    -fx-max-weight: 400px;
+    -fx-max-height: 60px;
 }
 
 .mfx-text-field .floating-text,

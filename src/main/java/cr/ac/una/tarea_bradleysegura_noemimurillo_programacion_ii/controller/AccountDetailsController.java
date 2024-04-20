@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Fiorella
  */
-public class AccountDetailsController implements Initializable {
+public class AccountDetailsController extends Controller implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -22,5 +22,10 @@ public class AccountDetailsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @Override
+    public void initialize() {
+       
+    }
     
 }

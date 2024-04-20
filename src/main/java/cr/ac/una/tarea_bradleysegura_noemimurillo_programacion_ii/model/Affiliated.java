@@ -19,7 +19,7 @@ public class Affiliated {
     private String firstLastName;
     private String secondLastName;
     private String folio;
-    private int age;
+    private Integer age;
     private ArrayList<Account> accounts;
     private String profileImage;
     private String cooperative;
@@ -41,7 +41,7 @@ public class Affiliated {
         this(name, firstLastName, secondLastName, age, sexo, null, cooperative);
     }
 
-    public Affiliated(String name, String firstLastName, String secondLastName, int age, Sexo sexo, String profileImage, String cooperative) {
+    public Affiliated(String name, String firstLastName, String secondLastName, Integer age, Sexo sexo, String profileImage, String cooperative) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
@@ -80,7 +80,7 @@ public class Affiliated {
         this.secondLastName = secondLastName;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -124,7 +124,7 @@ public class Affiliated {
         return this.name + " " + this.firstLastName + " " + this.secondLastName + " ";
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return this.age;
     }
 

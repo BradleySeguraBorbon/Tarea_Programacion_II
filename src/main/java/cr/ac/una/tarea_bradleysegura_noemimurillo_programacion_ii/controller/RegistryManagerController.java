@@ -4,6 +4,7 @@
  */
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated.Sexo;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
@@ -11,10 +12,13 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
+import io.github.palexdev.materialfx.controls.MFXSpinner;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.controls.models.spinner.IntegerSpinnerModel;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,6 +40,7 @@ import javafx.stage.FileChooser;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -45,29 +50,33 @@ import javafx.scene.image.ImageView;
 public class RegistryManagerController extends Controller implements Initializable {
 
     @FXML
-    private MFXButton btnAddUser;
+    private MFXButton btnAddUser; //
     @FXML
-    private ImageView imvAffiliatedImage;
+    private MFXTextField txtSurname;//
     @FXML
-    private MFXTextField txtSurname;
+    private MFXTextField txtName;//
     @FXML
-    private MFXTextField txtName;
+    private MFXTextField txtSecondSurname;//
     @FXML
-    private MFXTextField txtSecondSurname;
+    private MFXSpinner<Integer> spnAge;//
     @FXML
-    private MFXTextField txtAge;
+    private ToggleGroup IdentityGroup;//
     @FXML
-    private ToggleGroup SexGroup;
+    private MFXButton btnDeleteUser;//
     @FXML
-    private MFXButton btnDeleteUser;
+    private MFXButton btnSaveChanges;//
     @FXML
-    private MFXButton btnSaveChanges;
+    private MFXButton UpImage;//
     @FXML
     private MFXTableView tbvUsersList;
     @FXML
-    private ImageView imgvUsersFace;
+    private MFXTableColumn<Affiliated> tbcAffiliated;
+    @FXML
+    private MFXTableColumn<Affiliated> tbcFolio;
+    @FXML
+    private ImageView imgvUsersFace;//
 
-    ArrayList<Affiliated> newAffiliates = new ArrayList<>();
+    ArrayList<Affiliated> newAffiliates;
     String convertedImg = "";
 
     /**
@@ -75,82 +84,52 @@ public class RegistryManagerController extends Controller implements Initializab
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        //ArrayList<Affiliated> Affiliated2 = new ArrayList<>();
-        //AppContext.getInstance().set("afiliated", Affiliated2);
-        this.newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
-        // txtAge.setTextFormatter(Formato.getInstance().integerFormat());
-       // setUpUserBox();
-
-        // TODO
+        // this.newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
+        this.spnAge.setSpinnerModel(new IntegerSpinnerModel(0));
         initialize();
 
     }
 
     @Override
     public void initialize() {
-
-    }
-
-//    public void setUpUserBox() {
-//
-//        MFXTableColumn<Affiliated> folioColumn = new MFXTableColumn<>("Folio", true, Comparator.comparing(Affiliated::getFolio));
-//        MFXTableColumn<Affiliated> nameColumn = new MFXTableColumn<>("Nombre", true, Comparator.comparing(Affiliated::getFullName));
-//
-//        //Especificar qué se está mostrando y dónde
-//        folioColumn.setRowCellFactory(folioNumber -> new MFXTableRowCell<>(Affiliated::getFolio));
-//        nameColumn.setRowCellFactory(nameString -> new MFXTableRowCell<>(Affiliated::getFullName));
-//
-//        this.tbvUsersList.getTableColumns().addAll(folioColumn, nameColumn);
-//        this.tbvUsersList.setItems(FXCollections.observableArrayList(newAffiliates));
-//
-//    }
-
-    public static String convertImageToBase64(String filePath) {
-        String base64Image = "";
-        try (InputStream inputStream = new FileInputStream(filePath)) {
-            byte[] imageBytes = inputStream.readAllBytes();
-            base64Image = Base64.getEncoder().encodeToString(imageBytes);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (AppContext.getInstance().get("affiliated") != null) {
+            newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
+            setuptbvUsersList();
         }
-        return base64Image;
-    }
 
-    public static Image convertBase64ToImage(String base64String) {
-        try {
-            byte[] decodedBytes = Base64.getDecoder().decode(base64String);
-            return new Image(new ByteArrayInputStream(decodedBytes));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     public void saveNewImage() {
-        // Crear un FileChooser para seleccionar el archivo de imagen
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar Imagen");
+        try {
+            // Crear un FileChooser para seleccionar el archivo de imagen
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Seleccionar Imagen");
 
-        // Filtrar solo archivos de imagen
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg", "*.gif");
-        fileChooser.getExtensionFilters().add(extFilter);
+            // Filtrar solo archivos de imagen
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg", "*.gif");
+            fileChooser.getExtensionFilters().add(extFilter);
 
-        // Mostrar el diálogo de selección de archivo
-        File file = fileChooser.showOpenDialog(null);
+            // Mostrar el diálogo de selección de archivo
+            File file = fileChooser.showOpenDialog(null);
 
-        // Verificar si se seleccionó un archivo
-        if (file != null) {
-            // Crear una imagen a partir del archivo seleccionado
-            //Image image = new Image(file.toURI().toString());
-            String image64 = file.getAbsolutePath();
-            //String image64 = "C:\\Users\\Fiorella\\Pictures\\20181031_170733.jpg";
-            convertedImg = convertImageToBase64(image64);
+            BufferedImage image = ImageIO.read(file);
+            // Verificar si se seleccionó un archivo
+            if (file != null) {
+                // Crear una imagen a partir del archivo seleccionado
+                //Image image = new Image(file.toURI().toString());
+                //String image64 = file.getAbsolutePath();
+                //String image64 = "C:\\Users\\Fiorella\\Pictures\\20181031_170733.jpg";
+                //convertedImg = convertImageToBase64(image64);
 
-            Image bs64ToImg = convertBase64ToImage(convertedImg);
+                this.convertedImg = ImageConverter.toBase64(image, ImageConverter.getFormat(file));
+                System.out.println(ImageConverter.getFormat(file));
 
-            // Mostrar la imagen en el ImageView
-            imgvUsersFace.setImage(bs64ToImg);
+                Image bs64ToImg = ImageConverter.fromBase64(this.convertedImg);
+                // Mostrar la imagen en el ImageView
+                imgvUsersFace.setImage(bs64ToImg);
+            }
+
+        } catch (IOException E) {
 
         }
 
@@ -164,7 +143,7 @@ public class RegistryManagerController extends Controller implements Initializab
 
         //Estos if validan si los espacios están llenos y si no se salen del método.
         if (convertedImg.equals("")) {
-            msj.show(ERROR, "Imagen vacía", "La iamgen del nuevo usuario está vacía");
+            msj.show(ERROR, "Imagen vacía", "La imagen del nuevo usuario está vacía");
             return;
         }
         if (txtName.getText().equals("")) {
@@ -179,26 +158,29 @@ public class RegistryManagerController extends Controller implements Initializab
             msj.show(ERROR, "Segundo apellido vacío", "La casilla del segundo apellido del nuevo usuario está vacía");
             return;
         }
+        //Falta EDAD
+
         if (getNewSex() == null) {
             msj.show(ERROR, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
             return;
         }
-
+        Affiliated nuevo = new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), spnAge.getValue(), getNewSex(), (String) AppContext.getInstance().get("cooperativeName"), this.convertedImg);
         //Si todos los espacios están llenos, se salta los if y se crea el nuevo usuario
-        newAffiliates.add(new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), Integer.parseInt(txtAge.getText()), getNewSex(), (String) AppContext.getInstance().get("cooperativeName"), convertedImg));
-        Affiliated actualUser = newAffiliates.getLast();
+        tbvUsersList.getItems().add(nuevo);
+        //Affiliated actualUser = newAffiliates.getLast();
 
         //Mensaje que indica el folio del nuevo usuario.
-        msj.show(INFORMATION, "Nuevo Folio", "El folio del nuevo usuario es: " + actualUser.getFolio());
+        msj.show(INFORMATION, "Nuevo Folio", "El folio del nuevo usuario es: " + nuevo.getFolio());
         //Mensaje de nuevo usuario agregado exitosamente.
         msj.show(INFORMATION, "Nuevo Afiliado", "¡Se ha añadido un nuevo afiliado exitosamente!");
 
         clean();
-
+        this.tbvUsersList.setItems(FXCollections.observableArrayList(this.newAffiliates));
+        this.tbvUsersList.update();
     }
 
     public Sexo getNewSex() {
-        Toggle seleccionado = SexGroup.getSelectedToggle();
+        Toggle seleccionado = IdentityGroup.getSelectedToggle();
         if (seleccionado != null) {
             String valor = ((RadioButton) seleccionado).getText();
             if (valor.equals("Masculino")) {
@@ -220,14 +202,22 @@ public class RegistryManagerController extends Controller implements Initializab
 
     public void clean() {
         //Esto es para limpiar todos los campos
-        txtName.clear();
-        txtSurname.clear();
-        txtSecondSurname.clear();
-        SexGroup.getSelectedToggle().setSelected(false);
-        txtAge.clear();
-        Image defaultImg = new Image(getClass().getResourceAsStream("/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/user.png"));
-        imgvUsersFace.setImage(defaultImg);
-        convertedImg = "";
+        this.txtName.clear();
+        this.txtSurname.clear();
+        this.txtSecondSurname.clear();
+        this.IdentityGroup.getSelectedToggle().setSelected(false);
+        this.spnAge.setValue(0);
+        this.imgvUsersFace.setImage(new Image(getClass().getResourceAsStream("../resources/User.jpg")));
+        this.convertedImg = "";
+    }
+
+    public void setuptbvUsersList() {
+        this.tbcFolio.setRowCellFactory(affiliated -> new MFXTableRowCell<>(Affiliated::getFolio));
+        this.tbcAffiliated.setRowCellFactory(affiliated -> new MFXTableRowCell<>(Affiliated::getFullName));
+
+        if (AppContext.getInstance().get("affiliated") != null) {
+            this.tbvUsersList.setItems(FXCollections.observableArrayList(this.newAffiliates));
+        }
     }
 
 }
