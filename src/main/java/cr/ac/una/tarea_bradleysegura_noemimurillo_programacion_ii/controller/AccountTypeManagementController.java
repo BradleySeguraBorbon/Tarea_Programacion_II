@@ -9,6 +9,7 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliat
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -51,8 +52,7 @@ public class AccountTypeManagementController extends Controller implements Initi
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.availableAccounts = new ArrayList<String>();
-        // TODO
-        
+        this.txtAddAccountType.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));  
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.github.sarxos.webcam.WebcamResolution;*/
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -44,13 +45,13 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     @FXML
     private ImageView imvAffiliatedImage;
     @FXML
-    private MFXTextField txtAffiliatedName;
+    private MFXTextField txtName;
     @FXML
-    private MFXTextField txtAffiliatedFirstLastName;
+    private MFXTextField txtFirstLastName;
     @FXML
-    private MFXTextField txtAffiliatedSecondLastName;
+    private MFXTextField txtSecondLastName;
     @FXML
-    private MFXSpinner<Integer> spnrAffiliatedAge;
+    private MFXSpinner<Integer> spnrAge;
     @FXML
     private MFXRadioButton rBtnMasculino;
     @FXML
@@ -73,36 +74,42 @@ public class AffiliatedRegisterController extends Controller implements Initiali
 
     @Override
     public void initialize() {
+        //Inicialización de lista de afiliados
         if (AppContext.getInstance().get("affiliated") != null) {
             this.affiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
-            spnrAffiliatedAge.setSpinnerModel(new IntegerSpinnerModel(0));
+            spnrAge.setSpinnerModel(new IntegerSpinnerModel(0));
         }
+        
+        //Inicialización de TextFields
+        txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
+        txtFirstLastName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
+        txtSecondLastName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
     }
 
     public void register() {
         Mensaje alerta = new Mensaje();
-        String name = txtAffiliatedName.getText(),
-                firstLastName = txtAffiliatedFirstLastName.getText(),
-                secondLastName = txtAffiliatedSecondLastName.getText(),
+        String name = txtName.getText(),
+                firstLastName = txtFirstLastName.getText(),
+                secondLastName = txtSecondLastName.getText(),
                 cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
-        Integer age = (int) spnrAffiliatedAge.getSpinnerModel().getValue();
+        Integer age = (int) spnrAge.getSpinnerModel().getValue();
 
         if (name.isBlank()) {
             alerta.show(Alert.AlertType.WARNING, "NOMBRE INCOMPLETO", "Debes ingresar tu nombre para continuar");
             System.out.println("ERROR");
-            txtAffiliatedName.requestFocus();
+            txtName.requestFocus();
         } else if (firstLastName.isBlank()) {
             alerta.show(Alert.AlertType.WARNING, "PRIMER APELLIDO INCOMPLETO", "Debes ingresar tu primer apellido para continuar");
             System.out.println("ERROR");
-            txtAffiliatedFirstLastName.requestFocus();
+            txtFirstLastName.requestFocus();
         } else if (secondLastName.isBlank()) {
             alerta.show(Alert.AlertType.WARNING, "SEGUNDO APELLIDO INCOMPLETO", "Debes ingresar tu segundo apellido para continuar");
             System.out.println("ERROR");
-            txtAffiliatedSecondLastName.requestFocus();
-        } else if (spnrAffiliatedAge.getSpinnerModel().getValue() == null) {
+            txtSecondLastName.requestFocus();
+        } else if (spnrAge.getSpinnerModel().getValue() == null) {
             alerta.show(Alert.AlertType.WARNING, "EDAD NO INDICADA", "Debes indicar tu edad para continuar");
             System.out.println("ERROR");
-            spnrAffiliatedAge.requestFocus();
+            spnrAge.requestFocus();
         } else if (!rBtnMasculino.isSelected() && !rBtnFemenino.isSelected()) {
             alerta.show(Alert.AlertType.WARNING, "SEXO NO INDICADO", "Debes indicar tu sexo para continuar");
             System.out.println("ERROR");

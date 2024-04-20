@@ -221,18 +221,10 @@
 
 .jfx-btn-first-template {
     -fx-background-color: #3333ff;
-    -fx-min-width: 250;
-    -fx-min-height: 135;
-    -fx-max-width: 400;
-    -fx-max-height: 150;
 }
 
 .jfx-btn-second-template {
     -fx-background-color: #cc00ff;
-    -fx-min-width: 250;
-    -fx-min-height: 135;
-    -fx-max-width: 400;
-    -fx-max-height: 150;
 }
 
 .jfx-btn-third-template {
@@ -367,6 +359,8 @@
     -fx-font-family: "Gill Sans";
     -fx-alignment: center;
     -fx-font-size: 14px;
+    -fx-max-width: 150px;
+    -fx-max-height: 40px;
     -fx-max-width: 400px;
     -fx-max-height: 60px;
 }
@@ -413,6 +407,8 @@
     -mfx-track-color: rgb(255, 255, 255);
     -mfx-thumb-color: rgb(137, 137, 137);
     -mfx-thumb-hover-color: rgb(89, 88, 91);
+    -fx-min-width: 150px;
+    -fx-min-height: 150px;
 }
 
 .mfx-list-view .virtual-flow .scroll-bar .track {
@@ -432,6 +428,7 @@
     -fx-background-color: #00cccc;
     -fx-border-color: #00cccc;
     -fx-padding: 5;
+    -fx-min-width: 350px;
 }
 
 .mfx-list-cell:hover {

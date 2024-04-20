@@ -96,7 +96,7 @@ public class BoxDeposit extends Transaction {
         return 0;
     }
 
-    public int getCincoColonesDenomination() {
+   /* public int getCincoColonesDenomination() {
         return (int) depositDenomination.get(BoxDeposit.Denomination.CINCO);
     }
 
@@ -138,7 +138,7 @@ public class BoxDeposit extends Transaction {
 
     public int getVeinteMilColonesDenomination() {
         return (int) depositDenomination.get(BoxDeposit.Denomination.VEINTEMIL);
-    }
+    } */
 
     @Override
     public String toString() {
