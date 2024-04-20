@@ -209,7 +209,7 @@
     -fx-text-fill: -fx-base-btn-text-color;
     -fx-background-color: -fx-base-btn-color;
     -fx-min-width: 100;
-    -fx-min-height: 75;
+    -fx-min-height: 50;
     -fx-max-width: 400;
     -fx-max-height: 150;
 }
@@ -237,16 +237,26 @@
 
 .jfx-btn-third-template {
     -fx-background-color: #33ff66;
-    -fx-min-width: 250;
-    -fx-min-height: 135;
-    -fx-max-width: 400;
-    -fx-max-height: 150;
 }
 
 .jfx-btn-fourth-template {
     -fx-background-color: #ff33cc;
-    -fx-min-width: 250;
-    -fx-min-height: 135;
+}
+
+.mfx-btn-small,
+.mfx-btn-small:hover {
+    -fx-max-width: 200;
+    -fx-max-height: 80;
+}
+
+.mfx-btn-medium,
+.mfx-btn-medium:hover{
+    -fx-max-width: 250;
+    -fx-max-height: 100;
+}
+
+.mfx-btn-large,
+.mfx-btn-large:hover{
     -fx-max-width: 400;
     -fx-max-height: 150;
 }
@@ -357,7 +367,7 @@
     -fx-font-family: "Gill Sans";
     -fx-alignment: center;
     -fx-font-size: 14px;
-    -fx-max-weight: 400px;
+    -fx-max-width: 400px;
     -fx-max-height: 60px;
 }
 
@@ -455,4 +465,14 @@
 
 .mfx-list-view {
     -fx-background-color: #99ffcc;
+}
+
+
+/* ---------------------------------------------------- Filter Combo Box ----------------------------------------------------*/
+
+.mfx-filter-combo-box {
+    -fx-min-width: 200px;
+    -fx-min-height: 40px;
+    -fx-max-width: 400px;
+    -fx-max-height: 60px;
 }

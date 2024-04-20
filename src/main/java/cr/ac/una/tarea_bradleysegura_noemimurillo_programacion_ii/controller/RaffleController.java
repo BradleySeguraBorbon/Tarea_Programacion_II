@@ -16,6 +16,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.animation.PauseTransition;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -148,7 +149,7 @@ public class RaffleController extends Controller implements Initializable {
     }
 
     public void setupLabels() {
-        Random numGenerator = new Random();
+        //Random numGenerator = new Random();
         Integer participantsNum = 0, currentContainer = 0;
         for (Affiliated participant : this.participants) {
             if (participantsNum >= 26 || currentContainer >= this.containers.size()) {
@@ -177,27 +178,6 @@ public class RaffleController extends Controller implements Initializable {
         this.containersIterator = this.containers.iterator();
         this.labelsIterator = Collections.emptyIterator();
         iterateNextContainer();
-
-        //PauseTransition pause = new PauseTransition(Duration.millis(500));
-
-        /*while (!this.containers.isEmpty()) {
-            for (HBox container : this.containers) {
-                for (Node lblParticipant : (ObservableList<Node>) container.getChildren()) {
-                    if (lblParticipant instanceof Label) {
-                        lblParticipant.getStyleClass().add("jfx-lbl-raffle-selected");
-                        this.inPause = true;
-                        pause.setOnFinished(event -> {setInPause(false);});
-                        pause.play();
-                        lblParticipant.getStyleClass().remove("jfx-lbl-raffle-selected");
-                        currentSteps++;
-                    }
-                    if (Objects.equals(currentSteps, totalSteps)) {
-                        new Mensaje().show(Alert.AlertType.INFORMATION, "FELICIDADES", ((Label) lblParticipant).getText() + " , con FOLIO: " + lblParticipant.getUserData() + " es el(la) ganador(a)");
-                        return;
-                    }
-                }
-            }
-        }*/
     }
 
     public void iterateNextContainer() {
@@ -205,8 +185,7 @@ public class RaffleController extends Controller implements Initializable {
             HBox currentContainer = containersIterator.next();
             labelsIterator = currentContainer.getChildren().iterator();
             iterateNextLabel();
-        }
-        else {
+        } else {
             this.containersIterator = this.containers.iterator();
             iterateNextContainer();
         }
@@ -216,7 +195,7 @@ public class RaffleController extends Controller implements Initializable {
         if (labelsIterator.hasNext()) {
             Node currentLabel = labelsIterator.next();
             if (currentLabel instanceof Label) {
-                PauseTransition pause = new PauseTransition(Duration.millis(500));
+                PauseTransition pause = new PauseTransition(Duration.millis(200));
                 pause.setOnFinished(event -> {
                     currentLabel.getStyleClass().remove("jfx-lbl-raffle-selected");
                     currentRaffleSteps++;
