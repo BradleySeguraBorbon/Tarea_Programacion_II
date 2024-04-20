@@ -80,7 +80,7 @@ public class MainMenuController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
-        AppContext.getInstance().set("User", "Teachers");
+        AppContext.getInstance().set("User", "Officers");
         setTeachersMainView(false);
         setOfficersMainView(false);
         setAffiliatedMainView(false);
@@ -158,7 +158,7 @@ public class MainMenuController extends Controller implements Initializable {
     }
 
     public void openAccountOpening() {
-        FlowController.getInstance().goViewInWindowModal("AffiliatedSelectionView", getStage(), false);
+        FlowController.getInstance().goViewInWindowModal("AffiliatedSelectionView", getStage(), true);
         if (AppContext.getInstance().get("selectedAffiliated") != null) {
             FlowController.getInstance().goView("AccountOpeningView");
             AppContext.getInstance().set("inMainMenu", false);

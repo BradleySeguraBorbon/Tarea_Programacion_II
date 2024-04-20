@@ -208,6 +208,10 @@
     -fx-alignment:CENTER;
     -fx-text-fill: -fx-base-btn-text-color;
     -fx-background-color: -fx-base-btn-color;
+    -fx-min-width: 100;
+    -fx-min-height: 50;
+    -fx-max-width: 400;
+    -fx-max-height: 150;
 }
 
 .button:hover {
@@ -224,11 +228,29 @@
 }
 
 .jfx-btn-third-template {
-    -fx-background-color: #33ff66
+    -fx-background-color: #33ff66;
 }
 
 .jfx-btn-fourth-template {
-    -fx-background-color: #ff33cc
+    -fx-background-color: #ff33cc;
+}
+
+.mfx-btn-small,
+.mfx-btn-small:hover {
+    -fx-max-width: 200;
+    -fx-max-height: 80;
+}
+
+.mfx-btn-medium,
+.mfx-btn-medium:hover{
+    -fx-max-width: 250;
+    -fx-max-height: 100;
+}
+
+.mfx-btn-large,
+.mfx-btn-large:hover{
+    -fx-max-width: 400;
+    -fx-max-height: 150;
 }
 
 .btn-alert-action{
@@ -337,6 +359,8 @@
     -fx-font-family: "Gill Sans";
     -fx-alignment: center;
     -fx-font-size: 14px;
+    -fx-max-width: 400px;
+    -fx-max-height: 60px;
 }
 
 .mfx-text-field .floating-text,
@@ -423,8 +447,8 @@
 }
 
 .mfx-list-cell {
-   -fx-background-color: #00cccc;
-   -fx-border-color: transparent;
+    -fx-background-color: #00cccc;
+    -fx-border-color: transparent;
 }
 
 .mfx-list-view .virtual-flow {
@@ -432,5 +456,15 @@
 }
 
 .mfx-list-view {
-    -fx-background-color: red;
+    -fx-background-color: #99ffcc;
+}
+
+
+/* ---------------------------------------------------- Filter Combo Box ----------------------------------------------------*/
+
+.mfx-filter-combo-box {
+    -fx-min-width: 200px;
+    -fx-min-height: 40px;
+    -fx-max-width: 400px;
+    -fx-max-height: 60px;
 }
