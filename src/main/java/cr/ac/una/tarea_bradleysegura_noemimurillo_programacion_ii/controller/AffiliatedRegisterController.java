@@ -119,7 +119,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     }
 
     public void takePicture() {
-        FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), false);
+        FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), true);
     }
 
     public void recoverFocus(BufferedImage takenImage) {

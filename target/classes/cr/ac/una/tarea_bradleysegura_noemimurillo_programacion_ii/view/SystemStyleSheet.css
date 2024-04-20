@@ -139,15 +139,15 @@
 }
 
 .jfx-lbl-raffle-heart {
-    -fx-shape: "M 100,200
-        A 20,20 0,0,1 50,150
-        A 30,30 0,0,1 100,100
-        A 30,30 0,0,1 150,150
-        A 20,20 0,0,1 200,200
-        Q 150,250 100,200";
+    -fx-shape: "M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+        c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z";
     -fx-background-color: #ff0033;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
     -fx-font-size: 12px;
-    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-label-padding: 0px 0px 10px 0px;
     -fx-pref-width: 110;
     -fx-pref-height: 60;
 }
@@ -155,28 +155,36 @@
 .jfx-lbl-raffle-square {
     -fx-shape: "M 10,10 L 110,10 L 110,110 L 10,110 Z";
     -fx-background-color: #cc33ff;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
     -fx-font-size: 12px;
-    -fx-text-alignment: center;
+    -fx-alignment: center;
     -fx-pref-width: 110;
     -fx-pref-height: 60;
 }
 
-.jfx.lbl-raffle-circle {
-    -fx-shape: "M 60,10
-        A 50,50 0 1,1 60,90
-        A 50,50 0 1,1 60,10";
-    -fx-background-color: #ff9900;
+.jfx-lbl-raffle-hexagon {
+    -fx-shape:"M 240 210 L 150 300 L 240 390 L 450 390 L 540 300 L 450 210 L 240 210";
+    -fx-background-color: #ff6633;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
     -fx-font-size: 12px;
-    -fx-text-alignment: center;
+    -fx-alignment: center;
     -fx-pref-width: 110;
     -fx-pref-height: 60;
 }
 
-.jfx-lbl-raffle-diamond {
-    -fx-shape: "M 100,10 L 120,50 L 100,90 L 80,50 Z";
+.jfx-lbl-raffle-oval {
+    -fx-background-radius: 40%;
     -fx-background-color: #00ff66;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-radius: 40%;
     -fx-font-size: 12px;
-    -fx-text-alignment: center;
+    -fx-alignment: center;
     -fx-pref-width: 110;
     -fx-pref-height: 60;
 }
@@ -412,4 +420,17 @@
 .mfx-list-cell .data-label {
     -fx-font-family: "Open Sans Regular";
     -fx-text-fill: -mfx-text-he;
+}
+
+.mfx-list-cell {
+   -fx-background-color: #00cccc;
+   -fx-border-color: transparent;
+}
+
+.mfx-list-view .virtual-flow {
+    -fx-background-color: transparent;
+}
+
+.mfx-list-view {
+    -fx-background-color: red;
 }

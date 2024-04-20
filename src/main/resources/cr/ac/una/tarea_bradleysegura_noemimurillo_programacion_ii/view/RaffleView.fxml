@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.RaffleController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller.RaffleController">
     <stylesheets>
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
@@ -66,7 +66,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="1000.0">
                <children>
-                  <MFXButton fx:id="btnRaffle" prefHeight="62.0" prefWidth="149.0" text="INICIAR RIFA" />
+                  <MFXButton fx:id="btnRaffle" onAction="#raffle" prefHeight="62.0" prefWidth="149.0" styleClass="jfx-btn-third-template" text="INICIAR RIFA" />
                </children>
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
