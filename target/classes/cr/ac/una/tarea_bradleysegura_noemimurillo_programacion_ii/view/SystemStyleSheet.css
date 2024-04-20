@@ -208,6 +208,10 @@
     -fx-alignment:CENTER;
     -fx-text-fill: -fx-base-btn-text-color;
     -fx-background-color: -fx-base-btn-color;
+    -fx-min-width: 100;
+    -fx-min-height: 75;
+    -fx-max-width: 400;
+    -fx-max-height: 150;
 }
 
 .button:hover {
@@ -217,18 +221,34 @@
 
 .jfx-btn-first-template {
     -fx-background-color: #3333ff;
+    -fx-min-width: 250;
+    -fx-min-height: 135;
+    -fx-max-width: 400;
+    -fx-max-height: 150;
 }
 
 .jfx-btn-second-template {
     -fx-background-color: #cc00ff;
+    -fx-min-width: 250;
+    -fx-min-height: 135;
+    -fx-max-width: 400;
+    -fx-max-height: 150;
 }
 
 .jfx-btn-third-template {
-    -fx-background-color: #33ff66
+    -fx-background-color: #33ff66;
+    -fx-min-width: 250;
+    -fx-min-height: 135;
+    -fx-max-width: 400;
+    -fx-max-height: 150;
 }
 
 .jfx-btn-fourth-template {
-    -fx-background-color: #ff33cc
+    -fx-background-color: #ff33cc;
+    -fx-min-width: 250;
+    -fx-min-height: 135;
+    -fx-max-width: 400;
+    -fx-max-height: 150;
 }
 
 .btn-alert-action{
@@ -423,8 +443,8 @@
 }
 
 .mfx-list-cell {
-   -fx-background-color: #00cccc;
-   -fx-border-color: transparent;
+    -fx-background-color: #00cccc;
+    -fx-border-color: transparent;
 }
 
 .mfx-list-view .virtual-flow {
@@ -432,5 +452,5 @@
 }
 
 .mfx-list-view {
-    -fx-background-color: red;
+    -fx-background-color: #99ffcc;
 }
