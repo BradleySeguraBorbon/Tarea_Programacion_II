@@ -49,6 +49,7 @@ public class Affiliated {
         this.sexo = sexo;
         this.profileImage = profileImage;
         this.cooperative = cooperative;
+        this.specialTickets = 0;
         accounts = new ArrayList();
 
         //Creación de FOLIO ÚNICO
@@ -180,6 +181,14 @@ public class Affiliated {
             }
         }
         return true;
+    }
+
+    public void updateTicketsCount() {
+        Integer totalTransactions = 0;
+        for (Account account : this.accounts) {
+            totalTransactions += account.getHistory().size();
+        }
+        this.specialTickets = totalTransactions / 3;
     }
 
     public String toString() {

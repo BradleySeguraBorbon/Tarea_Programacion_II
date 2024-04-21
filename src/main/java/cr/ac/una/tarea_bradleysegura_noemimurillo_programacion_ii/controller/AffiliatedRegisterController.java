@@ -122,6 +122,9 @@ public class AffiliatedRegisterController extends Controller implements Initiali
             this.affiliated.add(new Affiliated(name, firstLastName, secondLastName, age, sexo, ImageConverter.toBase64(image, "JPG"), cooperativeName));
             alerta.show(Alert.AlertType.INFORMATION, "REGISTRO EXITOSO", "'¡Bienvenid@ a " + cooperativeName + ", " + name + "!");
             AppContext.getInstance().set("affiliated", this.affiliated);
+            
+            FlowController.getInstance().goView("MainMenuView");
+            AppContext.getInstance().set("inMainMenu", true);
         }
     }
 

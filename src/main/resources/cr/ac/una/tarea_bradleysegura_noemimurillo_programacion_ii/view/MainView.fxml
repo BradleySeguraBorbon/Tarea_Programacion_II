@@ -58,7 +58,12 @@
                   <Insets bottom="10.0" />
                </HBox.margin>
             </MFXButton>
-            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="110.0" prefWidth="1057.0" HBox.hgrow="ALWAYS" />
+            <Pane prefHeight="110.0" prefWidth="958.0" />
+            <ImageView fitHeight="104.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/estrella.gif" />
+               </image>
+            </ImageView>
          </children>
          <padding>
             <Insets left="10.0" />

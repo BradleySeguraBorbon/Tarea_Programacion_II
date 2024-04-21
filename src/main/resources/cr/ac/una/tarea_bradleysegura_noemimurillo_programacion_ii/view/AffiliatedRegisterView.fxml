@@ -21,7 +21,7 @@
         <URL value="@SystemStyleSheet.css" />
     </stylesheets>
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="13.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="-13.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="13.0">
+      <VBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="13.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="5.0">
          <children>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="jx-lbl-subtitle" text="Haz click sobre la imagen para capturar " VBox.vgrow="ALWAYS" />
             <ImageView fx:id="imvAffiliatedImage" fitHeight="139.0" fitWidth="194.0" onMouseClicked="#takePicture" pickOnBounds="true" preserveRatio="true">
@@ -31,18 +31,19 @@
             </ImageView>
             <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="78.0" prefWidth="1000.0" spacing="40.0" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXTextField fx:id="txtAffiliatedName" floatingText="Nombre" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
-                  <MFXTextField fx:id="txtAffiliatedFirstLastName" floatingText="Primer Apellido" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
-                  <MFXTextField fx:id="txtAffiliatedSecondLastName" floatingText="Segundo Apellido" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
+                  <MFXTextField fx:id="txtName" floatingText="Nombre" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
+                  <MFXTextField fx:id="txtFirstLastName" floatingText="Primer Apellido" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
+                  <MFXTextField fx:id="txtSecondLastName" floatingText="Segundo Apellido" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="40.0" right="40.0" top="5.0" />
                </padding>
             </HBox>
             <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="6.0" prefWidth="1000.0" VBox.vgrow="ALWAYS" />
+            <Label styleClass="jx-lbl-subtitle" text="Edad" />
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <MFXSpinner fx:id="spnrAffiliatedAge" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="250.0" promptText="Edad" HBox.hgrow="ALWAYS" />
+                  <MFXSpinner fx:id="spnrAge" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="250.0" promptText="Edad" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
                   <Insets left="400.0" right="400.0" />
@@ -73,10 +74,17 @@
                   <Insets left="380.0" right="380.0" />
                </padding>
             </HBox>
-            <MFXButton fx:id="btnRegister" onAction="#register" prefHeight="70.0" prefWidth="170.0" text="REGISTRARME" />
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <MFXButton fx:id="btnRegister" onAction="#register" prefHeight="70.0" prefWidth="170.0" styleClass="mfx-btn-medium" text="REGISTRARME" />
+               </children>
+            </HBox>
          </children>
          <padding>
-            <Insets bottom="30.0" top="10.0" />
+            <Insets bottom="20.0" top="10.0" />
          </padding>
       </VBox>
    </children>

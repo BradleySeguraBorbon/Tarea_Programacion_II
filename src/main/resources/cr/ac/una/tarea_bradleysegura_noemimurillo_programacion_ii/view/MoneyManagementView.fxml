@@ -41,7 +41,10 @@
                                     <Pane prefHeight="4.0" prefWidth="422.0" />
                                     <MFXFilterComboBox fx:id="fcbSelectAffiliated" floatMode="BORDER" floatingText="SELECCIONAR AFILIADO" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#selectAffiliated" prefHeight="50.0" prefWidth="350.0" VBox.vgrow="ALWAYS" />
                                     <MFXFilterComboBox fx:id="fcbSelectDepositAccount" disable="true" floatMode="BORDER" floatingText="SELECCIONAR CUENTA" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#selectDepositAccount" prefHeight="50.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
-                                    <MFXTextField fx:id="txtDepositAmount" disable="true" floatMode="BORDER" floatingText="MONTO A DEPOSITAR" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
+                                    <MFXTextField fx:id="txtDepositAmount" disable="true" floatMode="BORDER" floatingText="MONTO A DEPOSITAR" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="300.0" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets left="40.0" right="40.0" />
+                                       </VBox.margin></MFXTextField>
                                     <HBox alignment="CENTER" fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="114.0" prefWidth="487.0" VBox.vgrow="ALWAYS">
                                        <children>
                                           <MFXButton fx:id="btnDeposit" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#deposit" prefHeight="70.0" prefWidth="200.0" text="DEPOSITAR" HBox.hgrow="ALWAYS">
@@ -97,7 +100,7 @@
                                        </font>
                                        <styleClass>
                                           <String fx:value="btn-alert-action" />
-                                          <String fx:value="mfx-btn-small" />
+                                          <String fx:value="mfx-btn-medium" />
                                        </styleClass>
                                     </MFXButton>
                                  </children>

@@ -62,7 +62,7 @@ public class RaffleController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //PRUEBA
+        /*//PRUEBA
 
         Affiliated affiliated1 = new Affiliated("Juan", "González", "Martínez", 25, Affiliated.Sexo.MASCULINO, null, "CajaCosta");
         Affiliated affiliated2 = new Affiliated("María", "López", "Sánchez", 35, Affiliated.Sexo.FEMENINO, null, "CajaSolidaridad");
@@ -124,13 +124,13 @@ public class RaffleController extends Controller implements Initializable {
         }
 
         AppContext.getInstance().set("auxAffiliated", participantsArray);
-        //FIN PRUEBA
+        //FIN PRUEBA */
 
         this.participants = new ArrayList();
         this.containers = new ArrayList();
 
-        if (AppContext.getInstance().get("auxAffiliated") != null) {
-            for (Affiliated affiliated : (ArrayList<Affiliated>) AppContext.getInstance().get("auxAffiliated")) {
+        if (AppContext.getInstance().get("affiliated") != null) {
+            for (Affiliated affiliated : (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated")) {
                 if (affiliated.getSpecialTickets() > 0) {
                     this.participants.add(affiliated);
                 }
@@ -172,12 +172,16 @@ public class RaffleController extends Controller implements Initializable {
     }
 
     public void raffle() {
-        Random numGenerator = new Random();
-        totalRaffleSteps = numGenerator.nextInt(this.participants.size() * 2);
-        currentRaffleSteps = 0;
-        this.containersIterator = this.containers.iterator();
-        this.labelsIterator = Collections.emptyIterator();
-        iterateNextContainer();
+        if (!this.participants.isEmpty()) {
+            Random numGenerator = new Random();
+            totalRaffleSteps = numGenerator.nextInt(this.participants.size() * 2);
+            currentRaffleSteps = 0;
+            this.containersIterator = this.containers.iterator();
+            this.labelsIterator = Collections.emptyIterator();
+            iterateNextContainer();
+        } else {
+            new Mensaje().show(Alert.AlertType.ERROR, "INSUFICIENTES PARTICIPANTES", "No hay participantes para iniciar el sorteo");
+        }
     }
 
     public void iterateNextContainer() {

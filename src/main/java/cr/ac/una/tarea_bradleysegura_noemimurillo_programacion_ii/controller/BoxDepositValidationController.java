@@ -7,41 +7,28 @@ package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Account;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.BoxDeposit;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Transaction;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXSpinner;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import io.github.palexdev.materialfx.controls.models.spinner.IntegerSpinnerModel;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
 
 /**
  * FXML Controller class
  *
  * @author Bradley
  */
-
 public class BoxDepositValidationController extends Controller implements Initializable {
 
     @FXML
@@ -75,7 +62,7 @@ public class BoxDepositValidationController extends Controller implements Initia
     @FXML
     private MFXSpinner<Integer> spnrDiezMilColones;
     @FXML
-    private MFXSpinner<Integer> spnrVeinteMilColones; 
+    private MFXSpinner<Integer> spnrVeinteMilColones;
     @FXML
     private MFXButton btnValidateDeposit;
     @FXML
@@ -83,9 +70,12 @@ public class BoxDepositValidationController extends Controller implements Initia
     @FXML
     private MFXButton btnSaveCorrections;
     @FXML
-    private MFXButton btnClose;
+    private MFXButton btnCancel;
+    @FXML
+    private MFXButton btnExit;
 
     private ArrayList<Affiliated> affiliatedList;
+    private ArrayList<BoxDeposit> boxDeposits;
     private BoxDeposit selectedDeposit;
     private HashMap<BoxDeposit.Denomination, MFXSpinner> spinners;
 
@@ -97,6 +87,7 @@ public class BoxDepositValidationController extends Controller implements Initia
         if (AppContext.getInstance().get("affiliated") != null) {
             this.affiliatedList = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
         }
+        this.btnCancel.setDisable(true);
     }
 
     @Override
@@ -109,7 +100,7 @@ public class BoxDepositValidationController extends Controller implements Initia
         this.tbcFolio.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAffiliatedFolio));
         this.tbcAccount.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAccountType));
         this.tbcAmount.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAmount));
-        
+
         this.spinners = new HashMap<>();
         this.spinners.put(BoxDeposit.Denomination.CINCO, spnrCincoColones);
         this.spinners.put(BoxDeposit.Denomination.DIEZ, spnrDiezColones);
@@ -122,41 +113,64 @@ public class BoxDepositValidationController extends Controller implements Initia
         this.spinners.put(BoxDeposit.Denomination.CINCOMIL, spnrCincoMilColones);
         this.spinners.put(BoxDeposit.Denomination.DIEZMIL, spnrDiezMilColones);
         this.spinners.put(BoxDeposit.Denomination.VEINTEMIL, spnrVeinteMilColones);
-        
-        for(MFXSpinner<Integer> spinner : this.spinners.values()) {
+
+        for (MFXSpinner<Integer> spinner : this.spinners.values()) {
             spinner.setSpinnerModel(new IntegerSpinnerModel(0));
         }
         if (AppContext.getInstance().get("boxDeposits") != null) {
-            this.tbvBoxDeposits.setItems(FXCollections.observableArrayList((ArrayList<BoxDeposit>) AppContext.getInstance().get("boxDeposits")));
+            boxDeposits = (ArrayList<BoxDeposit>) AppContext.getInstance().get("boxDeposits");
+            this.tbvBoxDeposits.setItems(FXCollections.observableArrayList(boxDeposits));
         }
     }
-    
+
     public void modifyDeposit() {
         selectedDeposit = this.tbvBoxDeposits.getSelectionModel().getSelectedValue();
-        if(selectedDeposit != null) {
-            for(BoxDeposit.Denomination denomination : this.spinners.keySet()) {
+        if (selectedDeposit != null) {
+            for (BoxDeposit.Denomination denomination : this.spinners.keySet()) {
                 spinners.get(denomination).setDisable(false);
                 spinners.get(denomination).setValue(this.selectedDeposit.getSpecificDenomination(denomination));
-            }         
-            this.btnModifyDeposit.setDisable(true);
-            this.btnSaveCorrections.setDisable(false);
-            this.btnSaveCorrections.toFront();           
+            }
+            setCorrectionPhase(true); // Habilita y deshabilita botones para realizar correcciones
+        } else {
+            new Mensaje().show(Alert.AlertType.WARNING, "NO HAY DEPÓSITO SELECCIONADO", "Selecciona un depósito de la lista para corregir su monto");
         }
     }
-    
+
     public void saveCorrections() {
         selectedDeposit = this.tbvBoxDeposits.getSelectionModel().getSelectedValue();
-        if(selectedDeposit != null) { 
-            for(BoxDeposit.Denomination denomination : this.spinners.keySet()) {
-                this.selectedDeposit.setDenomination(denomination, (Integer)spinners.get(denomination).getSpinnerModel().getValue());
+        if (selectedDeposit != null) {
+            for (BoxDeposit.Denomination denomination : this.spinners.keySet()) {
+                this.selectedDeposit.setDenomination(denomination, (Integer) spinners.get(denomination).getSpinnerModel().getValue());
                 spinners.get(denomination).setDisable(true);
             }
-            this.btnModifyDeposit.setDisable(false);
-            this.btnSaveCorrections.setDisable(true);
-            this.btnModifyDeposit.toFront();
+            setCorrectionPhase(false);
         }
         this.selectedDeposit.calculateTotal();
         this.tbvBoxDeposits.update();
+    }
+
+    public void cancelCorrections() {
+        if (!btnSaveCorrections.isDisable()) {
+            for (MFXSpinner spinner : this.spinners.values()) {
+                spinner.setDisable(true);
+                spinner.setValue(0);
+            }
+            setCorrectionPhase(false);
+        } else {
+            new Mensaje().show(Alert.AlertType.ERROR, "NO HAY MODIFICACIONES POR CANCELAR", "Realiza modificaciones en un depósito de buzón para continuar");
+        }
+    }
+
+    public void setCorrectionPhase(Boolean isCorrecting) { 
+        this.btnValidateDeposit.setDisable(isCorrecting);   // Deshabilita los botones de validación y modificación si se entra en modo corrección
+        this.btnModifyDeposit.setDisable(isCorrecting);
+        this.btnCancel.setDisable(!isCorrecting);  // Deshabilita los botones de cancelación y guardado si se sale del modo corrección
+        this.btnSaveCorrections.setDisable(!isCorrecting);
+        if (isCorrecting) {   //Brinda al frente del StackPane el botón adecuado en relación con el modo corrección
+            this.btnSaveCorrections.toFront();
+        } else {
+            this.btnModifyDeposit.toFront();
+        }   
     }
 
     public void validateDeposit() {
@@ -179,7 +193,9 @@ public class BoxDepositValidationController extends Controller implements Initia
         for (Account account : depositAffiliated.getAccounts()) {
             if (account.getType().equals(selectedDeposit.getAccountType())) {
                 account.makeTransaction(selectedDeposit);
+                depositAffiliated.updateTicketsCount();
                 this.tbvBoxDeposits.getItems().remove(selectedDeposit);
+                this.boxDeposits.remove(selectedDeposit);
                 this.tbvBoxDeposits.update();
                 new Mensaje().show(Alert.AlertType.INFORMATION, "DEPÓSITO DE BUZÓN REALIZADO EXITOSAMENTE", "El depósito de buzón fue exitosamente completado");
                 return;
@@ -188,7 +204,7 @@ public class BoxDepositValidationController extends Controller implements Initia
         new Mensaje().show(Alert.AlertType.ERROR, "LA CUENTA INDICADA NO EXISTE", "La persona afiliada no posee una cuenta del tipo indicado");
     }
 
-    public void close() {
+    public void exit() {
         getStage().close();
     }
 }

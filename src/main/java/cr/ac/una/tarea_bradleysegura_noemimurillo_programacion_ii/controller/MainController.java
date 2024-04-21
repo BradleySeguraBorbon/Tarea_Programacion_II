@@ -61,10 +61,9 @@ public class MainController extends Controller implements Initializable {
         String currentDirectory = System.getProperty("user.dir");
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
-        //System.out.println("DEFAULT LOGO ON BASE 64 : " + ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
+
         AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
         AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
-        
         AppContext.getInstance().set("inMainMenu", true);
         
         try {

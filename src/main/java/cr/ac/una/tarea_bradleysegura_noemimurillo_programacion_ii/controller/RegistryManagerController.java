@@ -33,6 +33,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import static javafx.scene.control.Alert.AlertType.ERROR;
+import static javafx.scene.control.Alert.AlertType.WARNING;
 import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
@@ -52,6 +53,8 @@ public class RegistryManagerController extends Controller implements Initializab
     @FXML
     private MFXButton btnAddUser; //
     @FXML
+    private MFXButton btnModify;
+    @FXML
     private MFXTextField txtSurname;//
     @FXML
     private MFXTextField txtName;//
@@ -68,7 +71,7 @@ public class RegistryManagerController extends Controller implements Initializab
     @FXML
     private MFXButton UpImage;//
     @FXML
-    private MFXTableView tbvUsersList;
+    private MFXTableView<Affiliated> tbvUsersList;
     @FXML
     private MFXTableColumn<Affiliated> tbcAffiliated;
     @FXML
@@ -79,24 +82,25 @@ public class RegistryManagerController extends Controller implements Initializab
     ArrayList<Affiliated> newAffiliates;
     String convertedImg = "";
 
-    /**
-     * Initializablelizes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // this.newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
         this.spnAge.setSpinnerModel(new IntegerSpinnerModel(0));
         initialize();
-
     }
 
     @Override
     public void initialize() {
+        //IInicialización de TableView de Afiliados
         if (AppContext.getInstance().get("affiliated") != null) {
-            newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
-            setuptbvUsersList();
+            this.newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
         }
+        this.tbcFolio.setRowCellFactory(affiliated -> new MFXTableRowCell<>(Affiliated::getFolio));
+        this.tbcAffiliated.setRowCellFactory(affiliated -> new MFXTableRowCell<>(Affiliated::getFullName));
+        setupTbvUsersList();
 
+        //Inicialización de elementos activos
+        clean();
     }
 
     public void saveNewImage() {
@@ -106,7 +110,7 @@ public class RegistryManagerController extends Controller implements Initializab
             fileChooser.setTitle("Seleccionar Imagen");
 
             // Filtrar solo archivos de imagen
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg", "*.gif");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg", "*.jpeg");
             fileChooser.getExtensionFilters().add(extFilter);
 
             // Mostrar el diálogo de selección de archivo
@@ -129,8 +133,8 @@ public class RegistryManagerController extends Controller implements Initializab
                 imgvUsersFace.setImage(bs64ToImg);
             }
 
-        } catch (IOException E) {
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
@@ -143,30 +147,32 @@ public class RegistryManagerController extends Controller implements Initializab
 
         //Estos if validan si los espacios están llenos y si no se salen del método.
         if (convertedImg.equals("")) {
-            msj.show(ERROR, "Imagen vacía", "La imagen del nuevo usuario está vacía");
+            msj.show(WARNING, "Imagen vacía", "La imagen del nuevo usuario está vacía");
             return;
         }
         if (txtName.getText().equals("")) {
-            msj.show(ERROR, "Nombre vacío", "La casilla de nombre del nuevo usuario está vacía");
+            msj.show(WARNING, "Nombre vacío", "La casilla de nombre del nuevo usuario está vacía");
             return;
         }
         if (txtSurname.getText().equals("")) {
-            msj.show(ERROR, "Primer apellido vacío", "La casilla del primer apellido del nuevo usuario está vacía");
+            msj.show(WARNING, "Primer apellido vacío", "La casilla del primer apellido del nuevo usuario está vacía");
             return;
         }
         if (txtSecondSurname.getText().equals("")) {
-            msj.show(ERROR, "Segundo apellido vacío", "La casilla del segundo apellido del nuevo usuario está vacía");
+            msj.show(WARNING, "Segundo apellido vacío", "La casilla del segundo apellido del nuevo usuario está vacía");
             return;
         }
-        //Falta EDAD
-
+        if (this.spnAge.getValue() <= 0) {
+            msj.show(WARNING, "Edad no ingresada", "Ingresa tu edad para continuar");
+            return;
+        }
         if (getNewSex() == null) {
-            msj.show(ERROR, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
+            msj.show(WARNING, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
             return;
         }
-        Affiliated nuevo = new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), spnAge.getValue(), getNewSex(), (String) AppContext.getInstance().get("cooperativeName"), this.convertedImg);
+        Affiliated nuevo = new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), spnAge.getValue(), getNewSex(), this.convertedImg, (String) AppContext.getInstance().get("cooperativeName"));
         //Si todos los espacios están llenos, se salta los if y se crea el nuevo usuario
-        tbvUsersList.getItems().add(nuevo);
+        this.newAffiliates.add(nuevo);
         //Affiliated actualUser = newAffiliates.getLast();
 
         //Mensaje que indica el folio del nuevo usuario.
@@ -175,8 +181,7 @@ public class RegistryManagerController extends Controller implements Initializab
         msj.show(INFORMATION, "Nuevo Afiliado", "¡Se ha añadido un nuevo afiliado exitosamente!");
 
         clean();
-        this.tbvUsersList.setItems(FXCollections.observableArrayList(this.newAffiliates));
-        this.tbvUsersList.update();
+        setupTbvUsersList();
     }
 
     public Sexo getNewSex() {
@@ -192,12 +197,75 @@ public class RegistryManagerController extends Controller implements Initializab
         return null;
     }
 
-    public void modifyUser() {
-        btnDeleteUser.setOpacity(1);
-        btnSaveChanges.setOpacity(1);
-        btnAddUser.setOpacity(0);
-        btnAddUser.setDisable(false);
+    public void modifyAffiliated() {
+        btnDeleteUser.setDisable(false);
+        btnSaveChanges.setDisable(false);
+        btnAddUser.setDisable(true);
+        Affiliated selection = this.tbvUsersList.getSelectionModel().getSelectedValue();
+        if (selection != null) {
+            this.txtName.setText(selection.getName());
+            this.txtSurname.setText(selection.getFirstLastName());
+            this.txtSecondSurname.setText(selection.getSecondLastName());
+            System.out.println("INDICE 0 : " + IdentityGroup.getToggles().get(0));
+            this.IdentityGroup.selectToggle(IdentityGroup.getToggles().get(selection.getSexo() == Affiliated.Sexo.FEMENINO ? 0 : 1));
+            this.spnAge.setValue(selection.getAge());
+            this.convertedImg = selection.getProfileImage();
+            this.imgvUsersFace.setImage(ImageConverter.fromBase64(convertedImg));
+            
+        } else {
+            new Mensaje().show(WARNING, "Afiliado No Seleccionado", "Selecciona un afiliado para modificar su información");
+        }
+    }
 
+    public void saveChanges() {
+        Affiliated selection = this.tbvUsersList.getSelectionModel().getSelectedValue();
+        Mensaje msj = new Mensaje();
+        if (convertedImg.equals("")) {
+            msj.show(WARNING, "Imagen vacía", "La imagen del nuevo usuario está vacía");
+            return;
+        }
+        if (txtName.getText().equals("")) {
+            msj.show(WARNING, "Nombre vacío", "La casilla de nombre del nuevo usuario está vacía");
+            return;
+        }
+        if (txtSurname.getText().equals("")) {
+            msj.show(WARNING, "Primer apellido vacío", "La casilla del primer apellido del nuevo usuario está vacía");
+            return;
+        }
+        if (txtSecondSurname.getText().equals("")) {
+            msj.show(WARNING, "Segundo apellido vacío", "La casilla del segundo apellido del nuevo usuario está vacía");
+            return;
+        }
+        if (this.spnAge.getValue() <= 0) {
+            msj.show(WARNING, "Edad no ingresada", "Ingresa tu edad para continuar");
+            return;
+        }
+        if (getNewSex() == null) {
+            msj.show(WARNING, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
+            return;
+        }
+        if (selection == null) {
+            new Mensaje().show(WARNING, "Afiliado No Seleccionado", "Selecciona un afiliado para modificar su información");
+            return;
+        }
+        selection.setName(txtName.getText());
+        selection.setFirstLastName(txtSurname.getText());
+        selection.setSecondLastName(txtSecondSurname.getText());
+        selection.setSexo(getNewSex());
+        selection.setAge(spnAge.getValue());
+        selection.setProfileImage(convertedImg);
+        
+        clean();
+        setupTbvUsersList();
+    }
+
+    public void removeAffiliated() {
+        Affiliated selection = this.tbvUsersList.getSelectionModel().getSelectedValue();
+        if (selection != null) {
+            this.newAffiliates.remove(selection);
+            clean();
+            setupTbvUsersList();
+        }
     }
 
     public void clean() {
@@ -205,17 +273,20 @@ public class RegistryManagerController extends Controller implements Initializab
         this.txtName.clear();
         this.txtSurname.clear();
         this.txtSecondSurname.clear();
-        this.IdentityGroup.getSelectedToggle().setSelected(false);
+        if (this.IdentityGroup.getSelectedToggle() != null) {
+            this.IdentityGroup.getSelectedToggle().setSelected(false);
+        }
         this.spnAge.setValue(0);
         this.imgvUsersFace.setImage(new Image(getClass().getResourceAsStream("../resources/User.jpg")));
         this.convertedImg = "";
+        this.btnAddUser.setDisable(false);
+        this.btnModify.setDisable(false);
+        this.btnDeleteUser.setDisable(true);
+        this.btnSaveChanges.setDisable(true);
     }
 
-    public void setuptbvUsersList() {
-        this.tbcFolio.setRowCellFactory(affiliated -> new MFXTableRowCell<>(Affiliated::getFolio));
-        this.tbcAffiliated.setRowCellFactory(affiliated -> new MFXTableRowCell<>(Affiliated::getFullName));
-
-        if (AppContext.getInstance().get("affiliated") != null) {
+    public void setupTbvUsersList() {
+        if (this.newAffiliates != null) {
             this.tbvUsersList.setItems(FXCollections.observableArrayList(this.newAffiliates));
         }
     }

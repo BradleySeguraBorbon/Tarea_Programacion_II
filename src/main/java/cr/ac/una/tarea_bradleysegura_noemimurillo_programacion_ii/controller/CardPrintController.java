@@ -18,8 +18,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.App;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.nio.file.Path;
@@ -34,6 +39,11 @@ import javafx.scene.control.Alert;
 import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.ImageType;
+import org.apache.pdfbox.rendering.PDFRenderer;
 
 /**
  * FXML Controller class
@@ -43,13 +53,15 @@ import javafx.scene.control.Button;
 public class CardPrintController extends Controller implements Initializable {
 
     @FXML
-    private Button btnInputFolio;
+    private MFXButton btnFolio;
     @FXML
-    private Button btnPrint;
+    private MFXButton btnPrint;
     @FXML
-    private MFXTextField txtInFolio;
+    private MFXTextField txtFolio;
     @FXML
     private MFXTextField txtNameUser;
+    @FXML
+    private ImageView imvCard;
 
     private Affiliated selectedAffiliated;
     private String cooperativeName;
@@ -60,9 +72,12 @@ public class CardPrintController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Obtención de información de cooperativa
         this.cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
         this.cooperativeLogo = (String) AppContext.getInstance().get("cooperativeLogo");
+        
+        // Restricción de tamaño para Folio
+        this.txtFolio.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(6));
     }
 
     @Override
@@ -73,7 +88,7 @@ public class CardPrintController extends Controller implements Initializable {
     public void browseUser() {
         Mensaje msj = new Mensaje();
         txtNameUser.clear();
-        String selectedAffiliatedFolio = txtInFolio.getText();
+        String selectedAffiliatedFolio = txtFolio.getText();
 
         for (Affiliated afiliated : (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated")) {
             if (afiliated.getFolio().equals(selectedAffiliatedFolio)) {
@@ -98,7 +113,8 @@ public class CardPrintController extends Controller implements Initializable {
         try {
             if (this.selectedAffiliated != null) {
                 Document document = new Document(PageSize.ID_1);
-                PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(selectedAffiliated.getFolio() + ".pdf"));
+                String homeDir = System.getProperty("user.home");
+                PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(homeDir + "/Downloads/" + this.selectedAffiliated.getFolio() + ".pdf"));
                 document.open();
                 Font font = FontFactory.getFont(FontFactory.TIMES, 6, BaseColor.BLACK);
 
@@ -141,9 +157,22 @@ public class CardPrintController extends Controller implements Initializable {
                 document.add(imgLogo);
                 document.close();
                 new Mensaje().show(Alert.AlertType.INFORMATION, "CARNET IMPRESO EXITOSAMENTE", "El carnet de afiliado fue impreso correctamente");
+                showPrintedPDF();
             } else {
                 new Mensaje().show(Alert.AlertType.WARNING, "NO HAY AFILIADO SELECCIONADO", "Selecciona a un afiliado para continuar");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showPrintedPDF() {
+        String homeDir = System.getProperty("user.home");
+        try (PDDocument pdfDoc = Loader.loadPDF(new File(homeDir + "/Downloads/" + this.selectedAffiliated.getFolio() + ".pdf"))) {
+            PDFRenderer pdfRndr = new PDFRenderer(pdfDoc);
+            BufferedImage pdfImg = pdfRndr.renderImageWithDPI(0, 300, ImageType.RGB);
+            this.imvCard.setImage(SwingFXUtils.toFXImage(pdfImg, null));
+            System.out.println("PDF TRANSFORMED TO IMAGE SUCCESFULLY");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -65,7 +65,7 @@ public class CooperativeManagementController extends Controller implements Initi
             FileChooser imageSelector = new FileChooser();
             imageSelector.setTitle("SELECCIÓN DE LOGO DE LA COOPERATIVA");
             
-            FileChooser.ExtensionFilter imageSelectorFilter = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg");
+            FileChooser.ExtensionFilter imageSelectorFilter = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.png", "*.jpg","*.jpeg");
             imageSelector.getExtensionFilters().add(imageSelectorFilter);
             
             File selectedImageFile = imageSelector.showOpenDialog(null);

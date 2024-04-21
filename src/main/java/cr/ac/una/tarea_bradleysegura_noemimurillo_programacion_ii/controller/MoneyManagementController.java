@@ -94,11 +94,11 @@ public class MoneyManagementController extends Controller implements Initializab
         StringConverter<Account> accountConverter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
         fcbSelectDepositAccount.setConverter(accountConverter);
         this.fcbSelectAffiliated.setItems(FXCollections.observableArrayList(afiliatedList));
-        
+
         //Inicialización de TextFields para montos
         txtDepositAmount.delegateSetTextFormatter(Formato.getInstance().integerFormat());
         txtWithdrawAmount.delegateSetTextFormatter(Formato.getInstance().integerFormat());
-        
+
         //Inicialización de TextField para folio
         txtAffiliatedFolio.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(6));
     }
@@ -121,6 +121,7 @@ public class MoneyManagementController extends Controller implements Initializab
         if (!depositAmount.isBlank()) {
             Transaction deposit = new Transaction(Double.valueOf(depositAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.DEPOSITO);
             this.selectedAccount.makeTransaction(deposit);
+            this.selectedAffiliated.updateTicketsCount();
             this.fcbSelectAffiliated.getSelectionModel().clearSelection();
             clearDepositTab();
             new Mensaje().show(Alert.AlertType.INFORMATION, "DEPÓSITO EXITOSO", "El depósito ha sido exitoso");
@@ -175,6 +176,7 @@ public class MoneyManagementController extends Controller implements Initializab
             if (selectedAccount.getBalance() >= Double.valueOf(withdrawalAmount)) {
                 Transaction withdraw = new Transaction(Double.valueOf(withdrawalAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.RETIRO);
                 this.selectedAccount.makeTransaction(withdraw);
+                this.selectedAffiliated.updateTicketsCount();
                 clearWithdrawalTab();
                 new Mensaje().show(Alert.AlertType.INFORMATION, "RETIRO EXITOSO", "El retiro ha sido exitoso");
             } else {

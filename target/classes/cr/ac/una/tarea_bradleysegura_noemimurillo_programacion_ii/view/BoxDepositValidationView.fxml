@@ -11,6 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -38,7 +39,7 @@
                <children>
                   <MFXTableView fx:id="tbvBoxDeposits" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="489.0" prefWidth="583.0">
                       <tableColumns>
-                        <MFXTableColumn fx:id="tbcAffiliated" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Afiliado" />
+                        <MFXTableColumn fx:id="tbcAffiliated" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="42.0" prefWidth="143.0" text="Afiliado" />
                         <MFXTableColumn fx:id="tbcFolio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Folio" />
                         <MFXTableColumn fx:id="tbcAccount" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Cuenta" />
                         <MFXTableColumn fx:id="tbcAmount" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Monto" />
@@ -191,16 +192,28 @@
                   <Insets left="20.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="96.0" prefWidth="1180.0" spacing="40.0">
+            <HBox alignment="CENTER" prefHeight="96.0" prefWidth="1180.0">
                <children>
-                  <MFXButton fx:id="btnClose" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#close" prefHeight="70.0" prefWidth="180.0" text="CERRAR BUZÓN" />
-                  <StackPane prefHeight="75.0" prefWidth="211.0">
+                  <MFXButton fx:id="btnExit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#exit" prefHeight="86.0" prefWidth="149.0" styleClass="btn-alert-action" text=" " HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </MFXButton>
+                  <Pane prefHeight="86.0" prefWidth="140.0" />
+                  <MFXButton fx:id="btnCancel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#cancelCorrections" prefHeight="86.0" prefWidth="220.0" styleClass="mfx-btn-medium" text="CANCELAR CORRECIONES" HBox.hgrow="ALWAYS" />
+                  <Pane prefHeight="200.0" prefWidth="40.0" />
+                  <StackPane prefHeight="75.0" prefWidth="220.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <MFXButton fx:id="btnSaveCorrections" onAction="#saveCorrections" prefHeight="70.0" prefWidth="180.0" text="GUARDAR CORRECIONES" />
-                        <MFXButton fx:id="btnModifyDeposit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#modifyDeposit" prefHeight="70.0" prefWidth="180.0" text="REVISAR DENOMINACIONES" />
+                        <MFXButton fx:id="btnSaveCorrections" onAction="#saveCorrections" prefHeight="70.0" prefWidth="180.0" styleClass="mfx-btn-medium" text="GUARDAR CORRECIONES" />
+                        <MFXButton fx:id="btnModifyDeposit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#modifyDeposit" prefHeight="70.0" prefWidth="180.0" styleClass="mfx-btn-medium" text="REVISAR DENOMINACIONES" />
                      </children>
                   </StackPane>
-                          <MFXButton fx:id="depositValidationButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#validateDeposit" prefHeight="70.0" prefWidth="180.0" text="VALIDAR DEPÓSITO" />
+                  <Pane prefHeight="200.0" prefWidth="40.0" />
+                          <MFXButton fx:id="btnValidateDeposit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#validateDeposit" prefHeight="70.0" prefWidth="220.0" styleClass="mfx-btn-medium" text="VALIDAR DEPÓSITO" HBox.hgrow="ALWAYS" />
+                  <Pane prefHeight="86.0" prefWidth="200.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
