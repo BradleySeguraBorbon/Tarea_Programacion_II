@@ -176,7 +176,7 @@ public class RegistryManagerController extends Controller implements Initializab
         //Affiliated actualUser = newAffiliates.getLast();
 
         //Mensaje que indica el folio del nuevo usuario.
-        msj.show(INFORMATION, "Nuevo Folio", "El folio del nuevo usuario es: " + nuevo.getFolio());
+        msj.show(INFORMATION, "Nuevo Folio", "El folio del nuevo usuario es: " + actualUser.getFolio());
         //Mensaje de nuevo usuario agregado exitosamente.
         msj.show(INFORMATION, "Nuevo Afiliado", "¡Se ha añadido un nuevo afiliado exitosamente!");
 
