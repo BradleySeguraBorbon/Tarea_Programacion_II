@@ -68,6 +68,7 @@ public class MoneyManagementController extends Controller implements Initializab
     private Label validateAffiliatedLabel;
     @FXML
     private ImageView imvAffiliatedImage;
+    private Image imgDefault;
     @FXML
     private Label lblAffiliatedName;
     @FXML
@@ -82,7 +83,7 @@ public class MoneyManagementController extends Controller implements Initializab
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initialize();
+        this.imgDefault = this.imvAffiliatedImage.getImage();
     }
 
     @Override
@@ -106,14 +107,18 @@ public class MoneyManagementController extends Controller implements Initializab
     public void selectAffiliated() {
         clearDepositTab();
         selectedAffiliated = this.fcbSelectAffiliated.getSelectedItem();
-        fcbSelectDepositAccount.setItems(FXCollections.observableArrayList(selectedAffiliated.getAccounts()));
-        fcbSelectDepositAccount.setDisable(false);
+        if (selectedAffiliated != null) {
+            fcbSelectDepositAccount.setItems(FXCollections.observableArrayList(selectedAffiliated.getAccounts()));
+            fcbSelectDepositAccount.setDisable(false);
+        }
     }
 
     public void selectDepositAccount() {
         selectedAccount = (Account) fcbSelectDepositAccount.getSelectedItem();
-        txtDepositAmount.setDisable(false);
-        btnDeposit.setDisable(false);
+        if (selectedAccount != null) {
+            txtDepositAmount.setDisable(false);
+            btnDeposit.setDisable(false);
+        }
     }
 
     public void deposit() {
@@ -166,8 +171,10 @@ public class MoneyManagementController extends Controller implements Initializab
 
     public void selectWithdrawalAccount() {
         selectedAccount = (Account) fcbSelectWithdrawAccount.getSelectedItem();
-        txtWithdrawAmount.setDisable(false);
-        btnWithdraw.setDisable(false);
+        if (this.selectedAccount != null) {
+            txtWithdrawAmount.setDisable(false);
+            btnWithdraw.setDisable(false);
+        }
     }
 
     public void withdraw() {
@@ -187,9 +194,16 @@ public class MoneyManagementController extends Controller implements Initializab
         }
     }
 
+public void resetDepositTab() {
+        this.fcbSelectAffiliated.clearSelection();
+        clearDepositTab();
+    }
+
     public void clearDepositTab() {
+        this.selectedAffiliated = null;
+        this.selectedAccount = null;
         this.fcbSelectDepositAccount.clear();
-        this.fcbSelectDepositAccount.getSelectionModel().clearSelection();
+        this.fcbSelectDepositAccount.clearSelection();
         this.fcbSelectDepositAccount.setDisable(true);
         this.txtDepositAmount.setText("");
         this.txtDepositAmount.setDisable(true);
@@ -197,13 +211,16 @@ public class MoneyManagementController extends Controller implements Initializab
     }
 
     public void clearWithdrawalTab() {
+        this.selectedAffiliated = null;
+        this.selectedAccount = null;
         this.fcbSelectWithdrawAccount.clear();
+        this.fcbSelectWithdrawAccount.clearSelection();
         this.fcbSelectWithdrawAccount.setDisable(true);
         this.txtWithdrawAmount.clear();
         this.txtWithdrawAmount.setDisable(true);
         btnWithdraw.setDisable(true);
         this.btnValidateAffiliated.setOpacity(0);
-        this.imvAffiliatedImage.setImage(null);
+        this.imvAffiliatedImage.setImage(this.imgDefault);
         this.lblAffiliatedName.setText("usuario");
         this.btnValidateAffiliated.setDisable(true);
 

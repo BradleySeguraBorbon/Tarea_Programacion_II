@@ -24,7 +24,7 @@
    <children>
       <TabPane layoutX="201.0" layoutY="124.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="280.0" prefWidth="518.0" styleClass="fx" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="DEPOSITAR DINERO">
+          <Tab onSelectionChanged="#resetDepositTab" text="DEPOSITAR DINERO">
             <content>
               <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="1000.0">
                      <children>
@@ -77,7 +77,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="RETIRAR DINERO">
+          <Tab onSelectionChanged="#clearWithdrawalTab" text="RETIRAR DINERO">
             <content>
               <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
