@@ -6,6 +6,7 @@ package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -56,6 +57,7 @@ public class CooperativeManagementController extends Controller implements Initi
             this.imvCooperativeLogoEditor.setImage(ImageConverter.fromBase64(cooperativeIcon));
             this.txtCooperativeNameEditor.setText(this.cooperativeName);
         }
+        this.txtCooperativeNameEditor.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
     }
     
     public void modifyCooperativeLogo() {

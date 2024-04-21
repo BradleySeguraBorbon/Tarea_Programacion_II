@@ -54,7 +54,7 @@ public class AccountOpeningController extends Controller implements Initializabl
         clearView();
         dragFactory = new DraggableMaker();
         this.selectedAffiliated = (Affiliated) AppContext.getInstance().get("selectedAffiliated");
-        this.lblSelectedAffiliated.setText(this.selectedAffiliated.getFullName());
+        this.lblSelectedAffiliated.setText("Afiliad@: " + this.selectedAffiliated.getFullName());
         setAccountLabels();
     }
 

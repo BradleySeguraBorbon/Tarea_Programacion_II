@@ -10,6 +10,7 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.BoxDepos
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Transaction;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -86,12 +87,20 @@ public class MoneyManagementController extends Controller implements Initializab
 
     @Override
     public void initialize() {
+        //Inicialización de FilterComboBoxes
         this.afiliatedList = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
         StringConverter<Affiliated> affiliatedConverter = FunctionalStringConverter.to(afiliated -> (afiliated == null) ? "" : afiliated.getFullName());
         this.fcbSelectAffiliated.setConverter(affiliatedConverter);
         StringConverter<Account> accountConverter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
         fcbSelectDepositAccount.setConverter(accountConverter);
         this.fcbSelectAffiliated.setItems(FXCollections.observableArrayList(afiliatedList));
+        
+        //Inicialización de TextFields para montos
+        txtDepositAmount.delegateSetTextFormatter(Formato.getInstance().integerFormat());
+        txtWithdrawAmount.delegateSetTextFormatter(Formato.getInstance().integerFormat());
+        
+        //Inicialización de TextField para folio
+        txtAffiliatedFolio.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(6));
     }
 
     public void selectAffiliated() {

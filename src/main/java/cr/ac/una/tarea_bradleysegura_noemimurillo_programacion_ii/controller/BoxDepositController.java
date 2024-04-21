@@ -8,6 +8,7 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Account;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.BoxDeposit;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -102,15 +103,7 @@ public class BoxDepositController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*PRUEBA
-        ArrayList<Affiliated> affiliated = new ArrayList<>();
-        Affiliated affiliated1 = new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope");
-        affiliated1.addAccount(new Account("Ahorro Navideño"));
-        affiliated.add(affiliated1);
-        System.out.println("FOLIO DE BRADLEY: " + affiliated1.getFolio());
-        AppContext.getInstance().set("affiliated", affiliated);
-        //FIN PRUEBA */
-
+        //Inicialización de modelos para los spinner
         this.spnrCincoColones.setSpinnerModel(new IntegerSpinnerModel(0));
         this.spnrDiezColones.setSpinnerModel(new IntegerSpinnerModel(0));
         this.spnrVeinticincoColones.setSpinnerModel(new IntegerSpinnerModel(0));
@@ -123,14 +116,19 @@ public class BoxDepositController extends Controller implements Initializable {
         this.spnrDiezMilColones.setSpinnerModel(new IntegerSpinnerModel(0));
         this.spnrVeinteMilColones.setSpinnerModel(new IntegerSpinnerModel(0));
 
+        //Inicialización de FilterComboBox para selección de cuenta
         StringConverter<Account> converter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
         this.fcbSelectAccount.setConverter(converter);
 
+        //Obtención de depósitos de buzón desde AppContext
         if (AppContext.getInstance().get("boxDeposits") != null) {
             this.boxDeposits = (ArrayList<BoxDeposit>) AppContext.getInstance().get("boxDeposits");
         } else {
             this.boxDeposits = new ArrayList<>();
         }
+        
+        //Inicialización de TextField para folio
+        txtFolio.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(6));
     }
 
     @Override

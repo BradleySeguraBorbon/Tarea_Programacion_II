@@ -32,7 +32,7 @@
                         <Font size="14.0" />
                      </font>
                   </MFXTextField>
-                  <MFXButton fx:id="btnMakeChanges" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#makeChanges" prefHeight="82.0" prefWidth="221.0" text="MODIFICAR">
+                  <MFXButton fx:id="btnMakeChanges" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#makeChanges" prefHeight="82.0" prefWidth="221.0" styleClass="mfx-btn-medium" text="MODIFICAR">
                      <VBox.margin>
                         <Insets left="80.0" right="80.0" />
                      </VBox.margin>
@@ -46,9 +46,6 @@
                </HBox.margin>
             </VBox>
          </children>
-         <padding>
-            <Insets left="240.0" right="240.0" />
-         </padding>
       </HBox>
    </children>
 </AnchorPane>
