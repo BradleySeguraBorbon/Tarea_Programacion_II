@@ -164,13 +164,12 @@ public class RegistryManagerController extends Controller implements Initializab
             msj.show(ERROR, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
             return;
         }
-        Affiliated nuevo = new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), spnAge.getValue(), getNewSex(), (String) AppContext.getInstance().get("cooperativeName"), this.convertedImg);
+         newAffiliates.add(new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), spnAge.getValue(), getNewSex(), this.convertedImg, (String) AppContext.getInstance().get("cooperativeName")));
         //Si todos los espacios están llenos, se salta los if y se crea el nuevo usuario
-        tbvUsersList.getItems().add(nuevo);
-        //Affiliated actualUser = newAffiliates.getLast();
+        Affiliated actualUser = newAffiliates.getLast();
 
         //Mensaje que indica el folio del nuevo usuario.
-        msj.show(INFORMATION, "Nuevo Folio", "El folio del nuevo usuario es: " + nuevo.getFolio());
+        msj.show(INFORMATION, "Nuevo Folio", "El folio del nuevo usuario es: " + actualUser.getFolio());
         //Mensaje de nuevo usuario agregado exitosamente.
         msj.show(INFORMATION, "Nuevo Afiliado", "¡Se ha añadido un nuevo afiliado exitosamente!");
 

@@ -221,18 +221,10 @@
 
 .jfx-btn-first-template {
     -fx-background-color: #3333ff;
-    -fx-min-width: 250;
-    -fx-min-height: 135;
-    -fx-max-width: 400;
-    -fx-max-height: 150;
 }
 
 .jfx-btn-second-template {
     -fx-background-color: #cc00ff;
-    -fx-min-width: 250;
-    -fx-min-height: 135;
-    -fx-max-width: 400;
-    -fx-max-height: 150;
 }
 
 .jfx-btn-third-template {
