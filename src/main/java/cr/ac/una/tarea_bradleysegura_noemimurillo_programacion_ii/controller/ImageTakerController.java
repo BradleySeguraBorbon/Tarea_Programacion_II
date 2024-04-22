@@ -5,21 +5,20 @@
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamResolution;
-import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import com.github.sarxos.webcam.WebcamPanel;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import javax.imageio.ImageIO;
+import javafx.embed.swing.SwingNode;
+import javafx.scene.control.Alert;
 
 /**
  * FXML Controller class
@@ -28,6 +27,8 @@ import javax.imageio.ImageIO;
  */
 public class ImageTakerController extends Controller implements Initializable {
 
+    @FXML
+    private SwingNode webcamNode;
     @FXML
     private ImageView imvAffiliatedImage;
     @FXML
@@ -38,27 +39,52 @@ public class ImageTakerController extends Controller implements Initializable {
     private MFXButton btnRetryCapture;
     @FXML
     private MFXButton btnSave;
-    
+
     private Webcam webcam;
-    private VideoTaker videoTaker;
+    private WebcamPanel panel;
+    //private VideoTaker videoTaker;
     private BufferedImage capturedImage;
+
+    private Dimension dimension;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.webcam = Webcam.getDefault();
+        /*is.webcam = Webcam.getDefault();
+        Dimension dimension = new Dimension(640, 480);
+        this.webcam.setCustomViewSizes(dimension);
+        this.panel = new WebcamPanel(this.webcam);
+        this.panel.setMaximumSize(dimension);
+        this.panel.setMaximumSize(dimension);
+        this.webcamNode.setContent(panel);*/
+
+ /*this.webcam = Webcam.getDefault();
         this.webcam.setViewSize(WebcamResolution.VGA.getSize());
         this.webcam.open();
         this.videoTaker = new VideoTaker();
         this.videoTaker.start();
-        this.videoTaker.isThreadSuspended = false;
+        this.videoTaker.isThreadSuspended = false; */
         //((Stage) this.btnExit.getScene().getWindow()).setOnCloseRequest(event ->  {goBack();});
     }
 
     @Override
     public void initialize() {
+        this.webcam = Webcam.getDefault();
+        Dimension dimension = new Dimension(640, 480);
+        this.webcam.setCustomViewSizes(dimension);
+        this.panel = new WebcamPanel(this.webcam);
+        this.panel.setMaximumSize(dimension);
+        this.panel.setMaximumSize(dimension);
+        this.webcamNode.setContent(panel);
+        /*if (this.webcamNode.getContent() == null) {
+            this.webcam = Webcam.getDefault();
+            this.webcam.setViewSize(dimension);
+            this.panel = new WebcamPanel(this.webcam);
+            this.webcamNode.setContent(panel);
+        }*/
+ /*
         if (!this.webcam.isOpen()) {
             this.webcam = Webcam.getDefault();
             this.webcam.setViewSize(WebcamResolution.VGA.getSize());
@@ -68,28 +94,34 @@ public class ImageTakerController extends Controller implements Initializable {
             this.videoTaker = new VideoTaker();
             this.videoTaker.start();
             retryCapture();
-        }
+        }*/
     }
 
     public void capture() {
         this.capturedImage = this.webcam.getImage();
-        this.videoTaker.isThreadSuspended = true;
-        this.imvAffiliatedImage.setImage(SwingFXUtils.toFXImage(capturedImage, null));
-        this.btnCaptureImage.setDisable(true);
-        this.btnRetryCapture.setDisable(false);
-        this.btnSave.setDisable(false);
-        this.btnRetryCapture.toFront();
+        //this.videoTaker.isThreadSuspended = true;
+        if (capturedImage != null) {
+            this.imvAffiliatedImage.setImage(SwingFXUtils.toFXImage(capturedImage, null));
+            this.btnCaptureImage.setDisable(true);
+            this.btnRetryCapture.setDisable(false);
+            this.btnSave.setDisable(false);
+            this.btnRetryCapture.toFront();
+            this.panel.stop();
+        }
     }
 
-    public synchronized void retryCapture() {
-        this.videoTaker.isThreadSuspended = false;
+    public void retryCapture() {
+        /*this.videoTaker.isThreadSuspended = false;
         synchronized (this.videoTaker) {
             this.videoTaker.notify();
-        }
+        }*/
+        this.capturedImage = null;
+        this.imvAffiliatedImage.setImage(null);
         this.btnCaptureImage.setDisable(false);
         this.btnRetryCapture.setDisable(true);
         this.btnSave.setDisable(true);
         this.btnCaptureImage.toFront();
+        this.panel.start();
     }
 
     public void goBack() {
@@ -99,22 +131,28 @@ public class ImageTakerController extends Controller implements Initializable {
 
     public void save() {
         try {
-            ((AffiliatedRegisterController) FlowController.getInstance().getController("AffiliatedRegisterView")).recoverFocus(capturedImage);
-            close();
+            if (this.capturedImage != null) {
+                ((AffiliatedRegisterController) FlowController.getInstance().getController("AffiliatedRegisterView")).recoverFocus(capturedImage);
+                close();
+            } else {
+                new Mensaje().show(Alert.AlertType.WARNING, "NO SE HA CAPTURADO LA IMAGEN", "Captura la imagen para continuar");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void close() {
-        this.webcam.close();
+        this.panel.stop();
+        this.webcamNode.setContent(null);
+        /*this.webcam.close();
         this.videoTaker.isThreadSuspended = true;
         this.videoTaker.interrupt();
-        this.videoTaker = null;
-        ((Stage) this.btnExit.getScene().getWindow()).close();
+        this.videoTaker = null;*/
+        getStage().close();
     }
 
-    private class VideoTaker extends Thread {
+    /*private class VideoTaker extends Thread {
 
         public volatile Boolean isThreadSuspended = false;
 
@@ -139,6 +177,5 @@ public class ImageTakerController extends Controller implements Initializable {
                 }
             }
         }
-    }
-
+    } */
 }
