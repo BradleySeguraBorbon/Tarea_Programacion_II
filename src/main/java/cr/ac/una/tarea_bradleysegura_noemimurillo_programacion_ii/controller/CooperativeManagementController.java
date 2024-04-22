@@ -52,10 +52,11 @@ public class CooperativeManagementController extends Controller implements Initi
     
     @Override
     public void initialize() {
-        if ((this.cooperativeName = (String) AppContext.getInstance().get("CooperativeName")) != null
-                && (this.cooperativeIcon = (String) AppContext.getInstance().get("CooperativeLogo")) != null) {
+        if ((this.cooperativeName = (String) AppContext.getInstance().get("cooperativeName")) != null
+                && (this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeLogo")) != null) {
             this.imvCooperativeLogoEditor.setImage(ImageConverter.fromBase64(cooperativeIcon));
-            this.txtCooperativeNameEditor.setText(this.cooperativeName);
+            this.txtCooperativeNameEditor.setPromptText(this.cooperativeName);
+            this.imvCooperativeLogoEditor.getStyleClass().clear();
         }
         this.txtCooperativeNameEditor.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
     }
@@ -83,16 +84,19 @@ public class CooperativeManagementController extends Controller implements Initi
     public void makeChanges() {
         Mensaje msj = new Mensaje();
         String modifiedCooperativeName = txtCooperativeNameEditor.getText();
-        if (modifiedCooperativeName.isBlank()) {
+        if (modifiedCooperativeName.isBlank() && this.txtCooperativeNameEditor.getPromptText().isBlank()) {
             msj.show(Alert.AlertType.WARNING, "NOMBRE DE COOPERATIVA NO INDICADO", "Escribe el nombre de la cooperativa para continuar");
-            this.txtCooperativeNameEditor.requestFocus();
+        }else if(modifiedCooperativeName.isBlank()) {
+             AppContext.getInstance().set("cooperativeName", this.txtCooperativeNameEditor.getPromptText());
         } else if (this.cooperativeIcon == null) {
             msj.show(Alert.AlertType.WARNING, "LOGO NO MODIFICADO", "Ingresa el nuevo logo de la cooperativa para continuar");
         } else {
             this.cooperativeName = modifiedCooperativeName;
-            AppContext.getInstance().set("CooperativeName", this.cooperativeName);
-            AppContext.getInstance().set("CooperativeLogo", this.cooperativeIcon);
-            ((MainController) FlowController.getInstance().getController("MainView")).updateCooperativeInfo();
+            AppContext.getInstance().set("cooperativeName", this.cooperativeName);
+            AppContext.getInstance().set("cooperativeLogo", this.cooperativeIcon);
         }
+        ((MainController) FlowController.getInstance().getController("MainView")).updateCooperativeInfo();
+        FlowController.getInstance().goView("MainMenuView");
+        new Mensaje().show(Alert.AlertType.INFORMATION, "CAMBIOS REALIZADOS EXITOSAMENTE", "Los cambios han sido completados con éxito");
     }
 }

@@ -38,7 +38,7 @@ public class ImageTakerController extends Controller implements Initializable {
     private MFXButton btnRetryCapture;
     @FXML
     private MFXButton btnSave;
-
+    
     private Webcam webcam;
     private VideoTaker videoTaker;
     private BufferedImage capturedImage;
@@ -68,7 +68,7 @@ public class ImageTakerController extends Controller implements Initializable {
             this.videoTaker = new VideoTaker();
             this.videoTaker.start();
             retryCapture();
-        }       
+        }
     }
 
     public void capture() {
@@ -131,7 +131,9 @@ public class ImageTakerController extends Controller implements Initializable {
                         }
                     }
                     BufferedImage currentFrame = webcam.getImage();
-                    imvAffiliatedImage.setImage(SwingFXUtils.toFXImage(currentFrame, null));
+                    if (currentFrame != null) {
+                        imvAffiliatedImage.setImage(SwingFXUtils.toFXImage(currentFrame, null));
+                    }
                 } catch (InterruptedException exception) {
                     exception.printStackTrace();
                 }

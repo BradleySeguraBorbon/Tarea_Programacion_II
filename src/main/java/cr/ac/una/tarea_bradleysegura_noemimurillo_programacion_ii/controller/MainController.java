@@ -101,6 +101,11 @@ public class MainController extends Controller implements Initializable {
                 dataBank = DataManager.load(absolutePath);
                 dataBank.unpackData();
                 System.out.println(dataBank.getAvailableAccounts());
+                String logo = (String) AppContext.getInstance().get("cooperativeLogo");
+                if (logo != null) {
+                    this.imvCooperativeLogo.getStyleClass().clear();
+                    this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(logo));
+                }
                 //lblCooperativeName.setText((String) AppContext.getInstance().get("cooperativeName"));
                 //imvCooperativeLogo.setImage(new Image(App.class.getResource("resources/" + AppContext.getInstance().get("cooperativeIcon")).toString()));
                 System.out.println("SAVED DATAMANAGER WAS LOADED");
@@ -108,8 +113,9 @@ public class MainController extends Controller implements Initializable {
             } else {
                 dataBank = new DataManager();
                 AppContext.getInstance().set("affiliated", new ArrayList<Affiliated>());
+                this.lblCooperativeName.setText("Cooperativa");
                 AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
-                AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
+                //AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,13 +129,14 @@ public class MainController extends Controller implements Initializable {
 
     //Universal Methods
     public void updateCooperativeInfo() {
-        String cooperativeLogo = (String) AppContext.getInstance().get("CooperativeLogo");
-        String cooperativeName = (String) AppContext.getInstance().get("CooperativeName");
+        String cooperativeLogo = (String) AppContext.getInstance().get("cooperativeLogo");
+        String cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
 
         System.out.println("PPP -- COOP LOGO: " + cooperativeLogo);
         System.out.println("PPP -- COOP NAME: " + cooperativeName);
 
         if (cooperativeLogo != null && cooperativeName != null) {
+            this.imvCooperativeLogo.getStyleClass().clear();
             this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(cooperativeLogo));
             this.lblCooperativeName.setText(cooperativeName);
             System.out.println("Coop's Logo and Name Modified");

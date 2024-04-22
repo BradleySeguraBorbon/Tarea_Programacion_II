@@ -31,13 +31,10 @@
             <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="9.0" prefWidth="1180.0" VBox.vgrow="ALWAYS" />
             <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="119.0" prefWidth="1180.0" spacing="20.0" VBox.vgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="115.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imvDecoration" fitHeight="115.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageView">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
-                     <image>
-                        <Image url="@../resources/dinosaur1.gif" />
-                     </image>
                   </ImageView>
                   <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="75.0" prefWidth="268.0" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>

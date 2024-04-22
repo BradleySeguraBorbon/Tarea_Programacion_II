@@ -349,6 +349,10 @@
     -fx-image:url("../resources/wavingHand.gif");
 }
 
+.defaultCooperativeLogo {
+    -fx-image:url("../resources/companyDefaultLogo.png");
+}
+
 /*Decoración aleatoria de Vista Principal*/
 .randomImage0 {
     -fx-image:url("../resources/decoration/alasBillete.gif");
@@ -398,6 +402,7 @@
     -fx-image:url("../resources/decoration/monedasCrece.gif");
 }
 
+/*Monedas y Billetes*/
 .lbl5colones>ImageView {
     -fx-image: url("../resources/5colones.png");
 }
@@ -441,6 +446,16 @@
 .lbl20000colones>ImageView {
     -fx-image: url("../resources/20000colones.jpg");
 }
+
+/*Otras imágenes*/
+.ImageView#imvAffiliatedImage {
+    -fx-image: url("../resources/childPicture.png");
+}
+
+.ImageView#imvDecoration {
+    -fx-image: url("../resources/dinosaurio.gif");
+}
+
 /* ---------------------------------------------------- TextField ----------------------------------------------------*/
 
 .mfx-text-field {

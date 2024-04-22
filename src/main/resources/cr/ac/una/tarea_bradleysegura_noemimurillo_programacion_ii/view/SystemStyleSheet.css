@@ -349,6 +349,10 @@
     -fx-image:url("../resources/wavingHand.gif");
 }
 
+.defaultCooperativeLogo {
+    -fx-image:url("../resources/companyDefaultLogo.png");
+}
+
 /*Decoración aleatoria de Vista Principal*/
 .randomImage0 {
     -fx-image:url("../resources/decoration/alasBillete.gif");

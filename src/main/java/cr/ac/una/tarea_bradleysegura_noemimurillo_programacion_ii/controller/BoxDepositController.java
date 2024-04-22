@@ -44,6 +44,8 @@ public class BoxDepositController extends Controller implements Initializable {
     @FXML
     private MFXButton btnSearchAffiliated;
     @FXML
+    private ImageView imvDecoration;
+    @FXML
     private MFXFilterComboBox fcbSelectAccount;
     @FXML
     private MFXSpinner<Integer> spnrCincoColones;
