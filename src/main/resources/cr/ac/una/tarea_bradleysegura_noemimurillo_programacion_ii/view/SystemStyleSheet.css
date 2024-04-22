@@ -456,7 +456,7 @@
     -fx-image: url("../resources/dinosaurio.gif");
 }
 
-.imgvUsersFace{
+.ImageView#imgvUsersFace{
     -fx-image: url("../resources/User.jpg");
 }
 
