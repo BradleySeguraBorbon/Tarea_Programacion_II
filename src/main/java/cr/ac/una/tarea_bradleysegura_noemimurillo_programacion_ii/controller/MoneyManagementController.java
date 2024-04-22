@@ -126,7 +126,7 @@ public class MoneyManagementController extends Controller implements Initializab
         if (!depositAmount.isBlank()) {
             Transaction deposit = new Transaction(Double.valueOf(depositAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.DEPOSITO);
             this.selectedAccount.makeTransaction(deposit);
-            this.selectedAffiliated.updateTicketsCount();
+            this.selectedAffiliated.addSpecialTickets(1);
             this.fcbSelectAffiliated.getSelectionModel().clearSelection();
             clearDepositTab();
             new Mensaje().show(Alert.AlertType.INFORMATION, "DEPÓSITO EXITOSO", "El depósito ha sido exitoso");
@@ -183,11 +183,11 @@ public class MoneyManagementController extends Controller implements Initializab
             if (selectedAccount.getBalance() >= Double.valueOf(withdrawalAmount)) {
                 Transaction withdraw = new Transaction(Double.valueOf(withdrawalAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.RETIRO);
                 this.selectedAccount.makeTransaction(withdraw);
-                this.selectedAffiliated.updateTicketsCount();
+                this.selectedAffiliated.addSpecialTickets(1);
                 clearWithdrawalTab();
                 new Mensaje().show(Alert.AlertType.INFORMATION, "RETIRO EXITOSO", "El retiro ha sido exitoso");
             } else {
-                new Mensaje().show(Alert.AlertType.WARNING, "RETIRO INVALIDO", "La cuenta tiene fondos insuficientes");
+                new Mensaje().show(Alert.AlertType.ERROR, "RETIRO INVALIDO", "La cuenta tiene fondos insuficientes");
             }
         } else {
             new Mensaje().show(Alert.AlertType.WARNING, "RETIRO INVALIDO", "Debes indicar el monto a retirar");
@@ -227,6 +227,6 @@ public void resetDepositTab() {
     }
 
     public void openBoxDepositValidation() {
-        FlowController.getInstance().goViewInWindow("BoxDepositValidationView");
+        FlowController.getInstance().goViewInWindowModal("BoxDepositValidationView", getStage(), true);
     }
 }

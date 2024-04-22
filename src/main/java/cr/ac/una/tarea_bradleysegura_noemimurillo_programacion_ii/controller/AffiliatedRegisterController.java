@@ -44,6 +44,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
 
     @FXML
     private ImageView imvAffiliatedImage;
+    private Image imgDefault;
     @FXML
     private MFXTextField txtName;
     @FXML
@@ -69,7 +70,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initialize();
+        this.imgDefault = this.imvAffiliatedImage.getImage();
     }
 
     @Override
@@ -130,6 +131,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
             alerta.show(Alert.AlertType.INFORMATION, "REGISTRO EXITOSO", "'¡Bienvenid@ a " + cooperativeName + ", " + name + "!");
             //Se agrega al AppContext
             AppContext.getInstance().set("affiliated", this.affiliated);
+            clear();
             
             //Se devuelve al menú principal
             FlowController.getInstance().goView("MainMenuView");
@@ -152,6 +154,19 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public void clear() {
+        this.imvAffiliatedImage.setImage(this.imgDefault);
+        this.txtName.setText("");
+        this.txtFirstLastName.setText("");
+        this.txtSecondLastName.setText("");
+        this.spnrAge.setValue(0);
+        if(this.SexSelection.getSelectedToggle() != null) {
+            this.SexSelection.getSelectedToggle().setSelected(false);
+        }
+        this.affiliated = null;
+        this.image = null;
     }
 
 }

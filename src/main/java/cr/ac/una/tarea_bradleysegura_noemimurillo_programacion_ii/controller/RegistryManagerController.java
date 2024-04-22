@@ -289,5 +289,4 @@ public class RegistryManagerController extends Controller implements Initializab
             this.tbvUsersList.setItems(FXCollections.observableArrayList(this.newAffiliates));
         }
     }
-
 }

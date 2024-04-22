@@ -183,12 +183,8 @@ public class Affiliated {
         return true;
     }
 
-    public void updateTicketsCount() {
-        Integer totalTransactions = 0;
-        for (Account account : this.accounts) {
-            totalTransactions += account.getHistory().size();
-        }
-        this.specialTickets = totalTransactions / 3;
+    public void addSpecialTickets(Integer newTickets) {
+        this.specialTickets += newTickets;
     }
 
     public String toString() {

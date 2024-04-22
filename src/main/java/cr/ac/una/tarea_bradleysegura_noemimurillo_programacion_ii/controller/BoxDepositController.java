@@ -26,6 +26,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import static javafx.scene.input.KeyCode.ENTER;
+import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
 
 /**
@@ -169,6 +171,7 @@ public class BoxDepositController extends Controller implements Initializable {
 
     public void clear() {
         this.lblSelectedAffiliated.setText("");
+        this.fcbSelectAccount.clearSelection();
         this.fcbSelectAccount.clear();
         this.fcbSelectAccount.setDisable(true);
         this.spnrCincoColones.setValue(0);
@@ -228,7 +231,14 @@ public class BoxDepositController extends Controller implements Initializable {
     }
     
     public void close() {
+        AppContext.getInstance().set("inMainMenu", true);
         getStage().close();
     }
 
+    /*public void update(KeyEvent event) {
+        if(event.getCode() == ENTER) {
+            System.out.println("VALUE: " + ((MFXSpinner)event.getSource()).textTransformerProperty().);
+            //((MFXSpinner)event.getSource()).setValue(Integer.parseInt(((MFXSpinner)event.getSource()).getPromptText()));
+        }
+    }*/
 }
