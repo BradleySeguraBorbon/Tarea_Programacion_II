@@ -580,11 +580,11 @@
 .TitledPane{
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-
+    -fx-text-fill: #000000;
 }
 
-.TitledPane#tpnAccountType{
-    -fx-background-color: #009999;
-    -fx-border-radius: 15px;
-    -fx-border-width: 1px;
+.titled-pane .title {
+    -fx-background-color: #00cccc;
+    -fx-border-radius: 5px; /* Radio de las esquinas */
+    -fx-border-width: 5px; /* Ancho del borde */
 }
