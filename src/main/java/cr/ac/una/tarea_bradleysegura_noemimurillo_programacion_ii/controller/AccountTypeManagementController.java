@@ -10,6 +10,7 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContex
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.DataManager;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -26,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import java.io.*;
 import java.nio.file.Paths;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 
 /**
@@ -52,21 +54,27 @@ public class AccountTypeManagementController extends Controller implements Initi
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.availableAccounts = new ArrayList<String>();
-        this.txtAddAccountType.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));  
+        this.txtAddAccountType.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
     }
 
     @Override
     public void initialize() {
-        if(AppContext.getInstance().get("availableAccounts") != null) {
-            this.availableAccounts = (ArrayList<String>)AppContext.getInstance().get("availableAccounts");
+        this.lstvAccountTypes.getItems().clear();
+        if (AppContext.getInstance().get("availableAccounts") != null) {
+            this.availableAccounts = (ArrayList<String>) AppContext.getInstance().get("availableAccounts");
             lstvAccountTypes.setItems(FXCollections.observableArrayList(this.availableAccounts));
         }
     }
-   
+
     public void addAccount() {
         try {
             String newAccountType = txtAddAccountType.getText();
-            if(!newAccountType.isBlank()) {
+            if (newAccountType.isBlank()) {
+                new Mensaje().show(Alert.AlertType.WARNING, "ESPACIO NO DIGITADO", "Ingresa el nuevo tipo de cuenta para continuar");
+            }
+            else if (this.availableAccounts.contains(newAccountType)) {
+                new Mensaje().show(Alert.AlertType.WARNING, "LA CUENTA YA EXISTE", "El tipo de cuenta ingresado ya existe");
+            } else {
                 this.lstvAccountTypes.getSelectionModel().clearSelection();
                 ObservableList<String> modifiedList = lstvAccountTypes.getItems();
                 modifiedList.add(newAccountType);
@@ -75,15 +83,20 @@ public class AccountTypeManagementController extends Controller implements Initi
                 this.availableAccounts.add(newAccountType);
                 AppContext.getInstance().set("availableAccounts", this.availableAccounts);
             }
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }  
-    
+    }
+
     public void deleteSelectedAccountType() {
-        this.availableAccounts.remove(this.lstvAccountTypes.getSelectionModel().getSelectedValue());
-        this.lstvAccountTypes.setItems(FXCollections.observableArrayList(this.availableAccounts));
-        this.lstvAccountTypes.getSelectionModel().clearSelection();
+        String selectedAccount = this.lstvAccountTypes.getSelectionModel().getSelectedValue();
+        if (selectedAccount != null) {
+            this.availableAccounts.remove(selectedAccount);
+            this.lstvAccountTypes.setItems(FXCollections.observableArrayList(this.availableAccounts));
+            this.lstvAccountTypes.getSelectionModel().clearSelection();
+        }
+        else {
+             new Mensaje().show(Alert.AlertType.WARNING, "NO HAY CUENTA SELECCIONADA", "Selecciona una cuenta para eliminarla");
+        }
     }
 }

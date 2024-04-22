@@ -52,7 +52,7 @@ public class RaffleController extends Controller implements Initializable {
 
     private ArrayList<Affiliated> participants;
     private ArrayList<HBox> containers;
-    private String[] styleClasses = {"jfx-lbl-raffle-heart", "jfx-lbl-raffle-square", "jfx-lbl-raffle-hexagon", "jfx-lbl-raffle-oval"};
+    private final String[] styleClasses = {"jfx-lbl-raffle-heart", "jfx-lbl-raffle-square", "jfx-lbl-raffle-hexagon", "jfx-lbl-raffle-oval"};
     private Iterator<HBox> containersIterator;
     private Iterator<Node> labelsIterator;
     private Integer totalRaffleSteps, currentRaffleSteps;
@@ -128,14 +128,6 @@ public class RaffleController extends Controller implements Initializable {
 
         this.participants = new ArrayList();
         this.containers = new ArrayList();
-
-        if (AppContext.getInstance().get("affiliated") != null) {
-            for (Affiliated affiliated : (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated")) {
-                if (affiliated.getSpecialTickets() > 0) {
-                    this.participants.add(affiliated);
-                }
-            }
-        }
         HBox[] containersArray = {this.hboxRow1, this.hboxRow2, this.hboxRow3, this.hboxRow4, this.hboxRow5};
         for (HBox container : containersArray) {
             this.containers.add(container);
@@ -147,9 +139,23 @@ public class RaffleController extends Controller implements Initializable {
     public void initialize() {
 
     }
+    
+    public void setupParticipants() {
+        if(this.participants != null) {
+            this.participants.clear();
+        }
+        if (AppContext.getInstance().get("affiliated") != null) {
+            for (Affiliated affiliated : (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated")) {
+                if (affiliated.getSpecialTickets() >= 3) {
+                    this.participants.add(affiliated);
+                }
+            }
+        }
+    }
 
     public void setupLabels() {
-        //Random numGenerator = new Random();
+        clearContainers(); 
+        setupParticipants();
         Integer participantsNum = 0, currentContainer = 0;
         for (Affiliated participant : this.participants) {
             if (participantsNum >= 26 || currentContainer >= this.containers.size()) {
@@ -172,7 +178,7 @@ public class RaffleController extends Controller implements Initializable {
     }
 
     public void raffle() {
-        if (!this.participants.isEmpty()) {
+        if (this.participants.size() >= 2) {
             Random numGenerator = new Random();
             totalRaffleSteps = numGenerator.nextInt(this.participants.size() * 2);
             currentRaffleSteps = 0;
@@ -180,7 +186,7 @@ public class RaffleController extends Controller implements Initializable {
             this.labelsIterator = Collections.emptyIterator();
             iterateNextContainer();
         } else {
-            new Mensaje().show(Alert.AlertType.ERROR, "INSUFICIENTES PARTICIPANTES", "No hay participantes para iniciar el sorteo");
+            new Mensaje().show(Alert.AlertType.ERROR, "INSUFICIENTES PARTICIPANTES", "No hay suficientes participantes para iniciar el sorteo. Se requieren al menos dos participantes para continuar.");
         }
     }
 
@@ -204,7 +210,13 @@ public class RaffleController extends Controller implements Initializable {
                     currentLabel.getStyleClass().remove("jfx-lbl-raffle-selected");
                     currentRaffleSteps++;
                     if (Objects.equals(currentRaffleSteps, totalRaffleSteps)) {
-                        new Mensaje().show(Alert.AlertType.INFORMATION, "FELICIDADES", ((Label) currentLabel).getText() + " , con FOLIO: " + currentLabel.getUserData() + " es el(la) ganador(a)");
+                        Affiliated winner = getWinner((String)currentLabel.getUserData());
+                        new Mensaje().show(Alert.AlertType.INFORMATION, "FELICIDADES", winner.getFullName() + " , con FOLIO: " + winner.getFolio()+ " es el(la) ganador(a)");
+                        for(Affiliated participant : this.participants) {
+                            participant.addSpecialTickets(-1);
+                            System.out.println(participant.getFullName() + " has " + participant.getSpecialTickets() + " special tickets");
+                        }
+                        setupLabels();
                         return;
                     }
                     iterateNextLabel();
@@ -218,9 +230,26 @@ public class RaffleController extends Controller implements Initializable {
             iterateNextContainer();
         }
     }
+    
+    public Affiliated getWinner(String folio) {
+        if(folio != null) {
+            for(Affiliated participant : this.participants) {
+                if(participant.getFolio().equals(folio)) {
+                    return participant;
+                }
+            }
+        }
+        return null;
+    }
 
     private String getRandomStyleClass() {
         Random numGenerator = new Random();
         return this.styleClasses[numGenerator.nextInt(4)];
+    }
+    
+    public void clearContainers() {
+        for(HBox container : this.containers) {
+            container.getChildren().clear();
+        }
     }
 }

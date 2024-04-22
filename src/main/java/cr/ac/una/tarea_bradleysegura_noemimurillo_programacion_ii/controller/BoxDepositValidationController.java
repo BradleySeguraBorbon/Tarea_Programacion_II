@@ -193,7 +193,7 @@ public class BoxDepositValidationController extends Controller implements Initia
         for (Account account : depositAffiliated.getAccounts()) {
             if (account.getType().equals(selectedDeposit.getAccountType())) {
                 account.makeTransaction(selectedDeposit);
-                depositAffiliated.updateTicketsCount();
+                depositAffiliated.addSpecialTickets(1);
                 this.tbvBoxDeposits.getItems().remove(selectedDeposit);
                 this.boxDeposits.remove(selectedDeposit);
                 this.tbvBoxDeposits.update();

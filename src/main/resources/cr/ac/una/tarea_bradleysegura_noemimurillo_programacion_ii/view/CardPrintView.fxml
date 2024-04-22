@@ -34,7 +34,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </MFXTextField>
-                  <MFXButton fx:id="btnPrint" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#printFolio" text="IMPRIMIR CARNET" VBox.vgrow="ALWAYS">
+                  <MFXButton fx:id="btnPrint" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#printPDF" text="IMPRIMIR CARNET" VBox.vgrow="ALWAYS">
                      <styleClass>
                         <String fx:value="mfx-btn-small" />
                         <String fx:value="jfx-btn-first-template" />

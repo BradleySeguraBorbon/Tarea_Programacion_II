@@ -28,6 +28,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Comparator;
+import java.util.Objects;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -176,7 +178,7 @@ public class RegistryManagerController extends Controller implements Initializab
         //Affiliated actualUser = newAffiliates.getLast();
 
         //Mensaje que indica el folio del nuevo usuario.
-        msj.show(INFORMATION, "Nuevo Folio", "El folio del nuevo usuario es: " + actualUser.getFolio());
+        msj.show(INFORMATION, "Nuevo Folio", "El folio del nuevo usuario es: " + nuevo.getFolio());
         //Mensaje de nuevo usuario agregado exitosamente.
         msj.show(INFORMATION, "Nuevo Afiliado", "¡Se ha añadido un nuevo afiliado exitosamente!");
 
@@ -211,7 +213,7 @@ public class RegistryManagerController extends Controller implements Initializab
             this.spnAge.setValue(selection.getAge());
             this.convertedImg = selection.getProfileImage();
             this.imgvUsersFace.setImage(ImageConverter.fromBase64(convertedImg));
-            
+
         } else {
             new Mensaje().show(WARNING, "Afiliado No Seleccionado", "Selecciona un afiliado para modificar su información");
         }
@@ -254,7 +256,7 @@ public class RegistryManagerController extends Controller implements Initializab
         selection.setSexo(getNewSex());
         selection.setAge(spnAge.getValue());
         selection.setProfileImage(convertedImg);
-        
+
         clean();
         setupTbvUsersList();
     }
@@ -290,5 +292,4 @@ public class RegistryManagerController extends Controller implements Initializab
             this.tbvUsersList.setItems(FXCollections.observableArrayList(this.newAffiliates));
         }
     }
-
 }

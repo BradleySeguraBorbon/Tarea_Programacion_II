@@ -17,10 +17,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -43,29 +47,56 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private BorderPane root;
     @FXML
-    private HBox mainHBox;
-    @FXML
-    private VBox mainVBox;
+    private VBox vboxCenter;
     @FXML
     private Label lblCooperativeName;
     @FXML
     private ImageView imvCooperativeLogo;
     @FXML
     private MFXButton btnExit;
+    @FXML
+    private ImageView imvIcon0;
+    @FXML
+    private ImageView imvIcon1;
+    @FXML
+    private ImageView imvIcon2;
+    @FXML
+    private ImageView imvIcon3;
+    @FXML
+    private ImageView imvIcon4;
+
+    private ArrayList<ImageView> iconViews;
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {  
+    public void initialize(URL url, ResourceBundle rb) {
         String currentDirectory = System.getProperty("user.dir");
-        String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
+        String relativePath = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
+        /*String absolutePath =getClass().getResource("../resources").getPath();
+        absolutePath += "/SystemData.json";
+        System.out.println(absolutePath);*/
 
         AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
         AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
         AppContext.getInstance().set("inMainMenu", true);
-        
+
+        this.vboxCenter.getChildren().addListener((ListChangeListener<Node>) event -> {
+            try {
+                setDecoration();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        this.iconViews = new ArrayList();
+        ImageView[] iconsArray = {imvIcon0, imvIcon1, imvIcon2, imvIcon3, imvIcon4};
+        for (ImageView imageIcon : iconsArray) {
+            iconViews.add(imageIcon);
+        }
+
         try {
             if (new File(absolutePath).isFile()) {
                 dataBank = DataManager.load(absolutePath);
@@ -88,17 +119,17 @@ public class MainController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
-        updateCooperativeInfo();
+        //updateCooperativeInfo();
     }
 
     //Universal Methods
     public void updateCooperativeInfo() {
         String cooperativeLogo = (String) AppContext.getInstance().get("CooperativeLogo");
         String cooperativeName = (String) AppContext.getInstance().get("CooperativeName");
-        
+
         System.out.println("PPP -- COOP LOGO: " + cooperativeLogo);
         System.out.println("PPP -- COOP NAME: " + cooperativeName);
-        
+
         if (cooperativeLogo != null && cooperativeName != null) {
             this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(cooperativeLogo));
             lblCooperativeName.setText(cooperativeName);
@@ -106,15 +137,36 @@ public class MainController extends Controller implements Initializable {
         }
     }
 
+    public void setDecoration() {
+        for (ImageView imvIcon : this.iconViews) {
+            imvIcon.getStyleClass().clear();
+        }
+        Random random = new Random();
+        Integer imvFirstIndex = random.nextInt(5), imvSecondIndex;
+        do {
+            imvSecondIndex = random.nextInt(5);
+        } while (Objects.equals(imvSecondIndex, imvFirstIndex));
+
+        Integer iconFirstIndex = random.nextInt(12), iconSecondIndex;
+        do {
+            iconSecondIndex = random.nextInt(12);
+        } while (Objects.equals(iconSecondIndex, iconFirstIndex));
+
+        this.iconViews.get(imvFirstIndex).getStyleClass().add("randomImage" + Integer.toString(iconFirstIndex));
+        this.iconViews.get(imvSecondIndex).getStyleClass().add("randomImage" + Integer.toString(iconSecondIndex));
+    }
+
     public void exit() throws IOException {
         String currentDirectory = System.getProperty("user.dir");
-        String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
+        String relativePath = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
+        /*String absolutePath =getClass().getResource("../resources").getPath();
+        absolutePath += "/SystemData.json"; */
         this.dataBank.save(absolutePath);
-        
-        if ((Boolean)AppContext.getInstance().get("inMainMenu")) {
+
+        if ((Boolean) AppContext.getInstance().get("inMainMenu")) {
             ((Stage) (this.btnExit.getScene().getWindow())).close();
-        } else {
+        } else { 
             FlowController.getInstance().goView("MainMenuView");
             AppContext.getInstance().set("inMainMenu", true);
         }

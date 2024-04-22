@@ -50,7 +50,7 @@
                   </VBox>
                   <MFXFilterComboBox fx:id="fcbSelectAccount" disable="true" floatingText="Selecciona la Cuenta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#selectAccount" prefHeight="60.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets bottom="55.0" />
+                        <Insets bottom="60.0" />
                      </HBox.margin></MFXFilterComboBox>
                   <Pane prefHeight="115.0" prefWidth="125.0" />
                </children>

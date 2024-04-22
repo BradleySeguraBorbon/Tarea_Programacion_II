@@ -13,7 +13,6 @@
     -fx-base-alert-color: #ff0033;
     -fx-background-subcolor-a: #00ffcc;
     -fx-background-subcolor-b: #9999ff;
-
 }
 
 /* ---------------------------------------------------- Panes ----------------------------------------------------*/
@@ -219,11 +218,17 @@
     -fx-effect:dropshadow(gaussian, rgba(225, 225, 225, 1), 10, 0.5, 0, 0);
 }
 
-.jfx-btn-first-template {
+.jfx-btn-first-template,
+.jfx-btn-first-template:focused,
+.jfx-btn-first-template:armed,
+.jfx-btn-first-template:selected{
     -fx-background-color: #3333ff;
 }
 
-.jfx-btn-second-template {
+.jfx-btn-second-template,
+.jfx-btn-second-template:focused,
+.jfx-btn-second-template:armed,
+.jfx-btn-second-template:selected{
     -fx-background-color: #cc00ff;
 }
 
@@ -234,7 +239,10 @@
     -fx-background-color: #33ff66;
 }
 
-.jfx-btn-fourth-template {
+.jfx-btn-fourth-template,
+.jfx-btn-fourth-template:focused,
+.jfx-btn-fourth-template:armed,
+.jfx-btn-fourth-template:selected{
     -fx-background-color: #ff33cc;
 }
 
@@ -310,14 +318,84 @@
     -fx-image: url("../resources/ahorro.png");
 }
 
+.mfx-button#btnOpenRegisterView>ImageView {
+    -fx-image: url("../resources/Registro.png");
+}
+
+.mfx-button#btnOpenAccountStatement>ImageView {
+    -fx-image: url("../resources/cerditoCuentaBancaria.png");
+}
+
+.mfx-button#btnOpenDepositBox>ImageView {
+    -fx-image: url("../resources/Buzon.png");
+}
+
 /* ---------------------------------------------------- ImageView ----------------------------------------------------*/
 
+/* Menus Principales*/
 .ImageView#imvTeachersWelcome {
     -fx-image:url("../resources/TeachersWelcomeGif.gif");
 }
 
 .ImageView#imvOfficersWelcome {
     -fx-image:url("../resources/OfficerCat.gif");
+}
+
+.ImageView#imvWelcomeLeft {
+    -fx-image:url("../resources/happyFace.png");
+}
+
+.ImageView#imvWelcomeRight {
+    -fx-image:url("../resources/wavingHand.gif");
+}
+
+/*Decoración aleatoria de Vista Principal*/
+.randomImage0 {
+    -fx-image:url("../resources/decoration/alasBillete.gif");
+}
+
+.randomImage1 {
+    -fx-image:url("../resources/decoration/alasMoneda.gif");
+}
+
+.randomImage2 {
+    -fx-image:url("../resources/decoration/Arbol.gif");
+}
+
+.randomImage3 {
+    -fx-image:url("../resources/decoration/Billetes.gif");
+}
+
+.randomImage4 {
+    -fx-image:url("../resources/decoration/billetesBrillantes.gif");
+}
+
+.randomImage5 {
+    -fx-image:url("../resources/decoration/Turtle.gif");
+}
+
+.randomImage6 {
+    -fx-image:url("../resources/decoration/Cerdito2.gif");
+}
+
+.randomImage7 {
+    -fx-image:url("../resources/decoration/dineroCrece.gif");
+}
+
+.randomImage8 {
+    -fx-image:url("../resources/decoration/dolarVerde.gif");
+}
+
+.randomImage9 {
+    -fx-image:url("../resources/decoration/Friends.gif");
+}
+
+.randomImage10 {
+    -fx-image:url("../resources/decoration/monedaGira.gif");
+}
+
+.randomImage11 {
+    -fx-image:url("../resources/decoration/monedasCrece.gif");
 }
 
 .lbl5colones>ImageView {
@@ -427,19 +505,6 @@
     -mfx-thumb-hover-color: rgb(89, 88, 91);
     -fx-min-width: 200px;
     -fx-min-height: 150px;
-}
-
-.mfx-list-view .virtual-flow .scroll-bar .track {
-    -fx-background-color: -mfx-track-color;
-}
-
-.mfx-list-view .virtual-flow .scroll-bar .thumb {
-    -fx-background-color: -mfx-thumb-color;
-}
-
-.mfx-list-view .virtual-flow .scroll-bar .thumb:pressed,
-.mfx-list-view .virtual-flow .scroll-bar .thumb:hover {
-    -fx-background-color: -mfx-thumb-hover-color;
 }
 
 .mfx-list-cell {

@@ -9,8 +9,10 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowContr
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -80,7 +82,7 @@ public class MainMenuController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
-        AppContext.getInstance().set("User", "Officers");
+        AppContext.getInstance().set("User", "Teachers");
         setTeachersMainView(false);
         setOfficersMainView(false);
         setAffiliatedMainView(false);
