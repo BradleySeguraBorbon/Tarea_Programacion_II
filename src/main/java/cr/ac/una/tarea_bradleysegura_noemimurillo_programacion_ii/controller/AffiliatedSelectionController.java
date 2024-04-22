@@ -43,18 +43,14 @@ public class AffiliatedSelectionController extends Controller implements Initial
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*//PRUEBA
-        ArrayList<Affiliated> affiliated = new ArrayList<>();
-        Affiliated affiliated1 = new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope");
-        affiliated1.addAccount(new Account("Ahorro Navideño"));
-        affiliated.add(affiliated1);
-        System.out.println("FOLIO DE BRADLEY: " + affiliated1.getFolio());
-        AppContext.getInstance().set("afiliated", affiliated);
-        //FIN PRUEBA    */
+        
+        //Se agregan todos loa afiliados desde el appContext a un arrayList local
         afiliatedNames = new ArrayList();
         for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("affiliated")) {
             afiliatedNames.add(afiliated.getFullName());
         }
+        
+        //Se cargan todos los afiliados al FilterComboBox
         afiliatedSelectionComboBox.setItems(FXCollections.observableArrayList(afiliatedNames));      
     }    
     
@@ -63,24 +59,31 @@ public class AffiliatedSelectionController extends Controller implements Initial
         
     }
  
+    //Este afiliado es para cargar el afiliado seleccionado a la variable local que guarda el afiliado seleccionado
     public void setSelectedAffiliated() {
+        //Se carga el string con el nombre del afiliado seleccionado
         String selectedAffiliatedName = (String)afiliatedSelectionComboBox.getSelectionModel().getSelectedItem();   
+        //Se busca el afiliado
         for(Affiliated afiliated : (ArrayList<Affiliated>)AppContext.getInstance().get("affiliated")) {
+            //Se valida si el afiliado actual del for coincide con el nombre del afiliado seleccionado desde el filterComboBox
             if(afiliated.getFullName().equals(selectedAffiliatedName)) {
                 this.selectedAffiliated = afiliated;
                 break;
             }
         }
+        //Si había un afiliado seleccionado entonces se despliega la información
         if(selectedAffiliated != null) {
             displayAffiliatedInfo();
         }
     }
  
+    //Este método despliega la información del afiliado en las labels
     public void displayAffiliatedInfo() {
         this.afiliatedNameLabel.setText(this.selectedAffiliated.getFullName());
         this.afiliatedFolioLabel.setText(this.selectedAffiliated.getFolio());  
     }
     
+    //Se agrega el afiliado selecionado al appContext y se cierra la ventana
     public void close() {
         if(selectedAffiliated != null) {
             AppContext.getInstance().set("selectedAffiliated", selectedAffiliated);

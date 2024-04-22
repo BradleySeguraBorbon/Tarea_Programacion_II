@@ -8,8 +8,8 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Account;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Transaction;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
@@ -21,9 +21,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Accordion;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TitledPane;
 
 /**
  * FXML Controller class
@@ -33,8 +31,6 @@ import javafx.scene.control.TitledPane;
 public class AccountDetailsController extends Controller implements Initializable {
 
     @FXML
-    private MFXButton btnLogin;
-    @FXML
     private MFXTextField txfFolio;
     @FXML
     private MFXTextField txfNameField;
@@ -43,11 +39,7 @@ public class AccountDetailsController extends Controller implements Initializabl
     @FXML
     private MFXFilterComboBox fcbAccounts;
     @FXML
-    private Accordion acdSelectedAccount;
-    @FXML
     private MFXTextField txfName;
-    @FXML
-    private TitledPane tpnAccountType;
     @FXML
     private MFXTableView tbvDetails;
     @FXML
@@ -58,11 +50,10 @@ public class AccountDetailsController extends Controller implements Initializabl
     private MFXTableColumn tbcAction;
     @FXML
     private MFXTableColumn tbcAmount;
-   
 
     ArrayList<Affiliated> affiliates;
-    ArrayList<Transaction> Moves;
-    ArrayList<String> NameAccounts;
+    ArrayList<Transaction> Moves = new ArrayList();
+    ArrayList<String> NameAccounts = new ArrayList();
 
     /**
      * Initializes the controller class.
@@ -70,50 +61,69 @@ public class AccountDetailsController extends Controller implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        txfFolio.delegateSetTextFormatter(Formato.getInstance().capsFormat(6));
+        //Se limpian todos los espacios
+
         initialize();
     }
 
     @Override
     public void initialize() {
+        //Se cargan todos los afiliados a un arrayList.
         if (AppContext.getInstance().get("affiliated") != null) {
             affiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
         }
+        Clean();
     }
 
+    //Este método es para cargar las cuentas en el FilterComboBox
     public void loadAccounts() {
-        String folio = txfFolio.getText().trim(); // Obtener el texto del folio y eliminar espacios en blanco
+        // Obtener el texto del folio y eliminar espacios en blanco
+        String folio = txfFolio.getText().trim();
         boolean folioEncontrado = false;
-        if (!folio.isEmpty()) { // Verificar si el folio no está vacío
+
+        if (!folio.isEmpty()) {
             for (Affiliated affiliated : this.affiliates) {
                 if (affiliated.getFolio().equals(folio)) {
+                    //Se muestra el nombre del afiliado para que el usuario verifique.
                     txfName.setText(affiliated.getFullName());
-                    NameAccounts = new ArrayList();
+                    //Se guardan todos los nombres de las cuentas en un arrayList para el FilterComboBox.
                     for (String accounts : affiliated.getAccountTypes()) {
                         NameAccounts.add(accounts);
                     }
+                    //Se muestran los nombres de las cuentas en el FilterComboBox
                     fcbAccounts.setItems(FXCollections.observableArrayList(NameAccounts));
+                    //Sí se encontró el afiliado
                     folioEncontrado = true;
                     break;
                 }
             }
+            //Si no se encontrara el afiliado entonces tira un error.
             if (!folioEncontrado) {
                 new Mensaje().show(Alert.AlertType.ERROR, "FOLIO INCORRECTO", "El número de folio no está registrado en nuestra cooperativa.");
             }
         } else {
+            //Si no se ha ingresado un número de folio tira un error.
             new Mensaje().show(Alert.AlertType.ERROR, "FOLIO VACÍO", "No se ha ingresado un número de folio. Por favor, ingrese un número de folio.");
         }
     }
 
+    //Este método es para desplegar toda la información en el tableView que está dentro del accordion
     public void displayAccordion() {
+        //Esto nos da el nombre de la cuenta seleccionada en el FilterComboBox
         String selectedAccount = (String) fcbAccounts.getSelectionModel().getSelectedItem();
-        String folio = txfFolio.getText().trim(); // Obtener el texto del folio y eliminar espacios en blanco
+        //Obtener el texto del folio y eliminar espacios en blanco
+        String folio = txfFolio.getText().trim();
+        //Se busca el afiliado
         for (Affiliated affiliated : this.affiliates) {
             if (affiliated.getFolio().equals(folio)) {
+                //Se busca la cuenta
                 for (Account account : affiliated.getAccounts()) {
                     if (account.getType().equals(selectedAccount)) {
+                        //Se llenan los espacios con la información de la cuenta(nombre y monto disponible)
                         txfNameField.setText(selectedAccount);
                         txfBalance.setText(account.getBalance().toString());
-                        Moves = new ArrayList();
+                        //Se llena un arrayList con la informacipon de las transacciones para cargarlas en el tableview
                         for (Transaction transaction : account.getHistory()) {
                             Moves.add(transaction);
                         }
@@ -123,10 +133,24 @@ public class AccountDetailsController extends Controller implements Initializabl
                 break;
             }
         }
+        //Se llenan las celdas con la información y se cargan en el tableView
         this.tbcID.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::getTransactionID));
         this.tbcTime.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::getTransactionTime));
         this.tbcAction.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::getAction));
         this.tbcAmount.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::getAmount));
+        this.tbvDetails.setItems(FXCollections.observableArrayList(this.Moves));
+
+    }
+
+    //Este método limpia todo cuando el usuario le da al botón de salir y en caso de que no le haya dado click entonces también se hace en el iniciatilize 
+    public void Clean() {
+        txfFolio.clear();
+        txfNameField.clear();
+        txfBalance.clear();
+        txfName.clear();
+        fcbAccounts.getItems().clear();
+        Moves.clear();
+        NameAccounts.clear();
         this.tbvDetails.setItems(FXCollections.observableArrayList(this.Moves));
     }
 

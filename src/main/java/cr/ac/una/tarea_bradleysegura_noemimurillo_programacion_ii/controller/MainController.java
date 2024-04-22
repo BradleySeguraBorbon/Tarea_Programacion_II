@@ -78,9 +78,10 @@ public class MainController extends Controller implements Initializable {
         absolutePath += "/SystemData.json";
         System.out.println(absolutePath);*/
 
-        AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
-        AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
+        AppContext.getInstance().set("CooperativeName", this.lblCooperativeName.getText());
+        AppContext.getInstance().set("CooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
         AppContext.getInstance().set("inMainMenu", true);
+        updateCooperativeInfo();
 
         this.vboxCenter.getChildren().addListener((ListChangeListener<Node>) event -> {
             try {
@@ -139,7 +140,7 @@ public class MainController extends Controller implements Initializable {
             this.imvCooperativeLogo.getStyleClass().clear();
             this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(cooperativeLogo));
             this.lblCooperativeName.setText(cooperativeName);
-            System.out.println("Coop's Logo and Name Modified");
+            System.out.println("Coop's Logo and Name Modified" + cooperativeName);
         }
     }
 

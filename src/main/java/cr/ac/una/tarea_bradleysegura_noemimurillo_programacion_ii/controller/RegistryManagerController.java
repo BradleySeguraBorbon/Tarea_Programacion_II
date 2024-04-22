@@ -8,10 +8,9 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConv
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Affiliated.Sexo;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.AppContext;
+import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Formato;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXListView;
-import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXSpinner;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
@@ -19,22 +18,14 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import io.github.palexdev.materialfx.controls.models.spinner.IntegerSpinnerModel;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Comparator;
-import java.util.Objects;
-import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.Alert.AlertType.WARNING;
 import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import javafx.scene.control.RadioButton;
@@ -53,25 +44,23 @@ import javax.imageio.ImageIO;
 public class RegistryManagerController extends Controller implements Initializable {
 
     @FXML
-    private MFXButton btnAddUser; //
+    private MFXButton btnAddUser;
     @FXML
     private MFXButton btnModify;
     @FXML
-    private MFXTextField txtSurname;//
+    private MFXTextField txtSurname;
     @FXML
-    private MFXTextField txtName;//
+    private MFXTextField txtName;
     @FXML
-    private MFXTextField txtSecondSurname;//
+    private MFXTextField txtSecondSurname;
     @FXML
-    private MFXSpinner<Integer> spnAge;//
+    private MFXSpinner<Integer> spnAge;
     @FXML
-    private ToggleGroup IdentityGroup;//
+    private ToggleGroup IdentityGroup;
     @FXML
-    private MFXButton btnDeleteUser;//
+    private MFXButton btnDeleteUser;
     @FXML
-    private MFXButton btnSaveChanges;//
-    @FXML
-    private MFXButton UpImage;//
+    private MFXButton btnSaveChanges;
     @FXML
     private MFXTableView<Affiliated> tbvUsersList;
     @FXML
@@ -79,7 +68,7 @@ public class RegistryManagerController extends Controller implements Initializab
     @FXML
     private MFXTableColumn<Affiliated> tbcFolio;
     @FXML
-    private ImageView imgvUsersFace;//
+    private ImageView imgvUsersFace;
 
     ArrayList<Affiliated> newAffiliates;
     String convertedImg = "";
@@ -88,6 +77,10 @@ public class RegistryManagerController extends Controller implements Initializab
     public void initialize(URL url, ResourceBundle rb) {
         // this.newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
         this.spnAge.setSpinnerModel(new IntegerSpinnerModel(0));
+        spnAge.setTextTransformer((focused, text) -> (!focused || !spnAge.isEditable()) ? text + " años" : text);
+        txtSurname.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
+        txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
+        txtSecondSurname.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         initialize();
     }
 
@@ -101,7 +94,7 @@ public class RegistryManagerController extends Controller implements Initializab
         this.tbcAffiliated.setRowCellFactory(affiliated -> new MFXTableRowCell<>(Affiliated::getFullName));
         setupTbvUsersList();
 
-        //Inicialización de elementos activos
+        //Se limpian todos los campos
         clean();
     }
 
@@ -118,18 +111,16 @@ public class RegistryManagerController extends Controller implements Initializab
             // Mostrar el diálogo de selección de archivo
             File file = fileChooser.showOpenDialog(null);
 
+            //Se crea un bufferedImage con el archivo seleccionado
             BufferedImage image = ImageIO.read(file);
+
             // Verificar si se seleccionó un archivo
             if (file != null) {
-                // Crear una imagen a partir del archivo seleccionado
-                //Image image = new Image(file.toURI().toString());
-                //String image64 = file.getAbsolutePath();
-                //String image64 = "C:\\Users\\Fiorella\\Pictures\\20181031_170733.jpg";
-                //convertedImg = convertImageToBase64(image64);
-
+                // Crear un string a partir del archivo seleccionado para más adelante usarlo en el constructor del afiliado, para este método es el bufferedImage anterior.
                 this.convertedImg = ImageConverter.toBase64(image, ImageConverter.getFormat(file));
                 System.out.println(ImageConverter.getFormat(file));
 
+                //Se vuelve a convertir el string de la imagen de base64 a imagen
                 Image bs64ToImg = ImageConverter.fromBase64(this.convertedImg);
                 // Mostrar la imagen en el ImageView
                 imgvUsersFace.setImage(bs64ToImg);
@@ -144,6 +135,7 @@ public class RegistryManagerController extends Controller implements Initializab
     public void addNewUser() {
         btnDeleteUser.setDisable(false);
         btnSaveChanges.setDisable(false);
+
         //Se crea una instancia de mensaje para las advertencias en caso de que algún espacio esté vació o si se agregó el usuario exitosamente.
         Mensaje msj = new Mensaje();
 
@@ -172,20 +164,21 @@ public class RegistryManagerController extends Controller implements Initializab
             msj.show(WARNING, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
             return;
         }
+        //Si ningún if se cumplió entonces se crea un afiliado
         Affiliated nuevo = new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), spnAge.getValue(), getNewSex(), this.convertedImg, (String) AppContext.getInstance().get("cooperativeName"));
-        //Si todos los espacios están llenos, se salta los if y se crea el nuevo usuario
+
         this.newAffiliates.add(nuevo);
-        //Affiliated actualUser = newAffiliates.getLast();
 
-        //Mensaje que indica el folio del nuevo usuario.
-        msj.show(INFORMATION, "Nuevo Folio", "El folio del nuevo usuario es: " + nuevo.getFolio());
-        //Mensaje de nuevo usuario agregado exitosamente.
-        msj.show(INFORMATION, "Nuevo Afiliado", "¡Se ha añadido un nuevo afiliado exitosamente!");
+        //Mensaje de nuevo usuario agregado exitosamente e indica el FOLIO del nuevo usuario.
+        msj.show(INFORMATION, "Nuevo Afiliado", "¡Se ha añadido un nuevo afiliado exitosamente! El folio del nuevo usuario es: " + nuevo.getFolio());
 
+        //Se limpian los espacios de texto y todo lo demás
         clean();
+        //Se actualiza la lista para que salga en la lista de usuarios inmediatamente
         setupTbvUsersList();
     }
 
+    //Este método nos devuelve el radioButton seleccionado
     public Sexo getNewSex() {
         Toggle seleccionado = IdentityGroup.getSelectedToggle();
         if (seleccionado != null) {
@@ -199,6 +192,7 @@ public class RegistryManagerController extends Controller implements Initializab
         return null;
     }
 
+    //En este método por medio de la tableView se seleciona un afiliado y se despliegan los datos en los campos establecidos (TextFields, ImageView, y demás)
     public void modifyAffiliated() {
         btnDeleteUser.setDisable(false);
         btnSaveChanges.setDisable(false);
@@ -219,6 +213,7 @@ public class RegistryManagerController extends Controller implements Initializab
         }
     }
 
+    //Este método es para guardar los cambios que se hicieron en la información del afiliado, en caso de que algún espacio esté vació manda una advertencia porque no puede haber ninguno en blanco.
     public void saveChanges() {
         Affiliated selection = this.tbvUsersList.getSelectionModel().getSelectedValue();
         Mensaje msj = new Mensaje();
@@ -261,6 +256,7 @@ public class RegistryManagerController extends Controller implements Initializab
         setupTbvUsersList();
     }
 
+    //Este es para remover el afiliado selecionado en la tableview.
     public void removeAffiliated() {
         Affiliated selection = this.tbvUsersList.getSelectionModel().getSelectedValue();
         if (selection != null) {
@@ -270,8 +266,8 @@ public class RegistryManagerController extends Controller implements Initializab
         }
     }
 
+    //Este método es para limpiar todos los espacios en donde se escribe/despliega la informacipon del afiliado.
     public void clean() {
-        //Esto es para limpiar todos los campos
         this.txtName.clear();
         this.txtSurname.clear();
         this.txtSecondSurname.clear();
@@ -287,6 +283,7 @@ public class RegistryManagerController extends Controller implements Initializab
         this.btnSaveChanges.setDisable(true);
     }
 
+    //Este método es para cargar la información de los afiliados en el tableview.
     public void setupTbvUsersList() {
         if (this.newAffiliates != null) {
             this.tbvUsersList.setItems(FXCollections.observableArrayList(this.newAffiliates));

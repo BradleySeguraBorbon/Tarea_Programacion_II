@@ -34,7 +34,7 @@
                                 <MFXTableColumn fx:id="tbcAffiliated" prefWidth="120.0" text="Afiliado" />
                             </tableColumns>
                         </MFXTableView>
-                        <MFXButton fx:id="btnModify" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#modifyAffiliated" text="Modificar Usuario" />
+                        <MFXButton fx:id="btnModify" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#modifyAffiliated" styleClass="mfx-btn-medium" text="Modificar Usuario" />
                     </children>
                 </VBox>
                 <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
@@ -52,13 +52,13 @@
                                 <Insets bottom="10.0" left="10.0" />
                             </VBox.margin>
                             <children>
-                                <MFXButton fx:id="UpImage" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#saveNewImage" prefHeight="83.0" prefWidth="106.0" text="Subir Imagen" />
+                                <MFXButton fx:id="UpImage" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#saveNewImage" styleClass="mfx-btn-small" text="Subir Imagen" />
                             </children>
                         </HBox>
                         <MFXTextField fx:id="txtName" floatingText="Nombre" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="587.0" styleClass="mfx-text-field" />
                         <MFXTextField fx:id="txtSurname" floatingText="Primer Apelido" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="mfx-text-field" />
                         <MFXTextField fx:id="txtSecondSurname" floatingText="Segundo Apellido" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                        <MFXSpinner fx:id="spnAge" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Edad" />
+                        <MFXSpinner fx:id="spnAge" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Edad" />
                         <Label text="Sexo" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                             <children>
@@ -72,13 +72,13 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                             <children>
-                                <MFXButton fx:id="btnDeleteUser" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#removeAffiliated" text="Eliminar Usuario">
+                                <MFXButton fx:id="btnDeleteUser" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#removeAffiliated" styleClass="mfx-btn-medium" text="Eliminar Usuario">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
                                 </MFXButton>
-                                <MFXButton fx:id="btnAddUser" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#addNewUser" text="Añadir Nuevo Usuario" />
-                                <MFXButton fx:id="btnSaveChanges" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#saveChanges" text="Guardar Cambios">
+                                <MFXButton fx:id="btnAddUser" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#addNewUser" styleClass="mfx-btn-medium" text="Añadir Nuevo Usuario" />
+                                <MFXButton fx:id="btnSaveChanges" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#saveChanges" styleClass="mfx-btn-medium" text="Guardar Cambios">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>

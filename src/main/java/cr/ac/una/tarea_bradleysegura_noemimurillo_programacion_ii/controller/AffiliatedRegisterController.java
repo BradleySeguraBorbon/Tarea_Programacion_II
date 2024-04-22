@@ -81,7 +81,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
             spnrAge.setSpinnerModel(new IntegerSpinnerModel(0));
         }
         
-        //Inicialización de TextFields
+        //Inicialización de formatos de los TextFields
         txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         txtFirstLastName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         txtSecondLastName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
@@ -89,12 +89,15 @@ public class AffiliatedRegisterController extends Controller implements Initiali
 
     public void register() {
         Mensaje alerta = new Mensaje();
+        //Se crean Strings con los textos de cada textfield correspondiente.
         String name = txtName.getText(),
                 firstLastName = txtFirstLastName.getText(),
                 secondLastName = txtSecondLastName.getText(),
                 cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
+        //Se crea un int con la información del spinner
         Integer age = (int) spnrAge.getSpinnerModel().getValue();
-
+        
+        //Esto es para verificar que todos los textfield o espacios de entrada de datos estén llenos.
         if (name.isBlank()) {
             alerta.show(Alert.AlertType.WARNING, "NOMBRE INCOMPLETO", "Debes ingresar tu nombre para continuar");
             System.out.println("ERROR");
@@ -118,23 +121,31 @@ public class AffiliatedRegisterController extends Controller implements Initiali
             alerta.show(Alert.AlertType.WARNING, "IMAGEN NO CAPTURADA", "Debes capturar una imagen para continuar");
             System.out.println("ERROR");
         } else {
+            //Si todos los espacios están llenos entonces se obtiene el sexo del neuvo afiliado.
             Affiliated.Sexo sexo = (rBtnMasculino.isSelected()) ? Affiliated.Sexo.MASCULINO : Affiliated.Sexo.FEMENINO;
+            //Se muestra en la consola
             System.out.println("IMAGE IN JSON " + ImageConverter.toBase64(image, "JPG"));
+            
+            //Se agrega el nuevo afiliado
             this.affiliated.add(new Affiliated(name, firstLastName, secondLastName, age, sexo, ImageConverter.toBase64(image, "JPG"), cooperativeName));
             alerta.show(Alert.AlertType.INFORMATION, "REGISTRO EXITOSO", "'¡Bienvenid@ a " + cooperativeName + ", " + name + "!");
+            //Se agrega al AppContext
             AppContext.getInstance().set("affiliated", this.affiliated);
             clear();
             
+            //Se devuelve al menú principal
             FlowController.getInstance().goView("MainMenuView");
             AppContext.getInstance().set("inMainMenu", true);
         }
     }
 
+    //Al momento de darle click a la imagen se ejecuta este método que abre una nueva ventana para tomar la foto del nuevo afiliado.
     public void takePicture() {
         FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), true);
         //FlowController.getInstance().goView("imageTakerView");
     }
-
+    
+    //Este método es para que el imageView cargue la imagen que se tomó el usuario, se llama desde el imageTakerController
     public void recoverFocus(BufferedImage takenImage) {
         try {
             if (takenImage != null) {
@@ -146,6 +157,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         }
     }
     
+    //Este método limpia todos los espacios
     public void clear() {
         this.imvAffiliatedImage.setImage(this.imgDefault);
         this.txtName.setText("");
