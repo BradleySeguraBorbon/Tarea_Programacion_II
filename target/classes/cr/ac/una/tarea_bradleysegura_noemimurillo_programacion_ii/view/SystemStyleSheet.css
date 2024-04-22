@@ -456,6 +456,10 @@
     -fx-image: url("../resources/dinosaurio.gif");
 }
 
+.imgvUsersFace{
+    -fx-image: url("../resources/User.jpg");
+}
+
 /* ---------------------------------------------------- TextField ----------------------------------------------------*/
 
 .mfx-text-field {

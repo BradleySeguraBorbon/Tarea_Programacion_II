@@ -78,6 +78,7 @@ public class AccountDetailsController extends Controller implements Initializabl
 
     //Este método es para cargar las cuentas en el FilterComboBox
     public void loadAccounts() {
+        NameAccounts.clear();
         // Obtener el texto del folio y eliminar espacios en blanco
         String folio = txfFolio.getText().trim();
         boolean folioEncontrado = false;
@@ -110,6 +111,7 @@ public class AccountDetailsController extends Controller implements Initializabl
 
     //Este método es para desplegar toda la información en el tableView que está dentro del accordion
     public void displayAccordion() {
+        Moves.clear();
         //Esto nos da el nombre de la cuenta seleccionada en el FilterComboBox
         String selectedAccount = (String) fcbAccounts.getSelectionModel().getSelectedItem();
         //Obtener el texto del folio y eliminar espacios en blanco

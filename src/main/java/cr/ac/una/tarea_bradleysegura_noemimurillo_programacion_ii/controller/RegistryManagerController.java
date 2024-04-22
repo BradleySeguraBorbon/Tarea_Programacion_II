@@ -69,6 +69,8 @@ public class RegistryManagerController extends Controller implements Initializab
     private MFXTableColumn<Affiliated> tbcFolio;
     @FXML
     private ImageView imgvUsersFace;
+    
+    Image imgDefault;
 
     ArrayList<Affiliated> newAffiliates;
     String convertedImg = "";
@@ -82,6 +84,7 @@ public class RegistryManagerController extends Controller implements Initializab
         txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         txtSecondSurname.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         initialize();
+        this.imgDefault = imgvUsersFace.getImage();
     }
 
     @Override
@@ -275,7 +278,7 @@ public class RegistryManagerController extends Controller implements Initializab
             this.IdentityGroup.getSelectedToggle().setSelected(false);
         }
         this.spnAge.setValue(0);
-        this.imgvUsersFace.setImage(new Image(getClass().getResourceAsStream("../resources/User.jpg")));
+        this.imgvUsersFace.setImage(this.imgDefault);
         this.convertedImg = "";
         this.btnAddUser.setDisable(false);
         this.btnModify.setDisable(false);
