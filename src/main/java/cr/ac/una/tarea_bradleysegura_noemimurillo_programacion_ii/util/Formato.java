@@ -9,8 +9,10 @@ import java.text.DecimalFormat;
 import java.text.ParsePosition;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.control.TextInputControl;
 
 /**
@@ -186,4 +188,29 @@ public class Formato {
         });
         return maxLengthFormat;
     }
+
+    //Este es un nuevo método para que cuando el usuario escriba su número de folio se escriba en mayúsculas de una vez, porque el folio es en mayúsculas.
+    public TextFormatter capsFormat(Integer maxLength) {
+        TextFormatter<String> letrasFormat = new TextFormatter<>(c -> {
+            if (c.getControlNewText().isEmpty()) {
+                return c;
+            }
+            if (maxLength > 0) {
+                if (((TextInputControl) c.getControl()).getLength() >= maxLength && !c.isDeleted()) {
+                    return null;
+                }
+                if (c.getText().length() > maxLength && !c.isDeleted()) {
+                    return null;
+                }
+            }
+            c.setText(c.getText().toUpperCase());
+            if (c.getControlNewText().matches(".*\\s{2,}.*")) {
+                return null;
+            }
+            return c;
+
+        });
+        return letrasFormat;
+    }
+
 }

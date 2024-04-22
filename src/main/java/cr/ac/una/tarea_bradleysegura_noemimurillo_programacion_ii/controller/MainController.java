@@ -59,7 +59,7 @@ public class MainController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {  
         String currentDirectory = System.getProperty("user.dir");
-        String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
+        String relativePath = "target/classes/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
 
         AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
@@ -94,21 +94,21 @@ public class MainController extends Controller implements Initializable {
     //Universal Methods
     public void updateCooperativeInfo() {
         String cooperativeLogo = (String) AppContext.getInstance().get("CooperativeLogo");
-        String cooperativeName = (String) AppContext.getInstance().get("CooperativeName");
+        String cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
         
         System.out.println("PPP -- COOP LOGO: " + cooperativeLogo);
         System.out.println("PPP -- COOP NAME: " + cooperativeName);
         
         if (cooperativeLogo != null && cooperativeName != null) {
             this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(cooperativeLogo));
-            lblCooperativeName.setText(cooperativeName);
-            System.out.println("Coop's Logo and Name Modified");
+            this.lblCooperativeName.setText(cooperativeName);
+            System.out.println("Coop's Logo and Name Modified" + cooperativeName);
         }
     }
 
     public void exit() throws IOException {
         String currentDirectory = System.getProperty("user.dir");
-        String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
+        String relativePath = "target/classes/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";
         String absolutePath = Paths.get(currentDirectory, relativePath).toString();
         this.dataBank.save(absolutePath);
         

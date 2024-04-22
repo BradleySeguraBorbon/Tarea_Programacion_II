@@ -128,7 +128,7 @@ public class BoxDepositController extends Controller implements Initializable {
         }
         
         //Inicialización de TextField para folio
-        txtFolio.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(6));
+        txtFolio.delegateSetTextFormatter(Formato.getInstance().capsFormat(6));
     }
 
     @Override

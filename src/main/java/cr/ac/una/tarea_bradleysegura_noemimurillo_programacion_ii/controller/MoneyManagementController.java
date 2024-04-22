@@ -101,7 +101,7 @@ public class MoneyManagementController extends Controller implements Initializab
         txtWithdrawAmount.delegateSetTextFormatter(Formato.getInstance().integerFormat());
 
         //Inicialización de TextField para folio
-        txtAffiliatedFolio.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(6));
+        txtAffiliatedFolio.delegateSetTextFormatter(Formato.getInstance().capsFormat(6));
     }
 
     public void selectAffiliated() {
