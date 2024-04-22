@@ -21,7 +21,7 @@
                   <VBox alignment="CENTER">
                      <children>
                         <Label fx:id="lblMainInfo" styleClass="jx-lbl-subtitle" text="Bienvenido a la Gran Rifa Estudiantil" />
-                        <Label fx:id="lblInstructions" text="La participación de cada estudiante tiene equivale a 1 tiquete especial. Un tiquete especial se obtiene por cada 3 transacciones realizadas por dicho estudiante" />
+                        <Label fx:id="lblInstructions" text="La participación de cada estudiante equivale a 1 tiquete especial. Un tiquete especial se obtiene por cada 3 transacciones realizadas por dicho estudiante" />
                      </children>
                   </VBox>
                </children>

@@ -100,7 +100,7 @@ public class DataManager implements Serializable {
         this.availableAccounts = (ArrayList<String>) AppContext.getInstance().get("availableAccounts");
         this.afiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
         this.cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
-        this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeIcon");
+        this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeLogo");
         this.boxDeposits = (ArrayList<BoxDeposit>) AppContext.getInstance().get("boxDeposits");
     }
     
@@ -108,7 +108,7 @@ public class DataManager implements Serializable {
         AppContext.getInstance().set("availableAccounts", this.availableAccounts);
         AppContext.getInstance().set("affiliated", this.afiliated);
         AppContext.getInstance().set("cooperativeName",  this.cooperativeName);
-        AppContext.getInstance().set("cooperativeIcon",  this.cooperativeIcon);
+        AppContext.getInstance().set("cooperativeLogo",  this.cooperativeIcon);
         AppContext.getInstance().set("boxDeposits", this.boxDeposits);
     }
     

@@ -174,5 +174,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         this.affiliated = null;
         this.image = null;
     }
+    
+    
 
 }

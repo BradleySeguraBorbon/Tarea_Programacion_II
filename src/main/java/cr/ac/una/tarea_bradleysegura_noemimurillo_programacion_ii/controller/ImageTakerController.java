@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.embed.swing.SwingNode;
 import javafx.scene.control.Alert;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -78,6 +79,10 @@ public class ImageTakerController extends Controller implements Initializable {
         this.panel.setMaximumSize(dimension);
         this.panel.setMaximumSize(dimension);
         this.webcamNode.setContent(panel);
+        
+        getStage().setOnCloseRequest(WindowEvent -> { 
+            close();
+        });
         /*if (this.webcamNode.getContent() == null) {
             this.webcam = Webcam.getDefault();
             this.webcam.setViewSize(dimension);

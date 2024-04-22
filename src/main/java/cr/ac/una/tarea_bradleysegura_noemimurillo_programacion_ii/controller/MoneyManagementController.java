@@ -136,22 +136,25 @@ public class MoneyManagementController extends Controller implements Initializab
         //Se obtiene el monto del textfield
         String depositAmount = txtDepositAmount.getText();
         //Se verifica que no esté en blanco 
-        if (!depositAmount.isBlank()) {
+        if (depositAmount.isBlank()) {
+            new Mensaje().show(Alert.AlertType.WARNING, "DEPÓSITO INVALIDO", "Debes indicar el monto a depositar");
+        } else if (Double.parseDouble(depositAmount) <= 0) {
+            new Mensaje().show(Alert.AlertType.WARNING, "DEPÓSITO INVALIDO", "El monto ingresado es invalido. Ingresa un nuevo monto.");
+        } else {
             //Se crea una instancia de transacción para subie el depósito
             Transaction deposit = new Transaction(Double.valueOf(depositAmount), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), Transaction.Action.DEPOSITO);
             //Se se agrega la transacción a la cuenta correspondiente
             this.selectedAccount.makeTransaction(deposit);
             //Se agregan los tickets para la rifa de afiliados 
-            this.selectedAffiliated.addSpecialTickets(1);
+            if (selectedAffiliated.getTransactionsNum() % 3 == 0) {
+                this.selectedAffiliated.addSpecialTickets(1);
+            }
             //Se limpia la selección del filterComboBox
             this.fcbSelectAffiliated.getSelectionModel().clearSelection();
             //Se limpia todo
             clearDepositTab();
             //Se genera un mensaje de que se ha realizado el depósito
             new Mensaje().show(Alert.AlertType.INFORMATION, "DEPÓSITO EXITOSO", "El depósito ha sido exitoso");
-        } else {
-            //Si no hay un monto a depositar entonces se genera un mensaje
-            new Mensaje().show(Alert.AlertType.WARNING, "DEPÓSITO INVALIDO", "Debes indicar el monto a depositar");
         }
     }
 
@@ -232,7 +235,9 @@ public class MoneyManagementController extends Controller implements Initializab
                 //Se le agrega la transacción a la cuenta seleccionada
                 this.selectedAccount.makeTransaction(withdraw);
                 //Se agregan los tickets para la rifa de afiliados
-                this.selectedAffiliated.addSpecialTickets(1);
+                if (selectedAffiliated.getTransactionsNum() % 3 == 0) {
+                    this.selectedAffiliated.addSpecialTickets(1);
+                }
                 clearWithdrawalTab();
                 new Mensaje().show(Alert.AlertType.INFORMATION, "RETIRO EXITOSO", "El retiro ha sido exitoso");
             } else {
@@ -265,8 +270,7 @@ public class MoneyManagementController extends Controller implements Initializab
         this.btnDeposit.setDisable(true);
     }
 
-    //Este método limpia las variables locales que transportan datos de un me´todo a otro y se limpia el tab para retiro.
-    @FXML
+    //Este método limpia las variables locales que transportan datos de un método a otro y se limpia el tab para retiro.
     public void clearWithdrawalTab() {
         this.selectedAffiliated = null;
         this.selectedAccount = null;
