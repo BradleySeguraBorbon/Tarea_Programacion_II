@@ -95,6 +95,7 @@ public class BoxDepositValidationController extends Controller implements Initia
 
     }
     //Se cargan todos los depósitos en el tableView
+    @FXML
     public void setupTbvBoxDeposits() {
         //Se define que lleva cada una de las columnas
         this.tbcAffiliated.setRowCellFactory(boxDeposit -> new MFXTableRowCell<>(BoxDeposit::getAffiliatedName));
@@ -128,6 +129,7 @@ public class BoxDepositValidationController extends Controller implements Initia
     }
 
     //En caso de que se deba modificar un depósito
+    @FXML
     public void modifyDeposit() {
         //Se toma el depósito seleccionado desde la tableView
         selectedDeposit = this.tbvBoxDeposits.getSelectionModel().getSelectedValue();
@@ -147,6 +149,7 @@ public class BoxDepositValidationController extends Controller implements Initia
     }
 
     //Guardar en caso de que se modifique algun spinner
+    @FXML
     public void saveCorrections() {
         //Se carga el seleccionado desde el tableView
         selectedDeposit = this.tbvBoxDeposits.getSelectionModel().getSelectedValue();
@@ -168,6 +171,7 @@ public class BoxDepositValidationController extends Controller implements Initia
     }
 
     //Método para el boton de cancelar
+    @FXML
     public void cancelCorrections() {
         if (!btnSaveCorrections.isDisable()) {
             //Devuelve los spinner a cero
@@ -183,6 +187,7 @@ public class BoxDepositValidationController extends Controller implements Initia
     }
 
     //Este método habilita o deshabilita los botones según sea necesario
+    @FXML
     public void setCorrectionPhase(Boolean isCorrecting) { 
         // Deshabilita los botones de validación y modificación si se entra en modo corrección
         this.btnValidateDeposit.setDisable(isCorrecting);   
@@ -199,6 +204,7 @@ public class BoxDepositValidationController extends Controller implements Initia
     }
 
     //Este método es para el boton de validar
+    @FXML
     public void validateDeposit() {
         //Toma el depósito seleccionado de tableView
         BoxDeposit selectedDeposit = tbvBoxDeposits.getSelectionModel().getSelectedValue();
@@ -249,6 +255,7 @@ public class BoxDepositValidationController extends Controller implements Initia
     }
 
     //Se cierra la ventana
+    @FXML
     public void exit() {
         getStage().close();
     }

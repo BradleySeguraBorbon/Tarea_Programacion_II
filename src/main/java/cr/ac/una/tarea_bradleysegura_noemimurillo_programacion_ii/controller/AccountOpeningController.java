@@ -65,6 +65,7 @@ public class AccountOpeningController extends Controller implements Initializabl
     }
 
     //Este método es para generar labels por las cuentas que tiene el afiliado y las disponibles a aperturar 
+    @FXML
     public void setAccountLabels() {
         //Se verifica que haya un afiliado seleccionado
         if (this.selectedAffiliated == null) {
@@ -98,7 +99,9 @@ public class AccountOpeningController extends Controller implements Initializabl
             }
         }
     }
+    
     //Este método es para agregar la cuenta nueva al usuario
+    @FXML
     public void createAccount(Node labelNode) {
         //Se gaurda el nombre de la label, que también es el nombre de la cuenta nueva a aperturar
         String accountType = ((Label) labelNode).getText();
@@ -112,6 +115,7 @@ public class AccountOpeningController extends Controller implements Initializabl
     }
 
     //Remueve la cuenta que se movió, este método se llama en el DraggableMaker(DraggableMaker es una subclase de este controlador), ahí es donde se validan más cosas
+    @FXML
     public void removeAccount(Node labelNode) {
         String accountType = ((Label) labelNode).getText();
         //Se le remueve la cuenta al afiliado
@@ -120,6 +124,7 @@ public class AccountOpeningController extends Controller implements Initializabl
     }
     
     //Este método limpia todos los espacios
+    @FXML
     public void clearView() {
         this.fpOpeningAccounts.getChildren().clear();
         this.fpOpenedAccounts.getChildren().clear();
@@ -129,6 +134,7 @@ public class AccountOpeningController extends Controller implements Initializabl
     }
 
     //aux method, para que salga la información en consola
+    @FXML
     public void printAvailableAccounts() {
         System.out.print("CUENTAS ABIERTAS: ");
         for (Account account : this.selectedAffiliated.getAccounts()) {

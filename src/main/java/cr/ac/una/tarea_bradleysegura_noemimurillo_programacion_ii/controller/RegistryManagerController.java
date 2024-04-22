@@ -69,6 +69,8 @@ public class RegistryManagerController extends Controller implements Initializab
     private MFXTableColumn<Affiliated> tbcFolio;
     @FXML
     private ImageView imgvUsersFace;
+    
+    Image imgDefault;
 
     ArrayList<Affiliated> newAffiliates;
     String convertedImg = "";
@@ -82,6 +84,7 @@ public class RegistryManagerController extends Controller implements Initializab
         txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         txtSecondSurname.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         initialize();
+        this.imgDefault = imgvUsersFace.getImage();
     }
 
     @Override
@@ -98,6 +101,7 @@ public class RegistryManagerController extends Controller implements Initializab
         clean();
     }
 
+    @FXML
     public void saveNewImage() {
         try {
             // Crear un FileChooser para seleccionar el archivo de imagen
@@ -132,6 +136,7 @@ public class RegistryManagerController extends Controller implements Initializab
 
     }
 
+    @FXML
     public void addNewUser() {
         btnDeleteUser.setDisable(false);
         btnSaveChanges.setDisable(false);
@@ -179,6 +184,7 @@ public class RegistryManagerController extends Controller implements Initializab
     }
 
     //Este método nos devuelve el radioButton seleccionado
+    @FXML
     public Sexo getNewSex() {
         Toggle seleccionado = IdentityGroup.getSelectedToggle();
         if (seleccionado != null) {
@@ -193,6 +199,7 @@ public class RegistryManagerController extends Controller implements Initializab
     }
 
     //En este método por medio de la tableView se seleciona un afiliado y se despliegan los datos en los campos establecidos (TextFields, ImageView, y demás)
+    @FXML
     public void modifyAffiliated() {
         btnDeleteUser.setDisable(false);
         btnSaveChanges.setDisable(false);
@@ -214,6 +221,7 @@ public class RegistryManagerController extends Controller implements Initializab
     }
 
     //Este método es para guardar los cambios que se hicieron en la información del afiliado, en caso de que algún espacio esté vació manda una advertencia porque no puede haber ninguno en blanco.
+    @FXML
     public void saveChanges() {
         Affiliated selection = this.tbvUsersList.getSelectionModel().getSelectedValue();
         Mensaje msj = new Mensaje();
@@ -257,6 +265,7 @@ public class RegistryManagerController extends Controller implements Initializab
     }
 
     //Este es para remover el afiliado selecionado en la tableview.
+    @FXML
     public void removeAffiliated() {
         Affiliated selection = this.tbvUsersList.getSelectionModel().getSelectedValue();
         if (selection != null) {
@@ -267,6 +276,7 @@ public class RegistryManagerController extends Controller implements Initializab
     }
 
     //Este método es para limpiar todos los espacios en donde se escribe/despliega la informacipon del afiliado.
+    @FXML
     public void clean() {
         this.txtName.clear();
         this.txtSurname.clear();
@@ -275,7 +285,7 @@ public class RegistryManagerController extends Controller implements Initializab
             this.IdentityGroup.getSelectedToggle().setSelected(false);
         }
         this.spnAge.setValue(0);
-        this.imgvUsersFace.setImage(new Image(getClass().getResourceAsStream("../resources/User.jpg")));
+        this.imgvUsersFace.setImage(this.imgDefault);
         this.convertedImg = "";
         this.btnAddUser.setDisable(false);
         this.btnModify.setDisable(false);
@@ -284,6 +294,7 @@ public class RegistryManagerController extends Controller implements Initializab
     }
 
     //Este método es para cargar la información de los afiliados en el tableview.
+    @FXML
     public void setupTbvUsersList() {
         if (this.newAffiliates != null) {
             this.tbvUsersList.setItems(FXCollections.observableArrayList(this.newAffiliates));

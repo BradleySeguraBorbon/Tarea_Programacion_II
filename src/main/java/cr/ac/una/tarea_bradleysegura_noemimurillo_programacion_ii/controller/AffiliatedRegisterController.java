@@ -148,6 +148,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     }
     
     //Este método es para que el imageView cargue la imagen que se tomó el usuario, se llama desde el imageTakerController
+    @FXML
     public void recoverFocus(BufferedImage takenImage) {
         try {
             if (takenImage != null) {
@@ -160,6 +161,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     }
     
     //Este método limpia todos los espacios
+    @FXML
     public void clear() {
         this.imvAffiliatedImage.setImage(this.imgDefault);
         this.txtName.setText("");

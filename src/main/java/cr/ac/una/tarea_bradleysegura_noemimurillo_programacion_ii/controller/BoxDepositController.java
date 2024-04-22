@@ -141,6 +141,7 @@ public class BoxDepositController extends Controller implements Initializable {
     }
 
     //Se busca el afiliado
+    @FXML
     public void searchAffiliated() {
         //Se limpian todos los espacios
         clear();
@@ -170,12 +171,14 @@ public class BoxDepositController extends Controller implements Initializable {
     }
 
     //Este método saca la cuenta seleccionada
+    @FXML
     public void selectAccount() {
         this.selectedAccount = (Account) this.fcbSelectAccount.getSelectedItem();
     }
 
   
     //Este método es para actualizar el monto total cada vez que se modifica un spinner
+    @FXML
     public void refreshTotal() {
         //Se obtiene el valor del spinner y se multiplica por la denomianción de moneda o billete que les corresponde
         Integer total = (spnrCincoColones.getValue() * 5) + (spnrDiezColones.getValue() * 10) + (spnrVeinticincoColones.getValue() * 25)
@@ -186,6 +189,7 @@ public class BoxDepositController extends Controller implements Initializable {
     }
 
     //Este método limpia todos los espacios de datos de la pantalla
+    @FXML
     public void clear() {
         this.lblSelectedAffiliated.setText("");
         this.fcbSelectAccount.clearSelection();
@@ -206,6 +210,7 @@ public class BoxDepositController extends Controller implements Initializable {
     }
     
     //Este método devyuelve los spinners a 0
+    @FXML
     private Boolean spinnersBlank() {
         return this.spnrCincoColones.getValue() == 0 && this.spnrDiezColones.getValue() == 0 && this.spnrVeinticincoColones.getValue() == 0 &&
                 this.spnrCincuentaColones.getValue() == 0 && this.spnrCienColones.getValue() == 0 && this.spnrQuinientosColones.getValue() == 0 &&
@@ -214,6 +219,7 @@ public class BoxDepositController extends Controller implements Initializable {
     }
 
     //Se guarda la información del depósito
+    @FXML
     public void save() {
         //Se verifica que haya un folio, una cuenta y que los spinner no estén en blanco
         if (this.txtFolio.getText().isBlank()) {
@@ -258,6 +264,7 @@ public class BoxDepositController extends Controller implements Initializable {
     }
     
     //Se cierra la ventana
+    @FXML
     public void close() {
         AppContext.getInstance().set("inMainMenu", true);
         getStage().close();

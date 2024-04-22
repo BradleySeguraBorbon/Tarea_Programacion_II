@@ -104,6 +104,7 @@ public class MoneyManagementController extends Controller implements Initializab
         txtAffiliatedFolio.delegateSetTextFormatter(Formato.getInstance().capsFormat(6));
     }
 
+    @FXML
     public void selectAffiliated() {
         //Se limpia todo 
         clearDepositTab();
@@ -118,6 +119,7 @@ public class MoneyManagementController extends Controller implements Initializab
     }
 
     //Habilita espacios para poder realizar los depositos
+    @FXML
     public void selectDepositAccount() {
         //Se carga la información de la cuenta seleccionada desde el filterComboBox
         selectedAccount = (Account) fcbSelectDepositAccount.getSelectedItem();
@@ -129,6 +131,7 @@ public class MoneyManagementController extends Controller implements Initializab
     }
 
     //Este es el método para realizar el depósito
+    @FXML
     public void deposit() {
         //Se obtiene el monto del textfield
         String depositAmount = txtDepositAmount.getText();
@@ -156,6 +159,7 @@ public class MoneyManagementController extends Controller implements Initializab
     }
 
     //Busca el afiliado
+    @FXML
     public void browseAffiliated() {
         //Se limpia el tab de retiro
         clearWithdrawalTab();
@@ -191,7 +195,7 @@ public class MoneyManagementController extends Controller implements Initializab
         }
     }
 
-    //Método para verificar el usuario, este se ejecuta cuando se verifica el usuario 
+    @FXML
     public void validateAffiliated() {
         //Se deshabilita el boton y el label porque ya se accionó el botón
         validateAffiliatedLabel.setOpacity(0);
@@ -206,6 +210,7 @@ public class MoneyManagementController extends Controller implements Initializab
     }
 
     //Se habilitan los espacios para hacer el retiro
+    @FXML
     public void selectWithdrawalAccount() {
         //Se toma la cuenta seleccionada
         selectedAccount = (Account) fcbSelectWithdrawAccount.getSelectedItem();
@@ -217,6 +222,7 @@ public class MoneyManagementController extends Controller implements Initializab
     }
 
     //Para hacer el retiro
+    @FXML
     public void withdraw() {
         //Se obtiene el monto a retirar del textfield
         String withdrawalAmount = txtWithdrawAmount.getText();
@@ -245,12 +251,14 @@ public class MoneyManagementController extends Controller implements Initializab
     }
 
     //Se limpia cada vez que se cambia de tap
+    @FXML
     public void resetDepositTab() {
         this.fcbSelectAffiliated.clearSelection();
         clearDepositTab();
     }
 
     //Este método limpia las variables locales que transportan datos de un me´todo a otro y se limpia el tab para depósito.
+    @FXML
     public void clearDepositTab() {
         this.selectedAffiliated = null;
         this.selectedAccount = null;
@@ -280,6 +288,7 @@ public class MoneyManagementController extends Controller implements Initializab
     }
 
     //Se abre la venta del BoxDeposit para los depósitos que hace el afiliado solo.
+    @FXML
     public void openBoxDepositValidation() {
         FlowController.getInstance().goViewInWindowModal("BoxDepositValidationView", getStage(), true);
     }

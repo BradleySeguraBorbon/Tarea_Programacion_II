@@ -60,6 +60,7 @@ public class AffiliatedSelectionController extends Controller implements Initial
     }
  
     //Este afiliado es para cargar el afiliado seleccionado a la variable local que guarda el afiliado seleccionado
+    @FXML
     public void setSelectedAffiliated() {
         //Se carga el string con el nombre del afiliado seleccionado
         String selectedAffiliatedName = (String)afiliatedSelectionComboBox.getSelectionModel().getSelectedItem();   
@@ -78,12 +79,14 @@ public class AffiliatedSelectionController extends Controller implements Initial
     }
  
     //Este método despliega la información del afiliado en las labels
+    @FXML
     public void displayAffiliatedInfo() {
         this.afiliatedNameLabel.setText(this.selectedAffiliated.getFullName());
         this.afiliatedFolioLabel.setText(this.selectedAffiliated.getFolio());  
     }
     
     //Se agrega el afiliado selecionado al appContext y se cierra la ventana
+    @FXML
     public void close() {
         if(selectedAffiliated != null) {
             AppContext.getInstance().set("selectedAffiliated", selectedAffiliated);

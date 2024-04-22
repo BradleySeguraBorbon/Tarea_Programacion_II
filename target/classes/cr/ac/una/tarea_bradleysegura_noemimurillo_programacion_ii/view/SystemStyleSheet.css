@@ -473,6 +473,10 @@
     -fx-image: url("../resources/DefaultCapture.png");
 }
 
+.ImageView#imgvUsersFace{
+    -fx-image: url("../resources/User.jpg");
+}
+
 /* ---------------------------------------------------- TextField ----------------------------------------------------*/
 
 .mfx-text-field {
@@ -562,4 +566,17 @@
     -fx-min-height: 40px;
     -fx-max-width: 400px;
     -fx-max-height: 60px;
+}
+
+/* ---------------------------------------------------- Titled Pane ----------------------------------------------------*/
+.TitledPane{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+}
+
+.TitledPane#tpnAccountType{
+    -fx-background-color: #009999;
+    -fx-border-radius: 15px;
+    -fx-border-width: 1px;
 }

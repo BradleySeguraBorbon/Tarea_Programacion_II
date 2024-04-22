@@ -36,7 +36,7 @@
                         <MFXTextField fx:id="txfBalance" editable="false" floatingText="Monto Disponible" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                         <Accordion fx:id="acdSelectedAccount">
                             <panes>
-                                <TitledPane fx:id="tpnAccountType1" animated="false" text="MOVIMIENTOS">
+                                <TitledPane fx:id="tpnAccountType" animated="false" styleClass="TitledPane" text="MOVIMIENTOS">
                                     <content>
                                         <MFXTableView fx:id="tbvDetails" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT">
                                             <tableColumns>
