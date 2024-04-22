@@ -65,6 +65,7 @@ public class CooperativeManagementController extends Controller implements Initi
     }
 
     //Al momento de darle click a la imagen se ejecuta este programa para seleccionar una nueva imagen 
+    @FXML
     public void modifyCooperativeLogo() {
         try {
             //Se crea una ventana para abrir los archivos y seleccioanr la imagen

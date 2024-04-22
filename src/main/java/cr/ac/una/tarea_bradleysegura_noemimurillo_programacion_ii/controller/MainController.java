@@ -135,6 +135,7 @@ public class MainController extends Controller implements Initializable {
     }
 
     //Universal Methods
+    @FXML
     public void updateCooperativeInfo() {
         String cooperativeLogo = (String) AppContext.getInstance().get("cooperativeLogo");
         String cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
@@ -150,6 +151,7 @@ public class MainController extends Controller implements Initializable {
         }
     }
 
+    @FXML
     public void setDecoration() {
         for (ImageView imvIcon : this.iconViews) {
             imvIcon.getStyleClass().clear();
@@ -169,6 +171,7 @@ public class MainController extends Controller implements Initializable {
         this.iconViews.get(imvSecondIndex).getStyleClass().add("randomImage" + Integer.toString(iconSecondIndex));
     }
 
+    @FXML
     public void exit() throws IOException {
         String absolutePath = System.getProperty("user.dir") + "/SystemData.json";
         /*String relativePath = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";

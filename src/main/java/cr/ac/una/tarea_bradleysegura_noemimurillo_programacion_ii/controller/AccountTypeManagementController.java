@@ -67,6 +67,7 @@ public class AccountTypeManagementController extends Controller implements Initi
     }
    
     //Con este método es que se agregan cuentas para todos los afiliados
+    @FXML
     public void addAccount() {
         try {
             //Se obtiene el nuevo nombre desde el textfield
@@ -96,6 +97,7 @@ public class AccountTypeManagementController extends Controller implements Initi
     }
 
     //Para eliminar la cuenta seleccionada
+    @FXML
     public void deleteSelectedAccountType() {
         //Se carga la selección desde el filterComboBox
         String selectedAccount = this.lstvAccountTypes.getSelectionModel().getSelectedValue();

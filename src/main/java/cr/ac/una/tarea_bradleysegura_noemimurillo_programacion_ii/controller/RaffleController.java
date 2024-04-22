@@ -143,6 +143,7 @@ public class RaffleController extends Controller implements Initializable {
     }
     
     //Se buscan los participantes dependiendo de los ticketes que tengan 
+    @FXML
     public void setupParticipants() {
         //Se limpia la variable local de los afiliados que pueden participar en la rifa
         if(this.participants != null) {
@@ -159,7 +160,7 @@ public class RaffleController extends Controller implements Initializable {
         }
     }
 
-    //
+    @FXML
     public void setupLabels() {
         //Se limpian los contenedores
         clearContainers(); 
@@ -185,6 +186,7 @@ public class RaffleController extends Controller implements Initializable {
         }
     }
 
+    @FXML
     public void raffle() {
         if (this.participants.size() >= 2) {
             Random numGenerator = new Random();
@@ -198,6 +200,7 @@ public class RaffleController extends Controller implements Initializable {
         }
     }
 
+    @FXML
     public void iterateNextContainer() {
         if (containersIterator.hasNext()) {
             HBox currentContainer = containersIterator.next();
@@ -209,6 +212,7 @@ public class RaffleController extends Controller implements Initializable {
         }
     }
 
+    @FXML
     public void iterateNextLabel() {
         if (labelsIterator.hasNext()) {
             Node currentLabel = labelsIterator.next();
@@ -239,6 +243,7 @@ public class RaffleController extends Controller implements Initializable {
         }
     }
     
+    @FXML
     public Affiliated getWinner(String folio) {
         if(folio != null) {
             for(Affiliated participant : this.participants) {
@@ -250,11 +255,13 @@ public class RaffleController extends Controller implements Initializable {
         return null;
     }
 
+    @FXML
     private String getRandomStyleClass() {
         Random numGenerator = new Random();
         return this.styleClasses[numGenerator.nextInt(4)];
     }
     
+    @FXML
     public void clearContainers() {
         for(HBox container : this.containers) {
             container.getChildren().clear();

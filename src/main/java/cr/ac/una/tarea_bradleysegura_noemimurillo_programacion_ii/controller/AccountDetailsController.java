@@ -77,6 +77,7 @@ public class AccountDetailsController extends Controller implements Initializabl
     }
 
     //Este método es para cargar las cuentas en el FilterComboBox
+    @FXML
     public void loadAccounts() {
         NameAccounts.clear();
         // Obtener el texto del folio y eliminar espacios en blanco
@@ -110,6 +111,7 @@ public class AccountDetailsController extends Controller implements Initializabl
     }
 
     //Este método es para desplegar toda la información en el tableView que está dentro del accordion
+    @FXML
     public void displayAccordion() {
         Moves.clear();
         //Esto nos da el nombre de la cuenta seleccionada en el FilterComboBox
@@ -145,6 +147,7 @@ public class AccountDetailsController extends Controller implements Initializabl
     }
 
     //Este método limpia todo cuando el usuario le da al botón de salir y en caso de que no le haya dado click entonces también se hace en el iniciatilize 
+    @FXML
     public void Clean() {
         txfFolio.clear();
         txfNameField.clear();

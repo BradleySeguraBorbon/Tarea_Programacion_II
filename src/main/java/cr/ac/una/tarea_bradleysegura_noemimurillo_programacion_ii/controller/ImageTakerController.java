@@ -97,6 +97,7 @@ public class ImageTakerController extends Controller implements Initializable {
         }*/
     }
 
+    @FXML
     public void capture() {
         this.capturedImage = this.webcam.getImage();
         //this.videoTaker.isThreadSuspended = true;
@@ -110,6 +111,7 @@ public class ImageTakerController extends Controller implements Initializable {
         }
     }
 
+    @FXML
     public void retryCapture() {
         /*this.videoTaker.isThreadSuspended = false;
         synchronized (this.videoTaker) {
@@ -124,11 +126,13 @@ public class ImageTakerController extends Controller implements Initializable {
         this.panel.start();
     }
 
+    @FXML
     public void goBack() {
         ((AffiliatedRegisterController) FlowController.getInstance().getController("AffiliatedRegisterView")).recoverFocus(null);
         close();
     }
 
+    @FXML
     public void save() {
         try {
             if (this.capturedImage != null) {
@@ -142,6 +146,7 @@ public class ImageTakerController extends Controller implements Initializable {
         }
     }
 
+    @FXML
     public void close() {
         this.panel.stop();
         this.webcamNode.setContent(null);

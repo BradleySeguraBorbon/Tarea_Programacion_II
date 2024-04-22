@@ -70,6 +70,7 @@ public class CardPrintController extends Controller implements Initializable {
 
     }
 
+    @FXML
     public void browseUser() {
         Mensaje msj = new Mensaje();
         txtNameUser.clear();

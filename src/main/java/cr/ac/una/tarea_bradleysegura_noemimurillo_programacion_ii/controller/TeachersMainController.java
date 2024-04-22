@@ -84,24 +84,29 @@ public class TeachersMainController extends Controller implements Initializable 
 
     }
 
+    @FXML
     public void openAccountTypeManagementView() {
         FlowController.getInstance().goView("AccountTypeManagementView");
     }
 
+    @FXML
     public void openCooperativeManagementView() {
         FlowController.getInstance().goView("CooperativeManagementView");
     }
 
+    @FXML
     public void setCooperativeLogo(Image imgCooperativeLogo) {
         this.imvCooperativeLogo.setImage(imgCooperativeLogo);
         System.out.println("Coop Logo Modified");
     }
 
+    @FXML
     public void setCooperativeName(String newCooperativeName) {
         lblCooperativeName.setText(cooperativeName);
         System.out.println("Coop Name Modified");
     }
 
+    @FXML
     public void exit() throws IOException {
         String currentDirectory = System.getProperty("user.dir");
         String relativePath = "src/main/java/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/service/SystemData.json";
