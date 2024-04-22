@@ -75,13 +75,9 @@ public class MainController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String absolutePath = System.getProperty("user.dir") + "/SystemData.json";
-        /*String absolutePath = Paths.get(currentDirectory, relativePath).toString();
-        String absolutePath =getClass().getResource("../resources").getPath();
-        absolutePath += "/SystemData.json";
-        System.out.println(absolutePath);*/
 
         try {
-            AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
+            AppContext.getInstance().set("cooperativeName", "Mi Cooperativa");
             AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(ImageIO.read(new File(System.getProperty("user.dir") + "/defaultCooperativeInfo/companyDefaultLogo.png")), "PNG"));
             AppContext.getInstance().set("inMainMenu", true);
             updateCooperativeInfo();
@@ -107,22 +103,11 @@ public class MainController extends Controller implements Initializable {
             if (new File(absolutePath).isFile()) {
                 dataBank = DataManager.load(absolutePath);
                 dataBank.unpackData();
-                System.out.println(dataBank.getAvailableAccounts());
-                String logo = (String) AppContext.getInstance().get("cooperativeLogo");
-                if (logo != null) {
-                    this.imvCooperativeLogo.getStyleClass().clear();
-                    this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(logo));
-                }
-                //lblCooperativeName.setText((String) AppContext.getInstance().get("cooperativeName"));
-                //imvCooperativeLogo.setImage(new Image(App.class.getResource("resources/" + AppContext.getInstance().get("cooperativeIcon")).toString()));
-                System.out.println("SAVED DATAMANAGER WAS LOADED");
-
+                updateCooperativeInfo();
             } else {
                 dataBank = new DataManager();
                 AppContext.getInstance().set("affiliated", new ArrayList<Affiliated>());
-                this.lblCooperativeName.setText("Cooperativa");
-                AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
-                //AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
+                this.lblCooperativeName.setText(this.lblCooperativeName.getText());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,15 +124,17 @@ public class MainController extends Controller implements Initializable {
         String cooperativeLogo = (String) AppContext.getInstance().get("cooperativeLogo");
         String cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
 
-        System.out.println("PPP -- COOP LOGO: " + cooperativeLogo);
-        System.out.println("PPP -- COOP NAME: " + cooperativeName);
+        System.out.println("COOP LOGO: " + cooperativeLogo);
+        System.out.println("COOP NAME: " + cooperativeName);
 
-        if (cooperativeLogo != null && cooperativeName != null) {
+        if (cooperativeLogo != null) {
             this.imvCooperativeLogo.getStyleClass().clear();
             this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(cooperativeLogo));
-            this.lblCooperativeName.setText(cooperativeName);
-            System.out.println("Coop's Logo and Name Modified" + cooperativeName);
         }
+        if(cooperativeName != null) {
+            this.lblCooperativeName.setText(cooperativeName);
+        }
+        System.out.println("Coop's Logo and Name Modified" + cooperativeName);
     }
 
     public void setDecoration() {
@@ -171,10 +158,6 @@ public class MainController extends Controller implements Initializable {
 
     public void exit() throws IOException {
         String absolutePath = System.getProperty("user.dir") + "/SystemData.json";
-        /*String relativePath = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";
-        String absolutePath = Paths.get(currentDirectory, relativePath).toString();
-        String absolutePath =getClass().getResource("../resources").getPath();
-        absolutePath += "/SystemData.json"; */
         this.dataBank.save(absolutePath);
 
         if ((Boolean) AppContext.getInstance().get("inMainMenu")) {

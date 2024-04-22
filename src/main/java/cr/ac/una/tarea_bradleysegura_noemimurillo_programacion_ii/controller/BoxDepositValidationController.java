@@ -230,7 +230,9 @@ public class BoxDepositValidationController extends Controller implements Initia
                 //Se le mete el depósito a la cuenta 
                 account.makeTransaction(selectedDeposit);
                 //Se le asignan los tickets para la rifa 
-                depositAffiliated.addSpecialTickets(1);
+                if (depositAffiliated.getTransactionsNum() % 3 == 0) {
+                    depositAffiliated.addSpecialTickets(1);
+                }
                 //Se quita el depósito de la tableview porque ya está listo 
                 this.tbvBoxDeposits.getItems().remove(selectedDeposit);
                 //Se elimina del array de depositos por hacer también 

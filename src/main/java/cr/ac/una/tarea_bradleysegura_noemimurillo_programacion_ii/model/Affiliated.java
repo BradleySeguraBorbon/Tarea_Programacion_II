@@ -186,6 +186,14 @@ public class Affiliated {
     public void addSpecialTickets(Integer newTickets) {
         this.specialTickets += newTickets;
     }
+    
+    public Integer getTransactionsNum() {
+        Integer totalTransactions = 0;
+        for(Account account : this.accounts) {
+            totalTransactions+=account.getHistory().size();
+        }
+        return totalTransactions;
+    }
 
     public String toString() {
         return "Name: " + name

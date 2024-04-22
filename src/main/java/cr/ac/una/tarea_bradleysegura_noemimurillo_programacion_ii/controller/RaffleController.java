@@ -152,7 +152,7 @@ public class RaffleController extends Controller implements Initializable {
         if (AppContext.getInstance().get("affiliated") != null) {
             //Se buscan los afiliados que tengan 
             for (Affiliated affiliated : (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated")) {
-                if (affiliated.getSpecialTickets() >= 3) {
+                if (affiliated.getSpecialTickets() >= 1) {
                     this.participants.add(affiliated);
                 }
             }
@@ -187,15 +187,18 @@ public class RaffleController extends Controller implements Initializable {
 
     public void raffle() {
         if (this.participants.size() >= 2) {
+            this.btnRaffle.setDisable(true);
             Random numGenerator = new Random();
-            totalRaffleSteps = numGenerator.nextInt(this.participants.size() * 2);
+            totalRaffleSteps = numGenerator.nextInt(this.participants.size() * 2) + 1;
             currentRaffleSteps = 0;
             this.containersIterator = this.containers.iterator();
             this.labelsIterator = Collections.emptyIterator();
             iterateNextContainer();
+            System.out.println("Fin");
         } else {
             new Mensaje().show(Alert.AlertType.ERROR, "INSUFICIENTES PARTICIPANTES", "No hay suficientes participantes para iniciar el sorteo. Se requieren al menos dos participantes para continuar.");
         }
+        
     }
 
     public void iterateNextContainer() {
@@ -224,6 +227,7 @@ public class RaffleController extends Controller implements Initializable {
                             participant.addSpecialTickets(-1);
                             System.out.println(participant.getFullName() + " has " + participant.getSpecialTickets() + " special tickets");
                         }
+                        this.btnRaffle.setDisable(false);
                         setupLabels();
                         return;
                     }
