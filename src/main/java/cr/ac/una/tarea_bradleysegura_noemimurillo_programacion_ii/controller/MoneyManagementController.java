@@ -90,7 +90,7 @@ public class MoneyManagementController extends Controller implements Initializab
     public void initialize() {
         //Inicialización de FilterComboBoxes
         this.afiliatedList = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
-        StringConverter<Affiliated> affiliatedConverter = FunctionalStringConverter.to(afiliated -> (afiliated == null) ? "" : afiliated.getFullName());
+        StringConverter<Affiliated> affiliatedConverter = FunctionalStringConverter.to(afiliated -> (afiliated == null) ? "" : afiliated.getFullName() + " (Folio: " + afiliated.getFolio() + ")");
         this.fcbSelectAffiliated.setConverter(affiliatedConverter);
         StringConverter<Account> accountConverter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
         fcbSelectDepositAccount.setConverter(accountConverter);

@@ -12,6 +12,7 @@ import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowContr
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.ImageConverter;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +35,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -78,10 +80,14 @@ public class MainController extends Controller implements Initializable {
         absolutePath += "/SystemData.json";
         System.out.println(absolutePath);*/
 
-        AppContext.getInstance().set("CooperativeName", this.lblCooperativeName.getText());
-        AppContext.getInstance().set("CooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
-        AppContext.getInstance().set("inMainMenu", true);
-        updateCooperativeInfo();
+        try {
+            AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
+            AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(ImageIO.read(new File(System.getProperty("user.dir") + "/defaultCooperativeInfo/companyDefaultLogo.png")), "PNG"));
+            AppContext.getInstance().set("inMainMenu", true);
+            updateCooperativeInfo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         this.vboxCenter.getChildren().addListener((ListChangeListener<Node>) event -> {
             try {

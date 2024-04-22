@@ -40,14 +40,14 @@
          <children>
             <ImageView fx:id="imvIcon0" fitHeight="104.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true" />
             <Pane prefHeight="115.0" prefWidth="683.0" HBox.hgrow="ALWAYS" />
-            <Label fx:id="lblCooperativeName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nombre de Cooperativa" HBox.hgrow="ALWAYS">
+            <Label fx:id="lblCooperativeName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fx:id="imvCooperativeLogo" fitHeight="115.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+            <ImageView fx:id="imvCooperativeLogo" fitHeight="115.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" styleClass="defaultCooperativeLogo" HBox.hgrow="ALWAYS">
                <image>
-                  <Image url="@../resources/companyDefaultLogo.png" />
+                  <Image url="@../resources" />
                </image>
             </ImageView>
          </children>
