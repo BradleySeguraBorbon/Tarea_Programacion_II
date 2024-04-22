@@ -128,6 +128,8 @@ public class RaffleController extends Controller implements Initializable {
 
         this.participants = new ArrayList();
         this.containers = new ArrayList();
+        
+        //Se crea un array de los contenedores de las labels que serán hBoxes
         HBox[] containersArray = {this.hboxRow1, this.hboxRow2, this.hboxRow3, this.hboxRow4, this.hboxRow5};
         for (HBox container : containersArray) {
             this.containers.add(container);
@@ -140,11 +142,15 @@ public class RaffleController extends Controller implements Initializable {
 
     }
     
+    //Se buscan los participantes dependiendo de los ticketes que tengan 
     public void setupParticipants() {
+        //Se limpia la variable local de los afiliados que pueden participar en la rifa
         if(this.participants != null) {
             this.participants.clear();
         }
+        //Se valida que existan afiliados registrados en el sistema
         if (AppContext.getInstance().get("affiliated") != null) {
+            //Se buscan los afiliados que tengan 
             for (Affiliated affiliated : (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated")) {
                 if (affiliated.getSpecialTickets() >= 3) {
                     this.participants.add(affiliated);
@@ -153,7 +159,9 @@ public class RaffleController extends Controller implements Initializable {
         }
     }
 
+    //
     public void setupLabels() {
+        //Se limpian los contenedores
         clearContainers(); 
         setupParticipants();
         Integer participantsNum = 0, currentContainer = 0;

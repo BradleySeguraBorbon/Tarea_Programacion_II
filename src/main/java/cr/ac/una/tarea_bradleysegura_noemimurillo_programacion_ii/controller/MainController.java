@@ -72,16 +72,18 @@ public class MainController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String currentDirectory = System.getProperty("user.dir");
-        String relativePath = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";
-        String absolutePath = Paths.get(currentDirectory, relativePath).toString();
+        String absolutePath = System.getProperty("user.dir") + "/SystemData.json";
+//        String currentDirectory = System.getProperty("user.dir");
+//        String relativePath = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";
+//        String absolutePath = Paths.get(currentDirectory, relativePath).toString();
         /*String absolutePath =getClass().getResource("../resources").getPath();
         absolutePath += "/SystemData.json";
         System.out.println(absolutePath);*/
 
-        AppContext.getInstance().set("cooperativeName", this.lblCooperativeName.getText());
-        AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
+        AppContext.getInstance().set("CooperativeName", this.lblCooperativeName.getText());
+        AppContext.getInstance().set("CooperativeLogo", ImageConverter.toBase64(SwingFXUtils.fromFXImage(this.imvCooperativeLogo.getImage(), null), "PNG"));
         AppContext.getInstance().set("inMainMenu", true);
+        updateCooperativeInfo();
 
         this.vboxCenter.getChildren().addListener((ListChangeListener<Node>) event -> {
             try {
@@ -157,16 +159,17 @@ public class MainController extends Controller implements Initializable {
     }
 
     public void exit() throws IOException {
-        String currentDirectory = System.getProperty("user.dir");
-        String relativePath = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";
-        String absolutePath = Paths.get(currentDirectory, relativePath).toString();
+        String absolutePath = System.getProperty("user.dir") + "/SystemData.json";
+//        String currentDirectory = System.getProperty("user.dir");
+//        String relativePath = "src/main/resources/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/SystemData.json";
+//        String absolutePath = Paths.get(currentDirectory, relativePath).toString();
         /*String absolutePath =getClass().getResource("../resources").getPath();
         absolutePath += "/SystemData.json"; */
         this.dataBank.save(absolutePath);
 
         if ((Boolean) AppContext.getInstance().get("inMainMenu")) {
             ((Stage) (this.btnExit.getScene().getWindow())).close();
-        } else { 
+        } else {
             FlowController.getInstance().goView("MainMenuView");
             AppContext.getInstance().set("inMainMenu", true);
         }
