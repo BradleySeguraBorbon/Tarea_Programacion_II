@@ -123,7 +123,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         } else {
             //Si todos los espacios están llenos entonces se obtiene el sexo del neuvo afiliado.
             Affiliated.Sexo sexo = (rBtnMasculino.isSelected()) ? Affiliated.Sexo.MASCULINO : Affiliated.Sexo.FEMENINO;
-            
+            //Se muestra en la consola
             System.out.println("IMAGE IN JSON " + ImageConverter.toBase64(image, "JPG"));
             
             //Se agrega el nuevo afiliado
@@ -144,7 +144,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), true);
     }
     
-    //Este método es para que el imageView vuelva a su foto predefinida luego de tomar la foto
+    //Este método es para que el imageView cargue la imagen que se tomó el usuario, se llama desde el imageTakerController
     public void recoverFocus(BufferedImage takenImage) {
         try {
             if (takenImage != null) {
@@ -156,6 +156,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         }
     }
     
+    //Este método limpia todos los espacios
     public void clear() {
         this.imvAffiliatedImage.setImage(this.imgDefault);
         this.txtName.setText("");

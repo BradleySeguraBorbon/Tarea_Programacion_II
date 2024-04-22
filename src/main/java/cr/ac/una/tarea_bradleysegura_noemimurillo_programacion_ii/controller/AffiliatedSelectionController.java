@@ -43,14 +43,6 @@ public class AffiliatedSelectionController extends Controller implements Initial
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*//PRUEBA
-        ArrayList<Affiliated> affiliated = new ArrayList<>();
-        Affiliated affiliated1 = new Affiliated("Bradley", "Segura", "Borbon", 18, Affiliated.Sexo.MASCULINO, "Coope");
-        affiliated1.addAccount(new Account("Ahorro Navideño"));
-        affiliated.add(affiliated1);
-        System.out.println("FOLIO DE BRADLEY: " + affiliated1.getFolio());
-        AppContext.getInstance().set("afiliated", affiliated);
-        //FIN PRUEBA    */
         
         //Se agregan todos loa afiliados desde el appContext a un arrayList local
         afiliatedNames = new ArrayList();

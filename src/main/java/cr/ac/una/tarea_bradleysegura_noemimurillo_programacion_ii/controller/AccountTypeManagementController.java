@@ -95,14 +95,21 @@ public class AccountTypeManagementController extends Controller implements Initi
         }
     }
 
+    //Para eliminar la cuenta seleccionada
     public void deleteSelectedAccountType() {
+        //Se carga la selección desde el filterComboBox
         String selectedAccount = this.lstvAccountTypes.getSelectionModel().getSelectedValue();
+        //Si se seleccionó una cuenta
         if (selectedAccount != null) {
+            //Se remueve del array
             this.availableAccounts.remove(selectedAccount);
+            //Se actualiza la listaView para que ya no salgo la cuenta
             this.lstvAccountTypes.setItems(FXCollections.observableArrayList(this.availableAccounts));
+            //Se elimina la selección
             this.lstvAccountTypes.getSelectionModel().clearSelection();
         }
         else {
+            //Si no hay una selección se genera un mensaje de error
              new Mensaje().show(Alert.AlertType.WARNING, "NO HAY CUENTA SELECCIONADA", "Selecciona una cuenta para eliminarla");
         }
     }

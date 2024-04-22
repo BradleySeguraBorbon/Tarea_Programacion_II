@@ -88,7 +88,6 @@ public class CooperativeManagementController extends Controller implements Initi
         }
     }
     
-    //Este botón es para
     @FXML
     public void makeChanges() {
         Mensaje msj = new Mensaje();
