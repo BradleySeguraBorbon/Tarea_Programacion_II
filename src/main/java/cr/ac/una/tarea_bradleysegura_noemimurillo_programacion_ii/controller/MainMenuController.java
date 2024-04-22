@@ -82,7 +82,7 @@ public class MainMenuController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
-        AppContext.getInstance().set("User", "Teachers");
+        //AppContext.getInstance().set("User", "Officers");
         setTeachersMainView(false);
         setOfficersMainView(false);
         setAffiliatedMainView(false);

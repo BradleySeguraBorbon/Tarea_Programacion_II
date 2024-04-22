@@ -27,10 +27,13 @@
                         <Image url="@../resources/companyDefaultLogo.png" />
                      </image>
                   </ImageView>
-                  <MFXTextField fx:id="txtCooperativeNameEditor" alignment="CENTER" floatMode="BORDER" floatingText="Nombre de Cooperativa" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="75.0" prefWidth="494.0" VBox.vgrow="ALWAYS">
+                  <MFXTextField fx:id="txtCooperativeNameEditor" alignment="CENTER" floatMode="BORDER" floatingText="Nombre de Cooperativa" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="662.0" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="220.0" right="220.0" />
+                     </VBox.margin>
                   </MFXTextField>
                   <MFXButton fx:id="btnMakeChanges" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#makeChanges" prefHeight="82.0" prefWidth="221.0" styleClass="mfx-btn-medium" text="MODIFICAR">
                      <VBox.margin>

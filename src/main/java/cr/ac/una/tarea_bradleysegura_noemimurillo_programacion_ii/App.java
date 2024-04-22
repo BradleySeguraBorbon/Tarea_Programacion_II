@@ -31,6 +31,15 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        if("T".equals(args[0])) {
+            AppContext.getInstance().set("User", "Teachers");
+        }
+        else if("O".equals(args[0])) {
+            AppContext.getInstance().set("User", "Officers");
+        }
+        else {
+            AppContext.getInstance().set("User", "Affiliated");
+        }
         launch();
     }
 
