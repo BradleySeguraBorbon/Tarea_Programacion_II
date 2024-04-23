@@ -105,7 +105,7 @@ public class CooperativeManagementController extends Controller implements Initi
             AppContext.getInstance().set("cooperativeName", this.cooperativeName);
             AppContext.getInstance().set("cooperativeLogo", this.cooperativeIcon);
         }
-        ((MainController) FlowController.getInstance().getController("MainView")).updateCooperativeInfo();
+        FlowController.getInstance().goView("TopMainView", "Top", null);
         FlowController.getInstance().goView("MainMenuView");
         new Mensaje().show(Alert.AlertType.INFORMATION, "CAMBIOS REALIZADOS EXITOSAMENTE", "Los cambios han sido completados con éxito");
     }

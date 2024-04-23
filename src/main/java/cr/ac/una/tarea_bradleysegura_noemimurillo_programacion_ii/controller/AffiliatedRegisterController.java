@@ -143,7 +143,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     //Al momento de darle click a la imagen se ejecuta este método que abre una nueva ventana para tomar la foto del nuevo afiliado.
     @FXML
     public void takePicture() {
-        FlowController.getInstance().goViewInWindowModal("imageTakerView", this.getStage(), true);
+        FlowController.getInstance().goViewInWindowModal("ImageTakerView", this.getStage(), true);
         //FlowController.getInstance().goView("imageTakerView");
     }
     

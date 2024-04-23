@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -51,10 +52,6 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private VBox vboxCenter;
     @FXML
-    private Label lblCooperativeName;
-    @FXML
-    private ImageView imvCooperativeLogo;
-    @FXML
     private MFXButton btnExit;
     @FXML
     private ImageView imvIcon0;
@@ -64,8 +61,6 @@ public class MainController extends Controller implements Initializable {
     private ImageView imvIcon2;
     @FXML
     private ImageView imvIcon3;
-    @FXML
-    private ImageView imvIcon4;
 
     private ArrayList<ImageView> iconViews;
 
@@ -74,17 +69,20 @@ public class MainController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Se establece la dirección del archivo JSON
         String absolutePath = System.getProperty("user.dir") + "/SystemData.json";
 
+        //Se establecen los valores por defecto
         try {
-            AppContext.getInstance().set("cooperativeName", "Mi Cooperativa");
-            AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(ImageIO.read(new File(System.getProperty("user.dir") + "/defaultCooperativeInfo/companyDefaultLogo.png")), "PNG"));
+            AppContext.getInstance().set("cooperativeName", "Cooperativa");    //corregir
+            AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(ImageIO.read(new File(System.getProperty("user.dir") + "/defaultCooperativeInfo/companyDefaultLogo.png")), "PNG")); 
             AppContext.getInstance().set("inMainMenu", true);
-            updateCooperativeInfo();
+            FlowController.getInstance().goView("TopMainView", "Top", null);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        //Se establece el listener para decoraciones aleatorias
         this.vboxCenter.getChildren().addListener((ListChangeListener<Node>) event -> {
             try {
                 setDecoration();
@@ -92,22 +90,21 @@ public class MainController extends Controller implements Initializable {
                 e.printStackTrace();
             }
         });
-
         this.iconViews = new ArrayList();
-        ImageView[] iconsArray = {imvIcon0, imvIcon1, imvIcon2, imvIcon3, imvIcon4};
+        ImageView[] iconsArray = {imvIcon0, imvIcon1, imvIcon2, imvIcon3};
         for (ImageView imageIcon : iconsArray) {
             iconViews.add(imageIcon);
         }
 
+        //Se define el cargado de información desde el archivo JSON (en caso de existir)
         try {
             if (new File(absolutePath).isFile()) {
                 dataBank = DataManager.load(absolutePath);
                 dataBank.unpackData();
-                updateCooperativeInfo();
+                 FlowController.getInstance().goView("TopMainView", "Top", null);
             } else {
                 dataBank = new DataManager();
                 AppContext.getInstance().set("affiliated", new ArrayList<Affiliated>());
-                this.lblCooperativeName.setText(this.lblCooperativeName.getText());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,32 +118,14 @@ public class MainController extends Controller implements Initializable {
 
     //Universal Methods
     @FXML
-    public void updateCooperativeInfo() {
-        String cooperativeLogo = (String) AppContext.getInstance().get("cooperativeLogo");
-        String cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
-
-        System.out.println("COOP LOGO: " + cooperativeLogo);
-        System.out.println("COOP NAME: " + cooperativeName);
-
-        if (cooperativeLogo != null) {
-            this.imvCooperativeLogo.getStyleClass().clear();
-            this.imvCooperativeLogo.setImage(ImageConverter.fromBase64(cooperativeLogo));
-        }
-        if(cooperativeName != null) {
-            this.lblCooperativeName.setText(cooperativeName);
-        }
-        System.out.println("Coop's Logo and Name Modified" + cooperativeName);
-    }
-
-    @FXML
     public void setDecoration() {
         for (ImageView imvIcon : this.iconViews) {
             imvIcon.getStyleClass().clear();
         }
         Random random = new Random();
-        Integer imvFirstIndex = random.nextInt(5), imvSecondIndex;
+        Integer imvFirstIndex = random.nextInt(4), imvSecondIndex;
         do {
-            imvSecondIndex = random.nextInt(5);
+            imvSecondIndex = random.nextInt(4);
         } while (Objects.equals(imvSecondIndex, imvFirstIndex));
 
         Integer iconFirstIndex = random.nextInt(12), iconSecondIndex;

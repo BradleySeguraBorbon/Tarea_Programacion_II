@@ -6,6 +6,7 @@ package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
+import com.github.sarxos.webcam.WebcamResolution;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.FlowController;
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -19,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.embed.swing.SwingNode;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 /**
@@ -43,10 +45,9 @@ public class ImageTakerController extends Controller implements Initializable {
 
     private Webcam webcam;
     private WebcamPanel panel;
-    //private VideoTaker videoTaker;
     private BufferedImage capturedImage;
-
-    private Dimension dimension;
+    
+    //private VideoTaker videoTaker;
 
     /**
      * Initializes the controller class.
@@ -54,11 +55,11 @@ public class ImageTakerController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*is.webcam = Webcam.getDefault();
-        Dimension dimension = new Dimension(640, 480);
-        this.webcam.setCustomViewSizes(dimension);
+        Dimension webcamDimension = new Dimension(640, 480);
+        this.webcam.setCustomViewSizes(webcamDimension);
         this.panel = new WebcamPanel(this.webcam);
-        this.panel.setMaximumSize(dimension);
-        this.panel.setMaximumSize(dimension);
+        this.panel.setMaximumSize(webcamDimension);
+        this.panel.setMaximumSize(webcamDimension);
         this.webcamNode.setContent(panel);*/
 
  /*this.webcam = Webcam.getDefault();
@@ -72,20 +73,22 @@ public class ImageTakerController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
+        //Inicialización de Webcam
         this.webcam = Webcam.getDefault();
-        Dimension dimension = new Dimension(640, 480);
-        this.webcam.setCustomViewSizes(dimension);
+        this.webcam.setViewSize(WebcamResolution.VGA.getSize());
+        
+        //Inicialización del Panel
         this.panel = new WebcamPanel(this.webcam);
-        this.panel.setMaximumSize(dimension);
-        this.panel.setMaximumSize(dimension);
+        this.panel.setMaximumSize(WebcamResolution.VGA.getSize());
+        this.panel.setMaximumSize(WebcamResolution.VGA.getSize());
         this.webcamNode.setContent(panel);
         
-        getStage().setOnCloseRequest(WindowEvent -> { 
+        /*((Stage)btnSave.getScene().getWindow()).setOnCloseRequest(WindowEvent -> { 
             close();
         });
-        /*if (this.webcamNode.getContent() == null) {
+        if (this.webcamNode.getContent() == null) {
             this.webcam = Webcam.getDefault();
-            this.webcam.setViewSize(dimension);
+            this.webcam.setViewSize(webcamDimension);
             this.panel = new WebcamPanel(this.webcam);
             this.webcamNode.setContent(panel);
         }*/

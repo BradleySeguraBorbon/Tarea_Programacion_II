@@ -92,6 +92,7 @@ public class FlowController {
             MFXThemeManager.addOn(this.mainStage.getScene(), Themes.DEFAULT, Themes.LEGACY);
             this.mainStage.show();
             goView("MainMenuView");
+            goView("TopMainView", "Top", null);
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
         }
@@ -123,6 +124,10 @@ public class FlowController {
                 VBox.setVgrow(vbox, Priority.ALWAYS);
                 break;
             case "Top":
+                HBox hbox = ((HBox) ((BorderPane) stage.getScene().getRoot()).getTop());
+                hbox.getChildren().clear();
+                hbox.getChildren().add(loader.getRoot());
+                HBox.setHgrow(hbox, Priority.ALWAYS);
                 break;
             case "Bottom":
                 break;
