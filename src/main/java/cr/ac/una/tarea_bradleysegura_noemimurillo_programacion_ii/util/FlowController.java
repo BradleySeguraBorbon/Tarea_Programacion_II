@@ -90,6 +90,7 @@ public class FlowController {
         try {
             this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/MainView.fxml"), this.idioma)));
             MFXThemeManager.addOn(this.mainStage.getScene(), Themes.DEFAULT, Themes.LEGACY);
+            this.mainStage.getIcons().add(new Image("/cr/ac/una/tarea_bradleysegura_noemimurillo_programacion_ii/resources/systemIcon.png"));
             this.mainStage.show();
             goView("MainMenuView");
             goView("TopMainView", "Top", null);

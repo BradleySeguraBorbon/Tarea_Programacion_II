@@ -47,7 +47,7 @@ public class CooperativeManagementController extends Controller implements Initi
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initialize();
+        
     }
 
     @Override
@@ -57,7 +57,7 @@ public class CooperativeManagementController extends Controller implements Initi
                 && (this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeLogo")) != null) {
             this.imvCooperativeLogoEditor.setImage(ImageConverter.fromBase64(cooperativeIcon));
             this.txtCooperativeNameEditor.setPromptText(this.cooperativeName);
-            this.imvCooperativeLogoEditor.getStyleClass().clear();
+            //this.imvCooperativeLogoEditor.getStyleClass().clear();
         }
 
         //Se le agrega formato al textfield que recibe el nuevo nombre de la cooperativa

@@ -3,7 +3,6 @@
  */
 
 * {
-    -fx-base-font: "Comic Sans MS";
     -fx-main-title-color: #333333;
     -fx-informative-dark-lbl-color: #3333ff;
     -fx-informative-light-lbl-color: #00ffcc;
@@ -134,12 +133,13 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 2, 0.0, 1, 1);
 }
 
+/*textos pequeños*/
 .jfx-lbl-small {
     -fx-font-size: 14px;
     -fx-alignment: center;
     -fx-text-fill: -fx-main-title-color;
 }
-
+/*labels para apertura de cuentas por drag and drop*/
 .jfx-lbl-draggable {
     -fx-shape:"M 100,10 L 115,45 L 155,45 L 120,70 L 135,105 L 100,80 L 65,105 L 80,70 L 45,45 L 85,45 Z";
     -fx-background-color: #ffff66;
@@ -149,6 +149,7 @@
     -fx-alignment: center;
 }
 
+/*figuras para rifa de estudiantes*/
 .jfx-lbl-raffle-heart {
     -fx-shape: "M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
         c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z";
@@ -203,6 +204,12 @@
 .jfx-lbl-raffle-selected {
     -fx-background-color: #33ffcc;
     -fx-effect:dropshadow(gaussian, rgba(225, 225, 225, 1), 10, 0.5, 0, 0);
+}
+
+/*nombre de cooperativa*/
+.cooperative-name-label {
+    -fx-font-size: 28px;
+    -fx-alignment: center-right;
 }
 
 /* ---------------------------------------------------- Buttons ----------------------------------------------------*/
