@@ -151,7 +151,7 @@ public class RaffleController extends Controller implements Initializable {
         }
         //Se valida que existan afiliados registrados en el sistema
         if (AppContext.getInstance().get("affiliated") != null) {
-            //Se buscan los afiliados que tengan 
+            //Se buscan los afiliados que tengan tickets
             for (Affiliated affiliated : (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated")) {
                 if (affiliated.getSpecialTickets() >= 1) {
                     this.participants.add(affiliated);
@@ -164,8 +164,10 @@ public class RaffleController extends Controller implements Initializable {
     public void setupLabels() {
         //Se limpian los contenedores
         clearContainers(); 
+        //Se buscan los afiliados que pueden participar en la rifa 
         setupParticipants();
         Integer participantsNum = 0, currentContainer = 0;
+        //Se verifica que los contenedores estén vacíos o que 
         for (Affiliated participant : this.participants) {
             if (participantsNum >= 26 || currentContainer >= this.containers.size()) {
                 new Mensaje().show(Alert.AlertType.INFORMATION, "CUPOS LLENOS", "Se ha alcanzado el número máximo de participantes (26)");
