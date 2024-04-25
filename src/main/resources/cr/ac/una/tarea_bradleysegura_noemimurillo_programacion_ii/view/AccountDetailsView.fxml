@@ -41,7 +41,7 @@
                                         <MFXTableView fx:id="tbvDetails" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT">
                                             <tableColumns>
                                                 <MFXTableColumn fx:id="tbcID" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="ID" />
-                                                <MFXTableColumn fx:id="tbcTime" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Fecha y Hora" />
+                                                <MFXTableColumn fx:id="tbcTime" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="42.0" prefWidth="217.0" text="Fecha y Hora" />
                                                 <MFXTableColumn fx:id="tbcAction" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Movimiento" />
                                                 <MFXTableColumn fx:id="tbcAmount" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Monto" />
                                             </tableColumns>

@@ -28,6 +28,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import static javafx.scene.control.Alert.AlertType.WARNING;
 import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import javafx.scene.control.RadioButton;
@@ -47,7 +48,7 @@ import javax.imageio.ImageIO;
  * @author Bradley
  */
 public class RegistryManagerController extends Controller implements Initializable {
-    
+
     @FXML
     private MFXButton btnAddUser;
     @FXML
@@ -74,14 +75,14 @@ public class RegistryManagerController extends Controller implements Initializab
     private MFXTableColumn<Affiliated> tbcFolio;
     @FXML
     private ImageView imgvUsersFace;
-    
+
     Image imgDefault;
-    
+
     String valorspinner = "";
-    
+
     ArrayList<Affiliated> newAffiliates;
     String convertedImg = "";
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // this.newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
@@ -94,16 +95,16 @@ public class RegistryManagerController extends Controller implements Initializab
         // Manejar el evento de liberación de teclas para el MFXSpinner
         spnAge.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
 
-            // Obtener el texto ingresado
+            // Obtener el texto ingresado, que es solo un dígito
             String inputText = event.getText();
-            
+            //En caso de que sea una letra se genera un mensaje de error
             if (inputText.matches("[a-zA-Z]")) {
                 Mensaje mensaje = new Mensaje();
                 mensaje.show(WARNING, "No ha ingresado un valor válido", "Por favor ingrese números en la casilla de Edad");
-                
+
             } else {
 
-                // Validar si el texto ingresado es un número
+                // Validar si el texto ingresado es un número positivo
                 if (inputText.matches("\\d+")) {
                     // Concatenar solo si es un número
                     valorspinner += inputText;
@@ -113,22 +114,24 @@ public class RegistryManagerController extends Controller implements Initializab
                         valorspinner = valorspinner.substring(0, valorspinner.length() - 1);
                     }
                 }
-                
 //                System.out.println("Texto insertado: " + inputText);
 //                System.out.println("El valor del spinner es " + valorspinner);
+
+                //Si el valorspinner está en vacío entonces el valor queda en cero
                 if (valorspinner.equals("")) {
                     spnAge.setValue(0);
                 } else {
+                    //Si tiene un valor se le pone el valor al spinner
                     spnAge.setValue(Integer.valueOf(valorspinner));
                 }
             }
-            
+
         });
-        
+
         initialize();
         this.imgDefault = imgvUsersFace.getImage();
     }
-    
+
     @Override
     public void initialize() {
         //IInicialización de TableView de Afiliados
@@ -142,7 +145,7 @@ public class RegistryManagerController extends Controller implements Initializab
         //Se limpian todos los campos
         clean();
     }
-    
+
     @FXML
     public void saveNewImage() {
         try {
@@ -171,13 +174,13 @@ public class RegistryManagerController extends Controller implements Initializab
                 // Mostrar la imagen en el ImageView
                 imgvUsersFace.setImage(bs64ToImg);
             }
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
     }
-    
+
     @FXML
     public void addNewUser() {
         btnDeleteUser.setDisable(false);
@@ -213,7 +216,7 @@ public class RegistryManagerController extends Controller implements Initializab
         }
         //Si ningún if se cumplió entonces se crea un afiliado
         Affiliated nuevo = new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), spnAge.getValue(), getNewSex(), this.convertedImg, (String) AppContext.getInstance().get("cooperativeName"));
-        
+
         this.newAffiliates.add(nuevo);
 
         //Mensaje de nuevo usuario agregado exitosamente e indica el FOLIO del nuevo usuario.
@@ -256,7 +259,7 @@ public class RegistryManagerController extends Controller implements Initializab
             this.spnAge.setValue(selection.getAge());
             this.convertedImg = selection.getProfileImage();
             this.imgvUsersFace.setImage(ImageConverter.fromBase64(convertedImg));
-            
+
         } else {
             new Mensaje().show(WARNING, "Afiliado No Seleccionado", "Selecciona un afiliado para modificar su información");
         }
@@ -312,12 +315,17 @@ public class RegistryManagerController extends Controller implements Initializab
     public void removeAffiliated() {
         Affiliated selection = this.tbvUsersList.getSelectionModel().getSelectedValue();
         if (selection != null) {
-            this.newAffiliates.remove(selection);
-            clean();
-            setupTbvUsersList();
+            if (selection.BalanceCero()) {
+                this.newAffiliates.remove(selection);
+                clean();
+                setupTbvUsersList();
+                new Mensaje().show(Alert.AlertType.INFORMATION, "USUARIO ELIMINADO", "El asociado " + selection.getFullName().toUpperCase() + "con el número de folio: " + selection.getFolio() + " ha sido eliminado exitosamente.");
+            } else {
+                new Mensaje().show(Alert.AlertType.ERROR, "BALANCE DISPONIBLE", "El asociado tiene dinero en una o más cuentas, por favor haz el retiro antes de eliminarlo.");
+            }
         }
     }
-    
+
     @FXML
     public void saveNumber() {
         Mensaje mensj = new Mensaje();

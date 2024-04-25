@@ -186,11 +186,11 @@ public class Affiliated {
     public void addSpecialTickets(Integer newTickets) {
         this.specialTickets += newTickets;
     }
-    
+
     public Integer getTransactionsNum() {
         Integer totalTransactions = 0;
-        for(Account account : this.accounts) {
-            totalTransactions+=account.getHistory().size();
+        for (Account account : this.accounts) {
+            totalTransactions += account.getHistory().size();
         }
         return totalTransactions;
     }
@@ -202,5 +202,13 @@ public class Affiliated {
                 + "\nEdad: " + Integer.toString(age)
                 + " \nFolio: " + folio
                 + "\nCooperativa: " + this.cooperative;
+    }
+
+    public Boolean BalanceCero() {
+        Double balance = 0.0;
+        for (Account account : accounts) {
+            balance += account.getBalance();
+        }
+        return balance == 0;
     }
 }
