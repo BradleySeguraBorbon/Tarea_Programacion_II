@@ -20,8 +20,10 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import static javafx.scene.control.Alert.AlertType.WARNING;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
@@ -98,6 +100,7 @@ public class BoxDepositController extends Controller implements Initializable {
     private Account selectedAccount;
     private ArrayList<BoxDeposit> boxDeposits;
     private HashMap<BoxDeposit.Denomination, MFXSpinner> spinners;
+    private HashMap<BoxDeposit.Denomination, String> spinnersInput;
 
     /**
      * Initializes the controller class.
@@ -122,6 +125,42 @@ public class BoxDepositController extends Controller implements Initializable {
         //Se inicializan todos los spinners en cero
         for (MFXSpinner<Integer> spinner : this.spinners.values()) {
             spinner.setSpinnerModel(new IntegerSpinnerModel(0));
+        }
+
+        this.spinnersInput = new HashMap<>();
+        for (BoxDeposit.Denomination denom : this.spinners.keySet()) {
+            this.spinnersInput.put(denom, "");
+            // Manejar el evento de liberación de teclas para el MFXSpinner
+            spinners.get(denom).addEventFilter(KeyEvent.KEY_RELEASED, event -> {
+
+                // Obtener el texto ingresado
+                String inputText = event.getText();
+
+                if (inputText.matches("[a-zA-Z]")) {
+                    Mensaje mensaje = new Mensaje();
+                    mensaje.show(WARNING, "No ha ingresado un valor válido", "Por favor ingrese números en la casilla de Edad");
+
+                } else {
+                    String spinnerInput = this.spinnersInput.get(denom);
+                    // Validar si el texto ingresado es un número
+                    if (inputText.matches("\\d+")) {
+                        // Concatenar solo si es un número
+                        spinnerInput += inputText;
+                    } else if (event.getCode() == KeyCode.BACK_SPACE) {
+                        // Si se presiona la tecla de retroceso, eliminar el último dígito
+                        if (spinnerInput.length() > 0) {
+                            this.spinnersInput.put(denom, spinnerInput.substring(0, spinnerInput.length() - 1));
+                        }
+                    }
+//                System.out.println("Texto insertado: " + inputText);
+//                System.out.println("El valor del spinner es " + valorspinner);
+                    if (this.spinnersInput.get(denom).equals("")) {
+                        this.spinners.get(denom).setValue(0);
+                    } else {
+                        this.spinners.get(denom).setValue(Integer.valueOf(this.spinnersInput.get(denom)));
+                    }
+                }
+            });
         }
 
         //Inicialización de FilterComboBox para selección de cuenta
@@ -236,8 +275,8 @@ public class BoxDepositController extends Controller implements Initializable {
         } else {
             //En este hashMap se guardan todos los número que pueda tener cada spinner
             HashMap<BoxDeposit.Denomination, Integer> boxDepositDenomination = new HashMap<>();
-            
-            for(BoxDeposit.Denomination denom : this.spinners.keySet()) {
+
+            for (BoxDeposit.Denomination denom : this.spinners.keySet()) {
                 boxDepositDenomination.put(denom, (Integer) spinners.get(denom).getSpinnerModel().getValue());
             }
 
@@ -252,7 +291,6 @@ public class BoxDepositController extends Controller implements Initializable {
             boxDepositDenomination.put(BoxDeposit.Denomination.CINCOMIL, spnrCincoMilColones.getSpinnerModel().getValue());
             boxDepositDenomination.put(BoxDeposit.Denomination.DIEZMIL, spnrDiezMilColones.getSpinnerModel().getValue());
             boxDepositDenomination.put(BoxDeposit.Denomination.VEINTEMIL, spnrVeinteMilColones.getSpinnerModel().getValue());*/
-
             //Se crea una instancia del BoxDeposit y se le agrega el depósito
             BoxDeposit newBoxDeposit = new BoxDeposit(Double.valueOf(this.lblTotalAmount.getText()), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), BoxDeposit.Action.DEPOSITO);
             newBoxDeposit.setDepositDenomination(boxDepositDenomination);
