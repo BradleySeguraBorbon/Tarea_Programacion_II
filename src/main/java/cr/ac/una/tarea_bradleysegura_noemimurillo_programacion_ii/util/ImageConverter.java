@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
  */
 public class ImageConverter {
 
+    //Método para comvertir una imagen a base64
     public static String toBase64(BufferedImage image, String format) {
         try {
             ByteArrayOutputStream byteConverter = new ByteArrayOutputStream();
@@ -35,6 +36,7 @@ public class ImageConverter {
         return null;
     }
 
+    //Para convertir un base64 a imagen 
     public static Image fromBase64(String base64String) {
         try {
             byte[] decodedBytes = Base64.getDecoder().decode(base64String);
