@@ -23,17 +23,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import static javafx.scene.control.Alert.AlertType.WARNING;
 import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.Toggle;
 import javafx.stage.FileChooser;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javax.imageio.ImageIO;
 
 /**
@@ -42,7 +47,7 @@ import javax.imageio.ImageIO;
  * @author Bradley
  */
 public class RegistryManagerController extends Controller implements Initializable {
-
+    
     @FXML
     private MFXButton btnAddUser;
     @FXML
@@ -71,10 +76,12 @@ public class RegistryManagerController extends Controller implements Initializab
     private ImageView imgvUsersFace;
     
     Image imgDefault;
-
+    
+    String valorspinner = "";
+    
     ArrayList<Affiliated> newAffiliates;
     String convertedImg = "";
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // this.newAffiliates = (ArrayList<Affiliated>) AppContext.getInstance().get("afiliated");
@@ -83,10 +90,45 @@ public class RegistryManagerController extends Controller implements Initializab
         txtSurname.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         txtName.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
         txtSecondSurname.delegateSetTextFormatter(Formato.getInstance().letrasFormat(20));
+
+        // Manejar el evento de liberación de teclas para el MFXSpinner
+        spnAge.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
+
+            // Obtener el texto ingresado
+            String inputText = event.getText();
+            
+            if (inputText.matches("[a-zA-Z]")) {
+                Mensaje mensaje = new Mensaje();
+                mensaje.show(WARNING, "No ha ingresado un valor válido", "Por favor ingrese números en la casilla de Edad");
+                
+            } else {
+
+                // Validar si el texto ingresado es un número
+                if (inputText.matches("\\d+")) {
+                    // Concatenar solo si es un número
+                    valorspinner += inputText;
+                } else if (event.getCode() == KeyCode.BACK_SPACE) {
+                    // Si se presiona la tecla de retroceso, eliminar el último dígito
+                    if (valorspinner.length() > 0) {
+                        valorspinner = valorspinner.substring(0, valorspinner.length() - 1);
+                    }
+                }
+                
+//                System.out.println("Texto insertado: " + inputText);
+//                System.out.println("El valor del spinner es " + valorspinner);
+                if (valorspinner.equals("")) {
+                    spnAge.setValue(0);
+                } else {
+                    spnAge.setValue(Integer.valueOf(valorspinner));
+                }
+            }
+            
+        });
+        
         initialize();
         this.imgDefault = imgvUsersFace.getImage();
     }
-
+    
     @Override
     public void initialize() {
         //IInicialización de TableView de Afiliados
@@ -100,7 +142,7 @@ public class RegistryManagerController extends Controller implements Initializab
         //Se limpian todos los campos
         clean();
     }
-
+    
     @FXML
     public void saveNewImage() {
         try {
@@ -129,53 +171,53 @@ public class RegistryManagerController extends Controller implements Initializab
                 // Mostrar la imagen en el ImageView
                 imgvUsersFace.setImage(bs64ToImg);
             }
-
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
     }
-
+    
     @FXML
     public void addNewUser() {
         btnDeleteUser.setDisable(false);
         btnSaveChanges.setDisable(false);
 
         //Se crea una instancia de mensaje para las advertencias en caso de que algún espacio esté vació o si se agregó el usuario exitosamente.
-        Mensaje msj = new Mensaje();
+        Mensaje msje = new Mensaje();
 
         //Estos if validan si los espacios están llenos y si no se salen del método.
         if (convertedImg.equals("")) {
-            msj.show(WARNING, "Imagen vacía", "La imagen del nuevo usuario está vacía");
+            msje.show(WARNING, "Imagen vacía", "La imagen del nuevo usuario está vacía");
             return;
         }
         if (txtName.getText().equals("")) {
-            msj.show(WARNING, "Nombre vacío", "La casilla de nombre del nuevo usuario está vacía");
+            msje.show(WARNING, "Nombre vacío", "La casilla de nombre del nuevo usuario está vacía");
             return;
         }
         if (txtSurname.getText().equals("")) {
-            msj.show(WARNING, "Primer apellido vacío", "La casilla del primer apellido del nuevo usuario está vacía");
+            msje.show(WARNING, "Primer apellido vacío", "La casilla del primer apellido del nuevo usuario está vacía");
             return;
         }
         if (txtSecondSurname.getText().equals("")) {
-            msj.show(WARNING, "Segundo apellido vacío", "La casilla del segundo apellido del nuevo usuario está vacía");
+            msje.show(WARNING, "Segundo apellido vacío", "La casilla del segundo apellido del nuevo usuario está vacía");
             return;
         }
         if (this.spnAge.getValue() <= 0) {
-            msj.show(WARNING, "Edad no ingresada", "Ingresa tu edad para continuar");
+            msje.show(WARNING, "Edad no ingresada", "Ingresa tu edad para continuar");
             return;
         }
         if (getNewSex() == null) {
-            msj.show(WARNING, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
+            msje.show(WARNING, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
             return;
         }
         //Si ningún if se cumplió entonces se crea un afiliado
         Affiliated nuevo = new Affiliated(txtName.getText(), txtSurname.getText(), txtSecondSurname.getText(), spnAge.getValue(), getNewSex(), this.convertedImg, (String) AppContext.getInstance().get("cooperativeName"));
-
+        
         this.newAffiliates.add(nuevo);
 
         //Mensaje de nuevo usuario agregado exitosamente e indica el FOLIO del nuevo usuario.
-        msj.show(INFORMATION, "Nuevo Afiliado", "¡Se ha añadido un nuevo afiliado exitosamente! El folio del nuevo usuario es: " + nuevo.getFolio());
+        msje.show(INFORMATION, "Nuevo Afiliado", "¡Se ha añadido un nuevo afiliado exitosamente! El folio del nuevo usuario es: " + nuevo.getFolio());
 
         //Se limpian los espacios de texto y todo lo demás
         clean();
@@ -214,7 +256,7 @@ public class RegistryManagerController extends Controller implements Initializab
             this.spnAge.setValue(selection.getAge());
             this.convertedImg = selection.getProfileImage();
             this.imgvUsersFace.setImage(ImageConverter.fromBase64(convertedImg));
-
+            
         } else {
             new Mensaje().show(WARNING, "Afiliado No Seleccionado", "Selecciona un afiliado para modificar su información");
         }
@@ -259,8 +301,9 @@ public class RegistryManagerController extends Controller implements Initializab
         selection.setSexo(getNewSex());
         selection.setAge(spnAge.getValue());
         selection.setProfileImage(convertedImg);
-
+        //Se limpia todo
         clean();
+        //Se vuelve a cargar la tableView
         setupTbvUsersList();
     }
 
@@ -273,6 +316,12 @@ public class RegistryManagerController extends Controller implements Initializab
             clean();
             setupTbvUsersList();
         }
+    }
+    
+    @FXML
+    public void saveNumber() {
+        Mensaje mensj = new Mensaje();
+        mensj.show(WARNING, "Sexo vacío", "La casilla de sexo del nuevo usuario está vacía");
     }
 
     //Este método es para limpiar todos los espacios en donde se escribe/despliega la informacipon del afiliado.

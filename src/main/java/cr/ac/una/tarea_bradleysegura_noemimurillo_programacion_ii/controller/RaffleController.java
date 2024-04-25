@@ -167,12 +167,14 @@ public class RaffleController extends Controller implements Initializable {
         //Se buscan los afiliados que pueden participar en la rifa 
         setupParticipants();
         Integer participantsNum = 0, currentContainer = 0;
-        //Se verifica que los contenedores estén vacíos o que 
+        //Se verifica que el contenedor esté vacío o que todavía le quede espacio
         for (Affiliated participant : this.participants) {
             if (participantsNum >= 26 || currentContainer >= this.containers.size()) {
                 new Mensaje().show(Alert.AlertType.INFORMATION, "CUPOS LLENOS", "Se ha alcanzado el número máximo de participantes (26)");
+                //Si no caben más se hace un break para que salga
                 break;
             }
+            //
             Label lblParticipant = new Label(participant.getName() + " " + participant.getFirstLastName());
             lblParticipant.setUserData(participant.getFolio());
             lblParticipant.getStyleClass().add(getRandomStyleClass());

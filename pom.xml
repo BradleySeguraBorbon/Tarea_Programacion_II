@@ -51,6 +51,26 @@
             <version>23-ea+3</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>com.github.giulianini.jestures</groupId>
+            <artifactId>jestures</artifactId>
+            <version>0.0.2</version>
+            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.kordamp.ikonli</groupId>
+                    <artifactId>ikonli-material-pack</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.kordamp.ikonli</groupId>
+                    <artifactId>ikonli-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.kordamp.ikonli</groupId>
+                    <artifactId>ikonli-javafx</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

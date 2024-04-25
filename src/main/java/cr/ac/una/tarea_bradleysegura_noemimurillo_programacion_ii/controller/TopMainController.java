@@ -36,6 +36,7 @@ public class TopMainController extends Controller implements Initializable {
            updateCooperativeInfo();
     }
 
+    //Este método es para actualizar el nombre y logo de la cooperativa 
     public void updateCooperativeInfo() {
         String cooperativeLogo = (String) AppContext.getInstance().get("cooperativeLogo");
         String cooperativeName = (String) AppContext.getInstance().get("cooperativeName");
