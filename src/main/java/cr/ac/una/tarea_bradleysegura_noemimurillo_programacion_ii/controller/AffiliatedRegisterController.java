@@ -75,10 +75,11 @@ public class AffiliatedRegisterController extends Controller implements Initiali
 
     @Override
     public void initialize() {
+        spnrAge.setSpinnerModel(new IntegerSpinnerModel(0));
+        clear();
         //Inicialización de lista de afiliados
         if (AppContext.getInstance().get("affiliated") != null) {
-            this.affiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");
-            spnrAge.setSpinnerModel(new IntegerSpinnerModel(0));
+            this.affiliated = (ArrayList<Affiliated>) AppContext.getInstance().get("affiliated");         
         }
         
         //Inicialización de formatos de los TextFields
@@ -153,6 +154,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         try {
             if (takenImage != null) {
                 this.image = takenImage;
+                this.imvAffiliatedImage.getStyleClass().remove("imvCaptureDefault");
                 this.imvAffiliatedImage.setImage(SwingFXUtils.toFXImage(takenImage, null));
             }
         } catch (Exception e) {
@@ -163,7 +165,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
     //Este método limpia todos los espacios
     @FXML
     public void clear() {
-        this.imvAffiliatedImage.setImage(this.imgDefault);
+        this.imvAffiliatedImage.getStyleClass().add("imvCaptureDefault");
         this.txtName.setText("");
         this.txtFirstLastName.setText("");
         this.txtSecondLastName.setText("");
@@ -173,6 +175,7 @@ public class AffiliatedRegisterController extends Controller implements Initiali
         }
         this.affiliated = null;
         this.image = null;
+        FlowController.getInstance().limpiarLoader("ImageTakerView");
     }
     
     

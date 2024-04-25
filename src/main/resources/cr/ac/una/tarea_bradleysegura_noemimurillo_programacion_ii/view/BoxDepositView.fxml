@@ -190,12 +190,12 @@
             <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="40.0" VBox.vgrow="ALWAYS">
                <children>
                   <Pane prefHeight="62.0" prefWidth="175.0" HBox.hgrow="ALWAYS" />
-                  <MFXButton fx:id="btnClose" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#close" prefHeight="63.0" prefWidth="250.0" text="CERRAR">
+                  <MFXButton fx:id="btnClose" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#close" prefHeight="63.0" prefWidth="250.0" styleClass="btn-alert-action" text="CERRAR">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton fx:id="btnDone" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#save" prefHeight="63.0" prefWidth="250.0" text="FINALIZAR">
+                  <MFXButton fx:id="btnDone" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#save" prefHeight="63.0" prefWidth="250.0" styleClass="jfx-btn-third-template" text="FINALIZAR">
                      <font>
                         <Font size="18.0" />
                      </font>

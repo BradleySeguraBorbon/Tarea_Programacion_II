@@ -21,6 +21,8 @@ public class Mensaje {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
+//        alert.getDialogPane().getStylesheets().add("hoja de estilos");
+//        alert.getDialogPane().getStyleClass().add("Clase");      
         alert.setContentText(mensaje);
         alert.show();
     }

@@ -32,8 +32,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -75,7 +73,7 @@ public class MainController extends Controller implements Initializable {
         //Se establecen los valores por defecto
         try {
             AppContext.getInstance().set("cooperativeName", "Cooperativa");    //corregir
-            AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(ImageIO.read(new File(System.getProperty("user.dir") + "/defaultCooperativeInfo/companyDefaultLogo.png")), "PNG")); 
+            AppContext.getInstance().set("cooperativeLogo", ImageConverter.toBase64(ImageIO.read(new File(System.getProperty("user.dir") + "/defaultCooperativeInfo/companyDefaultLogo.png")), "PNG"));
             AppContext.getInstance().set("inMainMenu", true);
             FlowController.getInstance().goView("TopMainView", "Top", null);
         } catch (Exception e) {
@@ -90,6 +88,8 @@ public class MainController extends Controller implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        //Se inicializan los nodos de la vista
         this.iconViews = new ArrayList();
         ImageView[] iconsArray = {imvIcon0, imvIcon1, imvIcon2, imvIcon3};
         for (ImageView imageIcon : iconsArray) {
@@ -101,7 +101,7 @@ public class MainController extends Controller implements Initializable {
             if (new File(absolutePath).isFile()) {
                 dataBank = DataManager.load(absolutePath);
                 dataBank.unpackData();
-                 FlowController.getInstance().goView("TopMainView", "Top", null);
+                FlowController.getInstance().goView("TopMainView", "Top", null);
             } else {
                 dataBank = new DataManager();
                 AppContext.getInstance().set("affiliated", new ArrayList<Affiliated>());
@@ -113,10 +113,10 @@ public class MainController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
-        //updateCooperativeInfo();
+
     }
 
-    //Universal Methods
+    //Establecimiento de decoraciones (gifs) aleatorias
     @FXML
     public void setDecoration() {
         for (ImageView imvIcon : this.iconViews) {
@@ -137,6 +137,7 @@ public class MainController extends Controller implements Initializable {
         this.iconViews.get(imvSecondIndex).getStyleClass().add("randomImage" + Integer.toString(iconSecondIndex));
     }
 
+    //Método de regreso al menú principal 
     @FXML
     public void exit() throws IOException {
         String absolutePath = System.getProperty("user.dir") + "/SystemData.json";
