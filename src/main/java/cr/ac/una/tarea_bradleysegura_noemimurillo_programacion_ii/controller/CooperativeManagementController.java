@@ -55,9 +55,9 @@ public class CooperativeManagementController extends Controller implements Initi
         //Cargamos el nombre y el logo de la coopertaiva desde el appContext
         if ((this.cooperativeName = (String) AppContext.getInstance().get("cooperativeName")) != null
                 && (this.cooperativeIcon = (String) AppContext.getInstance().get("cooperativeLogo")) != null) {
+            this.imvCooperativeLogoEditor.getStyleClass().clear();
             this.imvCooperativeLogoEditor.setImage(ImageConverter.fromBase64(cooperativeIcon));
             this.txtCooperativeNameEditor.setPromptText(this.cooperativeName);
-            //this.imvCooperativeLogoEditor.getStyleClass().clear();
         }
 
         //Se le agrega formato al textfield que recibe el nuevo nombre de la cooperativa
@@ -98,6 +98,7 @@ public class CooperativeManagementController extends Controller implements Initi
             msj.show(Alert.AlertType.WARNING, "NOMBRE DE COOPERATIVA NO INDICADO", "Escribe el nombre de la cooperativa para continuar");
         }else if(modifiedCooperativeName.isBlank()) {
              AppContext.getInstance().set("cooperativeName", this.txtCooperativeNameEditor.getPromptText());
+             AppContext.getInstance().set("cooperativeLogo", this.cooperativeIcon);
         } else if (this.cooperativeIcon == null) {
             msj.show(Alert.AlertType.WARNING, "LOGO NO MODIFICADO", "Ingresa el nuevo logo de la cooperativa para continuar");
         } else {
