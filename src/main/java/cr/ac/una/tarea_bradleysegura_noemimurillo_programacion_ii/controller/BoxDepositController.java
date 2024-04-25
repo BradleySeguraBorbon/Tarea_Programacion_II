@@ -1,4 +1,3 @@
-
 package cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.controller;
 
 import cr.ac.una.tarea_bradleysegura_noemimurillo_programacion_ii.model.Account;
@@ -98,24 +97,32 @@ public class BoxDepositController extends Controller implements Initializable {
     private Affiliated selectedAffiliated;
     private Account selectedAccount;
     private ArrayList<BoxDeposit> boxDeposits;
+    private HashMap<BoxDeposit.Denomination, MFXSpinner> spinners;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Inicialización de modelos para los spinner
-        this.spnrCincoColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrDiezColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrVeinticincoColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrCincuentaColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrCienColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrQuinientosColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrMilColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrDosMilColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrCincoMilColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrDiezMilColones.setSpinnerModel(new IntegerSpinnerModel(0));
-        this.spnrVeinteMilColones.setSpinnerModel(new IntegerSpinnerModel(0));
+
+        //Se define la denominación de cada spinner
+        this.spinners = new HashMap<>();
+        this.spinners.put(BoxDeposit.Denomination.CINCO, spnrCincoColones);
+        this.spinners.put(BoxDeposit.Denomination.DIEZ, spnrDiezColones);
+        this.spinners.put(BoxDeposit.Denomination.VEINTICINCO, spnrVeinticincoColones);
+        this.spinners.put(BoxDeposit.Denomination.CINCUENTA, spnrCincuentaColones);
+        this.spinners.put(BoxDeposit.Denomination.CIEN, spnrCienColones);
+        this.spinners.put(BoxDeposit.Denomination.QUINIENTOS, spnrQuinientosColones);
+        this.spinners.put(BoxDeposit.Denomination.MIL, spnrMilColones);
+        this.spinners.put(BoxDeposit.Denomination.DOSMIL, spnrDosMilColones);
+        this.spinners.put(BoxDeposit.Denomination.CINCOMIL, spnrCincoMilColones);
+        this.spinners.put(BoxDeposit.Denomination.DIEZMIL, spnrDiezMilColones);
+        this.spinners.put(BoxDeposit.Denomination.VEINTEMIL, spnrVeinteMilColones);
+
+        //Se inicializan todos los spinners en cero
+        for (MFXSpinner<Integer> spinner : this.spinners.values()) {
+            spinner.setSpinnerModel(new IntegerSpinnerModel(0));
+        }
 
         //Inicialización de FilterComboBox para selección de cuenta
         StringConverter<Account> converter = FunctionalStringConverter.to(account -> (account == null) ? "" : account.getType());
@@ -127,7 +134,7 @@ public class BoxDepositController extends Controller implements Initializable {
         } else {
             this.boxDeposits = new ArrayList<>();
         }
-        
+
         //Inicialización de TextField para folio
         txtFolio.delegateSetTextFormatter(Formato.getInstance().capsFormat(6));
     }
@@ -173,7 +180,6 @@ public class BoxDepositController extends Controller implements Initializable {
         this.selectedAccount = (Account) this.fcbSelectAccount.getSelectedItem();
     }
 
-  
     //Este método es para actualizar el monto total cada vez que se modifica un spinner
     @FXML
     public void refreshTotal() {
@@ -192,27 +198,26 @@ public class BoxDepositController extends Controller implements Initializable {
         this.fcbSelectAccount.clearSelection();
         this.fcbSelectAccount.clear();
         this.fcbSelectAccount.setDisable(true);
-        this.spnrCincoColones.setValue(0);
-        this.spnrDiezColones.setValue(0);
-        this.spnrVeinticincoColones.setValue(0);
-        this.spnrCincuentaColones.setValue(0);
-        this.spnrCienColones.setValue(0);
-        this.spnrQuinientosColones.setValue(0);
-        this.spnrMilColones.setValue(0);
-        this.spnrDosMilColones.setValue(0);
-        this.spnrCincoMilColones.setValue(0);
-        this.spnrDiezMilColones.setValue(0);
-        this.spnrVeinteMilColones.setValue(0);
+        //Se resetean todos los spinners en cero
+        for (MFXSpinner<Integer> spinner : this.spinners.values()) {
+            spinner.setSpinnerModel(new IntegerSpinnerModel(0));
+        }
         this.lblTotalAmount.setText("0");
     }
-    
+
     //Este método devyuelve los spinners a 0
     @FXML
     private Boolean spinnersBlank() {
-        return this.spnrCincoColones.getValue() == 0 && this.spnrDiezColones.getValue() == 0 && this.spnrVeinticincoColones.getValue() == 0 &&
-                this.spnrCincuentaColones.getValue() == 0 && this.spnrCienColones.getValue() == 0 && this.spnrQuinientosColones.getValue() == 0 &&
-                this.spnrMilColones.getValue() == 0 && this.spnrDosMilColones.getValue() == 0 && this.spnrCincoMilColones.getValue() == 0 &&
-                this.spnrDiezMilColones.getValue() == 0 && this.spnrVeinteMilColones.getValue() == 0;
+        for (MFXSpinner<Integer> spinner : this.spinners.values()) {
+            if (spinner.getValue() > 0) {
+                return false;
+            }
+        }
+        return true;
+        /*return this.spnrCincoColones.getValue() == 0 && this.spnrDiezColones.getValue() == 0 && this.spnrVeinticincoColones.getValue() == 0
+                && this.spnrCincuentaColones.getValue() == 0 && this.spnrCienColones.getValue() == 0 && this.spnrQuinientosColones.getValue() == 0
+                && this.spnrMilColones.getValue() == 0 && this.spnrDosMilColones.getValue() == 0 && this.spnrCincoMilColones.getValue() == 0
+                && this.spnrDiezMilColones.getValue() == 0 && this.spnrVeinteMilColones.getValue() == 0;*/
     }
 
     //Se guarda la información del depósito
@@ -231,8 +236,12 @@ public class BoxDepositController extends Controller implements Initializable {
         } else {
             //En este hashMap se guardan todos los número que pueda tener cada spinner
             HashMap<BoxDeposit.Denomination, Integer> boxDepositDenomination = new HashMap<>();
+            
+            for(BoxDeposit.Denomination denom : this.spinners.keySet()) {
+                boxDepositDenomination.put(denom, (Integer) spinners.get(denom).getSpinnerModel().getValue());
+            }
 
-            boxDepositDenomination.put(BoxDeposit.Denomination.CINCO, spnrCincoColones.getSpinnerModel().getValue());
+            /*boxDepositDenomination.put(BoxDeposit.Denomination.CINCO, spnrCincoColones.getSpinnerModel().getValue());
             boxDepositDenomination.put(BoxDeposit.Denomination.DIEZ, spnrDiezColones.getSpinnerModel().getValue());
             boxDepositDenomination.put(BoxDeposit.Denomination.VEINTICINCO, spnrVeinticincoColones.getSpinnerModel().getValue());
             boxDepositDenomination.put(BoxDeposit.Denomination.CINCUENTA, spnrCincuentaColones.getSpinnerModel().getValue());
@@ -242,7 +251,7 @@ public class BoxDepositController extends Controller implements Initializable {
             boxDepositDenomination.put(BoxDeposit.Denomination.DOSMIL, spnrDosMilColones.getSpinnerModel().getValue());
             boxDepositDenomination.put(BoxDeposit.Denomination.CINCOMIL, spnrCincoMilColones.getSpinnerModel().getValue());
             boxDepositDenomination.put(BoxDeposit.Denomination.DIEZMIL, spnrDiezMilColones.getSpinnerModel().getValue());
-            boxDepositDenomination.put(BoxDeposit.Denomination.VEINTEMIL, spnrVeinteMilColones.getSpinnerModel().getValue());
+            boxDepositDenomination.put(BoxDeposit.Denomination.VEINTEMIL, spnrVeinteMilColones.getSpinnerModel().getValue());*/
 
             //Se crea una instancia del BoxDeposit y se le agrega el depósito
             BoxDeposit newBoxDeposit = new BoxDeposit(Double.valueOf(this.lblTotalAmount.getText()), this.selectedAffiliated.getFolio(), this.selectedAffiliated.getFullName(), this.selectedAccount.getType(), BoxDeposit.Action.DEPOSITO);
@@ -259,7 +268,7 @@ public class BoxDepositController extends Controller implements Initializable {
             getStage().close();
         }
     }
-    
+
     //Se cierra la ventana
     @FXML
     public void close() {
