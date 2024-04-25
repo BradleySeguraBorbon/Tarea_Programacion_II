@@ -50,7 +50,7 @@
                         <MFXTextField fx:id="txtName" floatingText="Nombre" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="587.0" styleClass="mfx-text-field" />
                         <MFXTextField fx:id="txtSurname" floatingText="Primer Apelido" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="mfx-text-field" />
                         <MFXTextField fx:id="txtSecondSurname" floatingText="Segundo Apellido" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                        <MFXSpinner fx:id="spnAge" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Edad" />
+                        <MFXSpinner fx:id="spnAge" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onInputMethodTextChanged="#saveNumber" promptText="Edad" selectable="false" />
                         <Label text="Sexo" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                             <children>
